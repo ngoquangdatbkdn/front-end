@@ -1,0 +1,34 @@
+{
+  "common": {
+    "keyword": "キーワード",
+    "all_major": "専攻",
+    "search": "検索",
+    "job_list": "職務経歴書",
+    "company_list": "企業一覧",
+    "see_more": "もっと見る",
+    "select_city": "地域選択",
+    "select_district": "地方選択",
+    "select_sub_district": "地区選択",
+    "translation_management": "翻訳管理",
+    "switch_to_vietnamese": "ベトナム語",
+    "switch_to_japanese": "英語",
+    "company": "採用",
+    "translator": "翻訳者",
+    "create_cv": "履歴書",
+    "sign_in": "ログイン",
+    "vietnamese": "Tiếng Việt",
+    "japanese": "Tiếng Nhật",
+    "close": "Đóng"
+  },
+  "authentication": {
+    "login": "Đăng nhập",
+    "register": "Đăng kí",
+    "login_by": "Đăng nhập với",
+    "or_login_by_account":"hoặc bằng tài khoản",
+    "remember_me": "Ghi nhớ",
+    "email": "Email",
+    "enter_email": "Nhập email",
+    "password": "Mật khẩu",
+    "enter_password": "Nhập mật khẩu"
+  }
+}

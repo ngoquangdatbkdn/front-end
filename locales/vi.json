@@ -1,0 +1,34 @@
+{
+  "common": {
+    "keyword": "Từ khóa",
+    "all_major": "Tất cả các ngành",
+    "search": "Tìm kiếm",
+    "job_list": "Danh sách công việc",
+    "company_list": "Danh sách công ty",
+    "see_more": "Xem thêm",
+    "select_city": "Chọn thành phố",
+    "select_district": "Chọn quận huyện",
+    "select_sub_district": "Chọn phường xã",
+    "translation_management": "Quản lý bản dịch",
+    "switch_to_vietnamese": "Chuyển qua Tiếng Việt",
+    "switch_to_japanese": "Chuyển qua Tiếng Anh",
+    "company": "Công ty tuyển dụng",
+    "translator": "Biên dịch viên",
+    "create_cv": "Tạo CV",
+    "sign_in": "Đăng nhập",
+    "vietnamese": "Tiếng Việt",
+    "japanese": "Tiếng Nhật",
+    "close": "Đóng"
+  },
+  "authentication": {
+    "login": "Đăng nhập",
+    "register": "Đăng kí",
+    "login_by": "Đăng nhập với",
+    "or_login_by_account":"hoặc bằng tài khoản",
+    "remember_me": "Ghi nhớ",
+    "email": "Email",
+    "enter_email": "Nhập email",
+    "password": "Mật khẩu",
+    "enter_password": "Nhập mật khẩu"
+  }
+}
