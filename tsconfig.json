@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
@@ -28,5 +29,8 @@
       "@types/node",
       "@nuxt/vue-app"
     ]
-  }
+  },
+  "include": ["**/*.ts", "**/*.vue"],
+  "exclude": ["node_modules"],
+  "files": ["ts-shim.d.ts"]
 }

@@ -18,7 +18,13 @@
     "sign_in": "ログイン",
     "vietnamese": "Tiếng Việt",
     "japanese": "Tiếng Nhật",
-    "close": "Đóng"
+    "close": "Đóng",
+    "city": "Thành phố/Tỉnh",
+    "district": "Quận",
+    "ward": "Phường",
+    "no_options": "Không có kết quả",
+    "upload_file_guild": "Chọn file hoặc kéo thả",
+    "upload_file_limitation": "File PNG hoặc JPG không được quá 5MB"
   },
   "authentication": {
     "login": "Đăng nhập",
@@ -30,5 +36,48 @@
     "enter_email": "Nhập email",
     "password": "Mật khẩu",
     "enter_password": "Nhập mật khẩu"
+  },
+  "job": {
+    "salary_range": "年収",
+    "contract_type": "雇用形態",
+    "working_place_address": "勤務地",
+    "update_job_info": "求人情報更新",
+    "job_image": "写真",
+    "job_detail": "業務内容",
+    "job_name": "職種",
+    "job_name_description": "職種",
+    "contract_type_description": "雇用形態",
+    "select_contract_type": "雇用形態選択",
+    "salary_range_description": "年収",
+    "min_salary": "最低年収",
+    "enter_min_salary": "最低年収",
+    "max_salary": "最高年収",
+    "enter_max_salary": "最高年収"
+  },
+  "company": {
+    "staff_number": "従業員数",
+    "business_type": "業種",
+    "company_address": "所在地",
+    "update_company_info": "更新日",
+    "company_image": "写真",
+    "company_info": "会社情報",
+    "position_list": "職種一覧",
+    "registered_translator_list": "翻訳者リスト",
+    "company_name": "会社名",
+    "company_name_description": "会社名",
+    "business_type_description": "仕事内容",
+    "company_address_description": "所在地",
+    "company_logo": "ロゴ",
+    "company_logo_description": "ロゴ",
+    "company_cover_image": "カバー写真",
+    "company_cover_image_description": "カバー写真",
+    "company_introduction": "企業紹介",
+    "company_introduction_description": "企業紹介",
+    "enter_company_name": "Nhập tên công ty",
+    "company_staff_amount": "Số lượng nhân viên công ty",
+    "company_staff_amount_description": "Tổng số người làm trong công ty",
+    "enter_company_staff_amount": "Nhập số lượng nhân viên công ty",
+    "upload_company_cover_image": "Tải ảnh nền công ty",
+    "upload_company_logo": "Tải logo của công ty"
   }
 }

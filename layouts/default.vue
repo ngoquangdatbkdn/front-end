@@ -2,16 +2,22 @@
   <div>
     <div style="position: relative">
       <base-nav type="secondary" effect="light" expand>
-        <NuxtLink :to="$i18n.path('')" class="Header__Link" exact>
-          <a class="web-name  text-dark  d-none d-lg-block" href="#"
-            >JAPAN WORD</a
-          >
-        </NuxtLink>
+        <nuxt-link
+          :to="localePath('index')"
+          class="web-name  text-dark  d-none d-lg-block"
+          exact
+        >
+          JAPAN WORD
+        </nuxt-link>
         <div class="row" slot="content-header" slot-scope="{ closeMenu }">
           <div class="col-6 collapse-brand">
-            <NuxtLink :to="$i18n.path('')" class="Header__Link" exact>
-              <a class="web-name  text-dark" href="#">JAPAN WORD</a>
-            </NuxtLink>
+            <nuxt-link
+              :to="localePath('index')"
+              class="web-name  text-dark"
+              exact
+            >
+              JAPAN WORD
+            </nuxt-link>
           </div>
           <div class="col-6 collapse-close secondary">
             <close-button @click="closeMenu"></close-button>
@@ -20,9 +26,13 @@
 
         <ul class="navbar-nav ml-lg-auto">
           <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="#">
+            <nuxt-link
+              :to="localePath({name: 'companies-create' })"
+              class="nav-link nav-link-icon"
+              exact
+            >
               {{ $t("common.company") }}
-            </a>
+            </nuxt-link>
           </li>
           <li class="nav-item">
             <a class="nav-link nav-link-icon" href="#">
@@ -35,7 +45,7 @@
             </a>
           </li>
           <li class="nav-link">
-            <base-dropdown title="Settings">
+            <base-dropdown>
               <a slot="title" type="default" class="dropdown-toggle">
                 <img
                   v-if="$i18n.locale === 'vi'"
@@ -43,31 +53,24 @@
                 />
                 <img v-else src="~/assets/icons/japan.png" />
               </a>
-
-              <li>
-                <NuxtLink
-                  :to="`/vi` + $route.fullPath.replace(/^\/[^\/]+/, '')"
-                  active-class="none"
-                  exact
-                >
-                  <a class="dropdown-item" href="#">
-                    <img src="~/assets/icons/vietnam.png" />
-                    {{ $t("common.vietnamese") }}
-                  </a>
-                </NuxtLink>
-              </li>
-              <li>
-                <NuxtLink
-                  :to="$route.fullPath.replace(/^\/[^\/]+/, '')"
-                  active-class="none"
-                  exact
-                >
-                  <a class="dropdown-item" href="#">
-                    <img src="~/assets/icons/japan.png" />
-                    {{ $t("common.japanese") }}
-                  </a>
-                </NuxtLink>
-              </li>
+              <nuxt-link
+                :to="switchLocalePath('vi')"
+                active-class="none"
+                exact
+                class="dropdown-item"
+              >
+                <img src="~/assets/icons/vietnam.png" />
+                {{ $t("common.vietnamese") }}
+              </nuxt-link>
+              <nuxt-link
+                :to="switchLocalePath('ja')"
+                active-class="none"
+                exact
+                class="dropdown-item"
+              >
+                <img src="~/assets/icons/japan.png" />
+                {{ $t("common.japanese") }}
+              </nuxt-link>
             </base-dropdown>
           </li>
           <li
@@ -94,7 +97,9 @@
     </modal>
     <!--</header>-->
     <!--<div class="body">-->
-    <Nuxt />
+    <main>
+      <Nuxt />
+    </main>
     <!--</div>-->
   </div>
 </template>
@@ -129,7 +134,7 @@ export default class DefaultLayout extends Vue {
   margin-top: 100px;
 }
 .navbar-nav .dropdown-menu.show {
-  margin-top: 0px;
+  margin-top: 15px;
   left: -16px !important;
 }
 .web-name {
@@ -143,7 +148,7 @@ export default class DefaultLayout extends Vue {
 /*}*/
 html,
 body {
-  background-color: #fff;
+  background: #ced4da !important;
   color: #2e2f30;
   letter-spacing: 0.5px;
   /*font-size: 14px;*/

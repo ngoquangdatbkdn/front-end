@@ -1,9 +1,5 @@
 <template>
-    <component class="dropdown"
-               :is="tag"
-               :class="[{show: isOpen}, {'dropdown': direction === 'down'}, {'dropup': direction ==='up'}]"
-               aria-haspopup="true"
-               :aria-expanded="isOpen"
+    <div class="dropdown"
                @click="toggleDropDown"
                v-click-outside="closeDropDown">
 
@@ -19,8 +15,16 @@
             :class="[{'dropdown-menu-right': position === 'right'}, {show: isOpen}, menuClasses]">
             <slot></slot>
         </ul>
-    </component>
+    </div>
 </template>
+
+<!--<component class="dropdown"-->
+           <!--:is="tag"-->
+           <!--:class="[{show: isOpen}, {'dropdown': direction === 'down'}, {'dropup': direction ==='up'}]"-->
+           <!--aria-haspopup="true"-->
+           <!--:aria-expanded="isOpen"-->
+           <!--@click="toggleDropDown"-->
+           <!--v-click-outside="closeDropDown">-->
 <script>
 export default {
   name: "base-dropdown",
@@ -54,6 +58,11 @@ export default {
       default: "li",
       description: "Dropdown html tag (e.g div, li etc)"
     }
+  },
+  async asyncData() {
+    return {
+      isOpen: false
+    };
   },
   data() {
     return {
