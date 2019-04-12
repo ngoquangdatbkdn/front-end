@@ -219,14 +219,18 @@ export default class CreateCompany extends Vue {
     }
   }
 
-  mounted() {
-  }
+  mounted() {}
   async submit() {
     const result = await (this.$refs.obs as any).validate();
-    console.log('result ' + result.toString());
-  this.$router.push((this as any).localePath({ name: "companies-id", params: { id: 'faef' } }));
-    if(result){
-      this.create(this.companyModal)
+    console.log("result " + result.toString());
+    if (result) {
+      this.create(this.companyModal);
+      this.$router.push(
+        (this as any).localePath({
+          name: "companies-id",
+          params: { id: "faef" }
+        })
+      );
     }
   }
 }
