@@ -16,35 +16,29 @@
 .v-select.searchable .dropdown-toggle .selected-tag {
   color: #69798a;
   font-size: 0.875rem;
-  line-height: calc(1.75rem );
+  line-height: calc(1.75rem);
 }
 .v-select.searchable li a {
   height: calc(2.75rem + 2px);
-  line-height: calc(2.75rem );
+  line-height: calc(2.75rem);
   font-size: 0.875rem;
 }
-.v-select.searchable li a:hover{
+.v-select.searchable li a:hover {
   background-color: #8898aa;
 }
 
 .form-control {
-  color: #69798a!important;
+  color: #69798a !important;
 }
-.form-control::placeholder{
-  color: #8898aab0!important;
+.form-control::placeholder {
+  color: #8898aab0 !important;
 }
 
-
-.btn{
-  white-space: unset!important;
+.btn {
+  white-space: unset !important;
 }
-//.v-select.searchable li.hightlight a,
-//.v-select.searchable li.hightlight a:hover,
-//.v-select.searchable li.hightlight a:visited
-//{
-//  background-color: #8898aa;
-//}
 
-//.dropdown.dropdown > .dropdown-toggle{
-//  align-items: center;
-//}
+// hide froala no license red alert
+.fr-wrapper > div > a {
+  display: none !important;
+}
