@@ -115,7 +115,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { State, Action, Getter, namespace } from "vuex-class";
 
 import BaseNav from "@/argon-components/BaseNav.vue";
@@ -146,6 +146,29 @@ export default class DefaultLayout extends Vue {
 
   @LoginModal.State shouldOpen;
   @LoginModal.Action setShouldOpen;
+
+  @Watch("$route.hash")
+  onCurrentRouteHasChange(newValue: string, oldValue: string) {
+      if (newValue !== oldValue && newValue === "#login") {
+          if(this.shouldOpen === false){
+              this.setShouldOpen(true)
+          }
+      }
+  }
+
+  @Watch("shouldOpen")
+  onShouldOpenValueChange(newValue: boolean, oldValue: boolean) {
+    if (newValue !== oldValue && newValue === false) {
+      if (this.$router.currentRoute.hash === "#login") {
+        const cleanRoutePath: string = this.$router.currentRoute.fullPath.replace(
+          "#login",
+          ""
+        );
+        this.$router.replace(cleanRoutePath);
+      }
+    }
+    // this.$router.replace('/')
+  }
 
   async onSignOut() {
     const authenticationService: AuthenticationService = AuthenticationService.getInstance();

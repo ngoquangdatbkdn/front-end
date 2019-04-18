@@ -50,7 +50,6 @@
       <small v-if="error.length > 0" class="text-danger small">{{
         error
       }}</small>
-        {{formDirty}}
       <base-checkbox>
         {{ $t("authentication.remember_me") }}
       </base-checkbox>

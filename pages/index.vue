@@ -81,6 +81,7 @@ import { fbAuth } from "~/plugins/firebase";
 import CompanyService from "~/services/company_service";
 
 const UserInfo = namespace("userInfo");
+const LoginModal = namespace("loginModal");
 
 @Component({
   components: {
@@ -116,9 +117,12 @@ const UserInfo = namespace("userInfo");
   }
 })
 export default class Index extends Vue {
+    @LoginModal.Action setShouldOpen;
     // @UserInfo.Action set
     async mounted(){
-
+        // if(this.$route.hash === "#login"){
+        //    this.setShouldOpen(true)
+        // }
         // const companyService = CompanyService.getInstance();
         // const companyModal: CompanyModal | null = await companyService.getCompanyByID("ba5EQozBS9HkXmyTlpiF")
         // console.log('companyModal');

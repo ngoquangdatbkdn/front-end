@@ -1,15 +1,14 @@
 import types from "~/store/loginModal/types";
 
 export default function({ store, redirect, route }) {
-    console.log('isGuardRoute(route) ' + isGuardRoute(route));
-  if (store.state.userInfo === null && isGuardRoute(route)) {
-    store.commit(`loginModal/${types.SET_SHOULD_OPEN}`, true);
-    redirect('/');
+  if (store.state.userInfo.userInfo === null && isGuardRoute(route)) {
+    redirect("/#login");
   }
 }
 
 function isGuardRoute(route) {
-  if (route.matched.some(record => record.path.indexOf("/create"))) {
+  if (route.matched.some(record => record.path.indexOf("/create") > -1)) {
     return true;
   }
+  return false;
 }
