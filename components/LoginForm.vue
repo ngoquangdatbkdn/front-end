@@ -31,7 +31,7 @@
     </div>
     <ValidationObserver ref="obs" tag="form">
       <v-text-field-type2-with-validation
-        rules="required"
+        rules="required|email"
         v-model="email"
         type="email"
         :name="$t('authentication.email')"
@@ -39,13 +39,18 @@
         :addon-left-icon="'ni ni-email-83'"
       />
       <v-text-field-type2-with-validation
-        rules="required"
+        rules="required|min:8|max:32"
         v-model="password"
         type="password"
         :name="$t('authentication.password')"
         :placeholder="$t('authentication.enter_password')"
         :addon-left-icon="'ni ni-lock-circle-open'"
       />
+
+      <small v-if="error.length > 0" class="text-danger small">{{
+        error
+      }}</small>
+        {{formDirty}}
       <base-checkbox>
         {{ $t("authentication.remember_me") }}
       </base-checkbox>
@@ -59,7 +64,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { auth } from "firebase/app";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import { State, Action, Getter, namespace } from "vuex-class";
@@ -87,15 +92,32 @@ import AuthenticationService from "~/services/authentication_service";
 export default class LoginForm extends Vue {
   email: string = "";
   password: string = "";
+  error: string = "";
+
+  // get formDirty() {
+  //   if (!this.$refs.obs) return false;
+  //   console.log('(this.$refs.obs as any).dirty ' + (this.$refs.obs as any).touched.toString());
+  //   return (this.$refs.obs as any).touched;
+  // }
+  // @Watch("formDirty")
+  // onFormDirtyChanged(newVal: boolean, oldVal: boolean) {
+  //   console.log("FormDirty " + newVal.toString());
+  // }
 
   async onSignIn() {
     const result = await (this.$refs.obs as any).validate();
     if (result) {
       const authenticationService: AuthenticationService = AuthenticationService.getInstance();
-      const userCredential: auth.UserCredential = await authenticationService.signIn(
-        this.email,
-        this.password
-      );
+      try {
+        const userCredential: auth.UserCredential = await authenticationService.signIn(
+          this.email,
+          this.password
+        );
+      } catch (e) {
+        console.log("login error");
+        console.log(e);
+        this.error = e.message;
+      }
     }
   }
 }
