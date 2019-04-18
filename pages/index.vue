@@ -69,10 +69,18 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import JobModal from "../modals/job_modal";
-import CompanyModal from "../modals/company_modal";
-import JobListItem from "../components/JobListItem.vue";
-import CompanyListItem from "../components/CompanyListItem.vue";
+import { State, Action, Getter, namespace } from "vuex-class";
+
+import JobModal from "~/modals/job_modal";
+import CompanyModal from "~/modals/company_modal";
+import JobListItem from "~/components/JobListItem.vue";
+import CompanyListItem from "~/components/CompanyListItem.vue";
+
+import { fbAuth } from "~/plugins/firebase";
+
+import CompanyService from "~/services/company_service";
+
+const UserInfo = namespace("userInfo");
 
 @Component({
   components: {
@@ -82,13 +90,12 @@ import CompanyListItem from "../components/CompanyListItem.vue";
   async asyncData() {
     const jobModalList: JobModal[] = [];
     for (let i: number = 0; i < 9; i++) {
-      const jobModal: JobModal = new JobModal(
-        "Nhân viên bán thời gian",
-        "Cty Neolab",
-        "Đà Nẵng",
-        "200 - 433",
-        "20 phút"
-      );
+      const jobModal: JobModal = new JobModal();
+      jobModal.name = "Nhân viên bán thời gian";
+      jobModal.company = "Cty Neolab";
+      jobModal.location = "Đà Nẵng";
+      jobModal.salaryRange = "200 - 433";
+      jobModal.lastUpdate = "20 phút";
       jobModalList.push(jobModal);
     }
     const companyModalList: CompanyModal[] = [];
@@ -96,8 +103,8 @@ import CompanyListItem from "../components/CompanyListItem.vue";
       const companyModal: CompanyModal = new CompanyModal();
       companyModal.name = "Cty Neolab";
       companyModal.address = "Đà Nẵng";
-      companyModal.salaryMin = 200000;
-      companyModal.salaryMax = 300000;
+      companyModal.minSalary = 200000;
+      companyModal.maxSalary = 300000;
       companyModal.activeJob = "15 công việc";
       companyModalList.push(companyModal);
     }
@@ -109,6 +116,14 @@ import CompanyListItem from "../components/CompanyListItem.vue";
   }
 })
 export default class Index extends Vue {
+    // @UserInfo.Action set
+    async mounted(){
+
+        // const companyService = CompanyService.getInstance();
+        // const companyModal: CompanyModal | null = await companyService.getCompanyByID("ba5EQozBS9HkXmyTlpiF")
+        // console.log('companyModal');
+        // console.log(companyModal);
+    }
   // jobModalList: JobModal[] = [];
   // companyModalList: CompanyModal[] = [];
 }

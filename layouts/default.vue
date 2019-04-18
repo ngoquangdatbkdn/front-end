@@ -27,7 +27,7 @@
         <ul class="navbar-nav ml-lg-auto">
           <li class="nav-item">
             <nuxt-link
-              :to="localePath({name: 'companies-create' })"
+              :to="localePath({ name: 'companies-create' })"
               class="nav-link nav-link-icon"
               exact
             >
@@ -77,11 +77,20 @@
             class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"
           >
             <base-button
+              v-if="!userInfo"
               class="nav-item"
               type="primary"
-              v-on:click="shouldOpenModal = true"
+              v-on:click="setShouldOpen(true)"
             >
-              {{ $t("common.sign_in") }}
+              {{ $t("authentication.sign_in") }}
+            </base-button>
+            <base-button
+              v-else
+              class="nav-item"
+              type="primary"
+              @click="onSignOut"
+            >
+              {{ $t("authentication.sign_out") }}
             </base-button>
           </li>
         </ul>
@@ -89,7 +98,8 @@
     </div>
 
     <modal
-      :show.sync="shouldOpenModal"
+      v-bind:show="shouldOpen"
+      v-on:update:show="setShouldOpen($event)"
       body-classes="p-0"
       modal-classes="modal-dialog-centered"
     >
@@ -106,6 +116,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { State, Action, Getter, namespace } from "vuex-class";
+
 import BaseNav from "@/argon-components/BaseNav.vue";
 import BaseDropdown from "@/argon-components/BaseDropdown.vue";
 import BaseButton from "@/argon-components/BaseButton.vue";
@@ -113,6 +125,11 @@ import CloseButton from "@/argon-components/CloseButton.vue";
 import Modal from "@/argon-components/Modal.vue";
 
 import LoginForm from "@/components/LoginForm.vue";
+
+const LoginModal = namespace("loginModal");
+const UserInfo = namespace("userInfo");
+
+import AuthenticationService from "~/services/authentication_service";
 
 @Component({
   components: {
@@ -125,7 +142,15 @@ import LoginForm from "@/components/LoginForm.vue";
   }
 })
 export default class DefaultLayout extends Vue {
-  shouldOpenModal = false;
+  @UserInfo.State userInfo;
+
+  @LoginModal.State shouldOpen;
+  @LoginModal.Action setShouldOpen;
+
+  async onSignOut() {
+    const authenticationService: AuthenticationService = AuthenticationService.getInstance();
+    await authenticationService.signOut();
+  }
 }
 </script>
 

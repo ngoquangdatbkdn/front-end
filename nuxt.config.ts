@@ -13,7 +13,7 @@ const config: NuxtConfiguration = {
       { hid: "description", name: "description", content: "Nuxt TS project" }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }
       // {
       //   rel: "stylesheet",
       //   href: "https://unpkg.com/vue-select@2.6.0/dist/vue-select.css"
@@ -37,7 +37,9 @@ const config: NuxtConfiguration = {
     { src: "~/plugins/vee-validate", ssr: true },
     { src: "~/plugins/vue-select", ssr: false },
     { src: "~/plugins/vue-froala", ssr: false },
-    { src: "~/plugins/vue-upload", ssr: false }
+    { src: "~/plugins/vue-upload", ssr: false },
+    { src: "~/plugins/firebase", ssr: true },
+    { src: "~/plugins/firebase-auth", ssr: true },
   ],
   modules: [
     "@nuxtjs/axios",
@@ -62,10 +64,7 @@ const config: NuxtConfiguration = {
         loader: "url",
         query: {
           limit: 10000,
-          name: path.posix.join(
-            "/assets",
-            "fonts/[name].[hash:7].[ext]"
-          )
+          name: path.posix.join("/assets", "fonts/[name].[hash:7].[ext]")
         }
       }
     ],
@@ -75,6 +74,9 @@ const config: NuxtConfiguration = {
         jQuery: "jquery"
       })
     ]
+  },
+  router: {
+    middleware: ["auth-guard"]
   }
   // router: {
   //   middleware: "i18n"

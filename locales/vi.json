@@ -15,7 +15,6 @@
     "company": "Công ty tuyển dụng",
     "translator": "Biên dịch viên",
     "create_cv": "Tạo CV",
-    "sign_in": "Đăng nhập",
     "vietnamese": "Tiếng Việt",
     "japanese": "Tiếng Nhật",
     "close": "Đóng",
@@ -24,10 +23,12 @@
     "ward": "Phường",
     "no_options": "Không có kết quả",
     "upload_file_guild": "Chọn file hoặc kéo thả",
-    "upload_file_limitation": "File PNG hoặc JPG không được quá 5MB"
+    "upload_file_limitation": "File PNG hoặc JPG không được quá 5MB",
+    "delete_image": "Xóa hình"
   },
   "authentication": {
-    "login": "Đăng nhập",
+    "sign_in": "Đăng nhập",
+    "sign_out": "Đăng xuất",
     "register": "Đăng kí",
     "login_by": "Đăng nhập với",
     "or_login_by_account":"hoặc bằng tài khoản",
@@ -52,7 +53,17 @@
     "min_salary": "Mức lương tối thiểu",
     "enter_min_salary": "Nhập mức lương tối thiểu",
     "max_salary": "Mức lương tối đa",
-    "enter_max_salary": "Nhập mức lương tối đa"
+    "enter_max_salary": "Nhập mức lương tối đa",
+    "job_detail_description": "Mô tả chi tiết công việc",
+    "skill_requirement": "Yêu cầu kĩ năng",
+    "skill_requirement_description": "Những kĩ năng cần thiết cho công việc",
+    "language_requirement": "Yêu cầu ngôn ngữ",
+    "language_requirement_description": "Trình độ ngôn ngữ cần thiết cho công việc",
+    "job_benefit": "Phúc lợi công việc",
+    "job_benefit_description": "Những phúc lợi dành cho nhân viên",
+    "workplace": "Nơi làm việc",
+    "workplace_description": "Nơi nhân viên làm việc",
+    "enter_job_name": "Nhập tên công việc"
   },
   "company": {
     "staff_number": "Số lượng nhân viên",

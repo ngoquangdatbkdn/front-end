@@ -5,7 +5,7 @@
     v-slot="{ errors }"
     tag="div"
   >
-    <div class="row ">
+    <div v-if="!$attrs.isHalf" class="row ">
       <div class="col-md-6 ">
         <p class="mb-0 font-weight-700 text-uppercase">
           {{ $attrs.label }}
@@ -26,6 +26,21 @@
         </div>
       </div>
     </div>
+
+    <div v-else-if="$attrs.isHalf === true">
+      <div class="form-group mb-0">
+        <small class="mb-1 font-weight-500 text-uppercase">
+          {{ $attrs.label }}
+        </small>
+        <input
+          v-model="innerValue"
+          v-bind="$attrs"
+          :placeholder="$attrs.placeholder"
+          class="form-control"
+        />
+        <small class="text-danger small">{{ errors[0] }}</small>
+      </div>
+    </div>
   </ValidationProvider>
 </template>
 
@@ -42,8 +57,7 @@ import { ValidationProvider } from "vee-validate";
   })
 })
 export default class VTextFieldWithValidation extends Vue {
-
-  innerValue: string = '';
+  innerValue: string = "";
 
   @Prop({ type: [Object, String], default: "" }) rules;
   @Prop({ default: null }) value;

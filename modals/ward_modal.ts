@@ -1,5 +1,8 @@
+
 export default class WardModal {
-  constructor() {}
   public id?: string;
-  public name?: string;
+  public desc?: string;
+  public vi?: string;
+  public ja?: string;
+  public districtID?: string;
 }

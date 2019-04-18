@@ -34,7 +34,8 @@
           :label="$t('company.business_type')"
           :description="$t('company.business_type_description')"
           :name="$t('company.business_type')"
-          optionLabel="name"
+          :reduce="businessTypeModal => businessTypeModal.id"
+          :optionLabel="$i18n.locale"
         />
 
         <hr />
@@ -55,28 +56,34 @@
                 :label="$t('common.city')"
                 :name="$t('common.city')"
                 :isHalf="true"
-                optionLabel="name"
+                :optionLabel="$i18n.locale"
               />
-              <div class="pt-3  position-relative">
+              <div
+                v-if="collectedDistrictModalList.length > 0"
+                class="pt-3  position-relative"
+              >
                 <v-select-with-validation
                   rules="required"
                   v-model="companyModal.district"
-                  :options="districtModalList"
+                  :options="collectedDistrictModalList"
                   :label="$t('common.district')"
                   :name="$t('common.district')"
                   :isHalf="true"
-                  optionLabel="name"
+                  :optionLabel="$i18n.locale"
                 />
               </div>
-              <div class="pt-3 position-relative">
+              <div
+                v-if="collectedWardModalList.length > 0"
+                class="pt-3 position-relative"
+              >
                 <v-select-with-validation
                   rules="required"
                   v-model="companyModal.ward"
-                  :options="wardModalList"
+                  :options="collectedWardModalList"
                   :label="$t('common.ward')"
                   :name="$t('common.ward')"
                   :isHalf="true"
-                  optionLabel="name"
+                  :optionLabel="$i18n.locale"
                 />
               </div>
             </div>
@@ -86,7 +93,8 @@
 
         <v-file-upload-with-validation
           rules="required"
-          v-model="firstFileList"
+          v-model="companyModal.logo"
+          :key="'company_logo'"
           :label="$t('company.company_logo')"
           :description="$t('company.company_logo_description')"
           :name="$t('company.company_logo')"
@@ -97,7 +105,8 @@
 
         <v-file-upload-with-validation
           rules="required"
-          v-model="secondFileList"
+          v-model="companyModal.coverImage"
+          :key="'company_cover_image'"
           :label="$t('company.company_cover_image')"
           :description="$t('company.company_cover_image_description')"
           :name="$t('company.company_cover_image')"
@@ -138,7 +147,11 @@ import VEditorWithValidation from "~/components/forms/VEditorWithValidation.vue"
 import { CompanyState } from "~/store/company/state";
 import { CityState } from "~/store/city/state";
 import CompanyModal from "~/modals/company_modal";
-// import CityModal from "~/modals/city_modal";
+import CityModal from "~/modals/city_modal";
+import DistrictModal from "~/modals/district_modal";
+import WardModal from "~/modals/ward_modal";
+
+import CompanyService from "~/services/company_service";
 
 import { objectUrlToFile } from "~/utils/imageHelper";
 
@@ -183,8 +196,10 @@ const Company = namespace("company");
 })
 export default class CreateCompany extends Vue {
   companyModal: CompanyModal = new CompanyModal();
-  firstFileList: any[] = [];
-  secondFileList: any[] = [];
+  // firstFileList: any[] = [];
+  // secondFileList: any[] = [];
+  collectedDistrictModalList: DistrictModal[] = [];
+  collectedWardModalList: WardModal[] = [];
 
   @City.State cityModalList;
   @District.State districtModalList;
@@ -193,29 +208,49 @@ export default class CreateCompany extends Vue {
 
   @Company.Action create;
 
-  @Watch("firstFileList")
-  onFirstFileListValueChanged(newVal: Array<File>, oldVal: Array<File>) {
+  // @Watch("firstFileList")
+  // onFirstFileListValueChanged(newVal: Array<File>, oldVal: Array<File>) {
+  //   if (newVal !== oldVal) {
+  //     if (newVal[0]) {
+  //       this.companyModal.logo = (newVal[0] as any).url;
+  //       // objectUrlToFile((newVal[0] as any).url).then((file: File) => {
+  //       //   this.secondFileList = [];
+  //       //   this.secondFileList.push(file);
+  //       // });
+  //     } else {
+  //       this.companyModal.logo = undefined;
+  //     }
+  //   }
+  // }
+  //
+  // @Watch("secondFileList")
+  // onSecondFileListValueChanged(newVal: Array<File>, oldVal: Array<File>) {
+  //   if (newVal !== oldVal) {
+  //     if (newVal[0]) {
+  //       this.companyModal.coverImage = (newVal[0] as any).url;
+  //     } else {
+  //       this.companyModal.coverImage = undefined;
+  //     }
+  //   }
+  // }
+
+  @Watch("companyModal.city")
+  onCompanyCityValueChanged(newVal: CityModal, oldVal: CityModal) {
     if (newVal !== oldVal) {
-      if (newVal[0]) {
-        this.companyModal.logo = (newVal[0] as any).url;
-        // objectUrlToFile((newVal[0] as any).url).then((file: File) => {
-        //   this.secondFileList = [];
-        //   this.secondFileList.push(file);
-        // });
-      } else {
-        this.companyModal.logo = undefined;
-      }
+      this.collectedDistrictModalList = this.districtModalList.filter(
+        (districtModal: DistrictModal) =>
+          districtModal.cityID === (newVal as CityModal).id
+      );
     }
   }
 
-  @Watch("secondFileList")
-  onSecondFileListValueChanged(newVal: Array<File>, oldVal: Array<File>) {
+  @Watch("companyModal.district")
+  onCompanyDistrictValueChanged(newVal: DistrictModal, oldVal: DistrictModal) {
     if (newVal !== oldVal) {
-      if (newVal[0]) {
-        this.companyModal.coverImage = (newVal[0] as any).url;
-      } else {
-        this.companyModal.coverImage = undefined;
-      }
+      this.collectedWardModalList = this.wardModalList.filter(
+        (wardModal: WardModal) =>
+          wardModal.districtID === (newVal as DistrictModal).id
+      );
     }
   }
 
@@ -224,11 +259,12 @@ export default class CreateCompany extends Vue {
     const result = await (this.$refs.obs as any).validate();
     console.log("result " + result.toString());
     if (result) {
-      this.create(this.companyModal);
+      const companyService: CompanyService = CompanyService.getInstance();
+      const id: string = await companyService.createCompany(this.companyModal);
       this.$router.push(
         (this as any).localePath({
           name: "companies-id",
-          params: { id: "faef" }
+          params: { id }
         })
       );
     }

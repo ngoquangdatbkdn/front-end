@@ -9,7 +9,7 @@
         <div class="mr-auto">
           <div class="row align-items-center">
               <i class="fa fa-dollar pr-1"></i>
-            <p class="sub-info">{{ companyModal.salaryMin + ' - ' + companyModal.salaryMax }}</p>
+            <p class="sub-info">{{ companyModal.minSalary + ' - ' + companyModal.maxSalary }}</p>
           </div>
         </div>
         <p class="sub-info">{{ companyModal.activeJob }}</p>

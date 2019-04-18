@@ -17,7 +17,7 @@
       <div class="col-md-6 ">
         <div class="form-group mb-0">
           <no-ssr>
-            <v-select :label="$attrs.optionLabel" :options="$attrs.options"  v-model="innerValue">
+            <v-select :label="$attrs.optionLabel" :reduce="$attrs.reduce" :options="$attrs.options"  v-model="innerValue">
               <div slot="no-options">{{$t('common.no_options')}}</div>
             </v-select>
             <small class="text-danger small">{{ errors[0] }}</small>
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div v-else-if="$attrs.isHalf === true">
-      <small class="mb-0 font-weight-500 text-uppercase">
+      <small class="mb-1 font-weight-500 text-uppercase">
         {{ $attrs.label }}
       </small>
       <div class="form-group mb-0">
