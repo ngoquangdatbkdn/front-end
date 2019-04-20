@@ -1,5 +1,5 @@
 <template xmlns="http://www.w3.org/1999/html">
-    <div v-html="companyModal.introduction"></div>
+    <div v-html="companyModal[`introduction_${$i18n.locale}`]"></div>
 </template>
 
 <script lang="ts">

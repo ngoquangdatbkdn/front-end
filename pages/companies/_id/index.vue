@@ -13,86 +13,81 @@
       <div class="container row pt-4 ">
         <section class="mr-auto pb-4 col-12 content ">
           <div class="col-12 col-md-12 d-flex flex-row align-items-start">
-              <img
-                :src="companyModal.logo"
-                class="company-logo mw-100 logo rounded-circle"
-              />
+            <img
+              :src="companyModal.logo"
+              class="company-logo mw-100 logo rounded-circle"
+            />
             <p
               class="d-flex h3 justify-content-center align-items-center pl-3 pt-4 mt-2"
             >
-              {{ companyModal.name }}
+              {{ companyModal[`name_${$i18n.locale}`] }}
             </p>
           </div>
           <div
-            class="col-12 col-md-12 mt-2 mt-md-3 pt-3 row bg-white rounded px-0 mx-0 "
+            class="col-12 col-md-12 mt-2 mt-md-3 pt-2 row px-0 mx-0 rounded border-secondary border border-3 p-3 "
           >
-            <div class="col-12 col-md-4 ">
-              <p class="info-label mt-2 mb-0">
-                {{ $t("company.staff_number") }}
-              </p>
-              <p class="font-weight-600">{{ companyModal.staffNumber }}</p>
+            <div class="col-12 col-md-4 pt-2 border-right">
+                <p class="info-label mb-0">
+                  {{ $t("company.staff_number") }}
+                </p>
+                <p class="font-weight-600 mb-0">{{ companyModal.staffNumber }}</p>
             </div>
-            <div class="col-12 col-md-4 ">
-              <p class="info-label mt-2 mb-0">
-                {{ $t("company.business_type") }}
-              </p>
-              <p v-if="companyModal.businessType" class="font-weight-600">
-                {{ companyModal.businessType[$i18n.locale] }}
-              </p>
+            <div class="col-12 col-md-4 pt-2 border-right">
+                <p class="info-label  mb-0">
+                  {{ $t("company.business_type") }}
+                </p>
+                <p v-if="companyModal.businessType" class="font-weight-600 mb-0">
+                  {{ companyModal.businessType[$i18n.locale] }}
+                </p>
             </div>
-            <div class="col-12 col-md-4 ">
-              <p class="info-label mt-2 mb-0">
-                {{ $t("company.company_address") }}
-              </p>
-              <p v-if="companyModal.ward" class="font-weight-600">
-                {{
-                  companyModal.ward[$i18n.locale] +
-                    ", " +
-                    companyModal.district[$i18n.locale] +
-                    ", " +
-                    companyModal.city[$i18n.locale]
-                }}
-              </p>
+            <div class="col-12 col-md-4 pt-2">
+                <p class="info-label  mb-0">
+                  {{ $t("company.company_address") }}
+                </p>
+                <p v-if="companyModal.ward" class="font-weight-600 mb-0">
+                  {{
+                    companyModal.ward[$i18n.locale] +
+                      ", " +
+                      companyModal.district[$i18n.locale] +
+                      ", " +
+                      companyModal.city[$i18n.locale]
+                  }}
+                </p>
             </div>
           </div>
         </section>
-
-
       </div>
     </div>
     <company-detail-tabs></company-detail-tabs>
   </div>
 </template>
 
-
-
 <!--<section class="col-12 col-md-12 justify-content-center d-flex px-0">-->
-    <!--<div class="col-12  row d-flex ">-->
-        <!--<div-->
-                <!--class=" my-2 col-12 col-md-3 d-flex flex-column justify-content-stretch"-->
-        <!--&gt;-->
-            <!--<button type="button" class="btn btn-primary " outline>-->
-                <!--<span class="white-space-normal">-->
-                  <!--{{ $t("company.update_company_info") }}</span-->
-                <!--&gt;-->
-            <!--</button>-->
-        <!--</div>-->
+<!--<div class="col-12  row d-flex ">-->
+<!--<div-->
+<!--class=" my-2 col-12 col-md-3 d-flex flex-column justify-content-stretch"-->
+<!--&gt;-->
+<!--<button type="button" class="btn btn-primary " outline>-->
+<!--<span class="white-space-normal">-->
+<!--{{ $t("company.update_company_info") }}</span-->
+<!--&gt;-->
+<!--</button>-->
+<!--</div>-->
 
-        <!--<div class=" my-2 col-12 col-md-3 ">-->
-            <!--<div-->
-                    <!--class="d-flex bg-white p-3 rounded d-flex justify-content-between "-->
-            <!--&gt;-->
-                <!--<span class="mb-3">{{-->
-                  <!--$t("company.publish_company_info")-->
-                <!--}}</span>-->
-                <!--<div>-->
-                    <!--<base-switch v-model="shouldPublish.status"></base-switch>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+<!--<div class=" my-2 col-12 col-md-3 ">-->
+<!--<div-->
+<!--class="d-flex bg-white p-3 rounded d-flex justify-content-between "-->
+<!--&gt;-->
+<!--<span class="mb-3">{{-->
+<!--$t("company.publish_company_info")-->
+<!--}}</span>-->
+<!--<div>-->
+<!--<base-switch v-model="shouldPublish.status"></base-switch>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 <!--</section>-->
-
 
 <!--<div-->
 <!--class=" my-2 col-12 col-md-3 d-flex flex-column justify-content-stretch"-->
@@ -158,14 +153,6 @@ export default class CompanyDetail extends Vue {
 </script>
 
 <style scoped>
-.cover-image-wrapper {
-  /*position: absolute;*/
-  /*top: 0;*/
-  /*left: 0;*/
-  /*right: 0;*/
-  /*bottom: 0;*/
-  /*overflow: hidden;*/
-}
 .cover-image {
   width: 100vw;
   height: 300px;
@@ -177,9 +164,8 @@ export default class CompanyDetail extends Vue {
   margin-top: 250px;
 }
 .logo {
-    border :solid 4px #f0f0f0;
+  border: solid 4px #f0f0f0;
   width: 100px;
   height: 100px;
-
 }
 </style>

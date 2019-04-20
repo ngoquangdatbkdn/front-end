@@ -10,7 +10,8 @@ export default class CompanyModal {
   constructor() {}
 
   public id?: string;
-  public name?: string;
+  public name_ja?: string;
+  public name_vi?: string;
   public salaryRange?: string;
   public activeJob?: string;
   public staffNumber?: number;
@@ -20,7 +21,8 @@ export default class CompanyModal {
   public address?: string;
   public logo?: string;
   public coverImage?: string;
-  public introduction?: string;
+  public introduction_ja?: string;
+  public introduction_vi?: string;
   public city?: CityModal | firestore.DocumentReference;
   public district?: DistrictModal | firestore.DocumentReference;
   public ward?: WardModal | firestore.DocumentReference;

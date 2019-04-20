@@ -72,7 +72,8 @@
     "add_job": "Thêm công việc",
     "job_cover_image": "Trang bìa công ty",
     "job_cover_image_description": "Thêm hình trang bìa cho công ty.Hình ảnh phải ít nhất đạt tỉ lệ 960x600 pixels. Hình ảnh sẽ được cắt theo tỉ lệ 8:5.",
-    "upload_job_cover_image": "Tải ảnh nền công ty"
+    "upload_job_cover_image": "Tải ảnh nền công ty",
+    "job_requirement": "Yêu cầu công việc"
   },
   "company": {
     "staff_number": "Số lượng nhân viên",

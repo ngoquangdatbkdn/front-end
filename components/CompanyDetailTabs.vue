@@ -1,24 +1,22 @@
 <template xmlns="http://www.w3.org/1999/html">
   <tabs fill class="flex-column flex-md-row container ">
-    <tab :name="$t('company.company_info')">
+    <tab id="company-info" :name="$t('company.company_info')">
       <company-detail-description></company-detail-description>
     </tab>
-
-    <tab :name="$t('job.job_list')">
+    <tab id="job-list" :name="$t('job.job_list')">
       <company-detail-job-list></company-detail-job-list>
-    </tab>
-
-    <tab v-if="shouldShowTranslatorList" :name="$t('translator.translator_list')">
-      <p class="description">
-        Raw denim you probably haven't heard of them jean shorts Austin.
-        Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache
-        cliche tempor, williamsburg carles vegan helvetica. Reprehenderit
-        butcher retro keffiyeh dreamcatcher synth.
-      </p>
     </tab>
   </tabs>
 </template>
 
+<!--<tab id="translator-list" v-if="shouldShowTranslatorList" :name="$t('translator.translator_list')">-->
+    <!--<p class="description">-->
+        <!--Raw denim you probably haven't heard of them jean shorts Austin.-->
+        <!--Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache-->
+        <!--cliche tempor, williamsburg carles vegan helvetica. Reprehenderit-->
+        <!--butcher retro keffiyeh dreamcatcher synth.-->
+    <!--</p>-->
+<!--</tab>-->
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
 import {  namespace } from "vuex-class";

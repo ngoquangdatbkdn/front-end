@@ -7,7 +7,7 @@
       <div class="container  pt-5">
         <v-text-field-with-validation
           rules="required"
-          v-model="companyModal.name"
+          v-model="companyModal.name_ja"
           type="text"
           :label="$t('company.company_name')"
           :description="$t('company.company_name_description')"
@@ -117,7 +117,7 @@
 
         <v-editor-with-validation
           rules="required"
-          v-model="companyModal.introduction"
+          v-model="companyModal.introduction_ja"
           :label="$t('company.company_introduction')"
           :description="$t('company.company_introduction_description')"
           :name="$t('company.company_introduction')"
@@ -216,6 +216,8 @@ export default class CreateCompany extends Vue {
     // console.log("result " + result.toString());
     if (result) {
       this.companyModal.shouldShow = false;
+      this.companyModal.name_vi = this.companyModal.name_ja;
+      this.companyModal.introduction_vi = this.companyModal.introduction_ja;
       await this.createCompany(this.companyModal);
       // console.log("this.userInfo");
       // console.log(this.userInfo);

@@ -241,6 +241,11 @@ export default class JobCreateJob extends Vue {
     const result = await (this.$refs.obs as any).validate();
     if (result) {
       this.jobModal.companyID = this.$router.currentRoute.params.id;
+      this.jobModal.name_vi = this.jobModal.name_ja
+      this.jobModal.description_vi = this.jobModal.description_ja
+      this.jobModal.requiredLanguage_vi = this.jobModal.requiredLanguage_ja
+      this.jobModal.requiredSkill_vi = this.jobModal.requiredSkill_ja
+      this.jobModal.benefit_vi = this.jobModal.benefit_ja
       // console.log(this.jobModal);
       // const id: string = await this.createJob(this.jobModal);
       await this.createJob(this.jobModal);

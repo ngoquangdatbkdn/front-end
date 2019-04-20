@@ -1,7 +1,17 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <div class="col-12 col-sm-4 mt-4 ">
+  <nuxt-link
+    :to="
+      localePath({
+        name: 'companies-id-jobs-jobID',
+        params: { id: jobModal.companyID, jobID: jobModal.id }
+      })
+    "
+    active-class="none"
+    exact
+    class="col-12 col-sm-4 mt-4 "
+  >
     <div class="p-3 border rounded">
-      <span class="job-name ">{{ jobModal[`name_${$i18n.locale}`]}}</span>
+      <span class="job-name ">{{ jobModal[`name_${$i18n.locale}`] }}</span>
 
       <div class="row  mx-0 flex-nowrap">
         <i class="fa fa-location-arrow pr-1 pt-1"></i>
@@ -31,7 +41,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <!--<p class="company-name">{{ jobModal.companyID }}</p>-->
