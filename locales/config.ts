@@ -25,5 +25,6 @@ export default {
   vueI18n: {
     fallbackLocale: "ja"
   },
-  langDir: "locales/"
+  langDir: "locales/",
+  encodePaths: false
 };

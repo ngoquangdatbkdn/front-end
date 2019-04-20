@@ -1,39 +1,62 @@
 <template>
   <ValidationObserver ref="obs" tag="div">
     <div class="page-title py-4 text-center">
-      <h4 class="mb-0">{{ $t("company.update_company_info") }}</h4>
+      <h4 class="mb-0">{{ $t("job.update_job_info") }}</h4>
     </div>
     <div class="bg-white ">
       <div class="container  pt-5">
         <v-text-field-with-validation
           rules="required"
-          v-model="companyModal.name"
+          v-model="jobModal.name_ja"
           type="text"
-          :label="$t('company.company_name')"
-          :description="$t('company.company_name_description')"
-          :name="$t('company.company_name')"
-          :placeholder="$t('company.enter_company_name')"
+          :label="$t('job.job_name')"
+          :description="$t('job.job_name_description')"
+          :name="$t('job.job_name')"
+          :placeholder="$t('job.enter_job_name')"
         />
         <hr />
 
-        <v-text-field-with-validation
-          rules="required|numeric"
-          v-model="companyModal.staffNumber"
-          type="number"
-          :label="$t('company.company_staff_amount')"
-          :description="$t('company.company_staff_amount_description')"
-          :name="$t('company.company_staff_amount')"
-          :placeholder="$t('company.enter_company_staff_amount')"
-        />
+        <div class="row ">
+          <div class="col-md-6 ">
+            <p class="mb-0 font-weight-700 text-uppercase">
+              {{ $t("job.salary_range") }}
+            </p>
+            <p class="mb-3">{{ $t("job.salary_range_description") }}</p>
+          </div>
+          <div class="col-md-6 ">
+            <div class="form-group mb-0">
+              <v-text-field-with-validation
+                rules="required|numeric"
+                v-model="jobModal.minSalary"
+                type="number"
+                :label="$t('job.min_salary')"
+                :name="$t('job.min_salary')"
+                :placeholder="$t('job.enter_min_salary')"
+                :isHalf="true"
+              />
+              <div class="pt-3  position-relative">
+                <v-text-field-with-validation
+                  rules="required|numeric"
+                  v-model="jobModal.maxSalary"
+                  type="number"
+                  :label="$t('job.max_salary')"
+                  :name="$t('job.max_salary')"
+                  :placeholder="$t('job.enter_max_salary')"
+                  :isHalf="true"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
         <hr />
 
         <v-select-with-validation
           rules="required"
-          v-model="companyModal.businessType"
-          :options="businessTypeModalList"
-          :label="$t('company.business_type')"
-          :description="$t('company.business_type_description')"
-          :name="$t('company.business_type')"
+          v-model="jobModal.contractType"
+          :options="contractTypeModalList"
+          :label="$t('job.contract_type')"
+          :description="$t('job.contract_type_description')"
+          :name="$t('job.contract_type')"
           :reduce="businessTypeModal => businessTypeModal.id"
           :optionLabel="$i18n.locale"
         />
@@ -43,15 +66,15 @@
         <div class="row ">
           <div class="col-md-6 ">
             <p class="mb-0 font-weight-700 text-uppercase">
-              {{ $t("company.company_address") }}
+              {{ $t("job.workplace") }}
             </p>
-            <p class="mb-3">{{ $t("company.company_address_description") }}</p>
+            <p class="mb-3">{{ $t("job.workplace_description") }}</p>
           </div>
           <div class="col-md-6 ">
             <div class="form-group mb-0">
               <v-select-with-validation
                 rules="required"
-                v-model="companyModal.city"
+                v-model="jobModal.city"
                 :options="cityModalList"
                 :label="$t('common.city')"
                 :name="$t('common.city')"
@@ -64,7 +87,7 @@
               >
                 <v-select-with-validation
                   rules="required"
-                  v-model="companyModal.district"
+                  v-model="jobModal.district"
                   :options="collectedDistrictModalList"
                   :label="$t('common.district')"
                   :name="$t('common.district')"
@@ -78,7 +101,7 @@
               >
                 <v-select-with-validation
                   rules="required"
-                  v-model="companyModal.ward"
+                  v-model="jobModal.ward"
                   :options="collectedWardModalList"
                   :label="$t('common.ward')"
                   :name="$t('common.ward')"
@@ -91,43 +114,58 @@
         </div>
         <hr />
 
-        <v-file-upload-with-validation
+        <v-editor-with-validation
           rules="required"
-          v-model="companyModal.logo"
-          :key="'company_logo'"
-          :label="$t('company.company_logo')"
-          :description="$t('company.company_logo_description')"
-          :name="$t('company.company_logo')"
-          :placeholder="$t('company.upload_company_logo')"
-          :unique="'company_logo'"
-        />
-        <hr />
-
-        <v-file-upload-with-validation
-          rules="required"
-          v-model="companyModal.coverImage"
-          :key="'company_cover_image'"
-          :label="$t('company.company_cover_image')"
-          :description="$t('company.company_cover_image_description')"
-          :name="$t('company.company_cover_image')"
-          :placeholder="$t('company.upload_company_cover_image')"
-          :unique="'company_cover_image'"
+          v-model="jobModal.description_ja"
+          :label="$t('job.job_detail')"
+          :description="$t('job.job_detail_description')"
+          :name="$t('job.job_detail')"
         />
         <hr />
 
         <v-editor-with-validation
           rules="required"
-          v-model="companyModal.introduction"
-          :label="$t('company.company_introduction')"
-          :description="$t('company.company_introduction_description')"
-          :name="$t('company.company_introduction')"
+          v-model="jobModal.benefit_ja"
+          :label="$t('job.job_benefit')"
+          :description="$t('job.job_benefit_description')"
+          :name="$t('job.job_benefit')"
+        />
+        <hr />
+
+        <v-editor-with-validation
+          rules="required"
+          v-model="jobModal.requiredSkill_ja"
+          :label="$t('job.skill_requirement')"
+          :description="$t('job.skill_requirement_description')"
+          :name="$t('job.skill_requirement')"
+        />
+        <hr />
+
+        <v-editor-with-validation
+          rules="required"
+          v-model="jobModal.requiredLanguage_ja"
+          :label="$t('job.language_requirement')"
+          :description="$t('job.language_requirement_description')"
+          :name="$t('job.language_requirement')"
+        />
+        <hr />
+
+        <v-file-upload-with-validation
+          rules="required"
+          v-model="jobModal.coverImage"
+          :key="'job_cover_image'"
+          :label="$t('job.job_cover_image')"
+          :description="$t('job.job_cover_image_description')"
+          :name="$t('job.job_cover_image')"
+          :placeholder="$t('job.upload_job_cover_image')"
+          :unique="'job_cover_image'"
         />
         <hr />
       </div>
 
       <div class="text-center pb-4">
         <button type="button" class="btn btn-primary my-4" @click="submit">
-          {{ $t("company.update_company_info") }}
+          {{ $t("job.update_job_info") }}
         </button>
       </div>
     </div>
@@ -144,19 +182,16 @@ import VSelectWithValidation from "~/components/forms/VSelectWithValidation.vue"
 import VFileUploadWithValidation from "~/components/forms/VFileUploadWithValidation.vue";
 import VEditorWithValidation from "~/components/forms/VEditorWithValidation.vue";
 
-import CompanyModal from "~/modals/company_modal";
 import CityModal from "~/modals/city_modal";
 import DistrictModal from "~/modals/district_modal";
 import WardModal from "~/modals/ward_modal";
+import JobModal from "~/modals/job_modal";
 
-import CompanyService from "~/services/company_service";
-
+const Job = namespace("job");
 const City = namespace("city");
 const District = namespace("district");
 const Ward = namespace("ward");
-const BusinessType = namespace("businessType");
-const Company = namespace("company");
-const UserInfo = namespace("userInfo");
+const ContractType = namespace("contractType");
 
 @Component({
   components: {
@@ -168,27 +203,21 @@ const UserInfo = namespace("userInfo");
     VEditorWithValidation
   }
 })
-export default class CreateCompany extends Vue {
-  companyModal: CompanyModal = new CompanyModal();
+export default class JobCreateJob extends Vue {
+  jobModal: JobModal = new JobModal();
   collectedDistrictModalList: DistrictModal[] = [];
   collectedWardModalList: WardModal[] = [];
+
+  @Job.State jobID;
+  @Job.Action createJob;
 
   @City.State cityModalList;
   @District.State districtModalList;
   @Ward.State wardModalList;
-  @BusinessType.State businessTypeModalList;
+  @ContractType.State contractTypeModalList;
 
-  @Company.Action createCompany;
-  @UserInfo.Action updateUserInfoCompanyID;
-  @UserInfo.Action getUserInfoByID;
-
-  @Company.State companyID;
-  @UserInfo.State userInfo;
-
-  @Company.Mutation SET_COMPANY_ID;
-
-  @Watch("companyModal.city")
-  onCompanyCityValueChanged(newVal: CityModal, oldVal: CityModal) {
+  @Watch("jobModal.city")
+  onJobCityValueChanged(newVal: CityModal, oldVal: CityModal) {
     if (newVal !== oldVal) {
       this.collectedDistrictModalList = this.districtModalList.filter(
         (districtModal: DistrictModal) =>
@@ -197,8 +226,8 @@ export default class CreateCompany extends Vue {
     }
   }
 
-  @Watch("companyModal.district")
-  onCompanyDistrictValueChanged(newVal: DistrictModal, oldVal: DistrictModal) {
+  @Watch("jobModal.district")
+  onJobDistrictValueChanged(newVal: DistrictModal, oldVal: DistrictModal) {
     if (newVal !== oldVal) {
       this.collectedWardModalList = this.wardModalList.filter(
         (wardModal: WardModal) =>
@@ -207,29 +236,22 @@ export default class CreateCompany extends Vue {
     }
   }
 
-  mounted() {
-    this.companyModal = new CompanyModal();
-    this.SET_COMPANY_ID(null);
-  }
+  async mounted() {}
   async submit() {
     const result = await (this.$refs.obs as any).validate();
-    // console.log("result " + result.toString());
     if (result) {
-      this.companyModal.shouldShow = false;
-      await this.createCompany(this.companyModal);
-      // console.log("this.userInfo");
-      // console.log(this.userInfo);
-      await this.updateUserInfoCompanyID({
-        userID: this.userInfo.id,
-        companyID: this.companyID
-      });
-      await this.getUserInfoByID(this.userInfo.id);
+      this.jobModal.companyID = this.$router.currentRoute.params.id;
+      // console.log(this.jobModal);
+      // const id: string = await this.createJob(this.jobModal);
+      await this.createJob(this.jobModal);
       this.$router.push(
         (this as any).localePath({
-          name: "companies-id",
-          params: { id: this.companyID }
+          name: "companies-id-jobs-jobID",
+          params: { id: this.jobModal.companyID, jobID: this.jobID }
         })
       );
+      // console.log("id");
+      // console.log(id);
     }
   }
 }

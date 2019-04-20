@@ -27,25 +27,6 @@
         </div>
       </div>
     </div>
-
-    <section
-      class="bg-white d-flex justify-content-center align-items-center pb-4 pt-5 flex-column"
-    >
-      <div
-        class="container row px-4 justify-content-between align-items-center"
-      >
-        <h6 class="mb-0">{{ $t("common.job_list") }}</h6>
-        <p class="text-primary mb-0">{{ $t("common.see_more") }}</p>
-      </div>
-      <div class="container row">
-        <job-list-item
-          v-for="(jobModal, index) of jobModalList"
-          :key="index"
-          :jobModal="jobModal"
-        ></job-list-item>
-      </div>
-    </section>
-
     <section
       class="bg-white d-flex justify-content-center align-items-center pb-4 pt-5 flex-column"
     >
@@ -63,6 +44,25 @@
         ></company-list-item>
       </div>
     </section>
+
+    <section
+      class="bg-white d-flex justify-content-center align-items-center pb-4 pt-5 flex-column"
+    >
+      <div
+        class="container row px-4 justify-content-between align-items-center"
+      >
+        <h6 class="mb-0">{{ $t("job.job_list") }}</h6>
+        <p class="text-primary mb-0">{{ $t("common.see_more") }}</p>
+      </div>
+      <div class="container row">
+        <job-list-item
+          v-for="(jobModal, index) of jobModalList"
+          :key="index"
+          :jobModal="jobModal"
+        ></job-list-item>
+      </div>
+    </section>
+
   </div>
 </template>
 
@@ -82,52 +82,52 @@ import CompanyService from "~/services/company_service";
 
 const UserInfo = namespace("userInfo");
 const LoginModal = namespace("loginModal");
+const Company = namespace("company");
+const Job = namespace("job");
 
 @Component({
   components: {
     JobListItem,
     CompanyListItem
   },
-  async asyncData() {
-    const jobModalList: JobModal[] = [];
-    for (let i: number = 0; i < 9; i++) {
-      const jobModal: JobModal = new JobModal();
-      jobModal.name = "Nhân viên bán thời gian";
-      jobModal.company = "Cty Neolab";
-      jobModal.location = "Đà Nẵng";
-      jobModal.salaryRange = "200 - 433";
-      jobModal.lastUpdate = "20 phút";
-      jobModalList.push(jobModal);
-    }
-    const companyModalList: CompanyModal[] = [];
-    for (let i: number = 0; i < 9; i++) {
-      const companyModal: CompanyModal = new CompanyModal();
-      companyModal.name = "Cty Neolab";
-      companyModal.address = "Đà Nẵng";
-      companyModal.minSalary = 200000;
-      companyModal.maxSalary = 300000;
-      companyModal.activeJob = "15 công việc";
-      companyModalList.push(companyModal);
-    }
-
-    return {
-      jobModalList,
-      companyModalList
-    };
+  async fetch({ store, params }) {
+    await store.dispatch("company/getCompanyList", {
+      limitation: 6,
+      wheres: [
+        {
+          field: "shouldShow",
+          operator: "==",
+          value: true
+        }
+      ]
+    });
+      await store.dispatch("job/getJobList", {
+          limitation: 6,
+          // wheres: [
+          //     {
+          //         field: "shouldShow",
+          //         operator: "==",
+          //         value: true
+          //     }
+          // ]
+      });
   }
 })
 export default class Index extends Vue {
-    @LoginModal.Action setShouldOpen;
-    // @UserInfo.Action set
-    async mounted(){
-        // if(this.$route.hash === "#login"){
-        //    this.setShouldOpen(true)
-        // }
-        // const companyService = CompanyService.getInstance();
-        // const companyModal: CompanyModal | null = await companyService.getCompanyByID("ba5EQozBS9HkXmyTlpiF")
-        // console.log('companyModal');
-        // console.log(companyModal);
-    }
+  @LoginModal.Action setShouldOpen;
+  @Company.State companyModalList;
+  @Job.State jobModalList;
+  // @Company.Action getCompanyList;
+  // @UserInfo.Action set
+  async mounted() {
+    // if(this.$route.hash === "#login"){
+    //    this.setShouldOpen(true)
+    // }
+    // const companyService = CompanyService.getInstance();
+    // const companyModal: CompanyModal | null = await companyService.getCompanyByID("ba5EQozBS9HkXmyTlpiF")
+    // console.log('companyModal');
+    // console.log(companyModal);
+  }
   // jobModalList: JobModal[] = [];
   // companyModalList: CompanyModal[] = [];
 }

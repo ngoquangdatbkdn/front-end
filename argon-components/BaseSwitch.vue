@@ -2,8 +2,7 @@
     <label class="custom-toggle">
         <input type="checkbox"
                v-model="model"
-               v-bind="$attrs"
-               v-on="$listeners">
+              >
         <span class="custom-toggle-slider rounded-circle"></span>
     </label>
 </template>
@@ -21,9 +20,13 @@ export default {
   computed: {
     model: {
       get() {
+        // console.log('value get')
+        // console.log(this.value)
         return this.value;
       },
       set(value) {
+        // console.log('value set')
+        // console.log(value)
         this.$emit("input", value);
       }
     }

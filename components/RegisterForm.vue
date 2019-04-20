@@ -7,7 +7,7 @@
     class="border-0"
   >
     <div class="text-muted text-center mb-3">
-      <small> {{ $t("authentication.login_by") }}</small>
+      <small> {{ $t("authentication.register_by") }}</small>
     </div>
     <div class="btn-wrapper text-center">
       <base-button type="neutral">
@@ -27,7 +27,7 @@
       </base-button>
     </div>
     <div class="text-center text-muted mb-4 mt-4">
-      <small>{{ $t("authentication.or_login_by_account") }}</small>
+      <small>{{ $t("authentication.or_register_by_account") }}</small>
     </div>
     <ValidationObserver ref="obs" tag="form">
       <v-text-field-type2-with-validation
@@ -54,8 +54,8 @@
         {{ $t("authentication.remember_me") }}
       </base-checkbox>
       <div class="text-center">
-        <base-button type="primary" class="my-4" @click="onSignIn">{{
-          $t("authentication.sign_in")
+        <base-button type="primary" class="my-4" @click="onSignUp">{{
+          $t("authentication.register")
         }}</base-button>
       </div>
     </ValidationObserver>
@@ -76,10 +76,11 @@ import Card from "~/argon-components/Card.vue";
 
 import { fbAuth } from "~/plugins/firebase";
 import AuthenticationService from "~/services/authentication_service";
+import UserInfoService from "~/services/user_info_service";
+import UserInfoModal from "~/modals/user_info_modal";
 
-const LoginModal = namespace("loginModal");
+const RegisterModal = namespace("registerModal");
 const ConfirmationModal = namespace("confirmationModal");
-const UserInfo = namespace("userInfo");
 
 @Component({
   components: {
@@ -92,46 +93,47 @@ const UserInfo = namespace("userInfo");
     VTextFieldType2WithValidation
   }
 })
-export default class LoginForm extends Vue {
+export default class RegisterForm extends Vue {
   email: string = "";
   password: string = "";
   error: string = "";
 
-  @LoginModal.Action setShouldOpen;
+  @RegisterModal.Action setShouldOpenRegister;
   @ConfirmationModal.Action setShouldOpenConfirmation;
   @ConfirmationModal.Action setConfirmation;
-  @UserInfo.Action getUserInfoFromUser;
 
   private openConfirmationModal() {
     this.setConfirmation({
-      title: (this as any).$t("authentication.email_has_not_been_verified"),
+      title: (this as any).$t("authentication.register_success"),
       message: (this as any).$t("authentication.please_verify_email")
     });
     this.setShouldOpenConfirmation(true);
   }
-
-  async onSignIn() {
+  async onSignUp() {
     const result = await (this.$refs.obs as any).validate();
     if (result) {
       const authenticationService: AuthenticationService = AuthenticationService.getInstance();
-
+      const userInfoService: UserInfoService = UserInfoService.getInstance();
       try {
-        const userCredential: auth.UserCredential = await authenticationService.signIn(
+        const userCredential: auth.UserCredential = await authenticationService.signUp(
           this.email,
           this.password
         );
-
-        this.setShouldOpen(false);
-        if (
-          userCredential &&
-          userCredential.user &&
-          !userCredential.user.emailVerified
-        ) {
-          this.openConfirmationModal();
+        await authenticationService.sendEmailVerification();
+        console.log("userCredential.user.uid");
+        const userInfoModal: UserInfoModal = new UserInfoModal();
+        if(userCredential && userCredential.user && userCredential.user.uid) {
+            const id: string = userCredential.user.uid;
+            userInfoModal.role = "company";
+            await userInfoService.createUserInfo(id, userInfoModal);
         } else {
-          this.getUserInfoFromUser(userCredential.user);
+            throw 'what the fuck???'
         }
+        this.setShouldOpenRegister(false);
+        this.openConfirmationModal();
       } catch (e) {
+        console.log("register error");
+        console.log(e);
         this.error = e.message;
       }
     }

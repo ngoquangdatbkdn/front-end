@@ -1,6 +1,7 @@
 const types = {
-  // SELECT: 'SELECT',
-  CREATE: 'CREATE'
-}
+  SET_COMPANY_MODAL: "SET_COMPANY_MODAL",
+  SET_COMPANY_ID: "SET_COMPANY_ID",
+  SET_COMPANY_MODAL_LIST: "SET_COMPANY_MODAL_LIST",
+};
 
 export default types;

@@ -20,6 +20,7 @@ export default class CityService {
     return process.client ? { source: "cache" } : undefined;
   }
 
+
   public getCityReferenceFromModal(
     cityModal: CityModal
   ): firestore.DocumentReference | undefined {

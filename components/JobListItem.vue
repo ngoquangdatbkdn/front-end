@@ -1,29 +1,40 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div class="col-12 col-sm-4 mt-4 ">
     <div class="p-3 border rounded">
-      <span class="job-name ">{{ jobModal.name }}</span>
-      <p class="company-name">{{ jobModal.company }}</p>
-      <div class="row align-items-center mx-0">
-        <i class="fa fa-location-arrow pr-1"></i>
-        <p class="sub-info">{{ jobModal.location }}</p>
+      <span class="job-name ">{{ jobModal[`name_${$i18n.locale}`]}}</span>
+
+      <div class="row  mx-0 flex-nowrap">
+        <i class="fa fa-location-arrow pr-1 pt-1"></i>
+        <p class="sub-info">
+          {{
+            jobModal.city[$i18n.locale] +
+              ", " +
+              jobModal.district[$i18n.locale] +
+              ", " +
+              jobModal.ward[$i18n.locale]
+          }}
+        </p>
       </div>
 
       <div class="row mx-0">
         <div class="mr-auto">
           <div class="row mx-0 align-items-center">
-              <i class="fa fa-dollar pr-1"></i>
-            <p class="sub-info">{{ jobModal.salaryRange }}</p>
+            <i class="fa fa-dollar pr-1"></i>
+            <p class="sub-info">
+              {{ jobModal.minSalary + " - " + jobModal.maxSalary }}
+            </p>
           </div>
         </div>
-          <div class="row mx-0 align-items-center">
-              <i class="fa fa-clock-o pr-1"></i>
-              <p class="sub-info">{{ jobModal.lastUpdate }}</p>
-          </div>
-
+        <div class="row mx-0 align-items-center">
+          <i class="fa fa-clock-o pr-1"></i>
+          <p class="sub-info">{{ jobModal.lastUpdate }}</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
+<!--<p class="company-name">{{ jobModal.companyID }}</p>-->
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";

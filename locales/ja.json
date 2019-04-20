@@ -3,7 +3,6 @@
     "keyword": "キーワード",
     "all_major": "専攻",
     "search": "検索",
-    "job_list": "職務経歴書",
     "company_list": "企業一覧",
     "see_more": "もっと見る",
     "select_city": "地域選択",
@@ -32,13 +31,19 @@
     "register": "Đăng kí",
     "login_by": "Đăng nhập với",
     "or_login_by_account": "hoặc bằng tài khoản",
+    "register_by": "Đăng kí với",
+    "or_register_by_account": "hoặc bằng tài khoản",
     "remember_me": "Ghi nhớ",
     "email": "Email",
     "enter_email": "Nhập email",
     "password": "Mật khẩu",
-    "enter_password": "Nhập mật khẩu"
+    "enter_password": "Nhập mật khẩu",
+    "register_success": "Đăng kí thành công",
+    "please_verify_email": "Hãy kiểm tra email để xác nhận",
+    "email_has_not_been_verified": "Email chưa được xác nhận"
   },
   "job": {
+    "job_list": "職務経歴書",
     "salary_range": "年収",
     "contract_type": "雇用形態",
     "working_place_address": "勤務地",
@@ -63,7 +68,11 @@
     "job_benefit_description": "Những phúc lợi dành cho nhân viên",
     "workplace": "Nơi làm việc",
     "workplace_description": "Nơi nhân viên làm việc",
-    "enter_job_name": "Nhập tên công việc"
+    "enter_job_name": "Nhập tên công việc",
+    "add_job": "Thêm công việc",
+    "job_cover_image": "Trang bìa công ty",
+    "job_cover_image_description": "Thêm hình trang bìa cho công ty.Hình ảnh phải ít nhất đạt tỉ lệ 960x600 pixels. Hình ảnh sẽ được cắt theo tỉ lệ 8:5.",
+    "upload_job_cover_image": "Tải ảnh nền công ty"
   },
   "company": {
     "staff_number": "従業員数",
@@ -89,6 +98,10 @@
     "company_staff_amount_description": "Tổng số người làm trong công ty",
     "enter_company_staff_amount": "Nhập số lượng nhân viên công ty",
     "upload_company_cover_image": "Tải ảnh nền công ty",
-    "upload_company_logo": "Tải logo của công ty"
+    "upload_company_logo": "Tải logo của công ty",
+    "publish_company_info": "Xuất bản thông tin công ty"
+  },
+  "translator": {
+    "translator_list": "Danh sách người dịch"
   }
 }

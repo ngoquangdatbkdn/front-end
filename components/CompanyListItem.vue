@@ -1,26 +1,51 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <div class="col-12 col-sm-4 mt-4 ">
-    <div class="py-3 px-4 border rounded">
-      <div class="row">
+  <nuxt-link
+    :to="
+      localePath({
+        name: 'companies-id',
+        params: { id: companyModal.id }
+      })
+    "
+    active-class="none"
+    exact
+    class="col-12 col-sm-4 mt-4 "
+  >
+    <div class="p-3 border rounded">
+      <div class="row align-items-center mx-0">
+        <img
+          :src="companyModal.logo"
+          class="company-logo mw-100 avatar mr-2 "
+        />
         <span class="company-name  mr-auto">{{ companyModal.name }}</span>
       </div>
-      <p class="location-name">{{ companyModal.location }}</p>
-      <div class="row px-3">
+      <p class="location-name mt-2">
+        {{
+          companyModal.city[$i18n.locale] +
+            ", " +
+            companyModal.district[$i18n.locale] +
+            ", " +
+            companyModal.ward[$i18n.locale]
+        }}
+      </p>
+      <div class="row mx-0">
         <div class="mr-auto">
-          <div class="row align-items-center">
-              <i class="fa fa-dollar pr-1"></i>
-            <p class="sub-info">{{ companyModal.minSalary + ' - ' + companyModal.maxSalary }}</p>
+          <div class="row align-items-center mx-0">
+            <i class="fa fa-dollar pr-1"></i>
+            <p class="sub-info">
+              {{ companyModal.minSalary + " - " + companyModal.maxSalary }}
+            </p>
           </div>
         </div>
         <p class="sub-info">{{ companyModal.activeJob }}</p>
       </div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import  CompanyModal  from "../modals/company_modal";
+import {  namespace } from "vuex-class";
+import CompanyModal from "../modals/company_modal";
 
 @Component({})
 export default class CompanyListItem extends Vue {
@@ -31,11 +56,11 @@ export default class CompanyListItem extends Vue {
 <style scoped>
 .company-name {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .location-name {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .sub-info {

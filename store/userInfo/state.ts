@@ -1,5 +1,8 @@
+import UserInfoModal from '~/modals/user_info_modal'
+
+
 export interface UserState {
-  userInfo: any;
+  userInfo: UserInfoModal;
 }
 
 const state = (): UserState => ({

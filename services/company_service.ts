@@ -182,4 +182,89 @@ export default class CompanyService {
 
     return companyModal;
   }
+
+  async getCompanyList(queryParams: any): Promise<CompanyModal[]> {
+    const companyModalList: CompanyModal[] = [];
+
+    const collectionReference: firestore.CollectionReference = fireDb.collection(
+      FirebaseCollection.Companies.toString()
+    );
+
+    let query: firestore.Query = collectionReference;
+    if (queryParams) {
+      if (queryParams.limitation) {
+        query = collectionReference.limit(queryParams.limitation);
+      }
+      if (queryParams.wheres && queryParams.wheres.length > 0) {
+        queryParams.wheres.forEach(where => {
+          query = query.where(where.field, where.operator, where.value);
+        });
+      }
+    }
+
+    const querySnapshot: firestore.QuerySnapshot = await query.get();
+    const queryDocumentSnapshotList: firestore.QueryDocumentSnapshot[] =
+      querySnapshot.docs;
+    for (let i = 0; i < queryDocumentSnapshotList.length; i++) {
+      const queryDocumentSnapshot: firestore.QueryDocumentSnapshot =
+        queryDocumentSnapshotList[i];
+      const companyModal: CompanyModal = queryDocumentSnapshot.data();
+      companyModal.id = queryDocumentSnapshot.id;
+      companyModal.city = await this.cityService.getCityFromReference(
+        companyModal.city as firestore.DocumentReference
+      );
+      companyModal.district = await this.districtService.getDistrictFromReference(
+        companyModal.district as firestore.DocumentReference
+      );
+      companyModal.ward = await this.wardService.getWardFromReference(
+        companyModal.ward as firestore.DocumentReference
+      );
+
+      companyModal.businessType = await this.businessTypeService.getBusinessTypeFromReference(
+        companyModal.businessType as firestore.DocumentReference
+      );
+      companyModalList.push(companyModal);
+    }
+
+    return companyModalList;
+  }
+
+  public async addJobIDToJobIDList(
+    companyID: string | undefined,
+    jobID: string
+  ) {
+    if (!companyID) {
+      throw "Why there are no companyID";
+      return;
+    }
+    const documentReference = fireDb
+      .collection(FirebaseCollection.Companies.toString())
+      .doc(companyID);
+    if (documentReference) {
+      await documentReference.update({
+        jobIDs: firestore.FieldValue.arrayUnion(jobID)
+      });
+    }
+  }
+  public async updateShouldShowCompany(
+    companyID: string | undefined,
+    shouldShow: boolean
+  ) {
+    if (!companyID) {
+      throw "Why there are no companyID";
+      return;
+    }
+    const documentReference = fireDb
+      .collection(FirebaseCollection.Companies.toString())
+      .doc(companyID);
+    console.log('shouldShow')
+    console.log(shouldShow)
+    console.log('companyID')
+    console.log(companyID)
+    if (documentReference) {
+      await documentReference.update({
+        shouldShow
+      });
+    }
+  }
 }

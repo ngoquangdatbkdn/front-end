@@ -38,14 +38,14 @@ import { ValidationProvider } from "vee-validate";
     ValidationProvider
   },
   data: () => ({
-    innerValue: '',
+    innerValue: "",
     config: {
       events: {
         "froalaEditor.initialized": function() {
           console.log("initialized");
         }
       },
-      placeholderText: '',
+      placeholderText: "",
       charCounterCount: false,
       toolbarButtons: [
         "bold",
@@ -54,15 +54,16 @@ import { ValidationProvider } from "vee-validate";
         "paragraphStyle",
         "lineHeight",
         "insertLink"
-      ]
+      ],
+      quickInsertTags: [""]
     }
   })
 })
 export default class VEditorWithValidation extends Vue {
-  innerValue: string = '';
+  innerValue: string = "";
 
   @Prop({ type: [Object, String], default: "" }) rules;
-  @Prop({ type: [String], default: '' }) value;
+  @Prop({ type: [String], default: "" }) value;
 
   @Watch("innerValue")
   onInnerValueChanged(newVal: string, oldVal: string) {
@@ -79,6 +80,5 @@ export default class VEditorWithValidation extends Vue {
       this.innerValue = this.value;
     }
   }
-
 }
 </script>

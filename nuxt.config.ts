@@ -22,7 +22,6 @@ const config: NuxtConfiguration = {
   },
   // loading: { color: '#3B8070' },
   // css: ['tachyons/css/tachyons.min.css', '~/assets/css/main.css'],
-  loading: { color: "#fff" },
   css: [
     // "@/assets/vendor/nucleo/css/nucleo.css",
     // "@/assets/vendor/font-awesome/css/font-awesome.css",
@@ -39,7 +38,7 @@ const config: NuxtConfiguration = {
     { src: "~/plugins/vue-froala", ssr: false },
     { src: "~/plugins/vue-upload", ssr: false },
     { src: "~/plugins/firebase", ssr: true },
-    { src: "~/plugins/firebase-auth", ssr: true },
+    { src: "~/plugins/firebase-auth", ssr: true }
   ],
   modules: [
     "@nuxtjs/axios",
@@ -77,6 +76,10 @@ const config: NuxtConfiguration = {
   },
   router: {
     middleware: ["auth-guard"]
+  },
+  loading: {
+    color: "#5e72e4",
+    height: "2px"
   }
   // router: {
   //   middleware: "i18n"

@@ -12,7 +12,7 @@ import CityService from "~/services/city_service";
 import DistrictService from "~/services/district_service";
 import WardService from "~/services/ward_service";
 import BusinessTypeService from "~/services/business_type_service";
-
+import ContractTypeService from "~/services/contract_type_service";
 
 export const types = {};
 
@@ -40,17 +40,19 @@ export const actions: Actions<State, RootState> = {
     const districtService: DistrictService = DistrictService.getInstance();
     const wardService: WardService = WardService.getInstance();
     const businessTypeService: BusinessTypeService = BusinessTypeService.getInstance();
+    const contractTypeService: ContractTypeService = ContractTypeService.getInstance();
 
     const cityModalList: CityModal[] = await cityService.getAllCityList();
     const districtModalList: DistrictModal[] = await districtService.getAllDistrictList();
     const wardModalList: WardModal[] = await wardService.getAllWardList();
     const businessTypeModalList: BusinessTypeModal[] = await businessTypeService.getAllBusinessTypeList();
+    const contractTypeModalList: ContractTypeModal[] = await contractTypeService.getAllContractTypeList();
 
     commit(`city/CREATE`, cityModalList, { root: true });
     commit(`district/CREATE`, districtModalList, { root: true });
     commit(`ward/CREATE`, wardModalList, { root: true });
     commit(`businessType/CREATE`, businessTypeModalList, { root: true });
-
+    commit(`contractType/CREATE`, contractTypeModalList, { root: true });
   }
 };
 

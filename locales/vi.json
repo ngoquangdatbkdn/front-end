@@ -3,7 +3,6 @@
     "keyword": "Từ khóa",
     "all_major": "Tất cả các ngành",
     "search": "Tìm kiếm",
-    "job_list": "Danh sách công việc",
     "company_list": "Danh sách công ty",
     "see_more": "Xem thêm",
     "select_city": "Chọn thành phố",
@@ -32,13 +31,19 @@
     "register": "Đăng kí",
     "login_by": "Đăng nhập với",
     "or_login_by_account":"hoặc bằng tài khoản",
+    "register_by": "Đăng kí với",
+    "or_register_by_account": "hoặc bằng tài khoản",
     "remember_me": "Ghi nhớ",
     "email": "Email",
     "enter_email": "Nhập email",
     "password": "Mật khẩu",
-    "enter_password": "Nhập mật khẩu"
+    "enter_password": "Nhập mật khẩu",
+    "register_success": "Đăng kí thành công",
+    "please_verify_email": "Hãy kiểm tra email để xác nhận",
+    "email_has_not_been_verified": "Email chưa được xác nhận"
   },
   "job": {
+    "job_list": "Danh sách công việc",
     "salary_range": "Mức lương",
     "contract_type": "Loại hợp đồng",
     "working_place_address": "Địa chỉ nơi làm việc",
@@ -63,7 +68,11 @@
     "job_benefit_description": "Những phúc lợi dành cho nhân viên",
     "workplace": "Nơi làm việc",
     "workplace_description": "Nơi nhân viên làm việc",
-    "enter_job_name": "Nhập tên công việc"
+    "enter_job_name": "Nhập tên công việc",
+    "add_job": "Thêm công việc",
+    "job_cover_image": "Trang bìa công ty",
+    "job_cover_image_description": "Thêm hình trang bìa cho công ty.Hình ảnh phải ít nhất đạt tỉ lệ 960x600 pixels. Hình ảnh sẽ được cắt theo tỉ lệ 8:5.",
+    "upload_job_cover_image": "Tải ảnh nền công ty"
   },
   "company": {
     "staff_number": "Số lượng nhân viên",
@@ -89,6 +98,10 @@
     "company_staff_amount_description": "Tổng số người làm trong công ty",
     "enter_company_staff_amount": "Nhập số lượng nhân viên công ty",
     "upload_company_cover_image": "Tải ảnh nền công ty",
-    "upload_company_logo": "Tải logo của công ty"
+    "upload_company_logo": "Tải logo của công ty",
+    "publish_company_info": "Xuất bản thông tin công ty"
+  },
+  "translator": {
+    "translator_list": "Danh sách người dịch"
   }
 }
