@@ -23,7 +23,11 @@
     "no_options": "不結果",
     "upload_file_guild": "Chọn file hoặc kéo thả",
     "upload_file_limitation": "写真JPGの５MB 以下 ",
-    "delete_image": "Xóa hình"
+    "delete_image": "Xóa hình",
+    "role_company": "Công ty",
+    "role_candidate": "Người tìm việc",
+    "role_translator": "Người dịch thuật",
+    "select_role": "Chọn vai trò"
   },
   "authentication": {
     "sign_in": "ログイン",
@@ -104,5 +108,20 @@
   },
   "translator": {
     "translator_list": "Danh sách người dịch"
+  },
+  "candidate": {
+    "create_candidate_info": "Tạo thông tin ứng viên",
+    "candidate_full_name": "Họ và tên",
+    "candidate_full_name_description": "Họ và tên đầy đủ",
+    "enter_candidate_full_name": "Nhập họ và tên",
+    "candidate_date_of_birth": "Ngày sinh",
+    "candidate_date_of_birth_description": "Ngày, tháng, năm sinh",
+    "enter_candidate_date_of_birth": "Nhập ngày, tháng, năm sinh",
+    "candidate_email": "Email",
+    "candidate_email_description": "Email để liên lạc",
+    "enter_candidate_email": "Nhập email",
+    "candidate_address": "Địa chỉ cư trú",
+    "candidate_address_description": "Địa chỉ nơi cư trú",
+    "add_an_skill": "Thêm một kỹ năng"
   }
 }

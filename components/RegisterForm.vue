@@ -50,11 +50,54 @@
       <small v-if="error.length > 0" class="text-danger small">{{
         error
       }}</small>
-      <base-checkbox>
-        {{ $t("authentication.remember_me") }}
-      </base-checkbox>
+      <hr />
+      <div class="pb-3 text-center">
+        <small>{{ $t("common.select_role") }}</small>
+      </div>
+
+      <div class="row ">
+        <div class="col-6 col-md-6  d-flex flex-column">
+          <button
+            type="button"
+            @click="onUpdateRole('company')"
+            :class="
+              `btn btn-${
+                role === 'company' ? '' : 'outline-'
+              }info align-self-stretch`
+            "
+          >
+            {{ $t("common.role_company") }}
+          </button>
+        </div>
+        <div class="col-6 col-md-6  d-flex flex-column">
+          <button
+            type="button"
+            @click="onUpdateRole('candidate')"
+            :class="
+              `btn btn-${
+                role === 'candidate' ? '' : 'outline-'
+              }info align-self-stretch`
+            "
+          >
+            {{ $t("common.role_candidate") }}
+          </button>
+        </div>
+        <div class="col-12 col-md-6 pt-3 d-flex flex-column">
+          <button
+            type="button"
+            @click="onUpdateRole('translator')"
+            :class="
+              `btn btn-${
+                role === 'translator' ? '' : 'outline-'
+              }info align-self-stretch`
+            "
+          >
+            {{ $t("common.role_translator") }}
+          </button>
+        </div>
+      </div>
       <div class="text-center">
-        <base-button type="primary" class="my-4" @click="onSignUp">{{
+        <base-button type="default" class="my-4" @click="onSignUp">{{
           $t("authentication.register")
         }}</base-button>
       </div>
@@ -96,6 +139,7 @@ const ConfirmationModal = namespace("confirmationModal");
 export default class RegisterForm extends Vue {
   email: string = "";
   password: string = "";
+  role: string = "company";
   error: string = "";
 
   @RegisterModal.Action setShouldOpenRegister;
@@ -108,6 +152,9 @@ export default class RegisterForm extends Vue {
       message: (this as any).$t("authentication.please_verify_email")
     });
     this.setShouldOpenConfirmation(true);
+  }
+  onUpdateRole(role: string): void {
+    this.role = role;
   }
   async onSignUp() {
     const result = await (this.$refs.obs as any).validate();
@@ -122,12 +169,12 @@ export default class RegisterForm extends Vue {
         await authenticationService.sendEmailVerification();
         console.log("userCredential.user.uid");
         const userInfoModal: UserInfoModal = new UserInfoModal();
-        if(userCredential && userCredential.user && userCredential.user.uid) {
-            const id: string = userCredential.user.uid;
-            userInfoModal.role = "company";
-            await userInfoService.createUserInfo(id, userInfoModal);
+        if (userCredential && userCredential.user && userCredential.user.uid) {
+          const id: string = userCredential.user.uid;
+          userInfoModal.role = this.role;
+          await userInfoService.createUserInfo(id, userInfoModal);
         } else {
-            throw 'what the fuck???'
+          throw "what the fuck???";
         }
         this.setShouldOpenRegister(false);
         this.openConfirmationModal();

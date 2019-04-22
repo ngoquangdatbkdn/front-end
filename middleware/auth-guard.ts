@@ -11,7 +11,8 @@ function isGuardRoute(route) {
     route.matched.some(
       record =>
         record.path.indexOf("companies/create") > -1 ||
-        record.path.indexOf("jobs/create") > -1
+        record.path.indexOf("jobs/create") > -1 ||
+        record.path.indexOf("candidates/create") > -1
     )
   ) {
     return true;

@@ -30,13 +30,17 @@
               {{ $t("common.company") }}
             </a>
           </li>
-          <li v-if="isNotInSession"  class="nav-item">
+          <li v-if="isNotInSession" class="nav-item">
             <a class="nav-link nav-link-icon" href="#">
               {{ $t("common.translator") }}
             </a>
           </li>
-          <li v-if="isNotInSession" class="nav-item">
-            <a class="nav-link nav-link-icon" href="#">
+          <li v-if="isNotInSession || isCandidateSession" class="nav-item">
+            <a
+              @click="onNavigateToCandidate()"
+              class="nav-link nav-link-icon"
+              href="#"
+            >
               {{ $t("common.create_cv") }}
             </a>
           </li>
@@ -81,7 +85,7 @@
             <base-button
               v-if="!userInfo"
               class="nav-item"
-              type="primary"
+              type="default"
               v-on:click="openRegisterModal"
             >
               {{ $t("authentication.register") }}
@@ -208,14 +212,19 @@ export default class DefaultLayout extends Vue {
     }
     // this.$router.replace('/')
   }
-  get isNotInSession():boolean{
-      if(!this.userInfo) return true
-      return false
+  get isNotInSession(): boolean {
+    if (!this.userInfo) return true;
+    return false;
   }
-  get isCompanySession(): boolean{
-      if(!this.userInfo) return false
-      if(this.userInfo.role !== 'company') return false
-      return true
+  get isCompanySession(): boolean {
+    if (!this.userInfo) return false;
+    if (this.userInfo.role !== "company") return false;
+    return true;
+  }
+  get isCandidateSession(): boolean {
+    if (!this.userInfo) return false;
+    if (this.userInfo.role !== "candidate") return false;
+    return true;
   }
   async onSignOut() {
     const authenticationService: AuthenticationService = AuthenticationService.getInstance();
@@ -232,24 +241,20 @@ export default class DefaultLayout extends Vue {
   }
   cleanLoginHashInRouteFullPath(): string {
     const cleanRoutePath: string = this.$router.currentRoute.fullPath.replace(
-        this.$router.currentRoute.hash,
+      this.$router.currentRoute.hash,
       ""
     );
     this.$router.replace(cleanRoutePath);
-    return cleanRoutePath
+    return cleanRoutePath;
   }
   openLoginModal() {
-
     // if (this.$router.currentRoute.hash === "#login") {
-      const cleanRoutePath:string = this.cleanLoginHashInRouteFullPath();
+    const cleanRoutePath: string = this.cleanLoginHashInRouteFullPath();
     // }
-    const loginRoutePath: string =
-        cleanRoutePath + "#login";
+    const loginRoutePath: string = cleanRoutePath + "#login";
     this.$router.replace(loginRoutePath);
   }
   onNavigateToCompany() {
-    // console.log("this.userInfo.companyID");
-    // console.log(this.userInfo.companyID);
     if (this.userInfo && this.userInfo.companyID)
       return this.$router.push(
         (this as any).localePath({
@@ -259,6 +264,18 @@ export default class DefaultLayout extends Vue {
       );
     return this.$router.push(
       (this as any).localePath({ name: "companies-create" })
+    );
+  }
+  onNavigateToCandidate() {
+    if (this.userInfo && this.userInfo.companyID)
+      return this.$router.push(
+        (this as any).localePath({
+          name: "candidates-id",
+          params: { id: this.userInfo.companyID }
+        })
+      );
+    return this.$router.push(
+      (this as any).localePath({ name: "candidates-create" })
     );
   }
 }
