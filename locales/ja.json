@@ -122,6 +122,16 @@
     "enter_candidate_email": "Nhập email",
     "candidate_address": "Địa chỉ cư trú",
     "candidate_address_description": "Địa chỉ nơi cư trú",
-    "add_an_skill": "Thêm một kỹ năng"
+    "add_an_skill": "Thêm một kỹ năng",
+    "candidate_skill_list": "Các kỹ năng",
+    "candidate_skill_list_description": "Các kỹ năng liên quan",
+    "candidate_skill": "Kỹ năng",
+    "enter_candidate_skill": "Nhập tên kỹ năng",
+    "candidate_skill_level": "Mức độ thành thạo",
+    "candidate_education": "Học vấn",
+    "candidate_education_description": "Lịch sử học vấn",
+    "add_an_education": "Thêm học vấn",
+    "candidate_school": "Trường học/học viện",
+    "enter_candidate_school": "Nhập tên trường học/học viện"
   }
 }

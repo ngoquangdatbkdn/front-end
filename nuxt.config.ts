@@ -12,6 +12,10 @@ const config: NuxtConfiguration = {
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { hid: "description", name: "description", content: "Nuxt TS project" }
     ],
+    script: [
+      // { src: "https://npmcdn.com/flatpickr/dist/l10n/vi.js", type: "application/javascript" },
+      // { src: "https://npmcdn.com/flatpickr/dist/l10n/ja.js", type: "application/javascript"  }
+    ],
     link: [
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" }
       // {

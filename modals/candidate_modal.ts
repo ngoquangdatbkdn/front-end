@@ -5,6 +5,7 @@ import DistrictModal from "~/modals/district_modal";
 import WardModal from "~/modals/ward_modal";
 import BusinessTypeModal from "~/modals/business_type_modal";
 import LevelModal from "~/modals/level_modal";
+import EducationModal from "~/modals/education_modal";
 import ContractTypeModal from "~/modals/contract_type_modal";
 
 export default class CandidateModal {
@@ -24,7 +25,7 @@ export default class CandidateModal {
   public englishCertificate?: LevelModal[];
   public otherLanguages?: LevelModal[];
   public certiticates?: LevelModal[];
-  public academies?: LevelModal[];
+  public educations?: EducationModal[];
   public wantedContractType?: ContractTypeModal | firestore.DocumentReference;
   public wantedJobTitle?: string;
   public wantedJobRank?: string;

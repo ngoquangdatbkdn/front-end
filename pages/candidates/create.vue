@@ -8,19 +8,23 @@
         <div class="row ">
           <div class="col-md-6 ">
             <p class="mb-0 font-weight-700 text-uppercase">
-              {{ $t("candidate.candidate_address") }}
+              {{ $t("candidate.candidate_education") }}
             </p>
             <p class="mb-3">
-              {{ $t("candidate.candidate_address_description") }}
+              {{ $t("candidate.candidate_education_description") }}
             </p>
           </div>
           <div class="col-md-6 d-flex flex-column">
             <card
               type="secondary"
               shadow
-              v-for="(skill, index) in candidateModal.skills"
-              :key="'skill' + index"
-              :class="`${index > 0 ? 'mt-3' : ''} bg-white  form-group mb-0 d-flex flex-column`"
+              v-for="(education, index) in candidateModal.educations"
+              :key="'education' + index"
+              :class="
+                `${
+                  index > 0 ? 'mt-3' : ''
+                } bg-white  form-group mb-0 d-flex flex-column`
+              "
             >
               <button
                 type="button"
@@ -28,39 +32,40 @@
                 aria-label="Close"
                 class="close"
                 v-if="index > 0"
-                @click="onRemoveAnSkill(index)"
+                @click="onRemoveAnEducation(index)"
               >
                 <span aria-hidden="true">×</span>
               </button>
               <div :class="`${index > 0 ? 'mt-3' : ''}  position-relative`">
-                <v-select-with-validation
+                <v-text-field-with-validation
                   rules="required"
-                  v-model="skill.name"
-                  :options="cityModalList"
-                  :label="$t('common.city')"
-                  :name="$t('common.city')"
+                  v-model="education.school"
+                  type="text"
+                  :label="$t('candidate.candidate_school')"
+                  :name="$t('candidate.candidate_school')"
+                  :placeholder="$t('candidate.enter_candidate_school')"
                   :isHalf="true"
-                  :optionLabel="$i18n.locale"
                 />
               </div>
               <div class="pt-3  position-relative">
-                <v-select-with-validation
+                <v-date-picker-with-validation
                   rules="required"
-                  v-model="skill.level"
-                  :options="collectedDistrictModalList"
-                  :label="$t('common.district')"
-                  :name="$t('common.district')"
+                  v-model="education.range"
+                  type="text"
+                  :label="$t('candidate.candidate_date_of_birth')"
+                  :name="$t('candidate.candidate_date_of_birth')"
+                  :placeholder="$t('candidate.enter_candidate_date_of_birth')"
+                  :mode="'range'"
                   :isHalf="true"
-                  :optionLabel="$i18n.locale"
                 />
               </div>
             </card>
             <button
               type="button"
               class="btn btn-primary my-4 align-self-center"
-              @click="onAddAnSkill()"
+              @click="onAddAnEducation()"
             >
-              {{ $t("candidate.add_an_skill") }}
+              {{ $t("candidate.add_an_education") }}
             </button>
           </div>
         </div>
@@ -95,6 +100,7 @@
 <!--:description="$t('candidate.candidate_date_of_birth_description')"-->
 <!--:name="$t('candidate.candidate_date_of_birth')"-->
 <!--:placeholder="$t('candidate.enter_candidate_date_of_birth')"-->
+<!--:mode="'single'"-->
 <!--/>-->
 <!--<hr />-->
 
@@ -162,6 +168,73 @@
 <!--</div>-->
 <!--<hr />-->
 
+<!--<div class="container  pt-5">-->
+<!--<div class="row ">-->
+<!--<div class="col-md-6 ">-->
+<!--<p class="mb-0 font-weight-700 text-uppercase">-->
+<!--{{ $t("candidate.candidate_skill_list") }}-->
+<!--</p>-->
+<!--<p class="mb-3">-->
+<!--{{ $t("candidate.candidate_skill_list_description") }}-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="col-md-6 d-flex flex-column">-->
+<!--<card-->
+<!--type="secondary"-->
+<!--shadow-->
+<!--v-for="(skill, index) in candidateModal.skills"-->
+<!--:key="'skill' + index"-->
+<!--:class="-->
+<!--`${-->
+<!--index > 0 ? 'mt-3' : ''-->
+<!--} bg-white  form-group mb-0 d-flex flex-column`-->
+<!--"-->
+<!--&gt;-->
+<!--<button-->
+<!--type="button"-->
+<!--data-dismiss="alert"-->
+<!--aria-label="Close"-->
+<!--class="close"-->
+<!--v-if="index > 0"-->
+<!--@click="onRemoveAnSkill(index)"-->
+<!--&gt;-->
+<!--<span aria-hidden="true">×</span>-->
+<!--</button>-->
+<!--<div :class="`${index > 0 ? 'mt-3' : ''}  position-relative`">-->
+<!--<v-text-field-with-validation-->
+<!--rules="required"-->
+<!--v-model="skill.name"-->
+<!--type="text"-->
+<!--:label="$t('candidate.candidate_skill')"-->
+<!--:name="$t('candidate.candidate_skill')"-->
+<!--:placeholder="$t('candidate.enter_candidate_skill')"-->
+<!--:isHalf="true"-->
+<!--/>-->
+<!--</div>-->
+<!--<div class="pt-3  position-relative">-->
+<!--<v-select-with-validation-->
+<!--rules="required|numeric"-->
+<!--v-model="skill.level"-->
+<!--:options="[1, 2, 3, 4, 5]"-->
+<!--:label="$t('candidate.candidate_skill_level')"-->
+<!--:name="$t('common.district')"-->
+<!--:isHalf="true"-->
+<!--:optionLabel="$i18n.locale"-->
+<!--/>-->
+<!--</div>-->
+<!--</card>-->
+<!--<button-->
+<!--type="button"-->
+<!--class="btn btn-primary my-4 align-self-center"-->
+<!--@click="onAddAnSkill()"-->
+<!--&gt;-->
+<!--{{ $t("candidate.add_an_skill") }}-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr />-->
+<!--</div>-->
+
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
@@ -180,6 +253,7 @@ import CityModal from "~/modals/city_modal";
 import DistrictModal from "~/modals/district_modal";
 import WardModal from "~/modals/ward_modal";
 import LevelModal from "~/modals/level_modal";
+import EducationModal from "~/modals/education_modal";
 
 import CandidateService from "~/services/candidate_service";
 
@@ -248,12 +322,16 @@ export default class CreateCandidate extends Vue {
     this.candidateModal = new CandidateModal();
     this.candidateModal.skills = [];
     this.candidateModal.skills.push(new LevelModal());
+
+    this.candidateModal.educations = [];
+    this.candidateModal.educations.push(new EducationModal());
+
     this.SET_COMPANY_ID(null);
   }
   async submit() {
     const result = await (this.$refs.obs as any).validate();
     // console.log("result " + result.toString());
-    console.log("this.candidateModal " + this.candidateModal.toString());
+    console.log("this.candidateModal " + JSON.stringify(this.candidateModal));
     if (result) {
       // this.candidateModal.shouldShow = false;
       //
@@ -283,6 +361,20 @@ export default class CreateCandidate extends Vue {
     this.candidateModal = {
       ...this.candidateModal,
       skills: this.candidateModal.skills
+    };
+  }
+  onAddAnEducation() {
+    (this as any).candidateModal.educations.push(new EducationModal());
+    this.candidateModal = {
+      ...this.candidateModal,
+      educations: this.candidateModal.educations
+    };
+  }
+  onRemoveAnEducation(index: string) {
+    (this as any).candidateModal.educations.splice(index, 1);
+    this.candidateModal = {
+      ...this.candidateModal,
+        educations: this.candidateModal.educations
     };
   }
 }

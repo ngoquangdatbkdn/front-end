@@ -56,8 +56,8 @@ import { ValidationProvider } from "vee-validate";
 export default class VSelectWithValidation extends Vue {
   innerValue: any = null;
 
-  @Prop({ type: [Object, String], default: "" }) rules;
-  @Prop({ type: [Object, String], default: null }) value;
+  @Prop({ type: [Object, String, Number], default: "" }) rules;
+  @Prop({ type: [Object, String, Number], default: null }) value;
 
   @Watch("innerValue")
   onInnerValueChanged(newVal: any, oldVal: any) {
