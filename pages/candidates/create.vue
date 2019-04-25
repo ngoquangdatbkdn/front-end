@@ -8,18 +8,18 @@
         <div class="row ">
           <div class="col-md-6 ">
             <p class="mb-0 font-weight-700 text-uppercase">
-              {{ $t("candidate.candidate_education") }}
+              {{ $t("candidate.candidate_language") }}
             </p>
             <p class="mb-3">
-              {{ $t("candidate.candidate_education_description") }}
+              {{ $t("candidate.candidate_language_description") }}
             </p>
           </div>
           <div class="col-md-6 d-flex flex-column">
             <card
               type="secondary"
               shadow
-              v-for="(education, index) in candidateModal.educations"
-              :key="'education' + index"
+              v-for="(language, index) in candidateModal.languages"
+              :key="'language' + index"
               :class="
                 `${
                   index > 0 ? 'mt-3' : ''
@@ -32,30 +32,47 @@
                 aria-label="Close"
                 class="close"
                 v-if="index > 0"
-                @click="onRemoveAnEducation(index)"
+                @click="onRemoveAnLanguage(index)"
               >
                 <span aria-hidden="true">×</span>
               </button>
               <div :class="`${index > 0 ? 'mt-3' : ''}  position-relative`">
                 <v-text-field-with-validation
                   rules="required"
-                  v-model="education.school"
+                  v-model="language.name"
                   type="text"
-                  :label="$t('candidate.candidate_school')"
-                  :name="$t('candidate.candidate_school')"
-                  :placeholder="$t('candidate.enter_candidate_school')"
+                  :label="$t('candidate.candidate_language_name')"
+                  :name="$t('candidate.candidate_language_name')"
+                  :placeholder="
+                    $t('candidate.enter_candidate_language_name')
+                  "
+                  :isHalf="true"
+                />
+              </div>
+              <div class="pt-3  position-relative">
+                <v-text-field-with-validation
+                  rules="required|numeric"
+                  v-model="language.result"
+                  type="number"
+                  :label="$t('candidate.candidate_language_result')"
+                  :name="$t('candidate.candidate_language_result')"
+                  :placeholder="
+                    $t('candidate.enter_candidate_language_result')
+                  "
                   :isHalf="true"
                 />
               </div>
               <div class="pt-3  position-relative">
                 <v-date-picker-with-validation
                   rules="required"
-                  v-model="education.range"
+                  v-model="language.timeGot"
                   type="text"
-                  :label="$t('candidate.candidate_date_of_birth')"
-                  :name="$t('candidate.candidate_date_of_birth')"
-                  :placeholder="$t('candidate.enter_candidate_date_of_birth')"
-                  :mode="'range'"
+                  :label="$t('candidate.candidate_language_time')"
+                  :name="$t('candidate.candidate_language_time')"
+                  :placeholder="
+                    $t('candidate.enter_candidate_language_time')
+                  "
+                  :mode="'single'"
                   :isHalf="true"
                 />
               </div>
@@ -63,9 +80,9 @@
             <button
               type="button"
               class="btn btn-primary my-4 align-self-center"
-              @click="onAddAnEducation()"
+              @click="onRemoveAnLanguage()"
             >
-              {{ $t("candidate.add_an_education") }}
+              {{ $t("candidate.add_an_language") }}
             </button>
           </div>
         </div>
@@ -80,6 +97,172 @@
     </div>
   </ValidationObserver>
 </template>
+
+<!--<div class="container  pt-5">-->
+<!--<div class="row ">-->
+<!--<div class="col-md-6 ">-->
+<!--<p class="mb-0 font-weight-700 text-uppercase">-->
+<!--{{ $t("candidate.candidate_certificate") }}-->
+<!--</p>-->
+<!--<p class="mb-3">-->
+<!--{{ $t("candidate.candidate_certificate_description") }}-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="col-md-6 d-flex flex-column">-->
+<!--<card-->
+<!--type="secondary"-->
+<!--shadow-->
+<!--v-for="(certificate, index) in candidateModal.certificates"-->
+<!--:key="'certificate' + index"-->
+<!--:class="-->
+<!--`${-->
+<!--index > 0 ? 'mt-3' : ''-->
+<!--} bg-white  form-group mb-0 d-flex flex-column`-->
+<!--"-->
+<!--&gt;-->
+<!--<button-->
+<!--type="button"-->
+<!--data-dismiss="alert"-->
+<!--aria-label="Close"-->
+<!--class="close"-->
+<!--v-if="index > 0"-->
+<!--@click="onRemoveAnCertificate(index)"-->
+<!--&gt;-->
+<!--<span aria-hidden="true">×</span>-->
+<!--</button>-->
+<!--<div :class="`${index > 0 ? 'mt-3' : ''}  position-relative`">-->
+<!--<v-text-field-with-validation-->
+<!--rules="required"-->
+<!--v-model="certificate.name"-->
+<!--type="text"-->
+<!--:label="$t('candidate.candidate_certificate_name')"-->
+<!--:name="$t('candidate.candidate_certificate_name')"-->
+<!--:placeholder="-->
+<!--$t('candidate.enter_candidate_certificate_name')-->
+<!--"-->
+<!--:isHalf="true"-->
+<!--/>-->
+<!--</div>-->
+<!--<div class="pt-3  position-relative">-->
+<!--<v-date-picker-with-validation-->
+<!--rules="required"-->
+<!--v-model="certificate.timeGot"-->
+<!--type="text"-->
+<!--:label="$t('candidate.candidate_certificate_time')"-->
+<!--:name="$t('candidate.candidate_certificate_time')"-->
+<!--:placeholder="-->
+<!--$t('candidate.enter_candidate_certificate_time')-->
+<!--"-->
+<!--:mode="'single'"-->
+<!--:isHalf="true"-->
+<!--/>-->
+<!--</div>-->
+<!--</card>-->
+<!--<button-->
+<!--type="button"-->
+<!--class="btn btn-primary my-4 align-self-center"-->
+<!--@click="onAddAnCertificate()"-->
+<!--&gt;-->
+<!--{{ $t("candidate.add_an_education") }}-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr />-->
+<!--</div>-->
+
+<!--<div class="container  pt-5">-->
+<!--<div class="row ">-->
+<!--<div class="col-md-6 ">-->
+<!--<p class="mb-0 font-weight-700 text-uppercase">-->
+<!--{{ $t("candidate.candidate_education") }}-->
+<!--</p>-->
+<!--<p class="mb-3">-->
+<!--{{ $t("candidate.candidate_education_description") }}-->
+<!--</p>-->
+<!--</div>-->
+<!--<div class="col-md-6 d-flex flex-column">-->
+<!--<card-->
+<!--type="secondary"-->
+<!--shadow-->
+<!--v-for="(education, index) in candidateModal.educations"-->
+<!--:key="'education' + index"-->
+<!--:class="-->
+<!--`${-->
+<!--index > 0 ? 'mt-3' : ''-->
+<!--} bg-white  form-group mb-0 d-flex flex-column`-->
+<!--"-->
+<!--&gt;-->
+<!--<button-->
+<!--type="button"-->
+<!--data-dismiss="alert"-->
+<!--aria-label="Close"-->
+<!--class="close"-->
+<!--v-if="index > 0"-->
+<!--@click="onRemoveAnEducation(index)"-->
+<!--&gt;-->
+<!--<span aria-hidden="true">×</span>-->
+<!--</button>-->
+<!--<div :class="`${index > 0 ? 'mt-3' : ''}  position-relative`">-->
+<!--<v-text-field-with-validation-->
+<!--rules="required"-->
+<!--v-model="education.school"-->
+<!--type="text"-->
+<!--:label="$t('candidate.candidate_school')"-->
+<!--:name="$t('candidate.candidate_school')"-->
+<!--:placeholder="$t('candidate.enter_candidate_school')"-->
+<!--:isHalf="true"-->
+<!--/>-->
+<!--</div>-->
+<!--<div class="pt-3  position-relative">-->
+<!--<v-text-field-with-validation-->
+<!--rules="required"-->
+<!--v-model="education.major"-->
+<!--type="text"-->
+<!--:label="$t('candidate.candidate_major')"-->
+<!--:name="$t('candidate.candidate_major')"-->
+<!--:placeholder="$t('candidate.enter_candidate_major')"-->
+<!--:isHalf="true"-->
+<!--/>-->
+<!--</div>-->
+<!--<div class="pt-3  position-relative">-->
+<!--<v-date-picker-with-validation-->
+<!--rules="required"-->
+<!--v-model="education.range"-->
+<!--type="text"-->
+<!--:label="$t('candidate.candidate_education_time_range')"-->
+<!--:name="$t('candidate.candidate_education_time_range')"-->
+<!--:placeholder="-->
+<!--$t('candidate.enter_candidate_education_time_range')-->
+<!--"-->
+<!--:mode="'range'"-->
+<!--:isHalf="true"-->
+<!--/>-->
+<!--</div>-->
+<!--<div class="pt-3  position-relative">-->
+<!--<v-text-field-with-validation-->
+<!--rules="required"-->
+<!--v-model="education.result"-->
+<!--type="text"-->
+<!--:label="$t('candidate.candidate_education_result')"-->
+<!--:name="$t('candidate.candidate_education_result')"-->
+<!--:placeholder="-->
+<!--$t('candidate.enter_candidate_education_result')-->
+<!--"-->
+<!--:isHalf="true"-->
+<!--/>-->
+<!--</div>-->
+<!--</card>-->
+<!--<button-->
+<!--type="button"-->
+<!--class="btn btn-primary my-4 align-self-center"-->
+<!--@click="onAddAnEducation()"-->
+<!--&gt;-->
+<!--{{ $t("candidate.add_an_education") }}-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--<hr />-->
+<!--</div>-->
 
 <!--<v-text-field-with-validation-->
 <!--rules="required"-->
@@ -254,6 +437,8 @@ import DistrictModal from "~/modals/district_modal";
 import WardModal from "~/modals/ward_modal";
 import LevelModal from "~/modals/level_modal";
 import EducationModal from "~/modals/education_modal";
+import CertificateModal from "~/modals/certificate_modal";
+import LanguageModal from "~/modals/language_modal";
 
 import CandidateService from "~/services/candidate_service";
 
@@ -326,6 +511,12 @@ export default class CreateCandidate extends Vue {
     this.candidateModal.educations = [];
     this.candidateModal.educations.push(new EducationModal());
 
+    this.candidateModal.certificates = [];
+    this.candidateModal.certificates.push(new CertificateModal());
+
+    this.candidateModal.languages = [];
+    this.candidateModal.languages.push(new LanguageModal());
+
     this.SET_COMPANY_ID(null);
   }
   async submit() {
@@ -374,7 +565,35 @@ export default class CreateCandidate extends Vue {
     (this as any).candidateModal.educations.splice(index, 1);
     this.candidateModal = {
       ...this.candidateModal,
-        educations: this.candidateModal.educations
+      educations: this.candidateModal.educations
+    };
+  }
+  onAddAnCertificate() {
+    (this as any).candidateModal.certificates.push(new CertificateModal());
+    this.candidateModal = {
+      ...this.candidateModal,
+      certificates: this.candidateModal.certificates
+    };
+  }
+  onRemoveAnCertificate(index: string) {
+    (this as any).candidateModal.certificates.splice(index, 1);
+    this.candidateModal = {
+      ...this.candidateModal,
+      certificates: this.candidateModal.certificates
+    };
+  }
+  onAddAnLanguage() {
+    (this as any).candidateModal.languages.push(new LanguageModal());
+    this.candidateModal = {
+      ...this.candidateModal,
+      languages: this.candidateModal.languages
+    };
+  }
+  onRemoveAnLanguage(index: string) {
+    (this as any).candidateModal.languages.splice(index, 1);
+    this.candidateModal = {
+      ...this.candidateModal,
+      languages: this.candidateModal.languages
     };
   }
 }

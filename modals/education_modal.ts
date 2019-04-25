@@ -3,5 +3,5 @@ export default class EducationModal {
   public school?: string;
   public major?: string;
   public dateRange?: string;
-  public rank?: string;
+  public result?: string;
 }

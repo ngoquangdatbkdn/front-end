@@ -33,22 +33,20 @@
       </div>
     </div>
     <div v-else-if="$attrs.isHalf === true">
-      <small class="mb-1 font-weight-500 text-uppercase">
-        {{ $attrs.label }}
-      </small>
       <div class="form-group mb-0">
+          <small class="mb-1 font-weight-500 text-uppercase">
+              {{ $attrs.label }}
+          </small>
         <base-input addon-left-icon="ni ni-calendar-grid-58">
           <flat-picker
-            slot-scope="{ focus, blur }"
-            @on-open="focus"
-            @on-close="blur"
-            :config="{ allowInput: true, mode: `${$attrs.mode}`,  }"
+            :config="{ allowInput: true, mode: `${$attrs.mode}` }"
             class="form-control datepicker"
             v-model="innerValue"
             v-bind="$attrs"
           >
           </flat-picker>
         </base-input>
+        <small class="text-danger small">{{ errors[0] }}</small>
       </div>
     </div>
   </ValidationProvider>
@@ -80,6 +78,7 @@ export default class VDatePickerWithValidation extends Vue {
 
   @Watch("innerValue")
   onInnerValueChanged(newVal: string, oldVal: string) {
+      console.log('newVal ' + newVal.toString());
     this.$emit("input", newVal);
   }
 
@@ -95,3 +94,9 @@ export default class VDatePickerWithValidation extends Vue {
   }
 }
 </script>
+
+<style >
+    .form-group  .form-group.input-group{
+        margin-bottom: 0;
+    }
+</style>

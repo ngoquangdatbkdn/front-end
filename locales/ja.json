@@ -132,6 +132,27 @@
     "candidate_education_description": "Lịch sử học vấn",
     "add_an_education": "Thêm học vấn",
     "candidate_school": "Trường học/học viện",
-    "enter_candidate_school": "Nhập tên trường học/học viện"
+    "enter_candidate_school": "Nhập tên trường học/học viện",
+    "candidate_major": "Ngành học",
+    "enter_candidate_major": "Nhập ngành học",
+    "candidate_education_time_range": "Thời gian theo học",
+    "enter_candidate_education_time_range": "Nhập thời gian theo học",
+    "candidate_education_result": "Kết quả học tập",
+    "enter_candidate_education_result": "Nhập kết quả học tập",
+    "candidate_certificate": "Chứng chỉ",
+    "candidate_certificate_description": "Các chứng chỉ đạt được",
+    "candidate_certificate_name": "Tên chứng chỉ",
+    "enter_candidate_certificate_name": "Nhập tên chứng chỉ",
+    "candidate_certificate_time": "Thời điểm lấy chứng chỉ",
+    "enter_candidate_certificate_time": "Nhập thời điểm lấy chứng chỉ",
+    "add_an_language": "Thêm chứng chỉ ngôn ngữ",
+    "candidate_language": "Ngôn ngữ",
+    "candidate_language_description": "Tên chứng chỉ ngôn ngữ đạt được",
+    "candidate_language_name": "Tên chứng chỉ",
+    "enter_candidate_language_name": "Nhập tên chứng chỉ",
+    "candidate_language_result": "Kết quả",
+    "enter_candidate_language_result": "Nhập kết quả",
+    "candidate_language_time": "Thời điểm lấy chứng chỉ",
+    "enter_candidate_language_time": "Nhập thời điểm lấy chứng chỉ"
   }
 }

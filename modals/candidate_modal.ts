@@ -7,6 +7,8 @@ import BusinessTypeModal from "~/modals/business_type_modal";
 import LevelModal from "~/modals/level_modal";
 import EducationModal from "~/modals/education_modal";
 import ContractTypeModal from "~/modals/contract_type_modal";
+import CertificateModal from "~/modals/certificate_modal";
+import LanguageModal from "~/modals/language_modal";
 
 export default class CandidateModal {
   constructor() {}
@@ -23,8 +25,8 @@ export default class CandidateModal {
   public skills?: LevelModal[];
   public japaneseCertificate?: LevelModal[];
   public englishCertificate?: LevelModal[];
-  public otherLanguages?: LevelModal[];
-  public certiticates?: LevelModal[];
+  public languages?: LanguageModal[];
+  public certificates?: CertificateModal[];
   public educations?: EducationModal[];
   public wantedContractType?: ContractTypeModal | firestore.DocumentReference;
   public wantedJobTitle?: string;
