@@ -5,6 +5,330 @@
     </div>
     <div class="bg-white ">
       <div class="container  pt-5">
+          <v-text-field-with-validation
+                  rules="required"
+                  v-model="candidateModal.fullName"
+                  type="text"
+                  :label="$t('candidate.candidate_full_name')"
+                  :description="$t('candidate.candidate_full_name_description')"
+                  :name="$t('candidate.candidate_full_name')"
+                  :placeholder="$t('candidate.enter_candidate_full_name')"
+          />
+          <hr />
+
+          <v-date-picker-with-validation
+                  rules="required"
+                  v-model="candidateModal.dob"
+                  type="text"
+                  :label="$t('candidate.candidate_date_of_birth')"
+                  :description="$t('candidate.candidate_date_of_birth_description')"
+                  :name="$t('candidate.candidate_date_of_birth')"
+                  :placeholder="$t('candidate.enter_candidate_date_of_birth')"
+                  :mode="'single'"
+          />
+          <hr />
+
+          <v-text-field-with-validation
+                  rules="required|email"
+                  v-model="candidateModal.email"
+                  type="text"
+                  :label="$t('candidate.candidate_email')"
+                  :description="$t('candidate.candidate_email_description')"
+                  :name="$t('candidate.candidate_email')"
+                  :placeholder="$t('candidate.enter_candidate_email')"
+          />
+          <hr />
+
+          <div class="row ">
+              <div class="col-md-6 ">
+                  <p class="mb-0 font-weight-700 text-uppercase">
+                      {{ $t("candidate.candidate_address") }}
+                  </p>
+                  <p class="mb-3">
+                      {{ $t("candidate.candidate_address_description") }}
+                  </p>
+              </div>
+              <div class="col-md-6 ">
+                  <div class="form-group mb-0">
+                      <v-select-with-validation
+                              rules="required"
+                              v-model="candidateModal.city"
+                              :options="cityModalList"
+                              :label="$t('common.city')"
+                              :name="$t('common.city')"
+                              :isHalf="true"
+                              :optionLabel="$i18n.locale"
+                      />
+                      <div
+                              v-if="collectedDistrictModalList.length > 0"
+                              class="pt-3  position-relative"
+                      >
+                          <v-select-with-validation
+                                  rules="required"
+                                  v-model="candidateModal.district"
+                                  :options="collectedDistrictModalList"
+                                  :label="$t('common.district')"
+                                  :name="$t('common.district')"
+                                  :isHalf="true"
+                                  :optionLabel="$i18n.locale"
+                          />
+                      </div>
+                      <div
+                              v-if="collectedWardModalList.length > 0"
+                              class="pt-3 position-relative"
+                      >
+                          <v-select-with-validation
+                                  rules="required"
+                                  v-model="candidateModal.ward"
+                                  :options="collectedWardModalList"
+                                  :label="$t('common.ward')"
+                                  :name="$t('common.ward')"
+                                  :isHalf="true"
+                                  :optionLabel="$i18n.locale"
+                          />
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <hr />
+
+      </div>
+      <div class="container  pt-5">
+        <div class="row ">
+          <div class="col-md-6 ">
+            <p class="mb-0 font-weight-700 text-uppercase">
+              {{ $t("candidate.candidate_certificate") }}
+            </p>
+            <p class="mb-3">
+              {{ $t("candidate.candidate_certificate_description") }}
+            </p>
+          </div>
+          <div class="col-md-6 d-flex flex-column">
+            <card
+              type="secondary"
+              shadow
+              v-for="(certificate, index) in candidateModal.certificates"
+              :key="'certificate' + index"
+              :class="
+                `${
+                  index > 0 ? 'mt-3' : ''
+                } bg-white  form-group mb-0 d-flex flex-column`
+              "
+            >
+              <button
+                type="button"
+                data-dismiss="alert"
+                aria-label="Close"
+                class="close"
+                v-if="index > 0"
+                @click="onRemoveAnCertificate(index)"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+              <div :class="`${index > 0 ? 'mt-3' : ''}  position-relative`">
+                <v-text-field-with-validation
+                  rules="required"
+                  v-model="certificate.name"
+                  type="text"
+                  :label="$t('candidate.candidate_certificate_name')"
+                  :name="$t('candidate.candidate_certificate_name')"
+                  :placeholder="
+                    $t('candidate.enter_candidate_certificate_name')
+                  "
+                  :isHalf="true"
+                />
+              </div>
+              <div class="pt-3  position-relative">
+                <v-date-picker-with-validation
+                  rules="required"
+                  v-model="certificate.timeGot"
+                  type="text"
+                  :label="$t('candidate.candidate_certificate_time')"
+                  :name="$t('candidate.candidate_certificate_time')"
+                  :placeholder="
+                    $t('candidate.enter_candidate_certificate_time')
+                  "
+                  :mode="'single'"
+                  :isHalf="true"
+                />
+              </div>
+            </card>
+            <button
+              type="button"
+              class="btn btn-primary my-4 align-self-center"
+              @click="onAddAnCertificate()"
+            >
+              {{ $t("candidate.add_an_education") }}
+            </button>
+          </div>
+        </div>
+        <hr />
+      </div>
+
+      <div class="container  pt-5">
+        <div class="row ">
+          <div class="col-md-6 ">
+            <p class="mb-0 font-weight-700 text-uppercase">
+              {{ $t("candidate.candidate_education") }}
+            </p>
+            <p class="mb-3">
+              {{ $t("candidate.candidate_education_description") }}
+            </p>
+          </div>
+          <div class="col-md-6 d-flex flex-column">
+            <card
+              type="secondary"
+              shadow
+              v-for="(education, index) in candidateModal.educations"
+              :key="'education' + index"
+              :class="
+                `${
+                  index > 0 ? 'mt-3' : ''
+                } bg-white  form-group mb-0 d-flex flex-column`
+              "
+            >
+              <button
+                type="button"
+                data-dismiss="alert"
+                aria-label="Close"
+                class="close"
+                v-if="index > 0"
+                @click="onRemoveAnEducation(index)"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+              <div :class="`${index > 0 ? 'mt-3' : ''}  position-relative`">
+                <v-text-field-with-validation
+                  rules="required"
+                  v-model="education.school"
+                  type="text"
+                  :label="$t('candidate.candidate_school')"
+                  :name="$t('candidate.candidate_school')"
+                  :placeholder="$t('candidate.enter_candidate_school')"
+                  :isHalf="true"
+                />
+              </div>
+              <div class="pt-3  position-relative">
+                <v-text-field-with-validation
+                  rules="required"
+                  v-model="education.major"
+                  type="text"
+                  :label="$t('candidate.candidate_major')"
+                  :name="$t('candidate.candidate_major')"
+                  :placeholder="$t('candidate.enter_candidate_major')"
+                  :isHalf="true"
+                />
+              </div>
+              <div class="pt-3  position-relative">
+                <v-date-picker-with-validation
+                  rules="required"
+                  v-model="education.range"
+                  type="text"
+                  :label="$t('candidate.candidate_education_time_range')"
+                  :name="$t('candidate.candidate_education_time_range')"
+                  :placeholder="
+                    $t('candidate.enter_candidate_education_time_range')
+                  "
+                  :mode="'range'"
+                  :isHalf="true"
+                />
+              </div>
+              <div class="pt-3  position-relative">
+                <v-text-field-with-validation
+                  rules="required"
+                  v-model="education.result"
+                  type="text"
+                  :label="$t('candidate.candidate_education_result')"
+                  :name="$t('candidate.candidate_education_result')"
+                  :placeholder="
+                    $t('candidate.enter_candidate_education_result')
+                  "
+                  :isHalf="true"
+                />
+              </div>
+            </card>
+            <button
+              type="button"
+              class="btn btn-primary my-4 align-self-center"
+              @click="onAddAnEducation()"
+            >
+              {{ $t("candidate.add_an_education") }}
+            </button>
+          </div>
+        </div>
+        <hr />
+      </div>
+
+
+
+      <div class="container  pt-5">
+        <div class="row ">
+          <div class="col-md-6 ">
+            <p class="mb-0 font-weight-700 text-uppercase">
+              {{ $t("candidate.candidate_skill_list") }}
+            </p>
+            <p class="mb-3">
+              {{ $t("candidate.candidate_skill_list_description") }}
+            </p>
+          </div>
+          <div class="col-md-6 d-flex flex-column">
+            <card
+              type="secondary"
+              shadow
+              v-for="(skill, index) in candidateModal.skills"
+              :key="'skill' + index"
+              :class="
+                `${
+                  index > 0 ? 'mt-3' : ''
+                } bg-white  form-group mb-0 d-flex flex-column`
+              "
+            >
+              <button
+                type="button"
+                data-dismiss="alert"
+                aria-label="Close"
+                class="close"
+                v-if="index > 0"
+                @click="onRemoveAnSkill(index)"
+              >
+                <span aria-hidden="true">×</span>
+              </button>
+              <div :class="`${index > 0 ? 'mt-3' : ''}  position-relative`">
+                <v-text-field-with-validation
+                  rules="required"
+                  v-model="skill.name"
+                  type="text"
+                  :label="$t('candidate.candidate_skill')"
+                  :name="$t('candidate.candidate_skill')"
+                  :placeholder="$t('candidate.enter_candidate_skill')"
+                  :isHalf="true"
+                />
+              </div>
+              <div class="pt-3  position-relative">
+                <v-select-with-validation
+                  rules="required|numeric"
+                  v-model="skill.level"
+                  :options="[1, 2, 3, 4, 5]"
+                  :label="$t('candidate.candidate_skill_level')"
+                  :name="$t('common.district')"
+                  :isHalf="true"
+                  :optionLabel="$i18n.locale"
+                />
+              </div>
+            </card>
+            <button
+              type="button"
+              class="btn btn-primary my-4 align-self-center"
+              @click="onAddAnSkill()"
+            >
+              {{ $t("candidate.add_an_skill") }}
+            </button>
+          </div>
+        </div>
+        <hr />
+      </div>
+
+      <div class="container  pt-5">
         <div class="row ">
           <div class="col-md-6 ">
             <p class="mb-0 font-weight-700 text-uppercase">
@@ -43,9 +367,7 @@
                   type="text"
                   :label="$t('candidate.candidate_language_name')"
                   :name="$t('candidate.candidate_language_name')"
-                  :placeholder="
-                    $t('candidate.enter_candidate_language_name')
-                  "
+                  :placeholder="$t('candidate.enter_candidate_language_name')"
                   :isHalf="true"
                 />
               </div>
@@ -56,9 +378,7 @@
                   type="number"
                   :label="$t('candidate.candidate_language_result')"
                   :name="$t('candidate.candidate_language_result')"
-                  :placeholder="
-                    $t('candidate.enter_candidate_language_result')
-                  "
+                  :placeholder="$t('candidate.enter_candidate_language_result')"
                   :isHalf="true"
                 />
               </div>
@@ -69,9 +389,7 @@
                   type="text"
                   :label="$t('candidate.candidate_language_time')"
                   :name="$t('candidate.candidate_language_time')"
-                  :placeholder="
-                    $t('candidate.enter_candidate_language_time')
-                  "
+                  :placeholder="$t('candidate.enter_candidate_language_time')"
                   :mode="'single'"
                   :isHalf="true"
                 />
@@ -87,6 +405,19 @@
           </div>
         </div>
         <hr />
+
+        <v-select-with-validation
+          rules="required"
+          v-model="candidateModal.wantedContractType"
+          :options="contractTypeModalList"
+          :label="$t('job.contract_type')"
+          :description="$t('job.contract_type_description')"
+          :name="$t('job.contract_type')"
+          :reduce="businessTypeModal => businessTypeModal.id"
+          :optionLabel="$i18n.locale"
+        />
+
+        <hr />
       </div>
 
       <div class="text-center pb-4">
@@ -97,326 +428,6 @@
     </div>
   </ValidationObserver>
 </template>
-
-<!--<div class="container  pt-5">-->
-<!--<div class="row ">-->
-<!--<div class="col-md-6 ">-->
-<!--<p class="mb-0 font-weight-700 text-uppercase">-->
-<!--{{ $t("candidate.candidate_certificate") }}-->
-<!--</p>-->
-<!--<p class="mb-3">-->
-<!--{{ $t("candidate.candidate_certificate_description") }}-->
-<!--</p>-->
-<!--</div>-->
-<!--<div class="col-md-6 d-flex flex-column">-->
-<!--<card-->
-<!--type="secondary"-->
-<!--shadow-->
-<!--v-for="(certificate, index) in candidateModal.certificates"-->
-<!--:key="'certificate' + index"-->
-<!--:class="-->
-<!--`${-->
-<!--index > 0 ? 'mt-3' : ''-->
-<!--} bg-white  form-group mb-0 d-flex flex-column`-->
-<!--"-->
-<!--&gt;-->
-<!--<button-->
-<!--type="button"-->
-<!--data-dismiss="alert"-->
-<!--aria-label="Close"-->
-<!--class="close"-->
-<!--v-if="index > 0"-->
-<!--@click="onRemoveAnCertificate(index)"-->
-<!--&gt;-->
-<!--<span aria-hidden="true">×</span>-->
-<!--</button>-->
-<!--<div :class="`${index > 0 ? 'mt-3' : ''}  position-relative`">-->
-<!--<v-text-field-with-validation-->
-<!--rules="required"-->
-<!--v-model="certificate.name"-->
-<!--type="text"-->
-<!--:label="$t('candidate.candidate_certificate_name')"-->
-<!--:name="$t('candidate.candidate_certificate_name')"-->
-<!--:placeholder="-->
-<!--$t('candidate.enter_candidate_certificate_name')-->
-<!--"-->
-<!--:isHalf="true"-->
-<!--/>-->
-<!--</div>-->
-<!--<div class="pt-3  position-relative">-->
-<!--<v-date-picker-with-validation-->
-<!--rules="required"-->
-<!--v-model="certificate.timeGot"-->
-<!--type="text"-->
-<!--:label="$t('candidate.candidate_certificate_time')"-->
-<!--:name="$t('candidate.candidate_certificate_time')"-->
-<!--:placeholder="-->
-<!--$t('candidate.enter_candidate_certificate_time')-->
-<!--"-->
-<!--:mode="'single'"-->
-<!--:isHalf="true"-->
-<!--/>-->
-<!--</div>-->
-<!--</card>-->
-<!--<button-->
-<!--type="button"-->
-<!--class="btn btn-primary my-4 align-self-center"-->
-<!--@click="onAddAnCertificate()"-->
-<!--&gt;-->
-<!--{{ $t("candidate.add_an_education") }}-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--<hr />-->
-<!--</div>-->
-
-<!--<div class="container  pt-5">-->
-<!--<div class="row ">-->
-<!--<div class="col-md-6 ">-->
-<!--<p class="mb-0 font-weight-700 text-uppercase">-->
-<!--{{ $t("candidate.candidate_education") }}-->
-<!--</p>-->
-<!--<p class="mb-3">-->
-<!--{{ $t("candidate.candidate_education_description") }}-->
-<!--</p>-->
-<!--</div>-->
-<!--<div class="col-md-6 d-flex flex-column">-->
-<!--<card-->
-<!--type="secondary"-->
-<!--shadow-->
-<!--v-for="(education, index) in candidateModal.educations"-->
-<!--:key="'education' + index"-->
-<!--:class="-->
-<!--`${-->
-<!--index > 0 ? 'mt-3' : ''-->
-<!--} bg-white  form-group mb-0 d-flex flex-column`-->
-<!--"-->
-<!--&gt;-->
-<!--<button-->
-<!--type="button"-->
-<!--data-dismiss="alert"-->
-<!--aria-label="Close"-->
-<!--class="close"-->
-<!--v-if="index > 0"-->
-<!--@click="onRemoveAnEducation(index)"-->
-<!--&gt;-->
-<!--<span aria-hidden="true">×</span>-->
-<!--</button>-->
-<!--<div :class="`${index > 0 ? 'mt-3' : ''}  position-relative`">-->
-<!--<v-text-field-with-validation-->
-<!--rules="required"-->
-<!--v-model="education.school"-->
-<!--type="text"-->
-<!--:label="$t('candidate.candidate_school')"-->
-<!--:name="$t('candidate.candidate_school')"-->
-<!--:placeholder="$t('candidate.enter_candidate_school')"-->
-<!--:isHalf="true"-->
-<!--/>-->
-<!--</div>-->
-<!--<div class="pt-3  position-relative">-->
-<!--<v-text-field-with-validation-->
-<!--rules="required"-->
-<!--v-model="education.major"-->
-<!--type="text"-->
-<!--:label="$t('candidate.candidate_major')"-->
-<!--:name="$t('candidate.candidate_major')"-->
-<!--:placeholder="$t('candidate.enter_candidate_major')"-->
-<!--:isHalf="true"-->
-<!--/>-->
-<!--</div>-->
-<!--<div class="pt-3  position-relative">-->
-<!--<v-date-picker-with-validation-->
-<!--rules="required"-->
-<!--v-model="education.range"-->
-<!--type="text"-->
-<!--:label="$t('candidate.candidate_education_time_range')"-->
-<!--:name="$t('candidate.candidate_education_time_range')"-->
-<!--:placeholder="-->
-<!--$t('candidate.enter_candidate_education_time_range')-->
-<!--"-->
-<!--:mode="'range'"-->
-<!--:isHalf="true"-->
-<!--/>-->
-<!--</div>-->
-<!--<div class="pt-3  position-relative">-->
-<!--<v-text-field-with-validation-->
-<!--rules="required"-->
-<!--v-model="education.result"-->
-<!--type="text"-->
-<!--:label="$t('candidate.candidate_education_result')"-->
-<!--:name="$t('candidate.candidate_education_result')"-->
-<!--:placeholder="-->
-<!--$t('candidate.enter_candidate_education_result')-->
-<!--"-->
-<!--:isHalf="true"-->
-<!--/>-->
-<!--</div>-->
-<!--</card>-->
-<!--<button-->
-<!--type="button"-->
-<!--class="btn btn-primary my-4 align-self-center"-->
-<!--@click="onAddAnEducation()"-->
-<!--&gt;-->
-<!--{{ $t("candidate.add_an_education") }}-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--<hr />-->
-<!--</div>-->
-
-<!--<v-text-field-with-validation-->
-<!--rules="required"-->
-<!--v-model="candidateModal.fullName"-->
-<!--type="text"-->
-<!--:label="$t('candidate.candidate_full_name')"-->
-<!--:description="$t('candidate.candidate_full_name_description')"-->
-<!--:name="$t('candidate.candidate_full_name')"-->
-<!--:placeholder="$t('candidate.enter_candidate_full_name')"-->
-<!--/>-->
-<!--<hr />-->
-
-<!--<v-date-picker-with-validation-->
-<!--rules="required"-->
-<!--v-model="candidateModal.dob"-->
-<!--type="text"-->
-<!--:label="$t('candidate.candidate_date_of_birth')"-->
-<!--:description="$t('candidate.candidate_date_of_birth_description')"-->
-<!--:name="$t('candidate.candidate_date_of_birth')"-->
-<!--:placeholder="$t('candidate.enter_candidate_date_of_birth')"-->
-<!--:mode="'single'"-->
-<!--/>-->
-<!--<hr />-->
-
-<!--<v-text-field-with-validation-->
-<!--rules="required|email"-->
-<!--v-model="candidateModal.email"-->
-<!--type="text"-->
-<!--:label="$t('candidate.candidate_email')"-->
-<!--:description="$t('candidate.candidate_email_description')"-->
-<!--:name="$t('candidate.candidate_email')"-->
-<!--:placeholder="$t('candidate.enter_candidate_email')"-->
-<!--/>-->
-<!--<hr />-->
-
-<!--<div class="row ">-->
-<!--<div class="col-md-6 ">-->
-<!--<p class="mb-0 font-weight-700 text-uppercase">-->
-<!--{{ $t("candidate.candidate_address") }}-->
-<!--</p>-->
-<!--<p class="mb-3">-->
-<!--{{ $t("candidate.candidate_address_description") }}-->
-<!--</p>-->
-<!--</div>-->
-<!--<div class="col-md-6 ">-->
-<!--<div class="form-group mb-0">-->
-<!--<v-select-with-validation-->
-<!--rules="required"-->
-<!--v-model="candidateModal.city"-->
-<!--:options="cityModalList"-->
-<!--:label="$t('common.city')"-->
-<!--:name="$t('common.city')"-->
-<!--:isHalf="true"-->
-<!--:optionLabel="$i18n.locale"-->
-<!--/>-->
-<!--<div-->
-<!--v-if="collectedDistrictModalList.length > 0"-->
-<!--class="pt-3  position-relative"-->
-<!--&gt;-->
-<!--<v-select-with-validation-->
-<!--rules="required"-->
-<!--v-model="candidateModal.district"-->
-<!--:options="collectedDistrictModalList"-->
-<!--:label="$t('common.district')"-->
-<!--:name="$t('common.district')"-->
-<!--:isHalf="true"-->
-<!--:optionLabel="$i18n.locale"-->
-<!--/>-->
-<!--</div>-->
-<!--<div-->
-<!--v-if="collectedWardModalList.length > 0"-->
-<!--class="pt-3 position-relative"-->
-<!--&gt;-->
-<!--<v-select-with-validation-->
-<!--rules="required"-->
-<!--v-model="candidateModal.ward"-->
-<!--:options="collectedWardModalList"-->
-<!--:label="$t('common.ward')"-->
-<!--:name="$t('common.ward')"-->
-<!--:isHalf="true"-->
-<!--:optionLabel="$i18n.locale"-->
-<!--/>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<hr />-->
-
-<!--<div class="container  pt-5">-->
-<!--<div class="row ">-->
-<!--<div class="col-md-6 ">-->
-<!--<p class="mb-0 font-weight-700 text-uppercase">-->
-<!--{{ $t("candidate.candidate_skill_list") }}-->
-<!--</p>-->
-<!--<p class="mb-3">-->
-<!--{{ $t("candidate.candidate_skill_list_description") }}-->
-<!--</p>-->
-<!--</div>-->
-<!--<div class="col-md-6 d-flex flex-column">-->
-<!--<card-->
-<!--type="secondary"-->
-<!--shadow-->
-<!--v-for="(skill, index) in candidateModal.skills"-->
-<!--:key="'skill' + index"-->
-<!--:class="-->
-<!--`${-->
-<!--index > 0 ? 'mt-3' : ''-->
-<!--} bg-white  form-group mb-0 d-flex flex-column`-->
-<!--"-->
-<!--&gt;-->
-<!--<button-->
-<!--type="button"-->
-<!--data-dismiss="alert"-->
-<!--aria-label="Close"-->
-<!--class="close"-->
-<!--v-if="index > 0"-->
-<!--@click="onRemoveAnSkill(index)"-->
-<!--&gt;-->
-<!--<span aria-hidden="true">×</span>-->
-<!--</button>-->
-<!--<div :class="`${index > 0 ? 'mt-3' : ''}  position-relative`">-->
-<!--<v-text-field-with-validation-->
-<!--rules="required"-->
-<!--v-model="skill.name"-->
-<!--type="text"-->
-<!--:label="$t('candidate.candidate_skill')"-->
-<!--:name="$t('candidate.candidate_skill')"-->
-<!--:placeholder="$t('candidate.enter_candidate_skill')"-->
-<!--:isHalf="true"-->
-<!--/>-->
-<!--</div>-->
-<!--<div class="pt-3  position-relative">-->
-<!--<v-select-with-validation-->
-<!--rules="required|numeric"-->
-<!--v-model="skill.level"-->
-<!--:options="[1, 2, 3, 4, 5]"-->
-<!--:label="$t('candidate.candidate_skill_level')"-->
-<!--:name="$t('common.district')"-->
-<!--:isHalf="true"-->
-<!--:optionLabel="$i18n.locale"-->
-<!--/>-->
-<!--</div>-->
-<!--</card>-->
-<!--<button-->
-<!--type="button"-->
-<!--class="btn btn-primary my-4 align-self-center"-->
-<!--@click="onAddAnSkill()"-->
-<!--&gt;-->
-<!--{{ $t("candidate.add_an_skill") }}-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--<hr />-->
-<!--</div>-->
 
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
@@ -448,6 +459,7 @@ const Ward = namespace("ward");
 const BusinessType = namespace("businessType");
 const Candidate = namespace("candidate");
 const UserInfo = namespace("userInfo");
+const ContractType = namespace("contractType");
 
 @Component({
   components: {
@@ -470,6 +482,7 @@ export default class CreateCandidate extends Vue {
   @District.State districtModalList;
   @Ward.State wardModalList;
   @BusinessType.State businessTypeModalList;
+  @ContractType.State contractTypeModalList;
 
   @Candidate.Action createCandidate;
   @UserInfo.Action updateUserInfoCandidateID;
