@@ -1,98 +1,9 @@
 <template>
   <ValidationObserver ref="obs" tag="div">
     <div class="page-title py-4 text-center">
-      <h4 class="mb-0">{{ $t("candidate.create_candidate_info") }}</h4>
+      <h4 class="mb-0">{{ $t("candidate.update_candidate_background") }}</h4>
     </div>
     <div class="bg-white ">
-      <div class="container  pt-5">
-          <v-text-field-with-validation
-                  rules="required"
-                  v-model="candidateModal.fullName"
-                  type="text"
-                  :label="$t('candidate.candidate_full_name')"
-                  :description="$t('candidate.candidate_full_name_description')"
-                  :name="$t('candidate.candidate_full_name')"
-                  :placeholder="$t('candidate.enter_candidate_full_name')"
-          />
-          <hr />
-
-          <v-date-picker-with-validation
-                  rules="required"
-                  v-model="candidateModal.dob"
-                  type="text"
-                  :label="$t('candidate.candidate_date_of_birth')"
-                  :description="$t('candidate.candidate_date_of_birth_description')"
-                  :name="$t('candidate.candidate_date_of_birth')"
-                  :placeholder="$t('candidate.enter_candidate_date_of_birth')"
-                  :mode="'single'"
-          />
-          <hr />
-
-          <v-text-field-with-validation
-                  rules="required|email"
-                  v-model="candidateModal.email"
-                  type="text"
-                  :label="$t('candidate.candidate_email')"
-                  :description="$t('candidate.candidate_email_description')"
-                  :name="$t('candidate.candidate_email')"
-                  :placeholder="$t('candidate.enter_candidate_email')"
-          />
-          <hr />
-
-          <div class="row ">
-              <div class="col-md-6 ">
-                  <p class="mb-0 font-weight-700 text-uppercase">
-                      {{ $t("candidate.candidate_address") }}
-                  </p>
-                  <p class="mb-3">
-                      {{ $t("candidate.candidate_address_description") }}
-                  </p>
-              </div>
-              <div class="col-md-6 ">
-                  <div class="form-group mb-0">
-                      <v-select-with-validation
-                              rules="required"
-                              v-model="candidateModal.city"
-                              :options="cityModalList"
-                              :label="$t('common.city')"
-                              :name="$t('common.city')"
-                              :isHalf="true"
-                              :optionLabel="$i18n.locale"
-                      />
-                      <div
-                              v-if="collectedDistrictModalList.length > 0"
-                              class="pt-3  position-relative"
-                      >
-                          <v-select-with-validation
-                                  rules="required"
-                                  v-model="candidateModal.district"
-                                  :options="collectedDistrictModalList"
-                                  :label="$t('common.district')"
-                                  :name="$t('common.district')"
-                                  :isHalf="true"
-                                  :optionLabel="$i18n.locale"
-                          />
-                      </div>
-                      <div
-                              v-if="collectedWardModalList.length > 0"
-                              class="pt-3 position-relative"
-                      >
-                          <v-select-with-validation
-                                  rules="required"
-                                  v-model="candidateModal.ward"
-                                  :options="collectedWardModalList"
-                                  :label="$t('common.ward')"
-                                  :name="$t('common.ward')"
-                                  :isHalf="true"
-                                  :optionLabel="$i18n.locale"
-                          />
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <hr />
-
-      </div>
       <div class="container  pt-5">
         <div class="row ">
           <div class="col-md-6 ">
@@ -259,8 +170,6 @@
         <hr />
       </div>
 
-
-
       <div class="container  pt-5">
         <div class="row ">
           <div class="col-md-6 ">
@@ -340,6 +249,52 @@
           </div>
           <div class="col-md-6 d-flex flex-column">
             <card
+              v-if="candidateModal.japaneseCertificate"
+              type="secondary"
+              shadow
+              class="bg-white  form-group mb-0 d-flex flex-column"
+            >
+              <div class="pt-3  position-relative">
+                <v-text-field-with-validation
+                  rules="required|numeric"
+                  v-model="candidateModal.japaneseCertificate.result"
+                  type="number"
+                  :label="$t('candidate.candidate_language_result')"
+                  :name="$t('candidate.candidate_language_result')"
+                  :placeholder="$t('candidate.enter_candidate_language_result')"
+                  :isHalf="true"
+                />
+              </div>
+              <div class="pt-3  position-relative">
+                <v-date-picker-with-validation
+                  rules="required"
+                  v-model="candidateModal.japaneseCertificate.timeGot"
+                  type="text"
+                  :label="$t('candidate.candidate_language_time')"
+                  :name="$t('candidate.candidate_language_time')"
+                  :placeholder="$t('candidate.enter_candidate_language_time')"
+                  :mode="'single'"
+                  :isHalf="true"
+                />
+              </div>
+            </card>
+          </div>
+        </div>
+        <hr />
+      </div>
+
+      <div class="container  pt-5">
+        <div class="row ">
+          <div class="col-md-6 ">
+            <p class="mb-0 font-weight-700 text-uppercase">
+              {{ $t("candidate.candidate_language") }}
+            </p>
+            <p class="mb-3">
+              {{ $t("candidate.candidate_language_description") }}
+            </p>
+          </div>
+          <div class="col-md-6 d-flex flex-column">
+            <card
               type="secondary"
               shadow
               v-for="(language, index) in candidateModal.languages"
@@ -398,31 +353,18 @@
             <button
               type="button"
               class="btn btn-primary my-4 align-self-center"
-              @click="onRemoveAnLanguage()"
+              @click="onAddAnLanguage()"
             >
               {{ $t("candidate.add_an_language") }}
             </button>
           </div>
         </div>
         <hr />
-
-        <v-select-with-validation
-          rules="required"
-          v-model="candidateModal.wantedContractType"
-          :options="contractTypeModalList"
-          :label="$t('job.contract_type')"
-          :description="$t('job.contract_type_description')"
-          :name="$t('job.contract_type')"
-          :reduce="businessTypeModal => businessTypeModal.id"
-          :optionLabel="$i18n.locale"
-        />
-
-        <hr />
       </div>
 
       <div class="text-center pb-4">
         <button type="button" class="btn btn-primary my-4" @click="submit">
-          {{ $t("candidate.create_candidate_info") }}
+          {{ $t("candidate.update_candidate_background") }}
         </button>
       </div>
     </div>
@@ -518,6 +460,9 @@ export default class CreateCandidate extends Vue {
 
   mounted() {
     this.candidateModal = new CandidateModal();
+
+    this.candidateModal.japaneseCertificate = new LanguageModal();
+
     this.candidateModal.skills = [];
     this.candidateModal.skills.push(new LevelModal());
 

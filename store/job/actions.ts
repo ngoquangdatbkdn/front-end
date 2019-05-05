@@ -16,6 +16,9 @@ const actions: Actions<JobState, RootState> = {
     const jobID: string = await jobService.createJob(jobModal);
     commit(types.SET_JOB_ID, jobID);
   },
+  async addJobToList({ commit }, jobModal: JobModal) {
+    commit(types.ADD_JOB, jobModal);
+  },
   async getJobByID({ commit }, jobID: string) {
     const jobService = JobService.getInstance();
     const jobModal: JobModal | null = await jobService.getJobByID(jobID);

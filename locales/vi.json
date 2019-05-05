@@ -27,7 +27,16 @@
     "role_company": "Công ty",
     "role_candidate": "Người tìm việc",
     "role_translator": "Người dịch thuật",
-    "select_role": "Chọn vai trò"
+    "select_role": "Chọn vai trò",
+    "address_detail": "Địa chỉ",
+    "enter_address_detail": "Nhập địa chỉ",
+    "gender": "Giới tính",
+    "gender_description": "Giới tính của bạn",
+    "male": "Giới tính nam",
+    "female": "Giới tính nam",
+    "other_gender": "Giới tính khác",
+    "apply": "Áp dụng",
+    "cancel": "Thoát"
   },
   "authentication": {
     "sign_in": "Đăng nhập",
@@ -153,6 +162,24 @@
     "candidate_language_result": "Kết quả",
     "enter_candidate_language_result": "Nhập kết quả",
     "candidate_language_time": "Thời điểm lấy chứng chỉ",
-    "enter_candidate_language_time": "Nhập thời điểm lấy chứng chỉ"
+    "enter_candidate_language_time": "Nhập thời điểm lấy chứng chỉ",
+    "continue_create_candidate_info": "Tiếp tục cập nhập background",
+    "just_create_basic_info": "Chỉ tạo thông tin cơ bản",
+    "candidate_avatar": "Ảnh đại diện",
+    "candidate_avatar_description": "Ảnh đại diện của bạn",
+    "upload_candidate_avatar": "Upload ảnh đại diện",
+    "candidate_summary": "Tóm tắt",
+    "candidate_summary_description": "Một ít thông tin về bản thân",
+    "update_candidate_background": "Cập nhật thông tin background",
+    "candidate_wanted_salary": "Mức lương mong muốn",
+    "candidate_wanted_salary_description": "Mức lương mong muốn của bạn",
+    "enter_candidate_wanted_salary": "Nhập mức lương mong muốn",
+    "candidate_wanted_job_title": "Chức danh mong muốn",
+    "candidate_wanted_job_title_description": "Chức danh mong muốn của bạn",
+    "candidate_wanted_job_rank": "Cấp bậc mong muốn",
+    "candidate_wanted_job_rank_description": "Cấp bậc mong muốn của bạn",
+    "candidate_wanted_contract_type": "Loại hợp đồng mong muốn",
+    "candidate_wanted_contract_type_description": "Loại hợp đồng mong muốn của bạn",
+    "update_candidate_desire": "Cập nhật mục tiêu nghề nghiệp"
   }
 }

@@ -1,6 +1,7 @@
 enum FirebaseCollection {
     Jobs = "jobs",
     Companies = "companies",
+    Candidates = "candidates",
     BusinessTypes = "businessTypes",
     ContractTypes = "contractTypes",
     Cities = "cities",

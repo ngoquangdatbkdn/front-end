@@ -1,6 +1,6 @@
 <<template>
   <div>
-    <div style="position: relative">
+    <div style="position: relative" class="navigation-bar">
       <base-nav type="secondary" effect="light" expand>
         <nuxt-link
           :to="localePath('index')"
@@ -293,19 +293,10 @@ export default class DefaultLayout extends Vue {
   font-size: 18px;
   font-weight: bold;
 }
-/**, *:before, *:after {*/
-/*padding: 0;*/
-/*margin: 0;*/
-/*box-sizing: border-box;*/
-/*}*/
-html,
-body {
-  background: #ced4da !important;
-  color: #2e2f30;
-  letter-spacing: 0.5px;
-  /*font-size: 14px;*/
-  /*font-family: "Source Sans Pro", Arial, sans-serif;*/
-  height: 100vh;
-  margin: 0;
+
+.navigation-bar {
+  position: fixed!important;
+  width: 100vw;
+  z-index: 2;
 }
 </style>

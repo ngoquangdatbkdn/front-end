@@ -15,15 +15,17 @@ export default class CandidateModal {
 
   public id?: string;
   public fullName?: string;
+  public gender?: string;
   public dob?: string;
   public email?: string;
   public businessType?: BusinessTypeModal | firestore.DocumentReference;
   public avatar?: string;
+  public summary?: string;
   public city?: CityModal | firestore.DocumentReference;
   public district?: DistrictModal | firestore.DocumentReference;
-  public ward?: WardModal | firestore.DocumentReference;
+  public addressDetail?: string;
   public skills?: LevelModal[];
-  public japaneseCertificate?: LevelModal[];
+  public japaneseCertificate?: LanguageModal;
   public englishCertificate?: LevelModal[];
   public languages?: LanguageModal[];
   public certificates?: CertificateModal[];

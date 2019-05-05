@@ -16,6 +16,7 @@
     "vue-lazyload": "^1.2.6",
     "vue-property-decorator": "^7.3.0",
     "vue-select": "^2.6.4",
+    "vue-slider-component": "^3.0.31",
     "vue-tabs-component": "^1.5.0",
     "vue-upload-component": "^2.8.20",
     "vue2-transitions": "^0.3.0",

@@ -18,9 +18,6 @@
         <div class="form-group mb-0">
           <base-input addon-left-icon="ni ni-calendar-grid-58">
             <flat-picker
-              slot-scope="{ focus, blur }"
-              @on-open="focus"
-              @on-close="blur"
               :config="{ allowInput: true, mode: `${$attrs.mode}` }"
               class="form-control datepicker"
               v-model="innerValue"

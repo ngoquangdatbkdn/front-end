@@ -42,7 +42,8 @@ const config: NuxtConfiguration = {
     { src: "~/plugins/vue-froala", ssr: false },
     { src: "~/plugins/vue-upload", ssr: false },
     { src: "~/plugins/firebase", ssr: true },
-    { src: "~/plugins/firebase-auth", ssr: true }
+    { src: "~/plugins/firebase-auth", ssr: true },
+    { src: "~/plugins/vue-slider", ssr: true },
   ],
   modules: [
     "@nuxtjs/axios",

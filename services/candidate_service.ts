@@ -30,7 +30,7 @@ export default class CandidateService {
 
   public async getCandidateByID(id: string): Promise<CandidateModal | null> {
     const documentReference = fireDb
-      .collection(FirebaseCollection.Companies.toString())
+      .collection(FirebaseCollection.Candidates.toString())
       .doc(id);
     const candidateModal: CandidateModal | null = await this.getCandidateFromReference(
       documentReference
@@ -39,57 +39,42 @@ export default class CandidateService {
     return candidateModal;
   }
 
-  public async createCandidate(candidateModal: CandidateModal): Promise<string> {
-    // if (!candidateModal.businessType) throw Error("there are no business Type");
-    //
-    // if (typeof candidateModal.staffNumber === "string")
-    //   candidateModal.staffNumber = parseInt(candidateModal.staffNumber, 10);
-    //
-    // let businessTypeModal: BusinessTypeModal | undefined;
-    // if (candidateModal.businessType) {
-    //   businessTypeModal = this.businessTypeService.getBusinessTypeReferenceFromModal(
-    //     candidateModal.businessType
-    //   );
-    //   if (!businessTypeModal) throw Error("there are no business Type modal");
-    // }
-    //
-    // if (!candidateModal.city) throw Error("there are no city");
-    // let cityModal: CityModal | undefined;
-    // if (candidateModal.city) {
-    //   cityModal = this.cityService.getCityReferenceFromModal(candidateModal.city);
-    //   if (!cityModal) throw Error("there are no city modal");
-    // }
-    //
-    // if (!candidateModal.district) throw Error("there are no district ");
-    // let districtModal: DistrictModal | undefined;
-    // if (candidateModal.district) {
-    //   districtModal = this.districtService.getDistrictReferenceFromModal(
-    //     candidateModal.district
-    //   );
-    //   if (!districtModal) throw Error("there are no district modal");
-    // }
-    //
-    // if (!candidateModal.ward) throw Error("there are no ward");
-    // let wardModal: WardModal | undefined;
-    // if (candidateModal.ward) {
-    //   wardModal = this.wardService.getWardReferenceFromModal(candidateModal.ward);
-    //   if (!wardModal) throw Error("there are no ward modal");
-    // }
-    //
-    // const collectionReference: firestore.CollectionReference = fireDb.collection(
-    //   FirebaseCollection.Companies.toString()
-    // );
-    // const documentReference: firestore.DocumentReference = await collectionReference.add(
-    //   {
-    //     ...candidateModal,
-    //     ward: wardModal,
-    //     city: cityModal,
-    //     district: districtModal,
-    //     businessType: businessTypeModal
-    //   }
-    // );
-    // return documentReference.id;
-      return 'fda'
+  public async createCandidate(
+    candidateModal: CandidateModal
+  ): Promise<string> {
+    if (!candidateModal.city) throw Error("there are no city");
+    let cityModal: CityModal | undefined;
+    if (candidateModal.city) {
+      cityModal = this.cityService.getCityReferenceFromModal(
+        candidateModal.city
+      );
+      if (!cityModal) throw Error("there are no city modal");
+    }
+    console.log("here 1");
+    if (!candidateModal.district) throw Error("there are no district ");
+    let districtModal: DistrictModal | undefined;
+    if (candidateModal.district) {
+      districtModal = this.districtService.getDistrictReferenceFromModal(
+        candidateModal.district
+      );
+      if (!districtModal) throw Error("there are no district modal");
+    }
+
+    const collectionReference: firestore.CollectionReference = fireDb.collection(
+      FirebaseCollection.Candidates.toString()
+    );
+    const id: string = candidateModal.id as string;
+    candidateModal.id = undefined;
+    // console.log('here ' + JSON.stringify(candidateModal) );
+    await collectionReference.doc(id).set({
+      fullName: candidateModal.fullName,
+      email: candidateModal.email,
+      dob: candidateModal.dob,
+        addressDetail: candidateModal.addressDetail,
+      city: cityModal,
+      district: districtModal
+    });
+    return id;
   }
 
   private async getBusinessTypeModalFromSnapshot(
@@ -113,7 +98,9 @@ export default class CandidateService {
     const cityRef: firestore.DocumentReference = (documentSnapshot.data() as any)
       .city;
     if (!cityRef)
-      throw Error("there is no cityRef for candidate id " + documentSnapshot.id);
+      throw Error(
+        "there is no cityRef for candidate id " + documentSnapshot.id
+      );
     const city: CityModal = await this.cityService.getCityFromReference(
       cityRef
     );
@@ -141,7 +128,9 @@ export default class CandidateService {
     const wardRef: firestore.DocumentReference = (documentSnapshot.data() as any)
       .ward;
     if (!wardRef)
-      throw Error("there is no wardRef for candidate id " + documentSnapshot.id);
+      throw Error(
+        "there is no wardRef for candidate id " + documentSnapshot.id
+      );
     const ward: WardModal = await this.wardService.getWardFromReference(
       wardRef
     );
@@ -171,15 +160,11 @@ export default class CandidateService {
       documentSnapshot
     );
 
-    const ward: WardModal = await this.getWardModalFromSnapshot(
-      documentSnapshot
-    );
 
     candidateModal.id = documentSnapshot.id;
     candidateModal.businessType = businessType;
     candidateModal.city = city;
     candidateModal.district = district;
-    candidateModal.ward = ward;
 
     return candidateModal;
   }
@@ -188,7 +173,7 @@ export default class CandidateService {
     const candidateModalList: CandidateModal[] = [];
 
     const collectionReference: firestore.CollectionReference = fireDb.collection(
-      FirebaseCollection.Companies.toString()
+      FirebaseCollection.Candidates.toString()
     );
 
     let query: firestore.Query = collectionReference;
@@ -217,9 +202,6 @@ export default class CandidateService {
       candidateModal.district = await this.districtService.getDistrictFromReference(
         candidateModal.district as firestore.DocumentReference
       );
-      candidateModal.ward = await this.wardService.getWardFromReference(
-        candidateModal.ward as firestore.DocumentReference
-      );
 
       candidateModal.businessType = await this.businessTypeService.getBusinessTypeFromReference(
         candidateModal.businessType as firestore.DocumentReference
@@ -239,7 +221,7 @@ export default class CandidateService {
       return;
     }
     const documentReference = fireDb
-      .collection(FirebaseCollection.Companies.toString())
+      .collection(FirebaseCollection.Candidates.toString())
       .doc(candidateID);
     if (documentReference) {
       await documentReference.update({
@@ -256,12 +238,12 @@ export default class CandidateService {
       return;
     }
     const documentReference = fireDb
-      .collection(FirebaseCollection.Companies.toString())
+      .collection(FirebaseCollection.Candidates.toString())
       .doc(candidateID);
-    console.log('shouldShow')
-    console.log(shouldShow)
-    console.log('candidateID')
-    console.log(candidateID)
+    console.log("shouldShow");
+    console.log(shouldShow);
+    console.log("candidateID");
+    console.log(candidateID);
     if (documentReference) {
       await documentReference.update({
         shouldShow

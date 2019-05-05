@@ -10,6 +10,9 @@ const mutations: MutationTree<JobState> = {
   [types.SET_JOB_ID](state, jobID: string) {
     state.jobID = jobID;
   },
+  [types.ADD_JOB](state, jobModal: JobModal) {
+      state.jobModalList =  [jobModal, ...state.jobModalList];
+  },
   [types.SET_JOB_MODAL_LIST](state, jobModalList: JobModal[]) {
     state.jobModalList = jobModalList;
   }
