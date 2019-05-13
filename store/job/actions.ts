@@ -13,7 +13,8 @@ export interface Actions<S, R> extends ActionTree<S, R> {
 const actions: Actions<JobState, RootState> = {
   async createJob({ commit }, jobModal: JobModal) {
     const jobService: JobService = JobService.getInstance();
-    const jobID: string = await jobService.createJob(jobModal);
+    // const jobID: string = await jobService.createJob(jobModal);
+    const jobID: string = 'fdaf';
     commit(types.SET_JOB_ID, jobID);
   },
   async addJobToList({ commit }, jobModal: JobModal) {
@@ -21,22 +22,22 @@ const actions: Actions<JobState, RootState> = {
   },
   async getJobByID({ commit }, jobID: string) {
     const jobService = JobService.getInstance();
-    const jobModal: JobModal | null = await jobService.getJobByID(jobID);
+    const jobModal: JobModal | null = new JobModal();
     commit(types.SET_JOB_MODAL, jobModal);
   },
   async getJobList({ commit }, queryParams: any) {
     const jobService = JobService.getInstance();
-    const jobModalList: JobModal[] | null = await jobService.getJobList(
-      queryParams
-    );
-    commit(types.SET_JOB_MODAL_LIST, jobModalList);
+    // const jobModalList: JobModal[] | null = await jobService.getJobList(
+    //   queryParams
+    // );
+    commit(types.SET_JOB_MODAL_LIST, []);
   },
   async getJobListByCompanyID({ commit }, companyID: string) {
     const jobService = JobService.getInstance();
-    const jobModalList:
-      | JobModal[]
-      | null = await jobService.getJobListByCompanyID(companyID);
-    commit(types.SET_JOB_MODAL_LIST, jobModalList);
+    // const jobModalList:
+    //   | JobModal[]
+    //   | null = await jobService.getJobListByCompanyID(companyID);
+    commit(types.SET_JOB_MODAL_LIST, []);
   }
 };
 

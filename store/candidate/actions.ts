@@ -13,28 +13,28 @@ export interface Actions<S, R> extends ActionTree<S, R> {
 const actions: Actions<CandidateState, RootState> = {
   async createCandidate({ commit }, candidateModal: CandidateModal) {
     const candidateService: CandidateService = CandidateService.getInstance();
-    const candidateID: string = await candidateService.createCandidate(candidateModal);
-    commit(types.SET_COMPANY_ID, candidateID);
+    // const candidateID: string = await candidateService.createCandidate(candidateModal);
+    // commit(types.SET_COMPANY_ID, candidateID);
   },
   async getCandidateByID({ commit }, candidateID: string) {
     const candidateService = CandidateService.getInstance();
-    const candidateModal: CandidateModal | null = await candidateService.getCandidateByID(
-      candidateID
-    );
-    commit(types.SET_COMPANY_MODAL, candidateModal);
+    // const candidateModal: CandidateModal | null = await candidateService.getCandidateByID(
+    //   candidateID
+    // );
+    commit(types.SET_COMPANY_MODAL, null);
   },
   async getCandidateList({ commit }, queryParams: any) {
     const candidateService = CandidateService.getInstance();
-    const candidateModalList:
-      | CandidateModal[]
-      | null = await candidateService.getCandidateList(queryParams);
-    commit(types.SET_COMPANY_MODAL_LIST, candidateModalList);
+    // const candidateModalList:
+    //   | CandidateModal[]
+    //   | null = await candidateService.getCandidateList(queryParams);
+    commit(types.SET_COMPANY_MODAL_LIST, []);
   },
   async updateShouldShowCandidate({ commit, state }, shouldShow: boolean) {
       console.log('here')
     const candidateService = CandidateService.getInstance();
     const candidateID: string | undefined = state.candidateModal.id;
-    await candidateService.updateShouldShowCandidate(candidateID, shouldShow);
+    // await candidateService.updateShouldShowCandidate(candidateID, shouldShow);
     // commit(types.SET_COMPANY_MODAL_LIST, candidateModalList);
   }
 };

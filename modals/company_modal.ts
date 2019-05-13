@@ -1,4 +1,4 @@
-import { firestore } from "firebase/app";
+// import { firestore } from "firebase/app";
 
 
 import CityModal from "~/modals/city_modal";
@@ -17,14 +17,14 @@ export default class CompanyModal {
   public staffNumber?: number;
   public minSalary?: number;
   public maxSalary?: number;
-  public businessType?: BusinessTypeModal | firestore.DocumentReference;
+  public businessType?: BusinessTypeModal;
   public address?: string;
   public logo?: string;
   public coverImage?: string;
   public introduction_ja?: string;
   public introduction_vi?: string;
-  public city?: CityModal | firestore.DocumentReference;
-  public district?: DistrictModal | firestore.DocumentReference;
-  public ward?: WardModal | firestore.DocumentReference;
+  public city?: CityModal;
+  public district?: DistrictModal ;
+  public ward?: WardModal ;
   public shouldShow?: boolean
 }

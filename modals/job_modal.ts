@@ -1,4 +1,4 @@
-import { firestore } from "firebase/app";
+// import { firestore } from "firebase/app";
 
 import CityModal from "~/modals/city_modal";
 import DistrictModal from "~/modals/district_modal";
@@ -11,7 +11,7 @@ export default class JobModal {
   public name_ja?: string;
   public name_vi?: string;
   public companyID?: string;
-  public contractType?: ContractTypeModal | firestore.DocumentReference;
+  public contractType?: ContractTypeModal ;
   public minSalary?: number;
   public maxSalary?: number;
   public city?: CityModal;

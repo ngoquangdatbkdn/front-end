@@ -27,26 +27,28 @@ const config: NuxtConfiguration = {
   // loading: { color: '#3B8070' },
   // css: ['tachyons/css/tachyons.min.css', '~/assets/css/main.css'],
   css: [
-    // "@/assets/vendor/nucleo/css/nucleo.css",
-    // "@/assets/vendor/font-awesome/css/font-awesome.css",
-    // "@/assets/scss/argon.scss",
+    "@/assets/vendor/nucleo/css/nucleo.css",
+    "@/assets/vendor/font-awesome/css/font-awesome.css",
+    "@/assets/scss/argon.scss",
     "@/assets/scss/app.scss"
   ],
   plugins: [
     "~/plugins/argon-kit",
+    "~/plugins/axios",
+    "~/plugins/vue-moment",
+    { src: "~/plugins/vue-notifications", ssr: false },
     { src: "~/plugins/i18n", ssr: false },
     { src: "~/plugins/vue-lazyload", ssr: false },
     { src: "~/plugins/vue-click-outside", ssr: false },
-    { src: "~/plugins/vee-validate", ssr: true },
+    { src: "~/plugins/vee-validate", ssr: false },
     { src: "~/plugins/vue-select", ssr: false },
     { src: "~/plugins/vue-froala", ssr: false },
     { src: "~/plugins/vue-upload", ssr: false },
-    { src: "~/plugins/firebase", ssr: true },
-    { src: "~/plugins/firebase-auth", ssr: true },
-    { src: "~/plugins/vue-slider", ssr: true },
+    { src: "~/plugins/vue-slider", ssr: true }
   ],
   modules: [
     "@nuxtjs/axios",
+    "@nuxtjs/auth",
     // 'bootstrap-vue/nuxt',
     // "@nuxtjs/pwa",
     ["nuxt-i18n", i18nConfig]
@@ -55,7 +57,6 @@ const config: NuxtConfiguration = {
     cacheAssets: false, // for /*
     offline: false // for /_nuxt/*
   },
-  axios: {},
   build: {
     extend(config, ctx) {},
     loaders: [
@@ -85,6 +86,23 @@ const config: NuxtConfiguration = {
   loading: {
     color: "#5e72e4",
     height: "2px"
+  },
+  axios: {
+      baseURL: "http://127.0.0.1:3001/",
+  },
+
+  auth: {
+    redirect: {
+      callback: "/callback"
+    },
+    strategies: {
+      local: {
+        endpoints: {
+
+          login: { propertyName: "data.token" }
+        }
+      }
+    }
   }
   // router: {
   //   middleware: "i18n"

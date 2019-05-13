@@ -92,7 +92,7 @@ import CompanyModal from "~/modals/company_modal";
 import JobListItem from "~/components/JobListItem.vue";
 import CompanyListItem from "~/components/CompanyListItem.vue";
 
-import { fbAuth } from "~/plugins/firebase";
+// import { fbAuth } from "~/plugins/firebase";
 
 import CompanyService from "~/services/company_service";
 

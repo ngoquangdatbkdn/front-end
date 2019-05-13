@@ -1,4 +1,4 @@
-import { firestore } from "firebase/app";
+
 
 export default class BusinessTypeModal {
   constructor() {}

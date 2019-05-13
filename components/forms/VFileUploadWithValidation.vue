@@ -70,9 +70,9 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { ValidationProvider } from "vee-validate";
-import { storage } from "firebase/app";
+// import { storage } from "firebase/app";
 
-import { fbStorage } from "~/plugins/firebase";
+// import { fbStorage } from "~/plugins/firebase";
 
 @Component({
   components: {
@@ -84,7 +84,7 @@ import { fbStorage } from "~/plugins/firebase";
 })
 export default class VFileUploadWithValidation extends Vue {
   innerValue: any = [];
-  uploadTask: storage.UploadTask = {} as storage.UploadTask;
+  // uploadTask: storage.UploadTask = {} as storage.UploadTask;
   progressUpload: number = 0;
   downloadURL: string = "";
   fileName: string = "";
@@ -104,29 +104,29 @@ export default class VFileUploadWithValidation extends Vue {
   //   this.innerValue = newVal;
   // }
 
-  @Watch("uploadTask")
-  onUploadTaskChanged(newVal: storage.UploadTask, oldVal: storage.UploadTask) {
-    if (this.uploadTask.on) {
-      this.uploadTask.on(
-        "state_changed",
-        sp => {
-          this.progressUpload = Math.floor(
-            (sp.bytesTransferred / sp.totalBytes) * 100
-          );
-        },
-        null,
-        () => {
-          this.uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-            console.log("downloadURL " + downloadURL);
-            this.downloadURL = downloadURL;
-            this.uploadEnd = true;
-            this.uploading = false;
-            this.$emit('input', downloadURL)
-          });
-        }
-      );
-    }
-  }
+  // @Watch("uploadTask")
+  // onUploadTaskChanged(newVal: storage.UploadTask, oldVal: storage.UploadTask) {
+  //   if (this.uploadTask.on) {
+  //     this.uploadTask.on(
+  //       "state_changed",
+  //       sp => {
+  //         this.progressUpload = Math.floor(
+  //           (sp.bytesTransferred / sp.totalBytes) * 100
+  //         );
+  //       },
+  //       null,
+  //       () => {
+  //         this.uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+  //           console.log("downloadURL " + downloadURL);
+  //           this.downloadURL = downloadURL;
+  //           this.uploadEnd = true;
+  //           this.uploading = false;
+  //           this.$emit('input', downloadURL)
+  //         });
+  //       }
+  //     );
+  //   }
+  // }
 
   created() {
     if (this.value) {
@@ -150,26 +150,26 @@ export default class VFileUploadWithValidation extends Vue {
         newFile.url = URL.createObjectURL(newFile.file);
         this.fileName = newFile.file.name;
         this.uploading = true;
-        this.uploadTask = fbStorage
-          .ref("images/" + this.fileName)
-          .put(newFile.file);
+        // this.uploadTask = fbStorage
+        //   .ref("images/" + this.fileName)
+        //   .put(newFile.file);
       }
     }
   }
 
   deleteImage() {
-    fbStorage
-      .ref("images/" + this.fileName)
-      .delete()
-      .then(() => {
-        this.uploading = false;
-        this.uploadEnd = false;
-        this.innerValue = [];
-        this.downloadURL = "";
-      })
-      .catch(error => {
-        console.error(`file delete error occured: ${error}`);
-      });
+    // fbStorage
+    //   .ref("images/" + this.fileName)
+    //   .delete()
+    //   .then(() => {
+    //     this.uploading = false;
+    //     this.uploadEnd = false;
+    //     this.innerValue = [];
+    //     this.downloadURL = "";
+    //   })
+    //   .catch(error => {
+    //     console.error(`file delete error occured: ${error}`);
+    //   });
   }
   // }
 }

@@ -64,7 +64,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { auth } from "firebase/app";
+// import { auth } from "firebase/app";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import { State, Action, Getter, namespace } from "vuex-class";
 
@@ -74,7 +74,7 @@ import BaseCheckbox from "~/argon-components/BaseCheckbox.vue";
 import BaseButton from "~/argon-components/BaseButton.vue";
 import Card from "~/argon-components/Card.vue";
 
-import { fbAuth } from "~/plugins/firebase";
+// import { fbAuth } from "~/plugins/firebase";
 import AuthenticationService from "~/services/authentication_service";
 
 const LoginModal = namespace("loginModal");
@@ -90,7 +90,7 @@ const UserInfo = namespace("userInfo");
     ValidationObserver,
     ValidationProvider,
     VTextFieldType2WithValidation
-  }
+  },
 })
 export default class LoginForm extends Vue {
   email: string = "";
@@ -116,21 +116,29 @@ export default class LoginForm extends Vue {
       const authenticationService: AuthenticationService = AuthenticationService.getInstance();
 
       try {
-        const userCredential: auth.UserCredential = await authenticationService.signIn(
-          this.email,
-          this.password
-        );
-
-        this.setShouldOpen(false);
-        if (
-          userCredential &&
-          userCredential.user &&
-          !userCredential.user.emailVerified
-        ) {
-          this.openConfirmationModal();
-        } else {
-          this.getUserInfoFromUser(userCredential.user);
-        }
+        // const userCredential: auth.UserCredential = await authenticationService.signIn(
+        //   this.email,
+        //   this.password
+        // );
+        await this.$auth.loginWith('local', {
+                data: {
+                    username: this.email,
+                    password: this.password
+                }
+            })
+            .catch(e => {
+                this.error = e + ''
+            })
+        // this.setShouldOpen(false);
+        // if (
+        //   userCredential &&
+        //   userCredential.user &&
+        //   !userCredential.user.emailVerified
+        // ) {
+        //   this.openConfirmationModal();
+        // } else {
+        //   this.getUserInfoFromUser(userCredential.user);
+        // }
       } catch (e) {
         this.error = e.message;
       }

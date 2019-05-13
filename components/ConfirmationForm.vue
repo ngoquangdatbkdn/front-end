@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { auth } from "firebase/app";
+// import { auth } from "firebase/app";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import { State, Action, Getter, namespace } from "vuex-class";
 
@@ -40,7 +40,7 @@ import BaseCheckbox from "@/argon-components/BaseCheckbox.vue";
 import BaseButton from "@/argon-components/BaseButton.vue";
 import Card from "@/argon-components/Card.vue";
 
-import { fbAuth } from "~/plugins/firebase";
+// import { fbAuth } from "~/plugins/firebase";
 import AuthenticationService from "~/services/authentication_service";
 
 const ConfirmationModal = namespace("confirmationModal");

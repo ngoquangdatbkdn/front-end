@@ -228,7 +228,7 @@ export default class DefaultLayout extends Vue {
   }
   async onSignOut() {
     const authenticationService: AuthenticationService = AuthenticationService.getInstance();
-    await authenticationService.signOut();
+    // await authenticationService.signOut();
     this.$router.replace(
       (this as any).localePath({
         name: "index"

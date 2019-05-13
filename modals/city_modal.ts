@@ -1,4 +1,3 @@
-import { firestore } from "firebase/app";
 
 export default class CityModal {
   constructor() {}

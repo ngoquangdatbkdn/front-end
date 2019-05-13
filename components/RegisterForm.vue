@@ -107,7 +107,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { auth } from "firebase/app";
+// import { auth } from "firebase/app";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import { State, Action, Getter, namespace } from "vuex-class";
 
@@ -117,7 +117,7 @@ import BaseCheckbox from "~/argon-components/BaseCheckbox.vue";
 import BaseButton from "~/argon-components/BaseButton.vue";
 import Card from "~/argon-components/Card.vue";
 
-import { fbAuth } from "~/plugins/firebase";
+// import { fbAuth } from "~/plugins/firebase";
 import AuthenticationService from "~/services/authentication_service";
 import UserInfoService from "~/services/user_info_service";
 import UserInfoModal from "~/modals/user_info_modal";
@@ -162,20 +162,20 @@ export default class RegisterForm extends Vue {
       const authenticationService: AuthenticationService = AuthenticationService.getInstance();
       const userInfoService: UserInfoService = UserInfoService.getInstance();
       try {
-        const userCredential: auth.UserCredential = await authenticationService.signUp(
-          this.email,
-          this.password
-        );
-        await authenticationService.sendEmailVerification();
-        console.log("userCredential.user.uid");
-        const userInfoModal: UserInfoModal = new UserInfoModal();
-        if (userCredential && userCredential.user && userCredential.user.uid) {
-          const id: string = userCredential.user.uid;
-          userInfoModal.role = this.role;
-          await userInfoService.createUserInfo(id, userInfoModal);
-        } else {
-          throw "what the fuck???";
-        }
+        // const userCredential: auth.UserCredential = await authenticationService.signUp(
+        //   this.email,
+        //   this.password
+        // );
+        // await authenticationService.sendEmailVerification();
+        // console.log("userCredential.user.uid");
+        // const userInfoModal: UserInfoModal = new UserInfoModal();
+        // if (userCredential && userCredential.user && userCredential.user.uid) {
+        //   const id: string = userCredential.user.uid;
+        //   userInfoModal.role = this.role;
+        //   await userInfoService.createUserInfo(id, userInfoModal);
+        // } else {
+        //   throw "what the fuck???";
+        // }
         this.setShouldOpenRegister(false);
         this.openConfirmationModal();
       } catch (e) {

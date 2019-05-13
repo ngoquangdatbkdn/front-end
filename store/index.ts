@@ -41,18 +41,18 @@ export const actions: Actions<State, RootState> = {
     const wardService: WardService = WardService.getInstance();
     const businessTypeService: BusinessTypeService = BusinessTypeService.getInstance();
     const contractTypeService: ContractTypeService = ContractTypeService.getInstance();
+    //
+    // const cityModalList: CityModal[] = await cityService.getAllCityList();
+    // const districtModalList: DistrictModal[] = await districtService.getAllDistrictList();
+    // const wardModalList: WardModal[] = await wardService.getAllWardList();
+    // const businessTypeModalList: BusinessTypeModal[] = await businessTypeService.getAllBusinessTypeList();
+    // const contractTypeModalList: ContractTypeModal[] = await contractTypeService.getAllContractTypeList();
 
-    const cityModalList: CityModal[] = await cityService.getAllCityList();
-    const districtModalList: DistrictModal[] = await districtService.getAllDistrictList();
-    const wardModalList: WardModal[] = await wardService.getAllWardList();
-    const businessTypeModalList: BusinessTypeModal[] = await businessTypeService.getAllBusinessTypeList();
-    const contractTypeModalList: ContractTypeModal[] = await contractTypeService.getAllContractTypeList();
-
-    commit(`city/CREATE`, cityModalList, { root: true });
-    commit(`district/CREATE`, districtModalList, { root: true });
-    commit(`ward/CREATE`, wardModalList, { root: true });
-    commit(`businessType/CREATE`, businessTypeModalList, { root: true });
-    commit(`contractType/CREATE`, contractTypeModalList, { root: true });
+    // commit(`city/CREATE`, cityModalList, { root: true });
+    // commit(`district/CREATE`, districtModalList, { root: true });
+    // commit(`ward/CREATE`, wardModalList, { root: true });
+    // commit(`businessType/CREATE`, businessTypeModalList, { root: true });
+    // commit(`contractType/CREATE`, contractTypeModalList, { root: true });
   }
 };
 

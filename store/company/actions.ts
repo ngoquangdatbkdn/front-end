@@ -13,28 +13,28 @@ export interface Actions<S, R> extends ActionTree<S, R> {
 const actions: Actions<CompanyState, RootState> = {
   async createCompany({ commit }, companyModal: CompanyModal) {
     const companyService: CompanyService = CompanyService.getInstance();
-    const companyID: string = await companyService.createCompany(companyModal);
-    commit(types.SET_COMPANY_ID, companyID);
+    // const companyID: string = await companyService.createCompany(companyModal);
+    // commit(types.SET_COMPANY_ID, companyID);
   },
   async getCompanyByID({ commit }, companyID: string) {
     const companyService = CompanyService.getInstance();
-    const companyModal: CompanyModal | null = await companyService.getCompanyByID(
-      companyID
-    );
-    commit(types.SET_COMPANY_MODAL, companyModal);
+    // const companyModal: CompanyModal | null = await companyService.getCompanyByID(
+    //   companyID
+    // );
+    // commit(types.SET_COMPANY_MODAL, companyModal);
   },
   async getCompanyList({ commit }, queryParams: any) {
     const companyService = CompanyService.getInstance();
-    const companyModalList:
-      | CompanyModal[]
-      | null = await companyService.getCompanyList(queryParams);
-    commit(types.SET_COMPANY_MODAL_LIST, companyModalList);
+    // const companyModalList:
+    //   | CompanyModal[]
+    //   | null = await companyService.getCompanyList(queryParams);
+    // commit(types.SET_COMPANY_MODAL_LIST, companyModalList);
   },
   async updateShouldShowCompany({ commit, state }, shouldShow: boolean) {
       console.log('here')
     const companyService = CompanyService.getInstance();
-    const companyID: string | undefined = state.companyModal.id;
-    await companyService.updateShouldShowCompany(companyID, shouldShow);
+    // const companyID: string | undefined = state.companyModal.id;
+    // await companyService.updateShouldShowCompany(companyID, shouldShow);
     // commit(types.SET_COMPANY_MODAL_LIST, companyModalList);
   }
 };

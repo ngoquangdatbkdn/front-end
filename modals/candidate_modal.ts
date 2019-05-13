@@ -1,4 +1,4 @@
-import { firestore } from "firebase/app";
+// import { firestore } from "firebase/app";
 
 import CityModal from "~/modals/city_modal";
 import DistrictModal from "~/modals/district_modal";
@@ -18,11 +18,11 @@ export default class CandidateModal {
   public gender?: string;
   public dob?: string;
   public email?: string;
-  public businessType?: BusinessTypeModal | firestore.DocumentReference;
+  public businessType?: BusinessTypeModal ;
   public avatar?: string;
   public summary?: string;
-  public city?: CityModal | firestore.DocumentReference;
-  public district?: DistrictModal | firestore.DocumentReference;
+  public city?: CityModal ;
+  public district?: DistrictModal ;
   public addressDetail?: string;
   public skills?: LevelModal[];
   public japaneseCertificate?: LanguageModal;
@@ -30,13 +30,13 @@ export default class CandidateModal {
   public languages?: LanguageModal[];
   public certificates?: CertificateModal[];
   public educations?: EducationModal[];
-  public wantedContractType?: ContractTypeModal | firestore.DocumentReference;
+  public wantedContractType?: ContractTypeModal ;
   public wantedJobTitle?: string;
   public wantedJobRank?: string;
   public wantedSalary?: number;
   public wantedWorkplace?: string;
-  public wantedCity?: CityModal | firestore.DocumentReference;
-  public wantedDistrict?: DistrictModal | firestore.DocumentReference;
+  public wantedCity?: CityModal ;
+  public wantedDistrict?: DistrictModal ;
 
   public shouldShow?: boolean;
 }
