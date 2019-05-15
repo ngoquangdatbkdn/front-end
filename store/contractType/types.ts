@@ -3,4 +3,4 @@ const types = {
   CREATE: 'CREATE'
 }
 
-export default types;
+export default types

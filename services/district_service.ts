@@ -2,18 +2,16 @@
 
 // import { fireDb } from "~/plugins/firebase";
 
-import DistrictModal from "~/modals/business_type_modal";
-
-import FirebaseCollection from "~/enumerations/firebase_collection";
+import DistrictModal from '~/modals/business_type_modal'
 
 export default class DistrictService {
   private static instance: DistrictService;
   private constructor() {}
   static getInstance() {
     if (!DistrictService.instance) {
-      DistrictService.instance = new DistrictService();
+      DistrictService.instance = new DistrictService()
     }
-    return DistrictService.instance;
+    return DistrictService.instance
   }
   // get options(): firestore.GetOptions | undefined {
   //   return process.client ? { source: "cache" } : undefined;

@@ -1,6 +1,6 @@
-import { ActionTree, ActionContext } from "vuex";
-import { RootState } from "store";
-import types from "./types";
+import { ActionTree, ActionContext } from 'vuex'
+import { RootState } from 'store'
+import types from './types'
 
 export interface Actions<S, R> extends ActionTree<S, R> {
   setShouldOpenRegister(context: ActionContext<S, R>, shouldOpenRegister: boolean): void;
@@ -8,8 +8,8 @@ export interface Actions<S, R> extends ActionTree<S, R> {
 
 const actions: Actions<boolean, RootState> = {
   setShouldOpenRegister({ commit }, shouldOpenRegister: boolean) {
-    commit(types.SET_SHOULD_OPEN, shouldOpenRegister);
+    commit(types.SET_SHOULD_OPEN, shouldOpenRegister)
   }
-};
+}
 
-export default actions;
+export default actions

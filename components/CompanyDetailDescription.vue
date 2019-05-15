@@ -1,13 +1,13 @@
 <template xmlns="http://www.w3.org/1999/html">
-    <div v-html="companyModal[`introduction_${$i18n.locale}`]"></div>
+  <div v-html="companyModal[`introduction_${$i18n.locale}`]" />
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
-import {  namespace } from "vuex-class";
-import CompanyModal from "../modals/company_modal";
+import { Vue, Component, Prop } from 'vue-property-decorator'
+import { namespace } from 'vuex-class'
+import CompanyModal from '../modals/company_modal'
 
-const Company = namespace("company");
+const Company = namespace('company')
 
 @Component({
   components: {}

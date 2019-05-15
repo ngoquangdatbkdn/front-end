@@ -7,7 +7,7 @@
             <img
               :src="companyModal.logo"
               class="company-logo mw-100 logo rounded-circle"
-            />
+            >
             <div class="pl-3">
               <h4 class="d-flex justify-content-center align-items-center">
                 {{ jobModal[`name_${$i18n.locale}`] }}
@@ -29,11 +29,15 @@
             </div>
           </div>
           <div class="col-12 col-md-6">
-            <p class="info-label mt-3 mb-0">{{ $t("job.salary_range") }}</p>
+            <p class="info-label mt-3 mb-0">
+              {{ $t("job.salary_range") }}
+            </p>
             <p class="font-weight-600">
               {{ jobModal.minSalary + " - " + jobModal.maxSalary }}
             </p>
-            <p class="info-label mt-3 mb-0">{{ $t("job.contract_type") }}</p>
+            <p class="info-label mt-3 mb-0">
+              {{ $t("job.contract_type") }}
+            </p>
             <p v-if="jobModal.contractType" class="font-weight-600">
               {{ jobModal.contractType[$i18n.locale] }}
             </p>
@@ -51,12 +55,12 @@
             </p>
           </div>
           <div class="col-12 col-md-6">
-              <img :src="jobModal.coverImage" class="job-image mw-100 " />
+            <img :src="jobModal.coverImage" class="job-image mw-100 ">
           </div>
         </div>
       </div>
     </div>
-      <job-detail-tabs></job-detail-tabs>
+    <job-detail-tabs />
   </div>
 </template>
 
@@ -88,23 +92,23 @@
 <!--</div>-->
 
 <script lang="ts">
-import { Vue, Component } from "vue-property-decorator";
-import { namespace } from "vuex-class";
+import { Vue, Component } from 'vue-property-decorator'
+import { namespace } from 'vuex-class'
 import JobDetailTabs from '~/components/JobDetailTabs.vue'
 
-const Company = namespace("company");
-const Job = namespace("job");
+const Company = namespace('company')
+const Job = namespace('job')
 
 @Component({
   components: {
-      JobDetailTabs
+    JobDetailTabs
   },
   async fetch({ store, params }) {
-    const companyID: string = params.id;
-    const jobID: string = params.jobID;
+    const companyID: string = params.id
+    const jobID: string = params.jobID
     if (jobID) {
-      await store.dispatch(`company/getCompanyByID`, companyID);
-      await store.dispatch(`job/getJobByID`, jobID);
+      await store.dispatch(`company/getCompanyByID`, companyID)
+      await store.dispatch(`job/getJobByID`, jobID)
     }
   }
 })

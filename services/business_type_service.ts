@@ -2,18 +2,16 @@
 //
 // import { fireDb } from "~/plugins/firebase";
 
-import BusinessTypeModal from "~/modals/business_type_modal";
-
-import FirebaseCollection from "~/enumerations/firebase_collection";
+import BusinessTypeModal from '~/modals/business_type_modal'
 
 export default class BusinessTypeService {
   private static instance: BusinessTypeService;
   private constructor() {}
   static getInstance() {
     if (!BusinessTypeService.instance) {
-      BusinessTypeService.instance = new BusinessTypeService();
+      BusinessTypeService.instance = new BusinessTypeService()
     }
-    return BusinessTypeService.instance;
+    return BusinessTypeService.instance
   }
   // get options(): firestore.GetOptions | undefined {
   //   return process.client ? { source: "cache" } : undefined;

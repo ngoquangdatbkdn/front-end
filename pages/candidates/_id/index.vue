@@ -5,10 +5,10 @@
         <!--<img :src="companyModal.coverImage" class="company-image cover-image " />-->
         <div
           class="cover-image "
-          v-bind:style="{
+          :style="{
             backgroundImage: 'url(' + companyModal.coverImage + ')'
           }"
-        ></div>
+        />
       </section>
       <div class="container row pt-4 ">
         <section class="mr-auto pb-4 col-12 content ">
@@ -16,7 +16,7 @@
             <img
               :src="companyModal.logo"
               class="company-logo mw-100 logo rounded-circle"
-            />
+            >
             <p
               class="d-flex h3 justify-content-center align-items-center pl-3 pt-4 mt-2"
             >
@@ -27,38 +27,40 @@
             class="col-12 col-md-12 mt-2 mt-md-3 pt-2 row px-0 mx-0 rounded border-secondary border border-3 p-3 "
           >
             <div class="col-12 col-md-4 pt-2 border-right">
-                <p class="info-label mb-0">
-                  {{ $t("company.staff_number") }}
-                </p>
-                <p class="font-weight-600 mb-0">{{ companyModal.staffNumber }}</p>
+              <p class="info-label mb-0">
+                {{ $t("company.staff_number") }}
+              </p>
+              <p class="font-weight-600 mb-0">
+                {{ companyModal.staffNumber }}
+              </p>
             </div>
             <div class="col-12 col-md-4 pt-2 border-right">
-                <p class="info-label  mb-0">
-                  {{ $t("company.business_type") }}
-                </p>
-                <p v-if="companyModal.businessType" class="font-weight-600 mb-0">
-                  {{ companyModal.businessType[$i18n.locale] }}
-                </p>
+              <p class="info-label  mb-0">
+                {{ $t("company.business_type") }}
+              </p>
+              <p v-if="companyModal.businessType" class="font-weight-600 mb-0">
+                {{ companyModal.businessType[$i18n.locale] }}
+              </p>
             </div>
             <div class="col-12 col-md-4 pt-2">
-                <p class="info-label  mb-0">
-                  {{ $t("company.company_address") }}
-                </p>
-                <p v-if="companyModal.ward" class="font-weight-600 mb-0">
-                  {{
-                    companyModal.ward[$i18n.locale] +
-                      ", " +
-                      companyModal.district[$i18n.locale] +
-                      ", " +
-                      companyModal.city[$i18n.locale]
-                  }}
-                </p>
+              <p class="info-label  mb-0">
+                {{ $t("company.company_address") }}
+              </p>
+              <p v-if="companyModal.ward" class="font-weight-600 mb-0">
+                {{
+                  companyModal.ward[$i18n.locale] +
+                    ", " +
+                    companyModal.district[$i18n.locale] +
+                    ", " +
+                    companyModal.city[$i18n.locale]
+                }}
+              </p>
             </div>
           </div>
         </section>
       </div>
     </div>
-    <company-detail-tabs></company-detail-tabs>
+    <company-detail-tabs />
   </div>
 </template>
 
@@ -108,12 +110,12 @@
 <!--</div>-->
 
 <script lang="ts">
-import { Vue, Component, Watch } from "vue-property-decorator";
-import { namespace } from "vuex-class";
-import CompanyDetailTabs from "~/components/CompanyDetailTabs.vue";
-import BaseSwitch from "~/argon-components/BaseSwitch.vue";
+import { Vue, Component, Watch } from 'vue-property-decorator'
+import { namespace } from 'vuex-class'
+import CompanyDetailTabs from '~/components/CompanyDetailTabs.vue'
+import BaseSwitch from '~/argon-components/BaseSwitch.vue'
 
-const Company = namespace("company");
+const Company = namespace('company')
 
 @Component({
   components: {
@@ -121,10 +123,10 @@ const Company = namespace("company");
     BaseSwitch
   },
   async fetch({ store, params }) {
-    const companyID: string = params.id;
+    const companyID: string = params.id
     if (companyID) {
-      await store.dispatch(`company/getCompanyByID`, companyID);
-      await store.dispatch(`job/getJobListByCompanyID`, companyID);
+      await store.dispatch(`company/getCompanyByID`, companyID)
+      await store.dispatch(`job/getJobListByCompanyID`, companyID)
     }
   }
 })
@@ -136,16 +138,16 @@ export default class CompanyDetail extends Vue {
 
   @Company.Action updateShouldShowCompany;
 
-  @Watch("shouldPublish.status")
+  @Watch('shouldPublish.status')
   onsShouldPublishValueChanged(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue) {
-      this.updateShouldShowCompany(newValue);
-      console.log("shouldPublish");
-      console.log(newValue);
+      this.updateShouldShowCompany(newValue)
+      console.log('shouldPublish')
+      console.log(newValue)
     }
   }
   async mounted() {
-    console.log("this.companyModal.shouldShow");
+    console.log('this.companyModal.shouldShow')
     // console.log(this.companyModal.shouldShow);
     // this.shouldPublish = this.companyModal.shouldShow;
   }

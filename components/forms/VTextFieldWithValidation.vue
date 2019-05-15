@@ -1,8 +1,8 @@
 <template>
   <ValidationProvider
+    v-slot="{ errors }"
     :name="$attrs.name"
     :rules="rules"
-    v-slot="{ errors }"
     tag="div"
   >
     <div v-if="!$attrs.isHalf" class="row ">
@@ -21,7 +21,7 @@
             v-bind="$attrs"
             :placeholder="$attrs.placeholder"
             class="form-control"
-          />
+          >
           <small class="text-danger small">{{ errors[0] }}</small>
         </div>
       </div>
@@ -37,7 +37,7 @@
           v-bind="$attrs"
           :placeholder="$attrs.placeholder"
           class="form-control"
-        />
+        >
         <small class="text-danger small">{{ errors[0] }}</small>
       </div>
     </div>
@@ -45,36 +45,36 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { ValidationProvider } from "vee-validate";
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
+import { ValidationProvider } from 'vee-validate'
 
 @Component({
   components: {
     ValidationProvider
   },
   data: () => ({
-    innerValue: ""
+    innerValue: ''
   })
 })
 export default class VTextFieldWithValidation extends Vue {
-  innerValue: string = "";
+  innerValue: string = '';
 
-  @Prop({ type: [Object, String], default: "" }) rules;
+  @Prop({ type: [Object, String], default: '' }) rules;
   @Prop({ default: null }) value;
 
-  @Watch("innerValue")
+  @Watch('innerValue')
   onInnerValueChanged(newVal: string, oldVal: string) {
-    this.$emit("input", newVal);
+    this.$emit('input', newVal)
   }
 
-  @Watch("value")
+  @Watch('value')
   onValueChanged(newVal: string, oldVal: string) {
-    this.innerValue = newVal;
+    this.innerValue = newVal
   }
 
   created() {
     if (this.value) {
-      this.innerValue = this.value;
+      this.innerValue = this.value
     }
   }
 }

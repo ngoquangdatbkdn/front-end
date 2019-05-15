@@ -2,18 +2,16 @@
 //
 // import { fireDb } from "~/plugins/firebase";
 
-import CityModal from "~/modals/business_type_modal";
-
-import FirebaseCollection from "~/enumerations/firebase_collection";
+import CityModal from '~/modals/business_type_modal'
 
 export default class CityService {
   private static instance: CityService;
   private constructor() {}
   static getInstance() {
     if (!CityService.instance) {
-      CityService.instance = new CityService();
+      CityService.instance = new CityService()
     }
-    return CityService.instance;
+    return CityService.instance
   }
 
   // get options(): firestore.GetOptions | undefined {

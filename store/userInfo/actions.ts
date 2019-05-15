@@ -1,9 +1,9 @@
-import { ActionTree, ActionContext } from "vuex";
-import { RootState } from "store";
+import { ActionTree, ActionContext } from 'vuex'
+import { RootState } from 'store'
 // import { User } from "firebase/app";
-import UserInfoModal from "~/modals/user_info_modal";
-import UserInfoService from "~/services/user_info_service";
-import types from "./types";
+import UserInfoModal from '~/modals/user_info_modal'
+import UserInfoService from '~/services/user_info_service'
+import types from './types'
 
 export interface Actions<S, R> extends ActionTree<S, R> {
   setUserInfo(context: ActionContext<S, R>, userInfo: UserInfoModal): void;
@@ -11,8 +11,8 @@ export interface Actions<S, R> extends ActionTree<S, R> {
 
 const actions: Actions<boolean, RootState> = {
   setUserInfo({ commit }, userInfo: UserInfoModal) {
-    commit(types.SET_USER_INFO, userInfo);
-  },
+    commit(types.SET_USER_INFO, userInfo)
+  }
   // async getUserInfoByID({ commit, state }, userID: string) {
   //   const userInfoService = UserInfoService.getInstance();
   //   const userInfoModal: UserInfoModal | null = new UserInfoModal();
@@ -33,6 +33,6 @@ const actions: Actions<boolean, RootState> = {
   //   const userInfoService = UserInfoService.getInstance();
   //   // await userInfoService.updateUserInfoCompanyID(userID, companyID);
   // }
-};
+}
 
-export default actions;
+export default actions

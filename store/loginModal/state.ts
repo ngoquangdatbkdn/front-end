@@ -3,7 +3,7 @@ export interface LoginModalState {
 }
 
 const state = (): LoginModalState => ({
-    shouldOpen: false
-});
+  shouldOpen: false
+})
 
-export default state;
+export default state

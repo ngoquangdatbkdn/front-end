@@ -2,19 +2,18 @@
 
 // import { fireDb } from "~/plugins/firebase";
 
-import ContractTypeService from "~/services/contract_type_service";
-import CityService from "~/services/city_service";
-import DistrictService from "~/services/district_service";
-import CompanyService from "~/services/company_service";
-import WardService from "~/services/ward_service";
+import ContractTypeService from '~/services/contract_type_service'
+import CityService from '~/services/city_service'
+import DistrictService from '~/services/district_service'
+import CompanyService from '~/services/company_service'
+import WardService from '~/services/ward_service'
 
-import JobModal from "~/modals/job_modal";
-import CityModal from "~/modals/city_modal";
-import DistrictModal from "~/modals/district_modal";
-import WardModal from "~/modals/ward_modal";
-import ContractTypeModal from "~/modals/contract_type_modal";
+import JobModal from '~/modals/job_modal'
+import CityModal from '~/modals/city_modal'
+import DistrictModal from '~/modals/district_modal'
+import WardModal from '~/modals/ward_modal'
+import ContractTypeModal from '~/modals/contract_type_modal'
 
-import FirebaseCollection from "~/enumerations/firebase_collection";
 export default class JobService {
   private static instance: JobService;
   private contractTypeService: ContractTypeService = ContractTypeService.getInstance();
@@ -25,9 +24,9 @@ export default class JobService {
   private constructor() {}
   static getInstance() {
     if (!JobService.instance) {
-      JobService.instance = new JobService();
+      JobService.instance = new JobService()
     }
-    return JobService.instance;
+    return JobService.instance
   }
 
   // public async getJobByID(id: string): Promise<JobModal | null> {

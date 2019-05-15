@@ -1,9 +1,10 @@
 <template xmlns="http://www.w3.org/1999/html">
   <nuxt-link
+    v-if="job"
     :to="
       localePath({
         name: 'companies-id-jobs-jobID',
-        params: { id: jobModal.companyID, jobID: jobModal.id }
+        params: { id: job.company.id, jobID: job.id }
       })
     "
     active-class="none"
@@ -19,14 +20,14 @@
         />
         <div class="d-flex flex-column">
           <span class="company-name ">Công ty Thiên Đại Minh Uy</span>
-          <span class="job-name ">{{ jobModal[`name_${$i18n.locale}`] }}</span>
+          <span class="job-name ">{{ job[`name_${$i18n.locale}`] }}</span>
 
           <div class="row  mx-0 flex-nowrap">
             <p class="sub-info">
               {{
-                jobModal.city[$i18n.locale] +
+                job.city["name_" + $i18n.locale] +
                   ", " +
-                  jobModal.district[$i18n.locale]
+                  job.district["name_" + $i18n.locale]
               }}
             </p>
           </div>
@@ -35,7 +36,7 @@
             <div class="mr-auto">
               <div class="row mx-0 align-items-center">
                 <p class="sub-info">
-                  {{ "¥" + jobModal.minSalary + " - ¥" + jobModal.maxSalary }}
+                  {{ "¥" + job.minSalary + " - ¥" + job.maxSalary }}
                 </p>
               </div>
             </div>
@@ -48,14 +49,14 @@
 
 <!--<div class="row mx-0 align-items-center">-->
 <!--<i class="fa fa-clock-o pr-1"></i>-->
-<!--<p class="sub-info">{{ jobModal.lastUpdate }}</p>-->
+<!--<p class="sub-info">{{ job.lastUpdate }}</p>-->
 <!--</div>-->
 
-<!--<p class="company-name">{{ jobModal.companyID }}</p>-->
+<!--<p class="company-name">{{ job.companyID }}</p>-->
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import JobModal from "../modals/job_modal";
+import { Job } from "../modals";
 import Card from "~/argon-components/Card.vue";
 
 @Component({
@@ -64,7 +65,7 @@ import Card from "~/argon-components/Card.vue";
   }
 })
 export default class JobListItem extends Vue {
-  @Prop({ type: Object, required: true }) jobModal!: JobModal;
+  @Prop({ type: Object, required: true }) job!: Job;
 }
 </script>
 

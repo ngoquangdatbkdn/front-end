@@ -1,21 +1,21 @@
-import { ActionTree, MutationTree, GetterTree, ActionContext } from "vuex";
-import JobModal from "~/modals/job_modal";
-import { JobState } from "./state";
-import types from "./types";
+import { ActionTree, MutationTree, GetterTree, ActionContext } from 'vuex'
+import {Job} from '~/modals'
+import { JobState } from './state'
+import types from './types'
 
 const mutations: MutationTree<JobState> = {
-  [types.SET_JOB_MODAL](state, jobModal: JobModal) {
-    state.jobModal = jobModal;
+  [types.SET_JOB](state, job: Job) {
+    state.job = job
   },
   [types.SET_JOB_ID](state, jobID: string) {
-    state.jobID = jobID;
+    state.jobID = jobID
   },
-  [types.ADD_JOB](state, jobModal: JobModal) {
-      state.jobModalList =  [jobModal, ...state.jobModalList];
+  [types.ADD_JOB](state, job: Job) {
+    state.jobs = [job, ...state.jobs]
   },
-  [types.SET_JOB_MODAL_LIST](state, jobModalList: JobModal[]) {
-    state.jobModalList = jobModalList;
+  [types.SET_JOBS](state, jobs: Job[]) {
+    state.jobs = jobs
   }
-};
+}
 
-export default mutations;
+export default mutations

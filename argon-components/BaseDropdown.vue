@@ -1,21 +1,26 @@
 <template>
-    <div class="dropdown"
-               @click="toggleDropDown"
-               v-click-outside="closeDropDown">
-
-        <slot name="title">
-            <a class="dropdown-toggle nav-link"
-               :class="{'no-caret': hideArrow}"
-               data-toggle="dropdown">
-                <i :class="icon"></i>
-                <span class="no-icon">{{title}}</span>
-            </a>
-        </slot>
-        <ul class="dropdown-menu"
-            :class="[{'dropdown-menu-right': position === 'right'}, {show: isOpen}, menuClasses]">
-            <slot></slot>
-        </ul>
-    </div>
+  <div
+    v-click-outside="closeDropDown"
+    class="dropdown"
+    @click="toggleDropDown"
+  >
+    <slot name="title">
+      <a
+        class="dropdown-toggle nav-link"
+        :class="{'no-caret': hideArrow}"
+        data-toggle="dropdown"
+      >
+        <i :class="icon" />
+        <span class="no-icon">{{ title }}</span>
+      </a>
+    </slot>
+    <ul
+      class="dropdown-menu"
+      :class="[{'dropdown-menu-right': position === 'right'}, {show: isOpen}, menuClasses]"
+    >
+      <slot />
+    </ul>
+  </div>
 </template>
 
 <!--<component class="dropdown"-->
@@ -27,59 +32,59 @@
            <!--v-click-outside="closeDropDown">-->
 <script>
 export default {
-  name: "base-dropdown",
+  name: 'BaseDropdown',
   props: {
     direction: {
       type: String,
-      default: "down"
+      default: 'down'
     },
     title: {
       type: String,
-      description: "Dropdown title"
+      description: 'Dropdown title'
     },
     icon: {
       type: String,
-      description: "Icon for dropdown title"
+      description: 'Icon for dropdown title'
     },
     position: {
       type: String,
-      description: "Position of dropdown menu (e.g right|left)"
+      description: 'Position of dropdown menu (e.g right|left)'
     },
     menuClasses: {
       type: [String, Object],
-      description: "Dropdown menu classes"
+      description: 'Dropdown menu classes'
     },
     hideArrow: {
       type: Boolean,
-      description: "Whether dropdown arrow should be hidden"
+      description: 'Whether dropdown arrow should be hidden'
     },
     tag: {
       type: String,
-      default: "li",
-      description: "Dropdown html tag (e.g div, li etc)"
+      default: 'li',
+      description: 'Dropdown html tag (e.g div, li etc)'
+    }
+  },
+  data() {
+    return {
+      isOpen: false
     }
   },
   async asyncData() {
     return {
       isOpen: false
-    };
-  },
-  data() {
-    return {
-      isOpen: false
-    };
+    }
   },
   methods: {
     toggleDropDown() {
-      this.isOpen = !this.isOpen;
-      this.$emit("change", this.isOpen);
+      this.isOpen = !this.isOpen
+      this.$emit('change', this.isOpen)
     },
     closeDropDown() {
-      this.isOpen = false;
-      this.$emit("change", this.isOpen);
+      this.isOpen = false
+      this.$emit('change', this.isOpen)
     }
   }
-};
+}
 </script>
 <style>
 .dropdown {

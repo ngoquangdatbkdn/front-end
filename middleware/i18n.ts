@@ -4,7 +4,7 @@ export default function ({ isHMR, app, store, route, params, error, redirect }) 
   if (isHMR) return
   // Get locale from params
   const locale = params.lang || defaultLocale
-//   console.log('store ' + store.state.toString());
+  //   console.log('store ' + store.state.toString());
   if (store.state.locale.locales.indexOf(locale) === -1) {
     return error({ message: 'This page could not be found.', statusCode: 404 })
   }

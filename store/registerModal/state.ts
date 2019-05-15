@@ -3,7 +3,7 @@ export interface RegisterModalState {
 }
 
 const state = (): RegisterModalState => ({
-    shouldOpenRegister: false
-});
+  shouldOpenRegister: false
+})
 
-export default state;
+export default state

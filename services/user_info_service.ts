@@ -2,18 +2,16 @@
 // import { User } from "firebase/app";
 // import { fireDb } from "~/plugins/firebase";
 // import { fbAuth } from "~/plugins/firebase";
-import UserInfoModal from "~/modals/user_info_modal";
-
-import FirebaseCollection from "~/enumerations/firebase_collection";
+import UserInfoModal from '~/modals/user_info_modal'
 
 export default class UserInfoService {
   private static instance: UserInfoService;
   private constructor() {}
   static getInstance() {
     if (!UserInfoService.instance) {
-      UserInfoService.instance = new UserInfoService();
+      UserInfoService.instance = new UserInfoService()
     }
-    return UserInfoService.instance;
+    return UserInfoService.instance
   }
 
   // public async createUserInfo(id: string, userInfoModal: UserInfoModal): Promise<void> {

@@ -2,18 +2,17 @@
 //
 // import { fireDb } from "~/plugins/firebase";
 
-import BusinessTypeService from "~/services/business_type_service";
-import CityService from "~/services/city_service";
-import DistrictService from "~/services/district_service";
-import WardService from "~/services/ward_service";
+import BusinessTypeService from '~/services/business_type_service'
+import CityService from '~/services/city_service'
+import DistrictService from '~/services/district_service'
+import WardService from '~/services/ward_service'
 
-import CandidateModal from "~/modals/candidate_modal";
-import CityModal from "~/modals/city_modal";
-import DistrictModal from "~/modals/district_modal";
-import WardModal from "~/modals/ward_modal";
-import BusinessTypeModal from "~/modals/business_type_modal";
+import CandidateModal from '~/modals/candidate_modal'
+import CityModal from '~/modals/city_modal'
+import DistrictModal from '~/modals/district_modal'
+import WardModal from '~/modals/ward_modal'
+import BusinessTypeModal from '~/modals/business_type_modal'
 
-import FirebaseCollection from "~/enumerations/firebase_collection";
 export default class CandidateService {
   private static instance: CandidateService;
   private businessTypeService: BusinessTypeService = BusinessTypeService.getInstance();
@@ -23,9 +22,9 @@ export default class CandidateService {
   private constructor() {}
   static getInstance() {
     if (!CandidateService.instance) {
-      CandidateService.instance = new CandidateService();
+      CandidateService.instance = new CandidateService()
     }
-    return CandidateService.instance;
+    return CandidateService.instance
   }
 
   // public async getCandidateByID(id: string): Promise<CandidateModal | null> {

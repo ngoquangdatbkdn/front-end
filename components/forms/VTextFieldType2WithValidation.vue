@@ -1,8 +1,8 @@
 <template>
   <ValidationProvider
+    v-slot="{ errors }"
     :name="$attrs.name"
     :rules="rules"
-    v-slot="{ errors }"
     tag="div"
     class="form-group"
   >
@@ -16,10 +16,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { ValidationProvider } from "vee-validate";
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
+import { ValidationProvider } from 'vee-validate'
 
-import BaseInput from "@/argon-components/BaseInput.vue";
+import BaseInput from '@/argon-components/BaseInput.vue'
 
 @Component({
   components: {
@@ -27,28 +27,28 @@ import BaseInput from "@/argon-components/BaseInput.vue";
     BaseInput
   },
   data: () => ({
-    innerValue: ""
+    innerValue: ''
   })
 })
 export default class VTextFieldType2WithValidation extends Vue {
-  innerValue: string = "";
+  innerValue: string = '';
 
-  @Prop({ type: [Object, String], default: "" }) rules;
+  @Prop({ type: [Object, String], default: '' }) rules;
   @Prop({ default: null }) value;
 
-  @Watch("innerValue")
+  @Watch('innerValue')
   onInnerValueChanged(newVal: string, oldVal: string) {
-    this.$emit("input", newVal);
+    this.$emit('input', newVal)
   }
 
-  @Watch("value")
+  @Watch('value')
   onValueChanged(newVal: string, oldVal: string) {
-    this.innerValue = newVal;
+    this.innerValue = newVal
   }
 
   created() {
     if (this.value) {
-      this.innerValue = this.value;
+      this.innerValue = this.value
     }
   }
 }

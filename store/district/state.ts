@@ -1,4 +1,4 @@
-import DistrictModal from "~/modals/district_modal";
+import DistrictModal from '~/modals/district_modal'
 
 export interface DistrictState {
   districtModalList: DistrictModal[];
@@ -6,6 +6,6 @@ export interface DistrictState {
 
 const state = (): DistrictState => ({
   districtModalList: []
-});
+})
 
-export default state;
+export default state

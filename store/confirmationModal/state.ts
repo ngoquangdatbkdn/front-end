@@ -4,8 +4,8 @@ export interface ConfirmationModalState {
 }
 
 const state = (): ConfirmationModalState => ({
-    shouldOpenConfirmation: false,
-    confirmation: null
-});
+  shouldOpenConfirmation: false,
+  confirmation: null
+})
 
-export default state;
+export default state

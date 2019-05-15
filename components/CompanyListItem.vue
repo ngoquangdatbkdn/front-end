@@ -3,7 +3,7 @@
     :to="
       localePath({
         name: 'companies-id',
-        params: { id: companyModal.id }
+        params: { id: company.id }
       })
     "
     active-class="none"
@@ -12,31 +12,29 @@
   >
     <div class="p-3 border rounded">
       <div class="row align-items-center mx-0">
-        <img
-          :src="companyModal.logo"
-          class="company-logo mw-100 avatar mr-2 "
-        />
-        <span class="company-name  mr-auto">{{ companyModal.name }}</span>
+        <img :src="company.logo" class="company-logo mw-100 avatar mr-2 " />
+        <span class="company-name  mr-auto">{{ company.name }}</span>
       </div>
       <p class="location-name mt-2">
         {{
-          companyModal.city[$i18n.locale] +
+          company.city['name_' +  $i18n.locale] +
             ", " +
-            companyModal.district[$i18n.locale] +
+            company.district['name_' + $i18n.locale] +
             ", " +
-            companyModal.ward[$i18n.locale]
+            company.address
         }}
       </p>
       <div class="row mx-0">
         <div class="mr-auto">
           <div class="row align-items-center mx-0">
-            <i class="fa fa-dollar pr-1"></i>
+            <i class="fa fa-dollar pr-1" />
             <p class="sub-info">
-              {{ companyModal.minSalary + " - " + companyModal.maxSalary }}
+              {{ company.minSalary + " - " + company.maxSalary }}
             </p>
           </div>
         </div>
-        <p class="sub-info">{{ companyModal.activeJob }}</p>
+        <p class="sub-info">
+        </p>
       </div>
     </div>
   </nuxt-link>
@@ -44,12 +42,12 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import {  namespace } from "vuex-class";
-import CompanyModal from "../modals/company_modal";
+import { namespace } from "vuex-class";
+import { Company } from "../modals";
 
 @Component({})
 export default class CompanyListItem extends Vue {
-  @Prop({ type: Object, required: true }) companyModal!: CompanyModal;
+  @Prop({ type: Object, required: true }) company!: Company;
 }
 </script>
 

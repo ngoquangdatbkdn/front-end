@@ -1,4 +1,4 @@
-import CityModal from "~/modals/city_modal";
+import CityModal from '~/modals/city_modal'
 
 export interface CityState {
   cityModalList: CityModal[];
@@ -6,6 +6,6 @@ export interface CityState {
 
 const state = (): CityState => ({
   cityModalList: []
-});
+})
 
-export default state;
+export default state

@@ -1,14 +1,14 @@
-import CompanyModal from "~/modals/company_modal";
+import { Company } from "~/modals/company";
 
 export interface CompanyState {
-  companyModal: CompanyModal;
-  companyModalList: CompanyModal[];
+  company: Company;
+  companies: Company[];
   companyID: string;
 }
 
 const state = (): CompanyState => ({
-  companyModal: new CompanyModal(),
-  companyModalList: [],
+  company: new Company(),
+  companies: [],
   companyID: ""
 });
 

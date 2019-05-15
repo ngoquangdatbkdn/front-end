@@ -1,8 +1,8 @@
 <template>
   <ValidationProvider
+    v-slot="{ errors }"
     :name="$attrs.name"
     :rules="rules"
-    v-slot="{ errors }"
     tag="div"
     class="row "
   >
@@ -18,10 +18,10 @@
       <div class="form-group mb-0">
         <no-ssr>
           <froala
+            v-model="innerValue"
             :tag="'textarea'"
             :config="config"
-            v-model="innerValue"
-          ></froala>
+          />
         </no-ssr>
         <small class="text-danger small">{{ errors[0] }}</small>
       </div>
@@ -30,54 +30,54 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { ValidationProvider } from "vee-validate";
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
+import { ValidationProvider } from 'vee-validate'
 
 @Component({
   components: {
     ValidationProvider
   },
   data: () => ({
-    innerValue: "",
+    innerValue: '',
     config: {
       events: {
-        "froalaEditor.initialized": function() {
-          console.log("initialized");
+        'froalaEditor.initialized': function () {
+          console.log('initialized')
         }
       },
-      placeholderText: "",
+      placeholderText: '',
       charCounterCount: false,
       toolbarButtons: [
-        "bold",
-        "italic",
-        "underline",
-        "paragraphStyle",
-        "lineHeight",
-        "insertLink"
+        'bold',
+        'italic',
+        'underline',
+        'paragraphStyle',
+        'lineHeight',
+        'insertLink'
       ],
-      quickInsertTags: [""]
+      quickInsertTags: ['']
     }
   })
 })
 export default class VEditorWithValidation extends Vue {
-  innerValue: string = "";
+  innerValue: string = '';
 
-  @Prop({ type: [Object, String], default: "" }) rules;
-  @Prop({ type: [String], default: "" }) value;
+  @Prop({ type: [Object, String], default: '' }) rules;
+  @Prop({ type: [String], default: '' }) value;
 
-  @Watch("innerValue")
+  @Watch('innerValue')
   onInnerValueChanged(newVal: string, oldVal: string) {
-    this.$emit("input", newVal);
+    this.$emit('input', newVal)
   }
 
-  @Watch("value")
+  @Watch('value')
   onValueChanged(newVal: string, oldVal: string) {
-    this.innerValue = newVal;
+    this.innerValue = newVal
   }
 
   created() {
     if (this.value) {
-      this.innerValue = this.value;
+      this.innerValue = this.value
     }
   }
 }

@@ -8,9 +8,12 @@
     "axios-mock-adapter": "^1.16.0",
     "bootstrap": "^4.3.1",
     "class-transformer": "^0.2.2",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^8.5.1",
     "nouislider": "^13.1.4",
     "nuxt": "^2.4.0",
     "nuxt-i18n": "^5.8.5",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "^8.0.3",
     "vee-validate": "^2.2.2",
     "velocity-animate": "^1.5.2",
@@ -32,16 +35,19 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "post-update": "yarn upgrade --latest"
+    "post-update": "yarn upgrade --latest",
+    "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore ."
   },
   "devDependencies": {
     "@babel/runtime-corejs2": "^7.4.3",
     "@nuxt/typescript": "latest",
-    "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
+    "@nuxtjs/eslint-config": "0.0.1",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.4",
     "express-jwt": "^5.3.1",
-    "body-parser": "^1.18.3",
-    "cookie-parser": "^1.4.3"
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0"
   }
 }

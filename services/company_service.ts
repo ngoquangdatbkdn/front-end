@@ -2,18 +2,17 @@
 //
 // import { fireDb } from "~/plugins/firebase";
 
-import BusinessTypeService from "~/services/business_type_service";
-import CityService from "~/services/city_service";
-import DistrictService from "~/services/district_service";
-import WardService from "~/services/ward_service";
+import BusinessTypeService from '~/services/business_type_service'
+import CityService from '~/services/city_service'
+import DistrictService from '~/services/district_service'
+import WardService from '~/services/ward_service'
 
-import CompanyModal from "~/modals/company_modal";
-import CityModal from "~/modals/city_modal";
-import DistrictModal from "~/modals/district_modal";
-import WardModal from "~/modals/ward_modal";
-import BusinessTypeModal from "~/modals/business_type_modal";
+import CompanyModal from '~/modals/company_modal'
+import CityModal from '~/modals/city_modal'
+import DistrictModal from '~/modals/district_modal'
+import WardModal from '~/modals/ward_modal'
+import BusinessTypeModal from '~/modals/business_type_modal'
 
-import FirebaseCollection from "~/enumerations/firebase_collection";
 export default class CompanyService {
   private static instance: CompanyService;
   private businessTypeService: BusinessTypeService = BusinessTypeService.getInstance();
@@ -23,9 +22,9 @@ export default class CompanyService {
   private constructor() {}
   static getInstance() {
     if (!CompanyService.instance) {
-      CompanyService.instance = new CompanyService();
+      CompanyService.instance = new CompanyService()
     }
-    return CompanyService.instance;
+    return CompanyService.instance
   }
 
   // public async getCompanyByID(id: string): Promise<CompanyModal | null> {

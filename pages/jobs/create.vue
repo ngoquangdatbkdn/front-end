@@ -1,31 +1,33 @@
 <template>
-  <div class="">fdafadfd</div>
+  <div class="">
+    fdafadfd
+  </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { State, Action, Getter, namespace } from "vuex-class";
-import { ValidationObserver, ValidationProvider } from "vee-validate";
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
+import { State, Action, Getter, namespace } from 'vuex-class'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 
-import VTextFieldWithValidation from "~/components/forms/VTextFieldWithValidation.vue";
-import VSelectWithValidation from "~/components/forms/VSelectWithValidation.vue";
-import VFileUploadWithValidation from "~/components/forms/VFileUploadWithValidation.vue";
-import VEditorWithValidation from "~/components/forms/VEditorWithValidation.vue";
+import VTextFieldWithValidation from '~/components/forms/VTextFieldWithValidation.vue'
+import VSelectWithValidation from '~/components/forms/VSelectWithValidation.vue'
+import VFileUploadWithValidation from '~/components/forms/VFileUploadWithValidation.vue'
+import VEditorWithValidation from '~/components/forms/VEditorWithValidation.vue'
 
-import { CompanyState } from "~/store/company/state";
-import { CityState } from "~/store/city/state";
-import JobModal from "~/modals/job_modal";
+import { CompanyState } from '~/store/company/state'
+import { CityState } from '~/store/city/state'
+import JobModal from '~/modals/job_modal'
 // import CityModal from "~/modals/city_modal";
 
-import { objectUrlToFile } from "~/utils/imageHelper";
+import { objectUrlToFile } from '~/utils/imageHelper'
 
 // const namespace: string = "company";
 // const Company = namespace("company");
-const City = namespace("city");
-const District = namespace("district");
-const Ward = namespace("ward");
-const ContractType = namespace("contractType");
-const Job = namespace("job");
+const City = namespace('city')
+const District = namespace('district')
+const Ward = namespace('ward')
+const ContractType = namespace('contractType')
+const Job = namespace('job')
 
 @Component({
   components: {
@@ -77,17 +79,17 @@ export default class CreateJob extends Vue {
 
   mounted() {}
   async submit() {
-    const result = await (this.$refs.obs as any).validate();
-    console.log("result " + result.toString());
+    const result = await (this.$refs.obs as any).validate()
+    console.log('result ' + result.toString())
     if (result) {
-        this.jobModal.shouldShow = false;
-      this.create(this.jobModal);
+      this.jobModal.shouldShow = false
+      this.create(this.jobModal)
       this.$router.push(
         (this as any).localePath({
-          name: "companies-id",
-          params: { id: "faef" }
+          name: 'companies-id',
+          params: { id: 'faef' }
         })
-      );
+      )
     }
   }
 }

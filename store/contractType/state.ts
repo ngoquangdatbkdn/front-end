@@ -1,4 +1,4 @@
-import ContractTypeModal from "~/modals/contract_type_modal";
+import ContractTypeModal from '~/modals/contract_type_modal'
 
 export interface ContractTypeState {
   contractTypeModalList: ContractTypeModal[];
@@ -6,6 +6,6 @@ export interface ContractTypeState {
 
 const state = (): ContractTypeState => ({
   contractTypeModalList: []
-});
+})
 
-export default state;
+export default state

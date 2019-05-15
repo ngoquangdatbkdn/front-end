@@ -15,7 +15,7 @@
           <img
             slot="icon"
             src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Facebook-128.png"
-          />
+          >
           Facebook
         </base-button>
 
@@ -23,7 +23,7 @@
           <img
             slot="icon"
             src="https://demos.creative-tim.com/argon-design-system/assets/img/icons/common/google.svg"
-          />
+          >
           Google
         </base-button>
       </div>
@@ -32,16 +32,16 @@
       </div>
       <ValidationObserver ref="obs" tag="form">
         <v-text-field-type2-with-validation
-          rules="required|email"
           v-model="email"
+          rules="required|email"
           type="email"
           :name="$t('authentication.email')"
           :placeholder="$t('authentication.enter_email')"
           :addon-left-icon="'ni ni-email-83'"
         />
         <v-text-field-type2-with-validation
-          rules="required|min:8|max:32"
           v-model="password"
+          rules="required|min:8|max:32"
           type="password"
           :name="$t('authentication.password')"
           :placeholder="$t('authentication.enter_password')"
@@ -55,9 +55,11 @@
           {{ $t("authentication.remember_me") }}
         </base-checkbox>
         <div class="text-center">
-          <base-button type="primary" class="my-4" @click="onLogin">{{
-            $t("authentication.sign_in")
-          }}</base-button>
+          <base-button type="primary" class="my-4" @click="onLogin">
+            {{
+              $t("authentication.sign_in")
+            }}
+          </base-button>
         </div>
       </ValidationObserver>
     </card>
@@ -65,19 +67,19 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { ValidationObserver, ValidationProvider } from "vee-validate";
-import { namespace } from "vuex-class";
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { namespace } from 'vuex-class'
 
-import VTextFieldType2WithValidation from "~/components/forms/VTextFieldType2WithValidation.vue";
-import BaseInput from "~/argon-components/BaseInput.vue";
-import BaseCheckbox from "~/argon-components/BaseCheckbox.vue";
-import BaseButton from "~/argon-components/BaseButton.vue";
-import Card from "~/argon-components/Card.vue";
+import VTextFieldType2WithValidation from '~/components/forms/VTextFieldType2WithValidation.vue'
+import BaseInput from '~/argon-components/BaseInput.vue'
+import BaseCheckbox from '~/argon-components/BaseCheckbox.vue'
+import BaseButton from '~/argon-components/BaseButton.vue'
+import Card from '~/argon-components/Card.vue'
 
-const LoginModal = namespace("loginModal");
-const ConfirmationModal = namespace("confirmationModal");
-const UserInfo = namespace("userInfo");
+const LoginModal = namespace('loginModal')
+const ConfirmationModal = namespace('confirmationModal')
+const UserInfo = namespace('userInfo')
 
 @Component({
   components: {
@@ -89,12 +91,12 @@ const UserInfo = namespace("userInfo");
     ValidationProvider,
     VTextFieldType2WithValidation
   },
-  middleware: "guest-guard"
+  middleware: 'guest-guard'
 })
 export default class LoginForm extends Vue {
-  email: string = "";
-  password: string = "";
-  error: string = "";
+  email: string = '';
+  password: string = '';
+  error: string = '';
 
   @LoginModal.Action setShouldOpen;
   @ConfirmationModal.Action setShouldOpenConfirmation;
@@ -103,25 +105,25 @@ export default class LoginForm extends Vue {
 
   private openConfirmationModal() {
     this.setConfirmation({
-      title: (this as any).$t("authentication.email_has_not_been_verified"),
-      message: (this as any).$t("authentication.please_verify_email")
-    });
-    this.setShouldOpenConfirmation(true);
+      title: (this as any).$t('authentication.email_has_not_been_verified'),
+      message: (this as any).$t('authentication.please_verify_email')
+    })
+    this.setShouldOpenConfirmation(true)
   }
 
   async onLogin() {
-    const result = await (this.$refs.obs as any).validate();
+    const result = await (this.$refs.obs as any).validate()
     if (result) {
       try {
-        await this.$auth.loginWith("local", {
+        await this.$auth.loginWith('local', {
           data: {
             username: this.email,
             password: this.password
           }
-        });
-        this.$router.push("/");
+        })
+        this.$router.push('/')
       } catch (e) {
-        this.error = e.message;
+        this.error = e.message
       }
     }
   }

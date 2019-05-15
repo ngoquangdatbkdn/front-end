@@ -1,0 +1,293 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "account": {
+        "id": 0,
+        "email": "datvt9312@gmail.com",
+        "username": "datvt9312",
+        "password": 12345678,
+        "role": "company"
+      },
+      "name": "Công ty ABC",
+      "scale": 0,
+      "businesses": [
+        {
+          "id": 0,
+          "name_vi": "Quản trị kinh doanh",
+          "name_ja": "経営学",
+          "desc": "Ngành quản trị kinh doanh"
+        }
+      ],
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+      "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "account": {
+        "id": 0,
+        "email": "datvt9312@gmail.com",
+        "username": "datvt9312",
+        "password": 12345678,
+        "role": "company"
+      },
+      "name": "Công ty ABC",
+      "scale": 0,
+      "businesses": [
+        {
+          "id": 0,
+          "name_vi": "Quản trị kinh doanh",
+          "name_ja": "経営学",
+          "desc": "Ngành quản trị kinh doanh"
+        }
+      ],
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+      "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "account": {
+        "id": 0,
+        "email": "datvt9312@gmail.com",
+        "username": "datvt9312",
+        "password": 12345678,
+        "role": "company"
+      },
+      "name": "Công ty ABC",
+      "scale": 0,
+      "businesses": [
+        {
+          "id": 0,
+          "name_vi": "Quản trị kinh doanh",
+          "name_ja": "経営学",
+          "desc": "Ngành quản trị kinh doanh"
+        }
+      ],
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+      "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "account": {
+        "id": 0,
+        "email": "datvt9312@gmail.com",
+        "username": "datvt9312",
+        "password": 12345678,
+        "role": "company"
+      },
+      "name": "Công ty ABC",
+      "scale": 0,
+      "businesses": [
+        {
+          "id": 0,
+          "name_vi": "Quản trị kinh doanh",
+          "name_ja": "経営学",
+          "desc": "Ngành quản trị kinh doanh"
+        }
+      ],
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+      "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "account": {
+        "id": 0,
+        "email": "datvt9312@gmail.com",
+        "username": "datvt9312",
+        "password": 12345678,
+        "role": "company"
+      },
+      "name": "Công ty ABC",
+      "scale": 0,
+      "businesses": [
+        {
+          "id": 0,
+          "name_vi": "Quản trị kinh doanh",
+          "name_ja": "経営学",
+          "desc": "Ngành quản trị kinh doanh"
+        }
+      ],
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+      "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "account": {
+        "id": 0,
+        "email": "datvt9312@gmail.com",
+        "username": "datvt9312",
+        "password": 12345678,
+        "role": "company"
+      },
+      "name": "Công ty ABC",
+      "scale": 0,
+      "businesses": [
+        {
+          "id": 0,
+          "name_vi": "Quản trị kinh doanh",
+          "name_ja": "経営学",
+          "desc": "Ngành quản trị kinh doanh"
+        }
+      ],
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+      "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "account": {
+        "id": 0,
+        "email": "datvt9312@gmail.com",
+        "username": "datvt9312",
+        "password": 12345678,
+        "role": "company"
+      },
+      "name": "Công ty ABC",
+      "scale": 0,
+      "businesses": [
+        {
+          "id": 0,
+          "name_vi": "Quản trị kinh doanh",
+          "name_ja": "経営学",
+          "desc": "Ngành quản trị kinh doanh"
+        }
+      ],
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+      "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "account": {
+        "id": 0,
+        "email": "datvt9312@gmail.com",
+        "username": "datvt9312",
+        "password": 12345678,
+        "role": "company"
+      },
+      "name": "Công ty ABC",
+      "scale": 0,
+      "businesses": [
+        {
+          "id": 0,
+          "name_vi": "Quản trị kinh doanh",
+          "name_ja": "経営学",
+          "desc": "Ngành quản trị kinh doanh"
+        }
+      ],
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+      "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+      "status": "untranslated"
+    }
+  ],
+  "meta": {}
+}

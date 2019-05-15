@@ -1,5 +1,4 @@
 
-
 export default class BusinessTypeModal {
   constructor() {}
   // static async fromDocumentReference(documentReference: firestore.DocumentReference) {

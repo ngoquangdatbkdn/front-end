@@ -5,7 +5,7 @@
         <div class="form-group col-12 col-sm-6">
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-search"></i></span>
+              <span class="input-group-text"><i class="fa fa-search"/></span>
             </div>
             <input
               :placeholder="$t('common.keyword')"
@@ -18,8 +18,8 @@
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
               <span class="input-group-text"
-                ><i class="fa fa-map-marker"></i
-              ></span>
+                ><i class="fa fa-map-marker"
+              /></span>
             </div>
             <input
               :placeholder="$t('common.all_major')"
@@ -42,21 +42,23 @@
       <div
         class="container row px-4 justify-content-between align-items-center"
       >
-        <h6 class="mb-0">{{ $t("job.job_list") }}</h6>
-          <nuxt-link
-                  :to="localePath('companies')"
-                  class="web-name  text-dark"
-                  exact
-          >
-              {{ $t("common.see_more") }}
-          </nuxt-link>
+        <h6 class="mb-0">
+          {{ $t("job.job_list") }}
+        </h6>
+        <nuxt-link
+          :to="localePath('companies')"
+          class="web-name  text-dark"
+          exact
+        >
+          {{ $t("common.see_more") }}
+        </nuxt-link>
       </div>
       <div class="container row">
         <job-list-item
-          v-for="(jobModal, index) of jobModalList"
+          v-for="(job, index) of jobs"
           :key="index"
-          :jobModal="jobModal"
-        ></job-list-item>
+          :job="job"
+        />
       </div>
     </section>
 
@@ -66,15 +68,19 @@
       <div
         class="container row px-4 justify-content-between align-items-center"
       >
-        <h6 class="mb-0">{{ $t("common.company_list") }}</h6>
-        <p class="text-primary mb-0">{{ $t("common.see_more") }}</p>
+        <h6 class="mb-0">
+          {{ $t("common.company_list") }}
+        </h6>
+        <p class="text-primary mb-0">
+          {{ $t("common.see_more") }}
+        </p>
       </div>
       <div class="container row">
         <company-list-item
-          v-for="(companyModal, index) of companyModalList"
+          v-for="(company, index) of companies"
           :key="index"
-          :companyModal="companyModal"
-        ></company-list-item>
+          :company="company"
+        />
       </div>
     </section>
   </div>
@@ -85,16 +91,8 @@ import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import { State, Action, Getter, namespace } from "vuex-class";
 
-import JobModal from "~/modals/job_modal";
-import CityModal from "~/modals/city_modal";
-import DistrictModal from "~/modals/district_modal";
-import CompanyModal from "~/modals/company_modal";
 import JobListItem from "~/components/JobListItem.vue";
 import CompanyListItem from "~/components/CompanyListItem.vue";
-
-// import { fbAuth } from "~/plugins/firebase";
-
-import CompanyService from "~/services/company_service";
 
 const UserInfo = namespace("userInfo");
 const LoginModal = namespace("loginModal");
@@ -107,68 +105,18 @@ const Job = namespace("job");
     CompanyListItem
   },
   async fetch({ store, params }) {
-    await store.dispatch("company/getCompanyList", {
-      limitation: 6,
-      wheres: [
-        {
-          field: "shouldShow",
-          operator: "==",
-          value: true
-        }
-      ]
-    });
-    const cityModal: CityModal = new CityModal();
-    cityModal.ja = "Da Nang";
-    cityModal.vi = "Da Nang";
-    const districtModal: DistrictModal = new DistrictModal();
-    districtModal.vi = "Hai Chau";
-    districtModal.ja = "Hai Chau";
-    // jobModalList
-    const jobModal: JobModal = new JobModal();
-    jobModal.name_ja = "Lập trình viên React";
-    jobModal.name_vi = "Lập trình viên React";
-    jobModal.city = cityModal;
-    jobModal.district = districtModal;
-    jobModal.minSalary = 30000;
-    jobModal.maxSalary = 70000;
-    await store.dispatch("job/addJobToList", jobModal);
-    await store.dispatch("job/addJobToList", jobModal);
-    await store.dispatch("job/addJobToList", jobModal);
-    await store.dispatch("job/addJobToList", jobModal);
-    await store.dispatch("job/addJobToList", jobModal);
-    await store.dispatch("job/addJobToList", jobModal);
-    await store.dispatch("job/addJobToList", jobModal);
-    await store.dispatch("job/addJobToList", jobModal);
-    await store.dispatch("job/addJobToList", jobModal);
-    // await store.dispatch("job/getJobList", {
-    //     limitation: 6,
-    //     // wheres: [
-    //     //     {
-    //     //         field: "shouldShow",
-    //     //         operator: "==",
-    //     //         value: true
-    //     //     }
-    //     // ]
-    // });
+    await store.dispatch("company/getCompanies", {});
+    await store.dispatch("job/getJobs", {});
   }
 })
 export default class Index extends Vue {
   @LoginModal.Action setShouldOpen;
-  @Company.State companyModalList;
-  @Job.State jobModalList;
-  // @Company.Action getCompanyList;
-  // @UserInfo.Action set
+  @Company.State companies;
+  @Job.State jobs;
   async mounted() {
-    // if(this.$route.hash === "#login"){
-    //    this.setShouldOpen(true)
-    // }
-    // const companyService = CompanyService.getInstance();
-    // const companyModal: CompanyModal | null = await companyService.getCompanyByID("ba5EQozBS9HkXmyTlpiF")
-    // console.log('companyModal');
-    // console.log(companyModal);
+    // console.log("companies " + JSON.stringify(this.companies));
+    console.log("jobs " + JSON.stringify(this.jobs));
   }
-  // jobModalList: JobModal[] = [];
-  // companyModalList: CompanyModal[] = [];
 }
 </script>
 

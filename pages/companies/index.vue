@@ -6,15 +6,15 @@
           class="col-12 col-lg-3  p-0  m-2"
           :options="contractTypes"
           :clearable="false"
-          :clearSearchOnSelect="false"
+          :clear-search-on-select="false"
           :searchable="false"
           :value="selectedContractType"
           @input="setSelectedContractType"
         >
           <template slot="option" slot-scope="option">
             <div
-              class="option d-flex flex-row justify-content-between align-items-center"
               v-if="option.label === selectedContractType.label"
+              class="option d-flex flex-row justify-content-between align-items-center"
             >
               <span> {{ option.label }} ({{ option.amount }}) </span>
               <i class="fa fa-check" />
@@ -32,23 +32,23 @@
         <select-slider
           class="col-12 col-lg-3 p-0  m-2"
           :searchable="false"
-          :closeOnSelect="false"
+          :close-on-select="false"
           :clearable="false"
-          :clearSearchOnSelect="false"
+          :clear-search-on-select="false"
           :range="salaryRangeLimitation"
           :value="salaryRange"
           @input="setSalaryRange"
-        ></select-slider>
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { Component } from "vue-property-decorator";
+import Vue from 'vue'
+import { Component } from 'vue-property-decorator'
 
-import SelectSlider from "~/components/SelectSlider.vue";
+import SelectSlider from '~/components/SelectSlider.vue'
 @Component({
   components: {
     SelectSlider
@@ -58,19 +58,19 @@ export default class Index extends Vue {
   salaryRange = [0, 30000];
   salaryRangeLimitation = [0, 90000];
   contractTypes = [
-    { label: "Any type", amount: 214 },
-    { label: "Full time", amount: 200 },
-    { label: "Part time", amount: 10 },
-    { label: "Contract", amount: 3 },
-    { label: "Temporary", amount: 1 }
+    { label: 'Any type', amount: 214 },
+    { label: 'Full time', amount: 200 },
+    { label: 'Part time', amount: 10 },
+    { label: 'Contract', amount: 3 },
+    { label: 'Temporary', amount: 1 }
   ];
-  selectedContractType = { label: "Any type", amount: 214 };
+  selectedContractType = { label: 'Any type', amount: 214 };
   setSelectedContractType(contractType) {
-    console.log("contractType " + JSON.stringify(contractType));
-    if (this) this.selectedContractType = { ...contractType };
+    console.log('contractType ' + JSON.stringify(contractType))
+    if (this) this.selectedContractType = { ...contractType }
   }
   setSalaryRange(salaryRange: number[]) {
-    this.salaryRange = [...salaryRange];
+    this.salaryRange = [...salaryRange]
   }
   async mounted() {}
 }

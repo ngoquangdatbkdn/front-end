@@ -1,10 +1,10 @@
 <template xmlns="http://www.w3.org/1999/html">
   <tabs fill class="flex-column flex-md-row container ">
     <tab id="company-info" :name="$t('company.company_info')">
-      <company-detail-description></company-detail-description>
+      <company-detail-description />
     </tab>
     <tab id="job-list" :name="$t('job.job_list')">
-      <company-detail-job-list></company-detail-job-list>
+      <company-detail-job-list />
     </tab>
   </tabs>
 </template>
@@ -18,30 +18,30 @@
     <!--</p>-->
 <!--</tab>-->
 <script lang="ts">
-import { Vue, Component, Prop } from "vue-property-decorator";
-import {  namespace } from "vuex-class";
-import { Tabs, Tab } from "vue-tabs-component";
-import CompanyDetailDescription from "~/components/CompanyDetailDescription.vue";
-import CompanyDetailJobList from "~/components/CompanyDetailJobList.vue";
+import { Vue, Component, Prop } from 'vue-property-decorator'
+import { namespace } from 'vuex-class'
+import { Tabs, Tab } from 'vue-tabs-component'
+import CompanyDetailDescription from '~/components/CompanyDetailDescription.vue'
+import CompanyDetailJobList from '~/components/CompanyDetailJobList.vue'
 
-const Company = namespace("company");
-const UserInfo = namespace("userInfo");
+const Company = namespace('company')
+const UserInfo = namespace('userInfo')
 
 @Component({
   components: {
     Tabs,
     Tab,
     CompanyDetailDescription,
-      CompanyDetailJobList
+    CompanyDetailJobList
   }
 })
 export default class CompanyDetailTabs extends Vue {
     @Company.State companyModal;
     @UserInfo.State userInfo;
-    get shouldShowTranslatorList(): boolean{
-        if(!this.userInfo) return false;
-        if(this.userInfo.companyID !== this.companyModal.id) return false;
-        return true
+    get shouldShowTranslatorList(): boolean {
+      if (!this.userInfo) return false
+      if (this.userInfo.companyID !== this.companyModal.id) return false
+      return true
     }
 }
 </script>

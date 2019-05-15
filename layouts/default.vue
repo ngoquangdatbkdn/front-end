@@ -9,7 +9,7 @@
         >
           JAPAN WORD
         </nuxt-link>
-        <div class="row" slot="content-header" slot-scope="{ closeMenu }">
+        <div slot="content-header" slot-scope="{ closeMenu }" class="row">
           <div class="col-6 collapse-brand">
             <nuxt-link
               :to="localePath('index')"
@@ -20,13 +20,13 @@
             </nuxt-link>
           </div>
           <div class="col-6 collapse-close secondary">
-            <close-button @click="closeMenu"></close-button>
+            <close-button @click="closeMenu" />
           </div>
         </div>
 
         <ul class="navbar-nav ml-lg-auto">
           <li v-if="isNotInSession || isCompanySession" class="nav-item">
-            <a @click="onNavigateToCompany()" class="nav-link nav-link-icon">
+            <a class="nav-link nav-link-icon" @click="onNavigateToCompany()">
               {{ $t("common.company") }}
             </a>
           </li>
@@ -37,9 +37,9 @@
           </li>
           <li v-if="isNotInSession || isCandidateSession" class="nav-item">
             <a
-              @click="onNavigateToCandidate()"
               class="nav-link nav-link-icon"
               href="#"
+              @click="onNavigateToCandidate()"
             >
               {{ $t("common.create_cv") }}
             </a>
@@ -48,7 +48,9 @@
             v-if="userInfo"
             class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"
           >
-            <p class="mb-0">{{ userInfo.email }}</p>
+            <p class="mb-0">
+              {{ userInfo.email }}
+            </p>
           </li>
           <li class="nav-link">
             <base-dropdown>
@@ -56,8 +58,8 @@
                 <img
                   v-if="$i18n.locale === 'vi'"
                   src="~/assets/icons/vietnam.png"
-                />
-                <img v-else src="~/assets/icons/japan.png" />
+                >
+                <img v-else src="~/assets/icons/japan.png">
               </a>
               <nuxt-link
                 :to="switchLocalePath('vi')"
@@ -65,7 +67,7 @@
                 exact
                 class="dropdown-item"
               >
-                <img src="~/assets/icons/vietnam.png" />
+                <img src="~/assets/icons/vietnam.png">
                 {{ $t("common.vietnamese") }}
               </nuxt-link>
               <nuxt-link
@@ -74,7 +76,7 @@
                 exact
                 class="dropdown-item"
               >
-                <img src="~/assets/icons/japan.png" />
+                <img src="~/assets/icons/japan.png">
                 {{ $t("common.japanese") }}
               </nuxt-link>
             </base-dropdown>
@@ -86,7 +88,7 @@
               v-if="!userInfo"
               class="nav-item"
               type="default"
-              v-on:click="openRegisterModal"
+              @click="openRegisterModal"
             >
               {{ $t("authentication.register") }}
             </base-button>
@@ -108,7 +110,7 @@
               class="nav-item"
               outline
               type="primary"
-              v-on:click="openLoginModal"
+              @click="openLoginModal"
             >
               {{ $t("authentication.sign_in") }}
             </base-button>
@@ -118,27 +120,27 @@
     </div>
 
     <modal
-      v-bind:show="shouldOpen"
-      v-on:update:show="setShouldOpen($event)"
+      :show="shouldOpen"
       body-classes="p-0"
       modal-classes="modal-dialog-centered"
+      @update:show="setShouldOpen($event)"
     >
       <login-form />
     </modal>
     <modal
-      v-bind:show="shouldOpenRegister"
-      v-on:update:show="setShouldOpenRegister($event)"
+      :show="shouldOpenRegister"
       body-classes="p-0"
       modal-classes="modal-dialog-centered"
+      @update:show="setShouldOpenRegister($event)"
     >
       <register-form />
     </modal>
 
     <modal
-      v-bind:show="shouldOpenConfirmation"
-      v-on:update:show="setShouldOpenConfirmation($event)"
+      :show="shouldOpenConfirmation"
       body-classes="p-0"
       modal-classes="modal-dialog-centered"
+      @update:show="setShouldOpenConfirmation($event)"
     >
       <confirmation-form />
     </modal>
@@ -152,25 +154,25 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
-import { State, Action, Getter, namespace } from "vuex-class";
+import { Component, Vue, Watch } from 'vue-property-decorator'
+import { State, Action, Getter, namespace } from 'vuex-class'
 
-import BaseNav from "~/argon-components/BaseNav.vue";
-import BaseDropdown from "~/argon-components/BaseDropdown.vue";
-import BaseButton from "~/argon-components/BaseButton.vue";
-import CloseButton from "~/argon-components/CloseButton.vue";
-import Modal from "~/argon-components/Modal.vue";
+import BaseNav from '~/argon-components/BaseNav.vue'
+import BaseDropdown from '~/argon-components/BaseDropdown.vue'
+import BaseButton from '~/argon-components/BaseButton.vue'
+import CloseButton from '~/argon-components/CloseButton.vue'
+import Modal from '~/argon-components/Modal.vue'
 
-import LoginForm from "~/components/LoginForm.vue";
-import RegisterForm from "~/components/RegisterForm.vue";
-import ConfirmationForm from "~/components/ConfirmationForm.vue";
+import LoginForm from '~/components/LoginForm.vue'
+import RegisterForm from '~/components/RegisterForm.vue'
+import ConfirmationForm from '~/components/ConfirmationForm.vue'
 
-const LoginModal = namespace("loginModal");
-const RegisterModal = namespace("registerModal");
-const ConfirmationModal = namespace("confirmationModal");
-const UserInfo = namespace("userInfo");
+import AuthenticationService from '~/services/authentication_service'
 
-import AuthenticationService from "~/services/authentication_service";
+const LoginModal = namespace('loginModal')
+const RegisterModal = namespace('registerModal')
+const ConfirmationModal = namespace('confirmationModal')
+const UserInfo = namespace('userInfo')
 
 @Component({
   components: {
@@ -196,87 +198,89 @@ export default class DefaultLayout extends Vue {
   @ConfirmationModal.State shouldOpenConfirmation;
   @ConfirmationModal.Action setShouldOpenConfirmation;
 
-  @Watch("$route.hash")
+  @Watch('$route.hash')
   onCurrentRouteHasChange(newValue: string, oldValue: string) {
-    if (newValue !== oldValue && newValue === "#login") {
+    if (newValue !== oldValue && newValue === '#login') {
       if (this.shouldOpen === false) {
-        this.setShouldOpen(true);
+        this.setShouldOpen(true)
       }
     }
   }
 
-  @Watch("shouldOpen")
+  @Watch('shouldOpen')
   onShouldOpenValueChange(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue && newValue === false) {
-      this.cleanLoginHashInRouteFullPath();
+      this.cleanLoginHashInRouteFullPath()
     }
     // this.$router.replace('/')
   }
   get isNotInSession(): boolean {
-    if (!this.userInfo) return true;
-    return false;
+    if (!this.userInfo) return true
+    return false
   }
   get isCompanySession(): boolean {
-    if (!this.userInfo) return false;
-    if (this.userInfo.role !== "company") return false;
-    return true;
+    if (!this.userInfo) return false
+    if (this.userInfo.role !== 'company') return false
+    return true
   }
   get isCandidateSession(): boolean {
-    if (!this.userInfo) return false;
-    if (this.userInfo.role !== "candidate") return false;
-    return true;
+    if (!this.userInfo) return false
+    if (this.userInfo.role !== 'candidate') return false
+    return true
   }
   async onSignOut() {
-    const authenticationService: AuthenticationService = AuthenticationService.getInstance();
+    const authenticationService: AuthenticationService = AuthenticationService.getInstance()
     // await authenticationService.signOut();
     this.$router.replace(
       (this as any).localePath({
-        name: "index"
+        name: 'index'
       })
-    );
+    )
   }
 
   openRegisterModal() {
-    this.setShouldOpenRegister(true);
+    this.setShouldOpenRegister(true)
   }
   cleanLoginHashInRouteFullPath(): string {
     const cleanRoutePath: string = this.$router.currentRoute.fullPath.replace(
       this.$router.currentRoute.hash,
-      ""
-    );
-    this.$router.replace(cleanRoutePath);
-    return cleanRoutePath;
+      ''
+    )
+    this.$router.replace(cleanRoutePath)
+    return cleanRoutePath
   }
   openLoginModal() {
     // if (this.$router.currentRoute.hash === "#login") {
-    const cleanRoutePath: string = this.cleanLoginHashInRouteFullPath();
+    const cleanRoutePath: string = this.cleanLoginHashInRouteFullPath()
     // }
-    const loginRoutePath: string = cleanRoutePath + "#login";
-    this.$router.replace(loginRoutePath);
+    const loginRoutePath: string = cleanRoutePath + '#login'
+    this.$router.replace(loginRoutePath)
   }
   onNavigateToCompany() {
-    if (this.userInfo && this.userInfo.companyID)
+    if (this.userInfo && this.userInfo.companyID) {
       return this.$router.push(
         (this as any).localePath({
-          name: "companies-id",
+          name: 'companies-id',
           params: { id: this.userInfo.companyID }
         })
-      );
+      )
+    }
     return this.$router.push(
-      (this as any).localePath({ name: "companies-create" })
-    );
+      (this as any).localePath({ name: 'companies-create' })
+    )
   }
   onNavigateToCandidate() {
-    if (this.userInfo && this.userInfo.companyID)
+    if (this.userInfo && this.userInfo.companyID) {
       return this.$router.push(
         (this as any).localePath({
-          name: "candidates-id",
+          name: 'candidates-id',
           params: { id: this.userInfo.companyID }
         })
-      );
+      )
+    }
     return this.$router.push(
-      (this as any).localePath({ name: "candidates-create" })
-    );
+      (this as any).localePath({ name: 'candidates-create' })
+    )
   }
 }
 </script>
@@ -295,7 +299,7 @@ export default class DefaultLayout extends Vue {
 }
 
 .navigation-bar {
-  position: fixed!important;
+  position: fixed !important;
   width: 100vw;
   z-index: 2;
 }

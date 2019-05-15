@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import VeeValidate from 'vee-validate';
+import VeeValidate from 'vee-validate'
 
-Vue.use(VeeValidate,{
-    inject: true,
-    // fieldsBagName: 'veeFields'
-});
+Vue.use(VeeValidate, {
+  inject: true
+  // fieldsBagName: 'veeFields'
+})

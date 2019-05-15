@@ -1,4 +1,4 @@
-import CandidateModal from "~/modals/candidate_modal";
+import CandidateModal from '~/modals/candidate_modal'
 
 export interface CandidateState {
   candidateModal: CandidateModal;
@@ -9,7 +9,7 @@ export interface CandidateState {
 const state = (): CandidateState => ({
   candidateModal: new CandidateModal(),
   candidateModalList: [],
-  candidateID: ""
-});
+  candidateID: ''
+})
 
-export default state;
+export default state

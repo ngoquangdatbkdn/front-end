@@ -1,8 +1,8 @@
 // import { firestore } from "firebase/app";
 
-import CityModal from "~/modals/city_modal";
-import DistrictModal from "~/modals/district_modal";
-import WardModal from "~/modals/ward_modal";
+import CityModal from '~/modals/city_modal'
+import DistrictModal from '~/modals/district_modal'
+import WardModal from '~/modals/ward_modal'
 import ContractTypeModal from '~/modals/contract_type_modal'
 
 export default class JobModal {

@@ -3,17 +3,15 @@
 // import { fireDb } from "~/plugins/firebase";
 // import { fbAuth } from "~/plugins/firebase";
 
-import FirebaseCollection from "~/enumerations/firebase_collection";
-
 export default class AuthenticationService {
   private static instance: AuthenticationService;
   private constructor() {}
 
   static getInstance() {
     if (!AuthenticationService.instance) {
-      AuthenticationService.instance = new AuthenticationService();
+      AuthenticationService.instance = new AuthenticationService()
     }
-    return AuthenticationService.instance;
+    return AuthenticationService.instance
   }
 
   async sendEmailVerification() {

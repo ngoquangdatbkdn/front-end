@@ -2,18 +2,16 @@
 //
 // import { fireDb } from "~/plugins/firebase";
 
-import WardModal from "~/modals/business_type_modal";
-
-import FirebaseCollection from "~/enumerations/firebase_collection";
+import WardModal from '~/modals/business_type_modal'
 
 export default class WardService {
   private static instance: WardService;
   private constructor() {}
   static getInstance() {
     if (!WardService.instance) {
-      WardService.instance = new WardService();
+      WardService.instance = new WardService()
     }
-    return WardService.instance;
+    return WardService.instance
   }
 
   // get options(): firestore.GetOptions | undefined {

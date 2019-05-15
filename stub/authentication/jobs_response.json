@@ -1,0 +1,537 @@
+{
+  "data": [
+    {
+      "id": 0,
+      "company": {
+        "id": 0,
+        "account": {
+          "id": 0,
+          "email": "datvt9312@gmail.com",
+          "username": "datvt9312",
+          "password": 12345678,
+          "role": "company"
+        },
+        "name": "Công ty ABC",
+        "scale": 0,
+        "businesses": [
+          {
+            "id": 0,
+            "name_vi": "Quản trị kinh doanh",
+            "name_ja": "経営学",
+            "desc": "Ngành quản trị kinh doanh"
+          }
+        ],
+        "city": {
+          "id": 0,
+          "name_vi": "Hà Nội",
+          "name_ja": "ハノイ",
+          "desc": "Thành Phố Hà Nội"
+        },
+        "district": {
+          "id": 0,
+          "name_vi": "Hoàn Kiếm",
+          "name_ja": "ホアンキエム",
+          "desc": "Quận Hoàn Kiếm"
+        },
+        "address": "Số 55, Yết Kiêu",
+        "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+        "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+        "status": "untranslated"
+      },
+      "name": "Lập trình viên XYZ",
+      "contract": {
+        "id": 0,
+        "name_vi": "Toàn thời gian",
+        "name_ja": "常勤職",
+        "desc": "Công việc toàn thời gian"
+      },
+      "business": {
+        "id": 0,
+        "name_vi": "Quản trị kinh doanh",
+        "name_ja": "経営学",
+        "desc": "Ngành quản trị kinh doanh"
+      },
+      "level": {
+        "id": 0,
+        "name_vi": "Quản lý",
+        "name_ja": "管理人",
+        "desc": "Cấp bậc quản lý"
+      },
+      "japanese_level": 1,
+      "description": "私の名前はDatです",
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "min_salary": 0,
+      "max_salary": 0,
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "company": {
+        "id": 0,
+        "account": {
+          "id": 0,
+          "email": "datvt9312@gmail.com",
+          "username": "datvt9312",
+          "password": 12345678,
+          "role": "company"
+        },
+        "name": "Công ty ABC",
+        "scale": 0,
+        "businesses": [
+          {
+            "id": 0,
+            "name_vi": "Quản trị kinh doanh",
+            "name_ja": "経営学",
+            "desc": "Ngành quản trị kinh doanh"
+          }
+        ],
+        "city": {
+          "id": 0,
+          "name_vi": "Hà Nội",
+          "name_ja": "ハノイ",
+          "desc": "Thành Phố Hà Nội"
+        },
+        "district": {
+          "id": 0,
+          "name_vi": "Hoàn Kiếm",
+          "name_ja": "ホアンキエム",
+          "desc": "Quận Hoàn Kiếm"
+        },
+        "address": "Số 55, Yết Kiêu",
+        "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+        "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+        "status": "untranslated"
+      },
+      "name": "Lập trình viên XYZ",
+      "contract": {
+        "id": 0,
+        "name_vi": "Toàn thời gian",
+        "name_ja": "常勤職",
+        "desc": "Công việc toàn thời gian"
+      },
+      "business": {
+        "id": 0,
+        "name_vi": "Quản trị kinh doanh",
+        "name_ja": "経営学",
+        "desc": "Ngành quản trị kinh doanh"
+      },
+      "level": {
+        "id": 0,
+        "name_vi": "Quản lý",
+        "name_ja": "管理人",
+        "desc": "Cấp bậc quản lý"
+      },
+      "japanese_level": 1,
+      "description": "私の名前はDatです",
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "min_salary": 0,
+      "max_salary": 0,
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "company": {
+        "id": 0,
+        "account": {
+          "id": 0,
+          "email": "datvt9312@gmail.com",
+          "username": "datvt9312",
+          "password": 12345678,
+          "role": "company"
+        },
+        "name": "Công ty ABC",
+        "scale": 0,
+        "businesses": [
+          {
+            "id": 0,
+            "name_vi": "Quản trị kinh doanh",
+            "name_ja": "経営学",
+            "desc": "Ngành quản trị kinh doanh"
+          }
+        ],
+        "city": {
+          "id": 0,
+          "name_vi": "Hà Nội",
+          "name_ja": "ハノイ",
+          "desc": "Thành Phố Hà Nội"
+        },
+        "district": {
+          "id": 0,
+          "name_vi": "Hoàn Kiếm",
+          "name_ja": "ホアンキエム",
+          "desc": "Quận Hoàn Kiếm"
+        },
+        "address": "Số 55, Yết Kiêu",
+        "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+        "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+        "status": "untranslated"
+      },
+      "name": "Lập trình viên XYZ",
+      "contract": {
+        "id": 0,
+        "name_vi": "Toàn thời gian",
+        "name_ja": "常勤職",
+        "desc": "Công việc toàn thời gian"
+      },
+      "business": {
+        "id": 0,
+        "name_vi": "Quản trị kinh doanh",
+        "name_ja": "経営学",
+        "desc": "Ngành quản trị kinh doanh"
+      },
+      "level": {
+        "id": 0,
+        "name_vi": "Quản lý",
+        "name_ja": "管理人",
+        "desc": "Cấp bậc quản lý"
+      },
+      "japanese_level": 1,
+      "description": "私の名前はDatです",
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "min_salary": 0,
+      "max_salary": 0,
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "company": {
+        "id": 0,
+        "account": {
+          "id": 0,
+          "email": "datvt9312@gmail.com",
+          "username": "datvt9312",
+          "password": 12345678,
+          "role": "company"
+        },
+        "name": "Công ty ABC",
+        "scale": 0,
+        "businesses": [
+          {
+            "id": 0,
+            "name_vi": "Quản trị kinh doanh",
+            "name_ja": "経営学",
+            "desc": "Ngành quản trị kinh doanh"
+          }
+        ],
+        "city": {
+          "id": 0,
+          "name_vi": "Hà Nội",
+          "name_ja": "ハノイ",
+          "desc": "Thành Phố Hà Nội"
+        },
+        "district": {
+          "id": 0,
+          "name_vi": "Hoàn Kiếm",
+          "name_ja": "ホアンキエム",
+          "desc": "Quận Hoàn Kiếm"
+        },
+        "address": "Số 55, Yết Kiêu",
+        "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+        "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+        "status": "untranslated"
+      },
+      "name": "Lập trình viên XYZ",
+      "contract": {
+        "id": 0,
+        "name_vi": "Toàn thời gian",
+        "name_ja": "常勤職",
+        "desc": "Công việc toàn thời gian"
+      },
+      "business": {
+        "id": 0,
+        "name_vi": "Quản trị kinh doanh",
+        "name_ja": "経営学",
+        "desc": "Ngành quản trị kinh doanh"
+      },
+      "level": {
+        "id": 0,
+        "name_vi": "Quản lý",
+        "name_ja": "管理人",
+        "desc": "Cấp bậc quản lý"
+      },
+      "japanese_level": 1,
+      "description": "私の名前はDatです",
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "min_salary": 0,
+      "max_salary": 0,
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "company": {
+        "id": 0,
+        "account": {
+          "id": 0,
+          "email": "datvt9312@gmail.com",
+          "username": "datvt9312",
+          "password": 12345678,
+          "role": "company"
+        },
+        "name": "Công ty ABC",
+        "scale": 0,
+        "businesses": [
+          {
+            "id": 0,
+            "name_vi": "Quản trị kinh doanh",
+            "name_ja": "経営学",
+            "desc": "Ngành quản trị kinh doanh"
+          }
+        ],
+        "city": {
+          "id": 0,
+          "name_vi": "Hà Nội",
+          "name_ja": "ハノイ",
+          "desc": "Thành Phố Hà Nội"
+        },
+        "district": {
+          "id": 0,
+          "name_vi": "Hoàn Kiếm",
+          "name_ja": "ホアンキエム",
+          "desc": "Quận Hoàn Kiếm"
+        },
+        "address": "Số 55, Yết Kiêu",
+        "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+        "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+        "status": "untranslated"
+      },
+      "name": "Lập trình viên XYZ",
+      "contract": {
+        "id": 0,
+        "name_vi": "Toàn thời gian",
+        "name_ja": "常勤職",
+        "desc": "Công việc toàn thời gian"
+      },
+      "business": {
+        "id": 0,
+        "name_vi": "Quản trị kinh doanh",
+        "name_ja": "経営学",
+        "desc": "Ngành quản trị kinh doanh"
+      },
+      "level": {
+        "id": 0,
+        "name_vi": "Quản lý",
+        "name_ja": "管理人",
+        "desc": "Cấp bậc quản lý"
+      },
+      "japanese_level": 1,
+      "description": "私の名前はDatです",
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "min_salary": 0,
+      "max_salary": 0,
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "company": {
+        "id": 0,
+        "account": {
+          "id": 0,
+          "email": "datvt9312@gmail.com",
+          "username": "datvt9312",
+          "password": 12345678,
+          "role": "company"
+        },
+        "name": "Công ty ABC",
+        "scale": 0,
+        "businesses": [
+          {
+            "id": 0,
+            "name_vi": "Quản trị kinh doanh",
+            "name_ja": "経営学",
+            "desc": "Ngành quản trị kinh doanh"
+          }
+        ],
+        "city": {
+          "id": 0,
+          "name_vi": "Hà Nội",
+          "name_ja": "ハノイ",
+          "desc": "Thành Phố Hà Nội"
+        },
+        "district": {
+          "id": 0,
+          "name_vi": "Hoàn Kiếm",
+          "name_ja": "ホアンキエム",
+          "desc": "Quận Hoàn Kiếm"
+        },
+        "address": "Số 55, Yết Kiêu",
+        "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+        "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+        "status": "untranslated"
+      },
+      "name": "Lập trình viên XYZ",
+      "contract": {
+        "id": 0,
+        "name_vi": "Toàn thời gian",
+        "name_ja": "常勤職",
+        "desc": "Công việc toàn thời gian"
+      },
+      "business": {
+        "id": 0,
+        "name_vi": "Quản trị kinh doanh",
+        "name_ja": "経営学",
+        "desc": "Ngành quản trị kinh doanh"
+      },
+      "level": {
+        "id": 0,
+        "name_vi": "Quản lý",
+        "name_ja": "管理人",
+        "desc": "Cấp bậc quản lý"
+      },
+      "japanese_level": 1,
+      "description": "私の名前はDatです",
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "min_salary": 0,
+      "max_salary": 0,
+      "status": "untranslated"
+    },
+    {
+      "id": 0,
+      "company": {
+        "id": 0,
+        "account": {
+          "id": 0,
+          "email": "datvt9312@gmail.com",
+          "username": "datvt9312",
+          "password": 12345678,
+          "role": "company"
+        },
+        "name": "Công ty ABC",
+        "scale": 0,
+        "businesses": [
+          {
+            "id": 0,
+            "name_vi": "Quản trị kinh doanh",
+            "name_ja": "経営学",
+            "desc": "Ngành quản trị kinh doanh"
+          }
+        ],
+        "city": {
+          "id": 0,
+          "name_vi": "Hà Nội",
+          "name_ja": "ハノイ",
+          "desc": "Thành Phố Hà Nội"
+        },
+        "district": {
+          "id": 0,
+          "name_vi": "Hoàn Kiếm",
+          "name_ja": "ホアンキエム",
+          "desc": "Quận Hoàn Kiếm"
+        },
+        "address": "Số 55, Yết Kiêu",
+        "logo": "https://i.ya-webdesign.com/images/adidas-logo-png-4.png",
+        "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
+        "status": "untranslated"
+      },
+      "name": "Lập trình viên XYZ",
+      "contract": {
+        "id": 0,
+        "name_vi": "Toàn thời gian",
+        "name_ja": "常勤職",
+        "desc": "Công việc toàn thời gian"
+      },
+      "business": {
+        "id": 0,
+        "name_vi": "Quản trị kinh doanh",
+        "name_ja": "経営学",
+        "desc": "Ngành quản trị kinh doanh"
+      },
+      "level": {
+        "id": 0,
+        "name_vi": "Quản lý",
+        "name_ja": "管理人",
+        "desc": "Cấp bậc quản lý"
+      },
+      "japanese_level": 1,
+      "description": "私の名前はDatです",
+      "city": {
+        "id": 0,
+        "name_vi": "Hà Nội",
+        "name_ja": "ハノイ",
+        "desc": "Thành Phố Hà Nội"
+      },
+      "district": {
+        "id": 0,
+        "name_vi": "Hoàn Kiếm",
+        "name_ja": "ホアンキエム",
+        "desc": "Quận Hoàn Kiếm"
+      },
+      "address": "Số 55, Yết Kiêu",
+      "min_salary": 0,
+      "max_salary": 0,
+      "status": "untranslated"
+    }
+  ],
+  "meta": {}
+}

@@ -1,43 +1,43 @@
 <template>
   <div
+    v-click-outside="onClose"
     :dir="dir"
     class="dropdown v-select"
     :class="dropdownClasses"
-    v-click-outside="onClose"
   >
     <div ref="toggle" class="dropdown-toggle" @click="toggleDropdown">
-      <div class="vs__selected-options" ref="selectedOptions">
+      <div ref="selectedOptions" class="vs__selected-options">
         <input
           ref="search"
           :value="`¥${value[0]} - ¥${value[1]}`"
-          @keydown.delete="maybeDeleteValue"
-          @keyup.esc="onEscape"
-          @keydown.up.prevent="typeAheadUp"
-          @keydown.down.prevent="typeAheadDown"
-          @keydown.enter.prevent="typeAheadSelect"
-          @keydown.tab="onTab"
-          @input="search = $event.target.value"
           type="search"
           class="form-control"
           :autocomplete="autocomplete"
           :disabled="disabled"
+          @keydown.delete="maybeDeleteValue"
           :placeholder="searchPlaceholder"
+          @keyup.esc="onEscape"
           :tabindex="tabindex"
+          @keydown.up.prevent="typeAheadUp"
           :readonly="!searchable"
+          @keydown.down.prevent="typeAheadDown"
           :id="inputId"
+          @keydown.enter.prevent="typeAheadSelect"
           role="combobox"
+          @keydown.tab="onTab"
           :aria-expanded="dropdownOpen"
+          @input="search = $event.target.value"
           aria-label="Search for option"
-        />
+        >
       </div>
       <div class="vs__actions">
         <button
           v-show="showClearButton"
           :disabled="disabled"
-          @click="clearSelection"
           type="button"
           class="clear"
           title="Clear selection"
+          @click="clearSelection"
         >
           <span aria-hidden="true">&times;</span>
         </button>
@@ -47,16 +47,18 @@
           ref="openIndicator"
           role="presentation"
           class="open-indicator"
-        ></i>
+        />
 
         <slot name="spinner">
-          <div class="spinner" v-show="mutableLoading">Loading...</div>
+          <div v-show="mutableLoading" class="spinner">
+            Loading...
+          </div>
         </slot>
       </div>
     </div>
 
     <transition :name="transition">
-      <div class="dropdown-menu p-3 pt-5" v-if="dropdownOpen">
+      <div v-if="dropdownOpen" class="dropdown-menu p-3 pt-5">
         <vue-slider
           v-model="innerValue"
           :contained="true"
@@ -64,7 +66,7 @@
           :max="range[1]"
           :tooltip="'always'"
           :tooltip-formatter="formatter"
-        ></vue-slider>
+        />
         <div class=" d-flex flex-row justify-content-between px-2">
           <span>{{ "¥" + range[0] }}</span>
           <span>{{ "¥" + range[1] }}</span>
@@ -73,7 +75,7 @@
         <div
           class="d-flex flex-row justify-content-end align-items-center mt-4"
         >
-          <a @click="onSearchBlur" class="nav-link nav-link-icon">
+          <a class="nav-link nav-link-icon" @click="onSearchBlur">
             {{ $t("common.cancel") }}
           </a>
           <base-button
@@ -91,7 +93,7 @@
 </template>
 
 <script type="text/babel">
-import "vue-slider-component/theme/default.css";
+import 'vue-slider-component/theme/default.css'
 export default {
   props: {
     range: {
@@ -117,7 +119,7 @@ export default {
     options: {
       type: Array,
       default() {
-        return [];
+        return []
       }
     },
 
@@ -146,7 +148,7 @@ export default {
      */
     maxHeight: {
       type: String,
-      default: "400px"
+      default: '400px'
     },
 
     /**
@@ -173,7 +175,7 @@ export default {
      */
     placeholder: {
       type: String,
-      default: ""
+      default: ''
     },
 
     /**
@@ -183,7 +185,7 @@ export default {
      */
     transition: {
       type: String,
-      default: "fade"
+      default: 'fade'
     },
 
     /**
@@ -212,7 +214,7 @@ export default {
      */
     label: {
       type: String,
-      default: "label"
+      default: 'label'
     },
 
     /**
@@ -222,7 +224,7 @@ export default {
      */
     autocomplete: {
       type: String,
-      default: "off"
+      default: 'off'
     },
 
     /**
@@ -252,20 +254,20 @@ export default {
       type: Function,
       default(option) {
         if (this.index) {
-          option = this.findOptionByIndexValue(option);
+          option = this.findOptionByIndexValue(option)
         }
 
-        if (typeof option === "object") {
+        if (typeof option === 'object') {
           if (!option.hasOwnProperty(this.label)) {
             return console.warn(
               `[vue-select warn]: Label key "option.${this.label}" does not` +
                 ` exist in options object ${JSON.stringify(option)}.\n` +
-                "http://sagalbot.github.io/vue-select/#ex-labels"
-            );
+                'http://sagalbot.github.io/vue-select/#ex-labels'
+            )
           }
-          return option[this.label];
+          return option[this.label]
         }
-        return option;
+        return option
       }
     },
 
@@ -278,15 +280,15 @@ export default {
      */
     onChange: {
       type: Function,
-      default: function(val) {
-        this.$emit("change", val);
+      default: function (val) {
+        this.$emit('change', val)
       }
     },
 
     onInput: {
       type: Function,
-      default: function(val) {
-        this.$emit("input", val);
+      default: function (val) {
+        this.$emit('input', val)
       }
     },
 
@@ -295,9 +297,9 @@ export default {
      */
     onTab: {
       type: Function,
-      default: function() {
+      default: function () {
         if (this.selectOnTab) {
-          this.typeAheadSelect();
+          this.typeAheadSelect()
         }
       }
     },
@@ -354,7 +356,7 @@ export default {
     filterBy: {
       type: Function,
       default(option, label, search) {
-        return (label || "").toLowerCase().indexOf(search.toLowerCase()) > -1;
+        return (label || '').toLowerCase().indexOf(search.toLowerCase()) > -1
       }
     },
 
@@ -372,13 +374,13 @@ export default {
     filter: {
       type: Function,
       default(options, search) {
-        return options.filter(option => {
-          let label = this.getOptionLabel(option);
-          if (typeof label === "number") {
-            label = label.toString();
+        return options.filter((option) => {
+          let label = this.getOptionLabel(option)
+          if (typeof label === 'number') {
+            label = label.toString()
           }
-          return this.filterBy(option, label, search);
-        });
+          return this.filterBy(option, label, search)
+        })
       }
     },
 
@@ -389,11 +391,11 @@ export default {
     createOption: {
       type: Function,
       default(newOption) {
-        if (typeof this.mutableOptions[0] === "object") {
-          newOption = { [this.label]: newOption };
+        if (typeof this.mutableOptions[0] === 'object') {
+          newOption = { [this.label]: newOption }
         }
-        this.$emit("option:created", newOption);
-        return newOption;
+        this.$emit('option:created', newOption)
+        return newOption
       }
     },
 
@@ -432,7 +434,7 @@ export default {
      */
     dir: {
       type: String,
-      default: "auto"
+      default: 'auto'
     },
     /**
      * When true, hitting the 'tab' key will select the current select value
@@ -446,373 +448,12 @@ export default {
 
   data() {
     return {
-      search: "",
+      search: '',
       open: false,
       mutableValue: null,
       mutableOptions: [],
       innerValue: [30, 100],
-      formatter: "¥{value}"
-    };
-  },
-
-  watch: {
-    /**
-     * When the value prop changes, update
-     * the internal mutableValue.
-     * @param  {mixed} val
-     * @return {void}
-     */
-    value(val) {
-      this.mutableValue = val;
-      this.innerValue = val;
-    },
-
-    /**
-     * Maybe run the onChange callback.
-     * @param  {string|object} val
-     * @param  {string|object} old
-     * @return {void}
-     */
-    mutableValue(val, old) {
-      if (this.multiple) {
-        this.onChange ? this.onChange(val) : null;
-      } else {
-        this.onChange && val !== old ? this.onChange(val) : null;
-      }
-    },
-
-    /**
-     * When options change, update
-     * the internal mutableOptions.
-     * @param  {array} val
-     * @return {void}
-     */
-    options(val) {
-      this.mutableOptions = val;
-    },
-
-    /**
-     * Maybe reset the mutableValue
-     * when mutableOptions change.
-     * @return {[type]} [description]
-     */
-    mutableOptions() {
-      if (!this.taggable && this.resetOnOptionsChange) {
-        this.mutableValue = this.multiple ? [] : null;
-      }
-    },
-
-    /**
-     * Always reset the mutableValue when
-     * the multiple prop changes.
-     * @param  {Boolean} val
-     * @return {void}
-     */
-    multiple(val) {
-      this.mutableValue = val ? [] : null;
-    }
-  },
-
-  /**
-   * Clone props into mutable values,
-   * attach any event listeners.
-   */
-  created() {
-    this.mutableValue = this.value;
-    this.innerValue = this.value;
-    this.mutableOptions = this.options.slice(0);
-    this.mutableLoading = this.loading;
-
-    this.$on("option:created", this.maybePushTag);
-  },
-
-  methods: {
-    /**
-     * Select a given option.
-     * @param  {Object|String} option
-     * @return {void}
-     */
-    select(option) {
-      if (!this.isOptionSelected(option)) {
-        if (this.taggable && !this.optionExists(option)) {
-          option = this.createOption(option);
-        }
-        if (this.index) {
-          if (!option.hasOwnProperty(this.index)) {
-            return console.warn(
-              `[vue-select warn]: Index key "option.${this.index}" does not` +
-                ` exist in options object ${JSON.stringify(option)}.`
-            );
-          }
-          option = option[this.index];
-        }
-        if (this.multiple && !this.mutableValue) {
-          this.mutableValue = [option];
-        } else if (this.multiple) {
-          this.mutableValue = [...this.mutableValue, option];
-        } else {
-          this.mutableValue = option;
-        }
-        this.onInput(this.mutableValue);
-      }
-
-      this.onAfterSelect(option);
-    },
-
-    /**
-     * De-select a given option.
-     * @param  {Object|String} option
-     * @return {void}
-     */
-    deselect(option) {
-      if (this.multiple) {
-        let ref = -1;
-        this.mutableValue.forEach(val => {
-          if (
-            val === option ||
-            (this.index && val === option[this.index]) ||
-            (typeof val === "object" && val[this.label] === option[this.label])
-          ) {
-            ref = val;
-          }
-        });
-        this.mutableValue = this.mutableValue.filter(entry => entry !== ref);
-      } else {
-        this.mutableValue = null;
-      }
-      this.onInput(this.mutableValue);
-    },
-
-    /**
-     * Clears the currently selected value(s)
-     * @return {void}
-     */
-    clearSelection() {
-      this.mutableValue = this.multiple ? [] : null;
-      this.onInput(this.mutableValue);
-    },
-
-    /**
-     * Called from this.select after each selection.
-     * @param  {Object|String} option
-     * @return {void}
-     */
-    onAfterSelect(option) {
-      if (this.closeOnSelect) {
-        this.open = !this.open;
-        this.$refs.search.blur();
-      }
-
-      if (this.clearSearchOnSelect) {
-        this.search = "";
-      }
-    },
-
-    /**
-     * Toggle the visibility of the dropdown menu.
-     * @param  {Event} e
-     * @return {void}
-     */
-    toggleDropdown(e) {
-      if (
-        e.target === this.$refs.openIndicator ||
-        e.target === this.$refs.search ||
-        e.target === this.$refs.toggle ||
-        e.target.classList.contains("selected-tag") ||
-        e.target === this.$el
-      ) {
-        if (this.open) {
-          this.onSearchBlur();
-          // this.$refs.search.blur(); // dropdown will close on blur
-        } else {
-          if (!this.disabled) {
-            this.open = true;
-            this.$refs.search.focus();
-          }
-        }
-      }
-    },
-
-    /**
-     * Check if the given option is currently selected.
-     * @param  {Object|String}  option
-     * @return {Boolean}        True when selected | False otherwise
-     */
-    isOptionSelected(option) {
-      return this.valueAsArray.some(value => {
-        if (typeof value === "object") {
-          return this.optionObjectComparator(value, option);
-        }
-        return value === option || value === option[this.index];
-      });
-    },
-
-    /**
-     * Determine if two option objects are matching.
-     *
-     * @param value {Object}
-     * @param option {Object}
-     * @returns {boolean}
-     */
-    optionObjectComparator(value, option) {
-      if (this.index && value === option[this.index]) {
-        return true;
-      } else if (
-        value[this.label] === option[this.label] ||
-        value[this.label] === option
-      ) {
-        return true;
-      } else if (this.index && value[this.index] === option[this.index]) {
-        return true;
-      }
-      return false;
-    },
-
-    /**
-     * Finds an option from this.options
-     * where option[this.index] matches
-     * the passed in value.
-     *
-     * @param value {Object}
-     * @returns {*}
-     */
-    findOptionByIndexValue(value) {
-      this.options.forEach(_option => {
-        if (JSON.stringify(_option[this.index]) === JSON.stringify(value)) {
-          value = _option;
-        }
-      });
-      return value;
-    },
-
-    /**
-     * If there is any text in the search input, remove it.
-     * Otherwise, blur the search input to close the dropdown.
-     * @return {void}
-     */
-    onEscape() {
-      if (!this.search.length) {
-        this.$refs.search.blur();
-      } else {
-        this.search = "";
-      }
-    },
-
-    onClose() {
-      if (this.open) {
-        this.onSearchBlur();
-      }
-    },
-    onApplying() {
-      this.onInput(this.innerValue);
-      this.onClose();
-    },
-    /**
-     * Close the dropdown on blur.
-     * @emits  {search:blur}
-     * @return {void}
-     */
-    onSearchBlur() {
-      if (this.mousedown && !this.searching) {
-        this.mousedown = false;
-      } else {
-        if (this.clearSearchOnBlur) {
-          this.search = "";
-        }
-        this.closeSearchOptions();
-        return;
-      }
-      // Fixed bug where no-options message could not be closed
-      if (this.search.length === 0 && this.options.length === 0) {
-        this.closeSearchOptions();
-        return;
-      }
-    },
-
-    /**
-     * 'Private' function to close the search options
-     * @emits  {search:blur}
-     * @returns {void}
-     */
-    closeSearchOptions() {
-      this.open = false;
-      this.$emit("search:blur");
-    },
-
-    /**
-     * Open the dropdown on focus.
-     * @emits  {search:focus}
-     * @return {void}
-     */
-    onSearchFocus() {
-      this.open = true;
-      this.$emit("search:focus");
-    },
-
-    /**
-     * Delete the value on Delete keypress when there is no
-     * text in the search input, & there's tags to delete
-     * @return {this.value}
-     */
-    maybeDeleteValue() {
-      if (
-        !this.$refs.search.value.length &&
-        this.mutableValue &&
-        this.clearable
-      ) {
-        this.mutableValue = this.multiple
-          ? this.mutableValue.slice(0, -1)
-          : null;
-      }
-    },
-
-    /**
-     * Determine if an option exists
-     * within this.mutableOptions array.
-     *
-     * @param  {Object || String} option
-     * @return {boolean}
-     */
-    optionExists(option) {
-      let exists = false;
-
-      this.mutableOptions.forEach(opt => {
-        if (typeof opt === "object" && opt[this.label] === option) {
-          exists = true;
-        } else if (opt === option) {
-          exists = true;
-        }
-      });
-
-      return exists;
-    },
-
-    /**
-     * If push-tags is true, push the
-     * given option to mutableOptions.
-     *
-     * @param  {Object || String} option
-     * @return {void}
-     */
-    maybePushTag(option) {
-      if (this.pushTags) {
-        this.mutableOptions.push(option);
-      }
-    },
-
-    /**
-     * Event-Handler to help workaround IE11 (probably fixes 10 as well)
-     * firing a `blur` event when clicking
-     * the dropdown's scrollbar, causing it
-     * to collapse abruptly.
-     * @return {void}
-     */
-    onMousedown() {
-      this.mousedown = true;
-    },
-
-    onMouseup() {
-      this.mousedown = false;
+      formatter: '¥{value}'
     }
   },
 
@@ -829,9 +470,9 @@ export default {
         searchable: this.searchable,
         unsearchable: !this.searchable,
         loading: this.mutableLoading,
-        rtl: this.dir === "rtl", // This can be removed - styling is handled by `dir="rtl"` attribute
+        rtl: this.dir === 'rtl', // This can be removed - styling is handled by `dir="rtl"` attribute
         disabled: this.disabled
-      };
+      }
     },
 
     /**
@@ -839,7 +480,7 @@ export default {
      * @return {Boolean} True when single and clearSearchOnSelect
      */
     clearSearchOnBlur() {
-      return this.clearSearchOnSelect && !this.multiple;
+      return this.clearSearchOnSelect && !this.multiple
     },
 
     /**
@@ -848,7 +489,7 @@ export default {
      * @return {Boolean} True if non empty value
      */
     searching() {
-      return !!this.search;
+      return !!this.search
     },
 
     /**
@@ -857,7 +498,7 @@ export default {
      * @return {Boolean} True if open
      */
     dropdownOpen() {
-      return this.noDrop ? false : this.open && !this.mutableLoading;
+      return this.noDrop ? false : this.open && !this.mutableLoading
     },
 
     /**
@@ -867,7 +508,7 @@ export default {
      */
     searchPlaceholder() {
       if (this.isValueEmpty && this.placeholder) {
-        return this.placeholder;
+        return this.placeholder
       }
     },
 
@@ -881,19 +522,19 @@ export default {
      */
     filteredOptions() {
       if (!this.filterable && !this.taggable) {
-        return this.mutableOptions.slice();
+        return this.mutableOptions.slice()
       }
-      let options = this.search.length
+      const options = this.search.length
         ? this.filter(this.mutableOptions, this.search, this)
-        : this.mutableOptions;
+        : this.mutableOptions
       if (
         this.taggable &&
         this.search.length &&
         !this.optionExists(this.search)
       ) {
-        options.unshift(this.search);
+        options.unshift(this.search)
       }
-      return options;
+      return options
     },
 
     /**
@@ -902,13 +543,13 @@ export default {
      */
     isValueEmpty() {
       if (this.mutableValue) {
-        if (typeof this.mutableValue === "object") {
-          return !Object.keys(this.mutableValue).length;
+        if (typeof this.mutableValue === 'object') {
+          return !Object.keys(this.mutableValue).length
         }
-        return !this.valueAsArray.length;
+        return !this.valueAsArray.length
       }
 
-      return true;
+      return true
     },
 
     /**
@@ -917,12 +558,12 @@ export default {
      */
     valueAsArray() {
       if (this.multiple && this.mutableValue) {
-        return this.mutableValue;
+        return this.mutableValue
       } else if (this.mutableValue) {
-        return [].concat(this.mutableValue);
+        return [].concat(this.mutableValue)
       }
 
-      return [];
+      return []
     },
 
     /**
@@ -935,10 +576,368 @@ export default {
         this.clearable &&
         !this.open &&
         this.mutableValue != null
-      );
+      )
+    }
+  },
+
+  watch: {
+    /**
+     * When the value prop changes, update
+     * the internal mutableValue.
+     * @param  {mixed} val
+     * @return {void}
+     */
+    value(val) {
+      this.mutableValue = val
+      this.innerValue = val
+    },
+
+    /**
+     * Maybe run the onChange callback.
+     * @param  {string|object} val
+     * @param  {string|object} old
+     * @return {void}
+     */
+    mutableValue(val, old) {
+      if (this.multiple) {
+        this.onChange ? this.onChange(val) : null
+      } else {
+        this.onChange && val !== old ? this.onChange(val) : null
+      }
+    },
+
+    /**
+     * When options change, update
+     * the internal mutableOptions.
+     * @param  {array} val
+     * @return {void}
+     */
+    options(val) {
+      this.mutableOptions = val
+    },
+
+    /**
+     * Maybe reset the mutableValue
+     * when mutableOptions change.
+     * @return {[type]} [description]
+     */
+    mutableOptions() {
+      if (!this.taggable && this.resetOnOptionsChange) {
+        this.mutableValue = this.multiple ? [] : null
+      }
+    },
+
+    /**
+     * Always reset the mutableValue when
+     * the multiple prop changes.
+     * @param  {Boolean} val
+     * @return {void}
+     */
+    multiple(val) {
+      this.mutableValue = val ? [] : null
+    }
+  },
+
+  /**
+   * Clone props into mutable values,
+   * attach any event listeners.
+   */
+  created() {
+    this.mutableValue = this.value
+    this.innerValue = this.value
+    this.mutableOptions = this.options.slice(0)
+    this.mutableLoading = this.loading
+
+    this.$on('option:created', this.maybePushTag)
+  },
+
+  methods: {
+    /**
+     * Select a given option.
+     * @param  {Object|String} option
+     * @return {void}
+     */
+    select(option) {
+      if (!this.isOptionSelected(option)) {
+        if (this.taggable && !this.optionExists(option)) {
+          option = this.createOption(option)
+        }
+        if (this.index) {
+          if (!option.hasOwnProperty(this.index)) {
+            return console.warn(
+              `[vue-select warn]: Index key "option.${this.index}" does not` +
+                ` exist in options object ${JSON.stringify(option)}.`
+            )
+          }
+          option = option[this.index]
+        }
+        if (this.multiple && !this.mutableValue) {
+          this.mutableValue = [option]
+        } else if (this.multiple) {
+          this.mutableValue = [...this.mutableValue, option]
+        } else {
+          this.mutableValue = option
+        }
+        this.onInput(this.mutableValue)
+      }
+
+      this.onAfterSelect(option)
+    },
+
+    /**
+     * De-select a given option.
+     * @param  {Object|String} option
+     * @return {void}
+     */
+    deselect(option) {
+      if (this.multiple) {
+        let ref = -1
+        this.mutableValue.forEach((val) => {
+          if (
+            val === option ||
+            (this.index && val === option[this.index]) ||
+            (typeof val === 'object' && val[this.label] === option[this.label])
+          ) {
+            ref = val
+          }
+        })
+        this.mutableValue = this.mutableValue.filter(entry => entry !== ref)
+      } else {
+        this.mutableValue = null
+      }
+      this.onInput(this.mutableValue)
+    },
+
+    /**
+     * Clears the currently selected value(s)
+     * @return {void}
+     */
+    clearSelection() {
+      this.mutableValue = this.multiple ? [] : null
+      this.onInput(this.mutableValue)
+    },
+
+    /**
+     * Called from this.select after each selection.
+     * @param  {Object|String} option
+     * @return {void}
+     */
+    onAfterSelect(option) {
+      if (this.closeOnSelect) {
+        this.open = !this.open
+        this.$refs.search.blur()
+      }
+
+      if (this.clearSearchOnSelect) {
+        this.search = ''
+      }
+    },
+
+    /**
+     * Toggle the visibility of the dropdown menu.
+     * @param  {Event} e
+     * @return {void}
+     */
+    toggleDropdown(e) {
+      if (
+        e.target === this.$refs.openIndicator ||
+        e.target === this.$refs.search ||
+        e.target === this.$refs.toggle ||
+        e.target.classList.contains('selected-tag') ||
+        e.target === this.$el
+      ) {
+        if (this.open) {
+          this.onSearchBlur()
+          // this.$refs.search.blur(); // dropdown will close on blur
+        } else if (!this.disabled) {
+          this.open = true
+          this.$refs.search.focus()
+        }
+      }
+    },
+
+    /**
+     * Check if the given option is currently selected.
+     * @param  {Object|String}  option
+     * @return {Boolean}        True when selected | False otherwise
+     */
+    isOptionSelected(option) {
+      return this.valueAsArray.some((value) => {
+        if (typeof value === 'object') {
+          return this.optionObjectComparator(value, option)
+        }
+        return value === option || value === option[this.index]
+      })
+    },
+
+    /**
+     * Determine if two option objects are matching.
+     *
+     * @param value {Object}
+     * @param option {Object}
+     * @returns {boolean}
+     */
+    optionObjectComparator(value, option) {
+      if (this.index && value === option[this.index]) {
+        return true
+      } else if (
+        value[this.label] === option[this.label] ||
+        value[this.label] === option
+      ) {
+        return true
+      } else if (this.index && value[this.index] === option[this.index]) {
+        return true
+      }
+      return false
+    },
+
+    /**
+     * Finds an option from this.options
+     * where option[this.index] matches
+     * the passed in value.
+     *
+     * @param value {Object}
+     * @returns {*}
+     */
+    findOptionByIndexValue(value) {
+      this.options.forEach((_option) => {
+        if (JSON.stringify(_option[this.index]) === JSON.stringify(value)) {
+          value = _option
+        }
+      })
+      return value
+    },
+
+    /**
+     * If there is any text in the search input, remove it.
+     * Otherwise, blur the search input to close the dropdown.
+     * @return {void}
+     */
+    onEscape() {
+      if (!this.search.length) {
+        this.$refs.search.blur()
+      } else {
+        this.search = ''
+      }
+    },
+
+    onClose() {
+      if (this.open) {
+        this.onSearchBlur()
+      }
+    },
+    onApplying() {
+      this.onInput(this.innerValue)
+      this.onClose()
+    },
+    /**
+     * Close the dropdown on blur.
+     * @emits  {search:blur}
+     * @return {void}
+     */
+    onSearchBlur() {
+      if (this.mousedown && !this.searching) {
+        this.mousedown = false
+      } else {
+        if (this.clearSearchOnBlur) {
+          this.search = ''
+        }
+        this.closeSearchOptions()
+        return
+      }
+      // Fixed bug where no-options message could not be closed
+      if (this.search.length === 0 && this.options.length === 0) {
+        this.closeSearchOptions()
+      }
+    },
+
+    /**
+     * 'Private' function to close the search options
+     * @emits  {search:blur}
+     * @returns {void}
+     */
+    closeSearchOptions() {
+      this.open = false
+      this.$emit('search:blur')
+    },
+
+    /**
+     * Open the dropdown on focus.
+     * @emits  {search:focus}
+     * @return {void}
+     */
+    onSearchFocus() {
+      this.open = true
+      this.$emit('search:focus')
+    },
+
+    /**
+     * Delete the value on Delete keypress when there is no
+     * text in the search input, & there's tags to delete
+     * @return {this.value}
+     */
+    maybeDeleteValue() {
+      if (
+        !this.$refs.search.value.length &&
+        this.mutableValue &&
+        this.clearable
+      ) {
+        this.mutableValue = this.multiple
+          ? this.mutableValue.slice(0, -1)
+          : null
+      }
+    },
+
+    /**
+     * Determine if an option exists
+     * within this.mutableOptions array.
+     *
+     * @param  {Object || String} option
+     * @return {boolean}
+     */
+    optionExists(option) {
+      let exists = false
+
+      this.mutableOptions.forEach((opt) => {
+        if (typeof opt === 'object' && opt[this.label] === option) {
+          exists = true
+        } else if (opt === option) {
+          exists = true
+        }
+      })
+
+      return exists
+    },
+
+    /**
+     * If push-tags is true, push the
+     * given option to mutableOptions.
+     *
+     * @param  {Object || String} option
+     * @return {void}
+     */
+    maybePushTag(option) {
+      if (this.pushTags) {
+        this.mutableOptions.push(option)
+      }
+    },
+
+    /**
+     * Event-Handler to help workaround IE11 (probably fixes 10 as well)
+     * firing a `blur` event when clicking
+     * the dropdown's scrollbar, causing it
+     * to collapse abruptly.
+     * @return {void}
+     */
+    onMousedown() {
+      this.mousedown = true
+    },
+
+    onMouseup() {
+      this.mousedown = false
     }
   }
-};
+}
 </script>
 
 <style scoped>

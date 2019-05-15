@@ -1,6 +1,6 @@
 import { ActionTree, MutationTree, GetterTree, ActionContext } from 'vuex'
 import { RootState } from 'store'
-import {Person, State} from './state'
+import { Person, State } from './state'
 import types from './types'
 
 export interface Actions<S, R> extends ActionTree<S, R> {
@@ -8,9 +8,9 @@ export interface Actions<S, R> extends ActionTree<S, R> {
 }
 
 const actions: Actions<State, RootState> = {
-  select ({ commit }, id: number) {
+  select({ commit }, id: number) {
     commit(types.SELECT, id)
   }
 }
 
-export default actions;
+export default actions

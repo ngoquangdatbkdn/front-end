@@ -1,15 +1,15 @@
-import JobModal from "~/modals/job_modal";
+import {Job} from '~/modals'
 
 export interface JobState {
-  jobModal: JobModal;
-  jobModalList: JobModal[];
+  job: Job;
+  jobs: Job[];
   jobID: string;
 }
 
 const state = (): JobState => ({
-  jobModal: new JobModal(),
-  jobModalList: [],
-  jobID: ""
-});
+  job: new Job(),
+  jobs: [],
+  jobID: ''
+})
 
-export default state;
+export default state

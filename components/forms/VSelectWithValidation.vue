@@ -1,8 +1,8 @@
 <template>
   <ValidationProvider
+    v-slot="{ errors }"
     :name="$attrs.name"
     :rules="rules"
-    v-slot="{ errors }"
     tag="div"
   >
     <div v-if="!$attrs.isHalf" class="row ">
@@ -17,8 +17,10 @@
       <div class="col-md-6 ">
         <div class="form-group mb-0">
           <no-ssr>
-            <v-select :label="$attrs.optionLabel" :reduce="$attrs.reduce" :options="$attrs.options"  v-model="innerValue">
-              <div slot="no-options">{{$t('common.no_options')}}</div>
+            <v-select v-model="innerValue" :label="$attrs.optionLabel" :reduce="$attrs.reduce" :options="$attrs.options">
+              <div slot="no-options">
+                {{ $t('common.no_options') }}
+              </div>
             </v-select>
             <small class="text-danger small">{{ errors[0] }}</small>
           </no-ssr>
@@ -31,8 +33,10 @@
       </small>
       <div class="form-group mb-0">
         <no-ssr>
-          <v-select :label="$attrs.optionLabel" :options="$attrs.options"  v-model="innerValue">
-            <div slot="no-options">{{$t('common.no_options')}}</div>
+          <v-select v-model="innerValue" :label="$attrs.optionLabel" :options="$attrs.options">
+            <div slot="no-options">
+              {{ $t('common.no_options') }}
+            </div>
           </v-select>
           <small class="text-danger small">{{ errors[0] }}</small>
         </no-ssr>
@@ -42,8 +46,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { ValidationProvider } from "vee-validate";
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
+import { ValidationProvider } from 'vee-validate'
 
 @Component({
   components: {
@@ -56,22 +60,22 @@ import { ValidationProvider } from "vee-validate";
 export default class VSelectWithValidation extends Vue {
   innerValue: any = null;
 
-  @Prop({ type: [Object, String, Number], default: "" }) rules;
+  @Prop({ type: [Object, String, Number], default: '' }) rules;
   @Prop({ type: [Object, String, Number], default: null }) value;
 
-  @Watch("innerValue")
+  @Watch('innerValue')
   onInnerValueChanged(newVal: any, oldVal: any) {
-    this.$emit("input", newVal);
+    this.$emit('input', newVal)
   }
 
-  @Watch("value")
+  @Watch('value')
   onValueChanged(newVal: any, oldVal: any) {
-    this.innerValue = newVal;
+    this.innerValue = newVal
   }
 
   created() {
     if (this.value) {
-      this.innerValue = this.value;
+      this.innerValue = this.value
     }
   }
 }

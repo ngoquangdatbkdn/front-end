@@ -1,4 +1,4 @@
-import WardModal from "~/modals/ward_modal";
+import WardModal from '~/modals/ward_modal'
 
 export interface WardState {
   wardModalList: WardModal[];
@@ -6,6 +6,6 @@ export interface WardState {
 
 const state = (): WardState => ({
   wardModalList: []
-});
+})
 
-export default state;
+export default state

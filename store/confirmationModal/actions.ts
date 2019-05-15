@@ -1,6 +1,6 @@
-import { ActionTree, ActionContext } from "vuex";
-import { RootState } from "store";
-import types from "./types";
+import { ActionTree, ActionContext } from 'vuex'
+import { RootState } from 'store'
+import types from './types'
 
 export interface Actions<S, R> extends ActionTree<S, R> {
   setShouldOpenConfirmation(
@@ -12,11 +12,11 @@ export interface Actions<S, R> extends ActionTree<S, R> {
 
 const actions: Actions<boolean, RootState> = {
   setShouldOpenConfirmation({ commit }, shouldOpenConfirmation: boolean) {
-    commit(types.SET_SHOULD_OPEN, shouldOpenConfirmation);
+    commit(types.SET_SHOULD_OPEN, shouldOpenConfirmation)
   },
   setConfirmation({ commit }, confirmation: any) {
-    commit(types.SET_CONFIRMATION, confirmation);
+    commit(types.SET_CONFIRMATION, confirmation)
   }
-};
+}
 
-export default actions;
+export default actions

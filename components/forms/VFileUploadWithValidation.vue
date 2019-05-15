@@ -1,8 +1,8 @@
 <template>
   <ValidationProvider
+    v-slot="{ errors }"
     :name="$attrs.name"
     :rules="rules"
-    v-slot="{ errors }"
     tag="div"
     class="row "
   >
@@ -24,11 +24,11 @@
             >
               <p v-if="uploading === true">{{ progressUpload + "%" }}</p>
               <img
-                :alt="$attrs.label"
                 v-if="uploadEnd === true"
+                :alt="$attrs.label"
                 :src="innerValue[0].url"
                 class="mw-100"
-              />
+              >
               <div v-if="uploadEnd === false && uploading === false" class="text-center">
                 <i class="ni ni-image mb-2" />
                 <p class="mb-0 font-weight-bold h6">
@@ -40,18 +40,19 @@
               </div>
             </label>
             <file-upload
-                    v-if="uploadEnd === false && uploading === false"
+              v-if="uploadEnd === false && uploading === false"
+              ref="upload"
+              v-model="innerValue"
               extensions="gif,jpg,jpeg,png,webp"
               accept="image/png,image/gif,image/jpeg,image/webp"
               :name="$attrs.unique"
               post-action="/upload/post"
-              v-model="innerValue"
-              @input-filter="inputFilter"
-              ref="upload"
               class="d-none"
-            >
-            </file-upload>
-            <p class="text-danger small">{{ errors[0] }}</p>
+              @input-filter="inputFilter"
+            />
+            <p class="text-danger small">
+              {{ errors[0] }}
+            </p>
             <button
               v-if="uploadEnd"
               type="button"
@@ -68,8 +69,8 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { ValidationProvider } from "vee-validate";
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
+import { ValidationProvider } from 'vee-validate'
 // import { storage } from "firebase/app";
 
 // import { fbStorage } from "~/plugins/firebase";
@@ -77,7 +78,7 @@ import { ValidationProvider } from "vee-validate";
 @Component({
   components: {
     ValidationProvider
-  },
+  }
   // data: () => ({
   //   innerValue: []
   // })
@@ -86,12 +87,12 @@ export default class VFileUploadWithValidation extends Vue {
   innerValue: any = [];
   // uploadTask: storage.UploadTask = {} as storage.UploadTask;
   progressUpload: number = 0;
-  downloadURL: string = "";
-  fileName: string = "";
+  downloadURL: string = '';
+  fileName: string = '';
   uploading: boolean = false;
   uploadEnd: boolean = false;
 
-  @Prop({ type: [Object, String], default: "" }) rules;
+  @Prop({ type: [Object, String], default: '' }) rules;
   @Prop({ type: String }) value;
 
   // @Watch("innerValue")
@@ -130,7 +131,7 @@ export default class VFileUploadWithValidation extends Vue {
 
   created() {
     if (this.value) {
-        this.downloadURL = this.value;
+      this.downloadURL = this.value
       // this.innerValue = this.value;
     }
   }
@@ -139,17 +140,17 @@ export default class VFileUploadWithValidation extends Vue {
     // if (process.client) {
     if (newFile && !oldFile) {
       if (!/\.(gif|jpg|jpeg|png|webp)$/i.test(newFile.name)) {
-        alert("Your choice is not a picture");
-        return prevent();
+        alert('Your choice is not a picture')
+        return prevent()
       }
     }
     if (newFile && (!oldFile || newFile.file !== oldFile.file)) {
-      newFile.url = "";
-      let URL = window.URL || (window as any).webkitURL;
+      newFile.url = ''
+      const URL = window.URL || (window as any).webkitURL
       if (URL && URL.createObjectURL) {
-        newFile.url = URL.createObjectURL(newFile.file);
-        this.fileName = newFile.file.name;
-        this.uploading = true;
+        newFile.url = URL.createObjectURL(newFile.file)
+        this.fileName = newFile.file.name
+        this.uploading = true
         // this.uploadTask = fbStorage
         //   .ref("images/" + this.fileName)
         //   .put(newFile.file);

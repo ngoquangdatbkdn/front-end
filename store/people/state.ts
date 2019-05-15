@@ -22,7 +22,6 @@ export interface Person {
   address: PersonAddress
 }
 
-
 export interface State {
   selected: number
   people: Person[]
@@ -33,4 +32,4 @@ const state = (): State => ({
   people: []
 })
 
-export default state;
+export default state

@@ -1,8 +1,8 @@
 <template>
   <ValidationProvider
+    v-slot="{ errors }"
     :name="$attrs.name"
     :rules="rules"
-    v-slot="{ errors }"
     tag="div"
   >
     <div v-if="!$attrs.isHalf" class="row ">
@@ -18,12 +18,11 @@
         <div class="form-group mb-0">
           <base-input addon-left-icon="ni ni-calendar-grid-58">
             <flat-picker
+              v-model="innerValue"
               :config="{ allowInput: true, mode: `${$attrs.mode}` }"
               class="form-control datepicker"
-              v-model="innerValue"
               v-bind="$attrs"
-            >
-            </flat-picker>
+            />
           </base-input>
           <small class="text-danger small">{{ errors[0] }}</small>
         </div>
@@ -31,17 +30,16 @@
     </div>
     <div v-else-if="$attrs.isHalf === true">
       <div class="form-group mb-0">
-          <small class="mb-1 font-weight-500 text-uppercase">
-              {{ $attrs.label }}
-          </small>
+        <small class="mb-1 font-weight-500 text-uppercase">
+          {{ $attrs.label }}
+        </small>
         <base-input addon-left-icon="ni ni-calendar-grid-58">
           <flat-picker
+            v-model="innerValue"
             :config="{ allowInput: true, mode: `${$attrs.mode}` }"
             class="form-control datepicker"
-            v-model="innerValue"
             v-bind="$attrs"
-          >
-          </flat-picker>
+          />
         </base-input>
         <small class="text-danger small">{{ errors[0] }}</small>
       </div>
@@ -50,12 +48,12 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from "vue-property-decorator";
-import { ValidationProvider } from "vee-validate";
-import flatPicker from "vue-flatpickr-component";
-import "flatpickr/dist/flatpickr.css";
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
+import { ValidationProvider } from 'vee-validate'
+import flatPicker from 'vue-flatpickr-component'
+import 'flatpickr/dist/flatpickr.css'
 
-import BaseInput from "~/argon-components/BaseInput.vue";
+import BaseInput from '~/argon-components/BaseInput.vue'
 
 @Component({
   components: {
@@ -64,29 +62,29 @@ import BaseInput from "~/argon-components/BaseInput.vue";
     BaseInput
   },
   data: () => ({
-    innerValue: ""
+    innerValue: ''
   })
 })
 export default class VDatePickerWithValidation extends Vue {
-  innerValue: string = "";
+  innerValue: string = '';
 
-  @Prop({ type: [Object, String], default: "" }) rules;
+  @Prop({ type: [Object, String], default: '' }) rules;
   @Prop({ default: null }) value;
 
-  @Watch("innerValue")
+  @Watch('innerValue')
   onInnerValueChanged(newVal: string, oldVal: string) {
-      console.log('newVal ' + newVal.toString());
-    this.$emit("input", newVal);
+    console.log('newVal ' + newVal.toString())
+    this.$emit('input', newVal)
   }
 
-  @Watch("value")
+  @Watch('value')
   onValueChanged(newVal: string, oldVal: string) {
-    this.innerValue = newVal;
+    this.innerValue = newVal
   }
 
   created() {
     if (this.value) {
-      this.innerValue = this.value;
+      this.innerValue = this.value
     }
   }
 }

@@ -2,18 +2,16 @@
 
 // import { fireDb } from "~/plugins/firebase";
 
-import ContractTypeModal from "~/modals/business_type_modal";
-
-import FirebaseCollection from "~/enumerations/firebase_collection";
+import ContractTypeModal from '~/modals/business_type_modal'
 
 export default class ContractTypeService {
   private static instance: ContractTypeService;
   private constructor() {}
   static getInstance() {
     if (!ContractTypeService.instance) {
-      ContractTypeService.instance = new ContractTypeService();
+      ContractTypeService.instance = new ContractTypeService()
     }
-    return ContractTypeService.instance;
+    return ContractTypeService.instance
   }
   // get options(): firestore.GetOptions | undefined {
   //   return process.client ? { source: "cache" } : undefined;
