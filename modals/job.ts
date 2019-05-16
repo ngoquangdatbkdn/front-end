@@ -16,7 +16,7 @@ export class Job {
   @Expose() @Type(() => Common) city?: Common;
   @Expose() @Type(() => Common) district?: Common;
   @Expose() address?: string;
-  @Expose({ name: "minSalary" }) min_salary?: number;
-  @Expose({ name: "maxSalary" }) max_salary?: number;
+  @Expose({ name: "min_salary" }) minSalary?: number;
+  @Expose({ name: "max_salary" }) maxSalary?: number;
   @Expose() status?: string;
 }

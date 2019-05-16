@@ -12,30 +12,32 @@
     class="col-12 col-sm-4 mt-4 "
   >
     <div class="job-card">
-      <div class="row m-0">
+      <div class="row m-0 d-flex flex-row">
         <img
-          class="company-image"
+          class="company-image "
           src="https://media.glassdoor.com/sqlm/991971/seas-education-squarelogo-1531865950680.png"
           alt=""
         />
-        <div class="d-flex flex-column">
-          <span class="company-name ">Công ty Thiên Đại Minh Uy</span>
-          <span class="job-name ">{{ job[`name_${$i18n.locale}`] }}</span>
+        <div class="d-flex flex-column flex-1">
+          <span class="job-name ">{{ job.name }}</span>
+          <span class="company-name "
+            >{{ job.company.name }} -
 
-          <div class="row  mx-0 flex-nowrap">
-            <p class="sub-info">
+            <span class="address">
               {{
                 job.city["name_" + $i18n.locale] +
                   ", " +
-                  job.district["name_" + $i18n.locale]
+                  job.district["name_" + $i18n.locale] +
+                  ", " +
+                  job.address
               }}
-            </p>
-          </div>
+            </span>
+          </span>
 
           <div class="row mx-0">
             <div class="mr-auto">
               <div class="row mx-0 align-items-center">
-                <p class="sub-info">
+                <p class="salary">
                   {{ "¥" + job.minSalary + " - ¥" + job.maxSalary }}
                 </p>
               </div>
@@ -71,22 +73,26 @@ export default class JobListItem extends Vue {
 
 <style scoped>
 .job-name {
-  font-weight: 600;
+  font-weight: 900;
   font-size: 15px;
-  color: rgb(32, 38, 46);
+  color: #1861bf;
 }
 
 .company-name {
   font-weight: 500;
   line-height: 20px;
-  font-size: 15px;
+  font-size: 14px;
   color: rgb(80, 88, 99);
 }
 
-.sub-info {
-  font-size: 12px;
+.address {
+  font-weight: 300;
+}
+
+.salary {
+  font-size: 14px;
   margin-bottom: 0;
-  color: rgb(80, 88, 99);
+  color: #0caa41;
   font-weight: 500;
   line-height: 20px;
 }
@@ -105,5 +111,8 @@ export default class JobListItem extends Vue {
   border: 1px solid #e7e7e7;
   box-shadow: 0 2px 6px 0 #dee0e3;
   border-radius: 3px;
+}
+.flex-1 {
+  flex: 1;
 }
 </style>

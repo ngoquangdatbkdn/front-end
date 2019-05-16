@@ -45,20 +45,12 @@
         <h6 class="mb-0">
           {{ $t("job.job_list") }}
         </h6>
-        <nuxt-link
-          :to="localePath('companies')"
-          class="web-name  text-dark"
-          exact
-        >
+        <nuxt-link :to="localePath('jobs')" class="text-dark" exact>
           {{ $t("common.see_more") }}
         </nuxt-link>
       </div>
       <div class="container row">
-        <job-list-item
-          v-for="(job, index) of jobs"
-          :key="index"
-          :job="job"
-        />
+        <job-list-item v-for="(job, index) of jobs" :key="index" :job="job" />
       </div>
     </section>
 
@@ -71,9 +63,9 @@
         <h6 class="mb-0">
           {{ $t("common.company_list") }}
         </h6>
-        <p class="text-primary mb-0">
+        <nuxt-link :to="localePath('companies')" class="text-dark" exact>
           {{ $t("common.see_more") }}
-        </p>
+        </nuxt-link>
       </div>
       <div class="container row">
         <company-list-item
@@ -105,8 +97,10 @@ const Job = namespace("job");
     CompanyListItem
   },
   async fetch({ store, params }) {
-    await store.dispatch("company/getCompanies", {});
-    await store.dispatch("job/getJobs", {});
+    if (store.state.company.companies.length == 0)
+      await store.dispatch("company/getCompanies", {});
+    if (store.state.job.jobs.length == 0)
+      await store.dispatch("job/getJobs", {});
   }
 })
 export default class Index extends Vue {

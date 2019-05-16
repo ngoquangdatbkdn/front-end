@@ -72,8 +72,8 @@
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
-      "min_salary": 0,
-      "max_salary": 0,
+      "min_salary": 300,
+      "max_salary": 900,
       "status": "untranslated"
     },
     {
@@ -148,8 +148,8 @@
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
-      "min_salary": 0,
-      "max_salary": 0,
+      "min_salary": 300,
+      "max_salary": 900,
       "status": "untranslated"
     },
     {
@@ -224,8 +224,8 @@
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
-      "min_salary": 0,
-      "max_salary": 0,
+      "min_salary": 300,
+      "max_salary": 900,
       "status": "untranslated"
     },
     {
@@ -300,8 +300,8 @@
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
-      "min_salary": 0,
-      "max_salary": 0,
+      "min_salary": 300,
+      "max_salary": 900,
       "status": "untranslated"
     },
     {
@@ -376,8 +376,8 @@
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
-      "min_salary": 0,
-      "max_salary": 0,
+      "min_salary": 300,
+      "max_salary": 900,
       "status": "untranslated"
     },
     {
@@ -452,8 +452,8 @@
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
-      "min_salary": 0,
-      "max_salary": 0,
+      "min_salary": 300,
+      "max_salary": 900,
       "status": "untranslated"
     },
     {
@@ -528,8 +528,8 @@
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
-      "min_salary": 0,
-      "max_salary": 0,
+      "min_salary": 300,
+      "max_salary": 900,
       "status": "untranslated"
     }
   ],
