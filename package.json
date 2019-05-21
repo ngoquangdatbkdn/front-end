@@ -33,7 +33,7 @@
   "scripts": {
     "dev": "nuxt dev -o",
     "build": "nuxt build",
-    "start": "BASE_URL=http://datvo.io nuxt start",
+    "start": "nuxt start",
     "generate": "nuxt generate",
     "post-update": "yarn upgrade --latest",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore ."
