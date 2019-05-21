@@ -7,7 +7,7 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(cors())
-
+console.log('fadfadf');
 app.get('/auth/user', async function (req, res) {
   if (req.headers.authorization) {
     const token = req.headers.authorization.split(' ')[1]
