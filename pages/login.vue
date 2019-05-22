@@ -3,7 +3,7 @@
     <card
       type="secondary"
       shadow
-      header-classes="bg-white pb-5"
+      header-classes="bg-white pb-5 card"
       body-classes="px-lg-5 py-lg-5"
       class="border-0"
     >
@@ -14,16 +14,8 @@
         <base-button type="neutral">
           <img
             slot="icon"
-            src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Facebook-128.png"
-          >
-          Facebook
-        </base-button>
-
-        <base-button type="neutral">
-          <img
-            slot="icon"
             src="https://demos.creative-tim.com/argon-design-system/assets/img/icons/common/google.svg"
-          >
+          />
           Google
         </base-button>
       </div>
@@ -56,9 +48,7 @@
         </base-checkbox>
         <div class="text-center">
           <base-button type="primary" class="my-4" @click="onLogin">
-            {{
-              $t("authentication.sign_in")
-            }}
+            {{ $t("authentication.sign_in") }}
           </base-button>
         </div>
       </ValidationObserver>
@@ -66,20 +56,28 @@
   </div>
 </template>
 
+<!--<base-button type="neutral">-->
+<!--<img-->
+<!--slot="icon"-->
+<!--src="https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Facebook-128.png"-->
+<!--&gt;-->
+<!--Facebook-->
+<!--</base-button>-->
+
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
-import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import { namespace } from 'vuex-class'
+import { Vue, Component, Prop, Watch } from "vue-property-decorator";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
+import { namespace } from "vuex-class";
 
-import VTextFieldType2WithValidation from '~/components/forms/VTextFieldType2WithValidation.vue'
-import BaseInput from '~/argon-components/BaseInput.vue'
-import BaseCheckbox from '~/argon-components/BaseCheckbox.vue'
-import BaseButton from '~/argon-components/BaseButton.vue'
-import Card from '~/argon-components/Card.vue'
+import VTextFieldType2WithValidation from "~/components/forms/VTextFieldType2WithValidation.vue";
+import BaseInput from "~/argon-components/BaseInput.vue";
+import BaseCheckbox from "~/argon-components/BaseCheckbox.vue";
+import BaseButton from "~/argon-components/BaseButton.vue";
+import Card from "~/argon-components/Card.vue";
 
-const LoginModal = namespace('loginModal')
-const ConfirmationModal = namespace('confirmationModal')
-const UserInfo = namespace('userInfo')
+const LoginModal = namespace("loginModal");
+const ConfirmationModal = namespace("confirmationModal");
+const UserInfo = namespace("userInfo");
 
 @Component({
   components: {
@@ -91,12 +89,19 @@ const UserInfo = namespace('userInfo')
     ValidationProvider,
     VTextFieldType2WithValidation
   },
-  middleware: 'guest-guard'
+  middleware: "guest-guard",
+  async fetch({ store, params, $axios }) {
+    const result: any = await $axios.$post("/api/auth/login", {
+      firstName: "Fred",
+      lastName: "Flintstone"
+    });
+    console.log("result " + JSON.stringify(result));
+  }
 })
 export default class LoginForm extends Vue {
-  email: string = '';
-  password: string = '';
-  error: string = '';
+  email: string = "";
+  password: string = "";
+  error: string = "";
 
   @LoginModal.Action setShouldOpen;
   @ConfirmationModal.Action setShouldOpenConfirmation;
@@ -105,25 +110,25 @@ export default class LoginForm extends Vue {
 
   private openConfirmationModal() {
     this.setConfirmation({
-      title: (this as any).$t('authentication.email_has_not_been_verified'),
-      message: (this as any).$t('authentication.please_verify_email')
-    })
-    this.setShouldOpenConfirmation(true)
+      title: (this as any).$t("authentication.email_has_not_been_verified"),
+      message: (this as any).$t("authentication.please_verify_email")
+    });
+    this.setShouldOpenConfirmation(true);
   }
 
   async onLogin() {
-    const result = await (this.$refs.obs as any).validate()
+    const result = await (this.$refs.obs as any).validate();
     if (result) {
       try {
-        await this.$auth.loginWith('local', {
+        await this.$auth.loginWith("local", {
           data: {
             username: this.email,
             password: this.password
           }
-        })
-        this.$router.push('/')
+        });
+        this.$router.push("/");
       } catch (e) {
-        this.error = e.message
+        this.error = e.message;
       }
     }
   }
@@ -133,5 +138,8 @@ export default class LoginForm extends Vue {
 <style scoped>
 .login {
   margin-top: 100px;
+}
+.card {
+  min-width: 400px;
 }
 </style>

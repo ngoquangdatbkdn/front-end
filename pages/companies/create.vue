@@ -59,7 +59,7 @@
                 :options="cityModalList"
                 :label="$t('common.city')"
                 :name="$t('common.city')"
-                :is-half="true"
+                :isHalf="true"
                 :option-label="$i18n.locale"
               />
               <div
@@ -72,7 +72,7 @@
                   :options="collectedDistrictModalList"
                   :label="$t('common.district')"
                   :name="$t('common.district')"
-                  :is-half="true"
+                  :isHalf="true"
                   :option-label="$i18n.locale"
                 />
               </div>
@@ -86,7 +86,7 @@
                   :options="collectedWardModalList"
                   :label="$t('common.ward')"
                   :name="$t('common.ward')"
-                  :is-half="true"
+                  :isHalf="true"
                   :option-label="$i18n.locale"
                 />
               </div>

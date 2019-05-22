@@ -36,7 +36,7 @@
                 :label="$t('job.min_salary')"
                 :name="$t('job.min_salary')"
                 :placeholder="$t('job.enter_min_salary')"
-                :is-half="true"
+                :isHalf="true"
               />
               <div class="pt-3  position-relative">
                 <v-text-field-with-validation
@@ -46,7 +46,7 @@
                   :label="$t('job.max_salary')"
                   :name="$t('job.max_salary')"
                   :placeholder="$t('job.enter_max_salary')"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
             </div>
@@ -84,11 +84,10 @@
                 :options="cityModalList"
                 :label="$t('common.city')"
                 :name="$t('common.city')"
-                :is-half="true"
+                :isHalf="true"
                 :option-label="$i18n.locale"
               />
               <div
-                v-if="collectedDistrictModalList.length > 0"
                 class="pt-3  position-relative"
               >
                 <v-select-with-validation
@@ -97,21 +96,7 @@
                   :options="collectedDistrictModalList"
                   :label="$t('common.district')"
                   :name="$t('common.district')"
-                  :is-half="true"
-                  :option-label="$i18n.locale"
-                />
-              </div>
-              <div
-                v-if="collectedWardModalList.length > 0"
-                class="pt-3 position-relative"
-              >
-                <v-select-with-validation
-                  v-model="jobModal.ward"
-                  rules="required"
-                  :options="collectedWardModalList"
-                  :label="$t('common.ward')"
-                  :name="$t('common.ward')"
-                  :is-half="true"
+                  :isHalf="true"
                   :option-label="$i18n.locale"
                 />
               </div>

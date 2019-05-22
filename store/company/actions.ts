@@ -30,7 +30,7 @@ const actions: Actions<CompanyState, RootState> = {
   async getCompanies({ commit }, queryParams: any) {
       const result: any = await this.$axios.$get("/api/companies");
       let companiesResponse: CompaniesResponse = plainToClass(CompaniesResponse, result);
-      console.log("companiesResponse " + JSON.stringify(companiesResponse));
+      // console.log("companiesResponse " + JSON.stringify(companiesResponse));
       commit(types.SET_COMPANIES, companiesResponse.data);
   },
   async updateShouldShowCompany({ commit, state }, shouldShow: boolean) {

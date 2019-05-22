@@ -25,22 +25,18 @@
         </div>
 
         <ul class="navbar-nav ml-lg-auto">
-          <li v-if="isNotInSession || isCompanySession" class="nav-item">
+          <li class="nav-item">
             <a class="nav-link nav-link-icon" @click="onNavigateToCompany()">
               {{ $t("common.company") }}
             </a>
           </li>
-          <li v-if="isNotInSession" class="nav-item">
-            <a class="nav-link nav-link-icon" href="#">
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon">
               {{ $t("common.translator") }}
             </a>
           </li>
-          <li v-if="isNotInSession || isCandidateSession" class="nav-item">
-            <a
-              class="nav-link nav-link-icon"
-              href="#"
-              @click="onNavigateToCandidate()"
-            >
+          <li class="nav-item">
+            <a class="nav-link nav-link-icon" @click="onNavigateToCandidate()">
               {{ $t("common.create_cv") }}
             </a>
           </li>
@@ -84,30 +80,9 @@
           <li
             class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"
           >
-            <base-button
-              v-if="!userInfo"
-              class="nav-item"
-              type="default"
-              @click="openRegisterModal"
-            >
-              {{ $t("authentication.register") }}
-            </base-button>
-            <a v-else class="nav-item text-button" @click="onSignOut">
-              {{ $t("authentication.sign_out") }}
-            </a>
-          </li>
-          <li
-            v-if="!userInfo"
-            class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"
-          >
-            <base-button
-              class="nav-item"
-              outline
-              type="primary"
-              @click="openLoginModal"
-            >
+            <a class="nav-item text-button" @click="navigateLogin">
               {{ $t("authentication.sign_in") }}
-            </base-button>
+            </a>
           </li>
         </ul>
       </base-nav>
@@ -146,6 +121,22 @@
     <!--</div>-->
   </div>
 </template>
+
+<!--<li-->
+<!--class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"-->
+<!--&gt;-->
+<!--<base-button-->
+<!--v-if="!userInfo"-->
+<!--class="nav-item"-->
+<!--type="default"-->
+<!--@click="openRegisterModal"-->
+<!--&gt;-->
+<!--{{ $t("authentication.register") }}-->
+<!--</base-button>-->
+<!--<a v-else class="nav-item text-button" @click="onSignOut">-->
+<!--{{ $t("authentication.sign_out") }}-->
+<!--</a>-->
+<!--</li>-->
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
@@ -263,17 +254,24 @@ export default class DefaultLayout extends Vue {
       (this as any).localePath({ name: "companies-create" })
     );
   }
+  navigateLogin() {
+    this.$router.push(
+      (this as any).localePath({
+        name: "login"
+      })
+    );
+  }
   onNavigateToCandidate() {
-    if (this.userInfo && this.userInfo.companyID) {
-      return this.$router.push(
-        (this as any).localePath({
-          name: "candidates-id",
-          params: { id: this.userInfo.companyID }
-        })
-      );
-    }
+    // if (this.userInfo && this.userInfo.companyID) {
+    //   return this.$router.push(
+    //     (this as any).localePath({
+    //       name: "candidates-id",
+    //       params: { id: this.userInfo.companyID }
+    //     })
+    //   );
+    // }
     return this.$router.push(
-      (this as any).localePath({ name: "candidates-create" })
+      (this as any).localePath({ name: "candidates-create-basic" })
     );
   }
 }

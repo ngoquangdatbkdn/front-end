@@ -11,9 +11,9 @@
     class="col-12 col-sm-4 mt-4 "
   >
     <div class="card">
-      <div class="row  mx-0">
+      <div class="row m-0 d-flex flex-row flex-nowrap">
         <img :src="company.logo" class="company-image" />
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column flex-1">
           <span class="company-name  ">{{ company.name }}</span>
           <span class="sub-info">
             {{
@@ -43,7 +43,7 @@ export default class CompanyListItem extends Vue {
 
 <style scoped>
 .company-name {
-  font-weight: 500;
+  font-weight: 700;
   line-height: 20px;
   font-size: 14px;
   color: rgb(80, 88, 99);
@@ -56,11 +56,10 @@ export default class CompanyListItem extends Vue {
   margin-right: 12px;
 }
 .sub-info {
-  font-weight: 500;
+  font-weight: 400;
   line-height: 20px;
-  font-size: 14px;
+  font-size: 13px;
   color: rgb(80, 88, 99);
-  font-weight: 300;
 }
 
 .card {

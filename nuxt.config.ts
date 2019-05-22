@@ -35,9 +35,9 @@ const config: NuxtConfiguration = {
   ],
   plugins: [
     '~/plugins/argon-kit',
+    '~/plugins/mock-api',
     '~/plugins/axios',
     '~/plugins/vue-moment',
-    '~/plugins/mock-api',
     { src: '~/plugins/vue-notifications', ssr: false },
     { src: '~/plugins/i18n', ssr: false },
     { src: '~/plugins/vue-lazyload', ssr: false },
@@ -105,7 +105,6 @@ const config: NuxtConfiguration = {
       }
     }
   },
-  serverMiddleware: ['~/api/fake-oauth']
 
   // router: {
   //   middleware: "i18n"

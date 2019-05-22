@@ -29,7 +29,7 @@ const actions: Actions<JobState, RootState> = {
   async getJobs({ commit }, queryParams: any) {
       const result: any = await this.$axios.$get("/api/jobs");
       let jobsResponse: JobsResponse = plainToClass(JobsResponse, result);
-      console.log("jobsResponse " + JSON.stringify(jobsResponse));
+      // console.log("jobsResponse " + JSON.stringify(jobsResponse));
       commit(types.SET_JOBS, jobsResponse.data);
   },
   async getJobsByCompanyID({ commit }, companyID: string) {

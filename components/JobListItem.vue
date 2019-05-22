@@ -12,7 +12,7 @@
     class="col-12 col-sm-4 mt-4 "
   >
     <div class="job-card">
-      <div class="row m-0 d-flex flex-row">
+      <div class="row m-0 d-flex flex-row flex-nowrap">
         <img
           class="company-image "
           src="https://media.glassdoor.com/sqlm/991971/seas-education-squarelogo-1531865950680.png"
@@ -75,7 +75,7 @@ export default class JobListItem extends Vue {
 .job-name {
   font-weight: 900;
   font-size: 15px;
-  color: #1861bf;
+    color: #000;
 }
 
 .company-name {
@@ -86,14 +86,14 @@ export default class JobListItem extends Vue {
 }
 
 .address {
-  font-weight: 300;
 }
 
 .salary {
   font-size: 14px;
+    margin-top: 5px;
   margin-bottom: 0;
-  color: #0caa41;
-  font-weight: 500;
+  color: #a7a7a7;
+  font-weight: 600;
   line-height: 20px;
 }
 .company-image {

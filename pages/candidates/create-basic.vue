@@ -68,11 +68,10 @@
                 :options="cityModalList"
                 :label="$t('common.city')"
                 :name="$t('common.city')"
-                :is-half="true"
+                :isHalf="true"
                 :option-label="$i18n.locale"
               />
               <div
-                v-if="collectedDistrictModalList.length > 0"
                 class="pt-3  position-relative"
               >
                 <v-select-with-validation
@@ -81,7 +80,7 @@
                   :options="collectedDistrictModalList"
                   :label="$t('common.district')"
                   :name="$t('common.district')"
-                  :is-half="true"
+                  :isHalf="true"
                   :option-label="$i18n.locale"
                 />
               </div>
@@ -95,7 +94,7 @@
                   :label="$t('common.address_detail')"
                   :name="$t('common.address_detail')"
                   :placeholder="$t('common.enter_address_detail')"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
             </div>

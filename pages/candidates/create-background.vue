@@ -48,7 +48,7 @@
                   :placeholder="
                     $t('candidate.enter_candidate_certificate_name')
                   "
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
               <div class="pt-3  position-relative">
@@ -62,7 +62,7 @@
                     $t('candidate.enter_candidate_certificate_time')
                   "
                   :mode="'single'"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
             </card>
@@ -118,7 +118,7 @@
                   :label="$t('candidate.candidate_school')"
                   :name="$t('candidate.candidate_school')"
                   :placeholder="$t('candidate.enter_candidate_school')"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
               <div class="pt-3  position-relative">
@@ -129,7 +129,7 @@
                   :label="$t('candidate.candidate_major')"
                   :name="$t('candidate.candidate_major')"
                   :placeholder="$t('candidate.enter_candidate_major')"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
               <div class="pt-3  position-relative">
@@ -143,7 +143,7 @@
                     $t('candidate.enter_candidate_education_time_range')
                   "
                   :mode="'range'"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
               <div class="pt-3  position-relative">
@@ -156,7 +156,7 @@
                   :placeholder="
                     $t('candidate.enter_candidate_education_result')
                   "
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
             </card>
@@ -212,7 +212,7 @@
                   :label="$t('candidate.candidate_skill')"
                   :name="$t('candidate.candidate_skill')"
                   :placeholder="$t('candidate.enter_candidate_skill')"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
               <div class="pt-3  position-relative">
@@ -222,7 +222,7 @@
                   :options="[1, 2, 3, 4, 5]"
                   :label="$t('candidate.candidate_skill_level')"
                   :name="$t('common.district')"
-                  :is-half="true"
+                  :isHalf="true"
                   :option-label="$i18n.locale"
                 />
               </div>
@@ -264,7 +264,7 @@
                   :label="$t('candidate.candidate_language_result')"
                   :name="$t('candidate.candidate_language_result')"
                   :placeholder="$t('candidate.enter_candidate_language_result')"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
               <div class="pt-3  position-relative">
@@ -276,7 +276,7 @@
                   :name="$t('candidate.candidate_language_time')"
                   :placeholder="$t('candidate.enter_candidate_language_time')"
                   :mode="'single'"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
             </card>
@@ -325,7 +325,7 @@
                   :label="$t('candidate.candidate_language_name')"
                   :name="$t('candidate.candidate_language_name')"
                   :placeholder="$t('candidate.enter_candidate_language_name')"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
               <div class="pt-3  position-relative">
@@ -336,7 +336,7 @@
                   :label="$t('candidate.candidate_language_result')"
                   :name="$t('candidate.candidate_language_result')"
                   :placeholder="$t('candidate.enter_candidate_language_result')"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
               <div class="pt-3  position-relative">
@@ -348,7 +348,7 @@
                   :name="$t('candidate.candidate_language_time')"
                   :placeholder="$t('candidate.enter_candidate_language_time')"
                   :mode="'single'"
-                  :is-half="true"
+                  :isHalf="true"
                 />
               </div>
             </card>

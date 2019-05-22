@@ -42,10 +42,10 @@
       <div
         class="container row px-4 justify-content-between align-items-center"
       >
-        <h6 class="mb-0">
+        <h6 class="mb-3 list-label">
           {{ $t("job.job_list") }}
         </h6>
-        <nuxt-link :to="localePath('jobs')" class="text-dark" exact>
+        <nuxt-link :to="localePath('jobs')" class="text-dark see-more" exact>
           {{ $t("common.see_more") }}
         </nuxt-link>
       </div>
@@ -53,6 +53,11 @@
         <job-list-item v-for="(job, index) of jobs" :key="index" :job="job" />
       </div>
     </section>
+    <div class=" bg-white pt-5 pb-5">
+      <div class="container bg-white">
+        <div class="hr"></div>
+      </div>
+    </div>
 
     <section
       class="bg-white d-flex justify-content-center align-items-center pb-4 pt-5 flex-column"
@@ -60,10 +65,14 @@
       <div
         class="container row px-4 justify-content-between align-items-center"
       >
-        <h6 class="mb-0">
+        <h6 class="mb-3 list-label">
           {{ $t("common.company_list") }}
         </h6>
-        <nuxt-link :to="localePath('companies')" class="text-dark" exact>
+        <nuxt-link
+          :to="localePath('companies')"
+          class="text-dark see-more"
+          exact
+        >
           {{ $t("common.see_more") }}
         </nuxt-link>
       </div>
@@ -75,6 +84,7 @@
         />
       </div>
     </section>
+      <footer class="bg-white "></footer>
   </div>
 </template>
 
@@ -115,6 +125,14 @@ export default class Index extends Vue {
 </script>
 
 <style scoped>
+.list-label {
+  font-size: 16px;
+  font-weight: 700;
+}
+.see-more {
+  text-decoration: underline;
+  font-size: 14px;
+}
 .search-area {
   margin-top: 50px;
   padding-top: 50px;
@@ -131,5 +149,11 @@ export default class Index extends Vue {
     padding-bottom: 150px;
     background-position: center;
   }
+}
+.hr {
+  border-top: 0.0625rem solid rgba(0, 0, 0, 0.1);
+}
+footer{
+    height: 100px;
 }
 </style>
