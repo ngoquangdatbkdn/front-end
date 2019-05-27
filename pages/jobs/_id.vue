@@ -1,144 +1,124 @@
 <template>
-  <div>
-    <div class="d-flex justify-content-center align-items-center">
-      <div class="container  row">
-        <div class="mr-auto pt-5 pb-4 col-12 col-md-5 ">
-          <div class="row">
-            <img :src="companyModal.logo" class="company-logo mw-100 avatar ml-3">
-            <h4 class="d-flex justify-content-center align-items-center pl-3">
-              {{ companyModal.name }}
-            </h4>
-          </div>
-          <p class="info-label mt-3 mb-0">
-            {{ $t("company.staff_number") }}
-          </p>
-          <p class="font-weight-600">
-            {{ companyModal.staffNumber }}
-          </p>
-          <p class="info-label mt-3 mb-0">
-            {{ $t("company.business_type") }}
-          </p>
-          <p v-if="companyModal.businessType" class="font-weight-600">
-            {{ companyModal.businessType.name }}
-          </p>
-          <p class="info-label mt-3 mb-0">
-            {{ $t("company.company_address") }}
-          </p>
-          <p v-if="companyModal.ward" class="font-weight-600">
-            {{
-              companyModal.ward.name +
-                ", " +
-                companyModal.district.name +
-                ", " +
-                companyModal.city.name
-            }}
-          </p>
-        </div>
-        <div
-          class="col-12 col-md-2 justify-content-center justify-content-md-end d-flex"
-        >
-          <div class="col-12  d-flex flex-column">
-            <button type="button" class="btn btn-primary mt-5 mr-0">
-              <span class="white-space-normal"> Đổi qua tiếng Việt</span>
-            </button>
-            <Link prefetch href="/company-create" />
-            <button type="button" class="btn btn-primary mt-4 mr-0">
-              <span class="white-space-normal">
-                {{ $t("company.update_company_info") }}</span>
-            </button>
-            </Link>
-
-            <button type="button" class="btn btn-primary mt-4 mb-4">
-              <span class="white-space-normal">
-                {{ $t("common.translation_management") }}</span>
-            </button>
-          </div>
-        </div>
-        <div
-          class="col-12 col-md-5 d-flex align-items-center justify-content-center"
-        >
-          <img :src="companyModal.coverImage" class="company-image mw-100 ">
-        </div>
-      </div>
-    </div>
-    <div class="d-flex justify-content-center align-items-center bg-white">
-      <div class="tab-content container pb-5 pt-4">
-        <div
-          id="nav-pills-tabs-component"
-          class="tab-pane tab-example-result fade show active"
-          role="tabpanel"
-          aria-labelledby="nav-pills-tabs-component-tab"
-        >
-          <CompanyTabList t="{t}" />
-          <div id="myTabContent" class="tab-content">
-            <div
-              id="tabs-icons-text-2"
-              class="tab-pane fade active show"
-              role="tabpanel"
-              aria-labelledby="tabs-icons-text-2-tab"
+  <div class="bg-white pb-5">
+    <div v-if="job!=null" class="d-flex justify-content-center align-items-center">
+      <div class="container  row pt-4">
+        <div class="mr-auto pb-4 col-12 col-md-12 row ">
+          <div class="col-12 row">
+            <img
+              :src="job.company.logo"
+              class="company-logo mw-100 logo rounded-circle"
             >
-              <Content />
+            <div class="pl-3">
+              <h4 class="d-flex justify-content-center align-items-center">
+                {{ job[`name`] }}
+              </h4>
+              <nuxt-link
+                :to="
+                  localePath({
+                    name: 'companies-id',
+                    params: { id: job.company.id }
+                  })
+                "
+                active-class="none"
+                exact
+              >
+                <h5>
+                  {{ job.company[`name`] }}
+                </h5>
+              </nuxt-link>
             </div>
           </div>
+          <div class="col-12 col-md-6">
+            <p class="info-label mt-3 mb-0">
+              {{ $t("job.salary_range") }}
+            </p>
+            <p class="font-weight-600">
+              {{ job.minSalary + " - " + job.maxSalary }}
+            </p>
+            <p class="info-label mt-3 mb-0">
+              {{ $t("job.contract_type") }}
+            </p>
+            <p v-if="job.contract" class="font-weight-600">
+              {{ job.contract[$i18n.locale] }}
+            </p>
+            <p class="info-label mt-3 mb-0">
+              {{ $t("job.workplace") }}
+            </p>
+            <p class="font-weight-600">
+              {{
+                job.address +
+                  ", " +
+                  job.district[$i18n.locale] +
+                  ", " +
+                  job.city[$i18n.locale]
+              }}
+            </p>
+          </div>
+          <div class="col-12 col-md-6">
+            <img :src="job.coverImage" class="job-image mw-100 ">
+          </div>
         </div>
       </div>
     </div>
+    <!--<job-detail-tabs />-->
   </div>
 </template>
 
+<!--<div-->
+<!--class="col-12 col-md-5 d-flex align-items-start justify-content-center"-->
+<!--&gt;-->
+<!--<img :src="job.coverImage" class="job-image mw-100 " />-->
+<!--</div>-->
+
+<!--<div-->
+<!--class="col-12 col-md-2 justify-content-center justify-content-md-end d-flex"-->
+<!--&gt;-->
+<!--<div class="col-12  d-flex flex-column">-->
+<!--<button type="button" class="btn btn-primary mr-0">-->
+<!--<span class="white-space-normal"> Đổi qua tiếng Việt</span>-->
+<!--</button>-->
+<!--<button type="button" class="btn btn-primary mt-4 mr-0">-->
+<!--<span class="white-space-normal">-->
+<!--{{ $t("job.update_job_info") }}</span-->
+<!--&gt;-->
+<!--</button>-->
+
+<!--<button type="button" class="btn btn-primary mt-4 mb-4">-->
+<!--<span class="white-space-normal">-->
+<!--{{ $t("common.translation_management") }}</span-->
+<!--&gt;-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
-import { State, Action, Getter, namespace } from 'vuex-class'
-import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { Vue, Component } from 'vue-property-decorator'
+import { namespace } from 'vuex-class'
+import JobDetailTabs from '~/components/JobDetailTabs.vue'
 
-import { CompanyState } from '~/store/company/state'
-import { CityState } from '~/store/city/state'
-import CompanyModal from '~/modals/company_modal'
-// import CityModal from "~/modals/city_modal";
-
-import { objectUrlToFile } from '~/utils/imageHelper'
-
-const Company = namespace('company')
+const Job = namespace('job')
 
 @Component({
-  components: {}
-  // data() {
-  //   const companyModal: CompanyModal = new CompanyModal();
-  //   // companyModal. = ''
-  //   return {
-  //     companyModal,
-  //     // companyName: "",
-  //     // companyStaffNumber: "",
-  //     // companyType: "",
-  //     // companyIntroduction: "",
-  //     firstFileList: [],
-  //     secondFileList: []
-  //   };
-  // },
-  // async asyncData() {
-  //   return {
-  //     // companyName: "",
-  //     // companyStaffNumber: "",
-  //     // companyType: "",
-  //     // companyIntroduction: ""
-  //   };
-  // }
+  components: {
+    JobDetailTabs
+  },
+  async fetch({ store, params }) {
+    const id: string = params.id
+    await store.dispatch("job/getJobByID", id);
+  }
 })
-export default class CreateCompany extends Vue {
-  // companyModal: CompanyModal = new CompanyModal();
-  @Company.State companyModal;
-  mounted() {}
-  async submit() {
-    // const result = await (this.$refs.obs as any).validate();
-    // console.log("result " + result.toString());
-    // this.$router.push(
-    //   this.localePath({ name: "companies-id", params: { id: "faef" } })
-    // );
-    // if (result) {
-    //   this.create(this.companyModal);
-    // }
+export default class JobDetail extends Vue {
+  @Job.State job;
+  async mounted() {
+      console.log('this.job ' + JSON.stringify(this.job));
   }
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.logo {
+  border: solid 4px #f0f0f0;
+  width: 70px;
+  height: 70px;
+}
+</style>

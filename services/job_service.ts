@@ -8,11 +8,6 @@ import DistrictService from '~/services/district_service'
 import CompanyService from '~/services/company_service'
 import WardService from '~/services/ward_service'
 
-import JobModal from '~/modals/job_modal'
-import CityModal from '~/modals/city_modal'
-import DistrictModal from '~/modals/district_modal'
-import WardModal from '~/modals/ward_modal'
-import ContractTypeModal from '~/modals/contract_type_modal'
 
 export default class JobService {
   private static instance: JobService;

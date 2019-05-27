@@ -3,8 +3,8 @@
     v-if="job"
     :to="
       localePath({
-        name: 'companies-id-jobs-jobID',
-        params: { id: job.company.id, jobID: job.id }
+        name: 'jobs-id',
+        params: { id: job.id }
       })
     "
     active-class="none"

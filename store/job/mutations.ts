@@ -7,8 +7,8 @@ const mutations: MutationTree<JobState> = {
   [types.SET_JOB](state, job: Job) {
     state.job = job
   },
-  [types.SET_JOB_ID](state, jobID: string) {
-    state.jobID = jobID
+  [types.SET_JOB_ID](state, id: string) {
+    state.id = id
   },
   [types.ADD_JOB](state, job: Job) {
     state.jobs = [job, ...state.jobs]

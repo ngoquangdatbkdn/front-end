@@ -230,7 +230,7 @@ export default class CompanyService {
   //
   // public async addJobIDToJobIDList(
   //   companyID: string | undefined,
-  //   jobID: string
+  //   id: string
   // ) {
   //   if (!companyID) {
   //     throw "Why there are no companyID";
@@ -241,7 +241,7 @@ export default class CompanyService {
   //     .doc(companyID);
   //   if (documentReference) {
   //     await documentReference.update({
-  //       jobIDs: firestore.FieldValue.arrayUnion(jobID)
+  //       ids: firestore.FieldValue.arrayUnion(id)
   //     });
   //   }
   // }

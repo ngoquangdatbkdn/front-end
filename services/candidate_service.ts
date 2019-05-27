@@ -213,7 +213,7 @@ export default class CandidateService {
   //
   // public async addJobIDToJobIDList(
   //   candidateID: string | undefined,
-  //   jobID: string
+  //   id: string
   // ) {
   //   if (!candidateID) {
   //     throw "Why there are no candidateID";
@@ -224,7 +224,7 @@ export default class CandidateService {
   //     .doc(candidateID);
   //   if (documentReference) {
   //     await documentReference.update({
-  //       jobIDs: firestore.FieldValue.arrayUnion(jobID)
+  //       ids: firestore.FieldValue.arrayUnion(id)
   //     });
   //   }
   // }

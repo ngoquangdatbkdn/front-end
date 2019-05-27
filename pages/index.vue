@@ -53,7 +53,7 @@
         <job-list-item v-for="(job, index) of jobs" :key="index" :job="job" />
       </div>
     </section>
-    <div class=" bg-white pt-5 pb-5">
+    <div class=" bg-white pt-4 pb-3">
       <div class="container bg-white">
         <div class="hr"></div>
       </div>
@@ -84,7 +84,7 @@
         />
       </div>
     </section>
-      <footer class="bg-white "></footer>
+    <footer class="bg-white "></footer>
   </div>
 </template>
 
@@ -111,6 +111,11 @@ const Job = namespace("job");
       await store.dispatch("company/getCompanies", {});
     if (store.state.job.jobs.length == 0)
       await store.dispatch("job/getJobs", {});
+  },
+  head() {
+    return {
+      title: this.$t('common.homepage'),
+    };
   }
 })
 export default class Index extends Vue {
@@ -153,7 +158,7 @@ export default class Index extends Vue {
 .hr {
   border-top: 0.0625rem solid rgba(0, 0, 0, 0.1);
 }
-footer{
-    height: 100px;
+footer {
+  height: 100px;
 }
 </style>

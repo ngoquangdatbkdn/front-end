@@ -36,7 +36,8 @@
     "female": "Giới tính nam",
     "other_gender": "Giới tính khác",
     "apply": "Áp dụng",
-    "cancel": "Thoát"
+    "cancel": "Thoát",
+    "homepage": "Trang chủ"
   },
   "authentication": {
     "sign_in": "ログイン",

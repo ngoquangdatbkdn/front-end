@@ -37,6 +37,7 @@
       "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
       "status": "untranslated"
     },
+    "cover_image": "https://www.incimages.com/uploaded_files/image/970x450/getty_509107562_2000133320009280346_351827.jpg",
     "name": "Lập trình viên XYZ",
     "contract": {
       "id": 0,
@@ -71,8 +72,8 @@
       "desc": "Quận Hoàn Kiếm"
     },
     "address": "Số 55, Yết Kiêu",
-    "min_salary": 0,
-    "max_salary": 0,
+    "min_salary": 900,
+    "max_salary": 3000,
     "status": "untranslated"
   }
 }

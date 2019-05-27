@@ -1,4 +1,5 @@
-// import "reflect-metadata";
+import "reflect-metadata";
+import "es6-shim";
 import { Expose, Type } from "class-transformer";
 import { Common } from "./common";
 import { Company } from "./";
@@ -10,8 +11,9 @@ export class Job {
   @Expose() @Type(() => Common) contract?: Common;
   @Expose() @Type(() => Common) business?: Common;
   @Expose() @Type(() => Common) level?: Common;
-  @Expose() logo?: number;
-  @Expose({ name: "japaneseLevel" }) japanese_level?: string;
+  @Expose() logo?: string;
+  @Expose({ name: "cover_image" }) coverImage?: string;
+  @Expose({ name: "japanese_level" }) japaneseLevel?: string;
   @Expose() desc?: string;
   @Expose() @Type(() => Common) city?: Common;
   @Expose() @Type(() => Common) district?: Common;

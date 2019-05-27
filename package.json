@@ -9,6 +9,7 @@
     "bootstrap": "^4.3.1",
     "class-transformer": "^0.2.2",
     "cors": "^2.8.5",
+    "es6-shim": "^0.35.5",
     "jsonwebtoken": "^8.5.1",
     "nouislider": "^13.1.4",
     "nuxt": "^2.4.0",
@@ -31,7 +32,7 @@
     "vuex-class": "^0.3.1"
   },
   "scripts": {
-    "dev": "nuxt dev -o",
+    "dev": "nuxt dev",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",

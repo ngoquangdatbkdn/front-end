@@ -5,6 +5,7 @@ import {CompaniesResponse} from './companies_response'
 import {Job} from './job'
 import {Jobs} from './jobs'
 import {JobsResponse} from './jobs_response'
+import {JobResponse} from './job_response'
 
 export {
     Account,
@@ -13,5 +14,6 @@ export {
     CompaniesResponse,
     Job,
     Jobs,
-    JobsResponse
+    JobsResponse,
+    JobResponse
 }

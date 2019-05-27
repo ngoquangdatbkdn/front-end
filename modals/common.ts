@@ -3,7 +3,7 @@ import { Expose } from "class-transformer";
 
 export  class Common {
     @Expose() id?: string;
-    @Expose() name_ja?: string;
-    @Expose() name_vi?: string;
+    @Expose({ name: "name_ja" }) ja?: string;
+    @Expose({ name: "name_vi" }) vi?: string;
     @Expose() desc?: string;
 }

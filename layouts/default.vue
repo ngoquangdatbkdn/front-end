@@ -114,11 +114,11 @@
       <confirmation-form />
     </modal>
     <!--</header>-->
-    <!--<div class="body">-->
+    <div class="body">
     <main>
       <Nuxt />
     </main>
-    <!--</div>-->
+    </div>
   </div>
 </template>
 
@@ -279,7 +279,7 @@ export default class DefaultLayout extends Vue {
 
 <style>
 .body {
-  margin-top: 100px;
+  padding-top: 70px;
 }
 .navbar-nav .dropdown-menu.show {
   margin-top: 15px;

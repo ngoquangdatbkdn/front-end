@@ -3,13 +3,13 @@ import {Job} from '~/modals'
 export interface JobState {
   job: Job;
   jobs: Job[];
-  jobID: string;
+  id: string;
 }
 
 const state = (): JobState => ({
   job: new Job(),
   jobs: [],
-  jobID: ''
+  id: ''
 })
 
 export default state
