@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white pb-5">
+  <div class="bg-white pb-5 d-flex justify-content-center align-items-center flex-column">
     <div v-if="job!=null" class="d-flex justify-content-center align-items-center">
       <div class="container  row pt-4">
         <div class="mr-auto pb-4 col-12 col-md-12 row ">
@@ -60,7 +60,7 @@
         </div>
       </div>
     </div>
-    <!--<job-detail-tabs />-->
+    <job-detail-tabs />
   </div>
 </template>
 

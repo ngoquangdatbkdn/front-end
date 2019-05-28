@@ -55,5 +55,6 @@ declare module "vue/types/vue" {
     interface Vue {
         $auth: Auth;
         $t: any;
+        $i18n: any;
     }
 }

@@ -59,6 +59,10 @@
     },
     "japanese_level": 1,
     "description": "私の名前はDatです",
+    "benefits": "私の名前はDatです",
+    "required_education": "私の名前はDatです",
+    "required_experience": "私の名前はDatです",
+    "required_language": "私の名前はDatです",
     "city": {
       "id": 0,
       "name_vi": "Hà Nội",
@@ -74,6 +78,26 @@
     "address": "Số 55, Yết Kiêu",
     "min_salary": 900,
     "max_salary": 3000,
-    "status": "untranslated"
+    "status": "untranslated",
+    "translations": [
+      {
+        "id": "4c13cdf1eu831",
+        "description": "私の名前はDatです",
+        "benefits": "私の名前はDatです",
+        "required_education": "私の名前はDatです",
+        "required_experience": "私の名前はDatです",
+        "required_language": "私の名前はDatです",
+        "in_use": true
+      },
+      {
+        "id": "4134",
+        "description": "私の名前はDatです",
+        "benefits": "私の名前はDatです",
+        "required_education": "私の名前はDatです",
+        "required_experience": "私の名前はDatです",
+        "required_language": "私の名前はDatです",
+        "in_use": false
+      }
+    ]
   }
 }
