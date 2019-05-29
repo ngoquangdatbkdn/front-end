@@ -8,7 +8,7 @@
     <div class="bg-white ">
       <div class="container  pt-5">
         <v-text-field-with-validation
-          v-model="companyModal.name_ja"
+          v-model="companyModal.ja"
           rules="required"
           type="text"
           :label="$t('company.company_name')"
@@ -153,7 +153,7 @@ import CityModal from '~/modals/city_modal'
 import DistrictModal from '~/modals/district_modal'
 import WardModal from '~/modals/ward_modal'
 
-import CompanyService from '~/services/company_service'
+// import CompanyService from '~/services/company_service'
 
 const City = namespace('city')
 const District = namespace('district')
@@ -220,7 +220,7 @@ export default class CreateCompany extends Vue {
     // console.log("result " + result.toString());
     if (result) {
       this.companyModal.shouldShow = false
-      this.companyModal.name_vi = this.companyModal.name_ja
+      this.companyModal.vi = this.companyModal.ja
       this.companyModal.introduction_vi = this.companyModal.introduction_ja
       await this.createCompany(this.companyModal)
       // console.log("this.userInfo");

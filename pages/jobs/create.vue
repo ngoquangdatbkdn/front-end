@@ -8,7 +8,7 @@
     <!--<div class="bg-white ">-->
       <!--<div class="container  pt-5">-->
         <!--<v-text-field-with-validation-->
-          <!--v-model="jobModal.name_ja"-->
+          <!--v-model="jobModal.ja"-->
           <!--rules="required"-->
           <!--type="text"-->
           <!--:label="$t('job.job_name')"-->
@@ -232,7 +232,7 @@
     <!--const result = await (this.$refs.obs as any).validate()-->
     <!--if (result) {-->
       <!--this.jobModal.companyID = this.$router.currentRoute.params.id-->
-      <!--this.jobModal.name_vi = this.jobModal.name_ja-->
+      <!--this.jobModal.vi = this.jobModal.ja-->
       <!--this.jobModal.description_vi = this.jobModal.description_ja-->
       <!--this.jobModal.requiredLanguage_vi = this.jobModal.requiredLanguage_ja-->
       <!--this.jobModal.requiredSkill_vi = this.jobModal.requiredSkill_ja-->

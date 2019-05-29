@@ -32,8 +32,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
-import { namespace } from "vuex-class";
-import { Company } from "../modals";
+import { Company } from "~/modals";
 
 @Component({})
 export default class CompanyListItem extends Vue {

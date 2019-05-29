@@ -36,11 +36,11 @@ const UserInfo = namespace('userInfo')
   }
 })
 export default class CompanyDetailTabs extends Vue {
-    @Company.State companyModal;
+    @Company.State company;
     @UserInfo.State userInfo;
     get shouldShowTranslatorList(): boolean {
       if (!this.userInfo) return false
-      if (this.userInfo.companyID !== this.companyModal.id) return false
+      if (this.userInfo.companyID !== this.company.id) return false
       return true
     }
 }

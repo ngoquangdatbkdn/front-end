@@ -9,8 +9,8 @@ export default class CompanyModal {
   constructor() {}
 
   public id?: string;
-  public name_ja?: string;
-  public name_vi?: string;
+  public ja?: string;
+  public vi?: string;
   public salaryRange?: string;
   public activeJob?: string;
   public staffNumber?: number;

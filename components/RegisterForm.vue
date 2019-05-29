@@ -120,9 +120,9 @@ import BaseButton from '~/argon-components/BaseButton.vue'
 import Card from '~/argon-components/Card.vue'
 
 // import { fbAuth } from "~/plugins/firebase";
-import AuthenticationService from '~/services/authentication_service'
-import UserInfoService from '~/services/user_info_service'
-import UserInfoModal from '~/modals/user_info_modal'
+// import AuthenticationService from '~/services/authentication_service'
+// import UserInfoService from '~/services/user_info_service'
+// import UserInfoModal from '~/modals/user_info_modal'
 
 const RegisterModal = namespace('registerModal')
 const ConfirmationModal = namespace('confirmationModal')
@@ -161,8 +161,8 @@ export default class RegisterForm extends Vue {
   async onSignUp() {
     const result = await (this.$refs.obs as any).validate()
     if (result) {
-      const authenticationService: AuthenticationService = AuthenticationService.getInstance()
-      const userInfoService: UserInfoService = UserInfoService.getInstance()
+      // const authenticationService: AuthenticationService = AuthenticationService.getInstance()
+      // const userInfoService: UserInfoService = UserInfoService.getInstance()
       try {
         // const userCredential: auth.UserCredential = await authenticationService.signUp(
         //   this.email,

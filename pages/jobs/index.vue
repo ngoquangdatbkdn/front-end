@@ -7,10 +7,7 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-import CompanyService from 'services/company_service'
-import CompanyModal from '~/modals/company_modal'
 import CompanyDetailTabs from '~/components/CompanyDetailTabs.vue'
-import types from 'store/company/types'
 
 const Company = namespace('company')
 

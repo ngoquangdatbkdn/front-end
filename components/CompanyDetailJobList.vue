@@ -5,9 +5,9 @@
     </base-button>
     <div class="container row">
       <job-list-item
-        v-for="(jobModal, index) of jobModalList"
+        v-for="(job, index) of jobs"
         :key="index"
-        :job-modal="jobModal"
+        :job="job"
       />
     </div>
   </div>
@@ -18,7 +18,6 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
 
 import BaseButton from '~/argon-components/BaseButton.vue'
-import CompanyModal from '../modals/company_modal'
 import JobListItem from '~/components/JobListItem.vue'
 
 const Company = namespace('company')
@@ -32,10 +31,10 @@ const Job = namespace('job')
 })
 export default class CompanyDetailJobList extends Vue {
   @Company.State companyModal;
-  @Job.State jobModalList;
+  @Job.State jobs;
   mount() {
-    // console.log('jobModalList')
-    // console.log(this.jobModalList)
+    console.log('jobs')
+    console.log(this.jobs)
   }
   createJob() {
     this.$router.push(

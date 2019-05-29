@@ -12,6 +12,13 @@ export class Job {
     @Expose() @Type(() => Common) business?: Common;
     @Expose() @Type(() => Common) level?: Common;
     @Expose() logo?: string;
+
+    @Expose() benefits?: string;
+    @Expose() description?: string;
+    @Expose({ name: "required_education" }) requiredEducation?: string;
+    @Expose({ name: "required_experience" }) requiredExperience?: string;
+    @Expose({ name: "required_language" }) requiredLanguage?: string;
+
     @Expose({name: "cover_image"}) coverImage?: string;
     @Expose({name: "japanese_level"}) japaneseLevel?: string;
     @Expose() desc?: string;

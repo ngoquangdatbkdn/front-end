@@ -7,6 +7,7 @@ export class Company {
   @Expose() id?: string;
   @Type(() => Account) account?: Account;
   @Expose() name?: string;
+  @Expose() introduction?: string;
   @Expose() scale?: number;
   @Expose() salaryRange?: string;
   @Expose() activeJob?: string;
@@ -14,7 +15,7 @@ export class Company {
   @Expose() maxSalary?: number;
   @Type(() => Common) businesses?: Common[];
   @Expose() logo?: string;
-  @Expose() coverImage?: string;
+  @Expose({ name: "cover_image" }) coverImage?: string;
   @Type(() => Common) city?: Common;
   @Type(() => Common) district?: Common;
   @Expose() address?: string;

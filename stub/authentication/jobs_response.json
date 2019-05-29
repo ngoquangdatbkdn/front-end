@@ -16,21 +16,21 @@
         "businesses": [
           {
             "id": 0,
-            "name_vi": "Quản trị kinh doanh",
-            "name_ja": "経営学",
+            "vi": "Quản trị kinh doanh",
+            "ja": "経営学",
             "desc": "Ngành quản trị kinh doanh"
           }
         ],
         "city": {
           "id": 0,
-          "name_vi": "Hà Nội",
-          "name_ja": "ハノイ",
+          "vi": "Hà Nội",
+          "ja": "ハノイ",
           "desc": "Thành Phố Hà Nội"
         },
         "district": {
           "id": 0,
-          "name_vi": "Hoàn Kiếm",
-          "name_ja": "ホアンキエム",
+          "vi": "Hoàn Kiếm",
+          "ja": "ホアンキエム",
           "desc": "Quận Hoàn Kiếm"
         },
         "address": "Số 55, Yết Kiêu",
@@ -41,34 +41,34 @@
       "name": "Lập trình viên XYZ",
       "contract": {
         "id": 0,
-        "name_vi": "Toàn thời gian",
-        "name_ja": "常勤職",
+        "vi": "Toàn thời gian",
+        "ja": "常勤職",
         "desc": "Công việc toàn thời gian"
       },
       "business": {
         "id": 0,
-        "name_vi": "Quản trị kinh doanh",
-        "name_ja": "経営学",
+        "vi": "Quản trị kinh doanh",
+        "ja": "経営学",
         "desc": "Ngành quản trị kinh doanh"
       },
       "level": {
         "id": 0,
-        "name_vi": "Quản lý",
-        "name_ja": "管理人",
+        "vi": "Quản lý",
+        "ja": "管理人",
         "desc": "Cấp bậc quản lý"
       },
       "japanese_level": 1,
       "description": "私の名前はDatです",
       "city": {
         "id": 0,
-        "name_vi": "Hà Nội",
-        "name_ja": "ハノイ",
+        "vi": "Hà Nội",
+        "ja": "ハノイ",
         "desc": "Thành Phố Hà Nội"
       },
       "district": {
         "id": 0,
-        "name_vi": "Hoàn Kiếm",
-        "name_ja": "ホアンキエム",
+        "vi": "Hoàn Kiếm",
+        "ja": "ホアンキエム",
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
@@ -92,21 +92,21 @@
         "businesses": [
           {
             "id": 0,
-            "name_vi": "Quản trị kinh doanh",
-            "name_ja": "経営学",
+            "vi": "Quản trị kinh doanh",
+            "ja": "経営学",
             "desc": "Ngành quản trị kinh doanh"
           }
         ],
         "city": {
           "id": 0,
-          "name_vi": "Hà Nội",
-          "name_ja": "ハノイ",
+          "vi": "Hà Nội",
+          "ja": "ハノイ",
           "desc": "Thành Phố Hà Nội"
         },
         "district": {
           "id": 0,
-          "name_vi": "Hoàn Kiếm",
-          "name_ja": "ホアンキエム",
+          "vi": "Hoàn Kiếm",
+          "ja": "ホアンキエム",
           "desc": "Quận Hoàn Kiếm"
         },
         "address": "Số 55, Yết Kiêu",
@@ -117,34 +117,34 @@
       "name": "Lập trình viên XYZ",
       "contract": {
         "id": 0,
-        "name_vi": "Toàn thời gian",
-        "name_ja": "常勤職",
+        "vi": "Toàn thời gian",
+        "ja": "常勤職",
         "desc": "Công việc toàn thời gian"
       },
       "business": {
         "id": 0,
-        "name_vi": "Quản trị kinh doanh",
-        "name_ja": "経営学",
+        "vi": "Quản trị kinh doanh",
+        "ja": "経営学",
         "desc": "Ngành quản trị kinh doanh"
       },
       "level": {
         "id": 0,
-        "name_vi": "Quản lý",
-        "name_ja": "管理人",
+        "vi": "Quản lý",
+        "ja": "管理人",
         "desc": "Cấp bậc quản lý"
       },
       "japanese_level": 1,
       "description": "私の名前はDatです",
       "city": {
         "id": 0,
-        "name_vi": "Hà Nội",
-        "name_ja": "ハノイ",
+        "vi": "Hà Nội",
+        "ja": "ハノイ",
         "desc": "Thành Phố Hà Nội"
       },
       "district": {
         "id": 0,
-        "name_vi": "Hoàn Kiếm",
-        "name_ja": "ホアンキエム",
+        "vi": "Hoàn Kiếm",
+        "ja": "ホアンキエム",
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
@@ -168,21 +168,21 @@
         "businesses": [
           {
             "id": 0,
-            "name_vi": "Quản trị kinh doanh",
-            "name_ja": "経営学",
+            "vi": "Quản trị kinh doanh",
+            "ja": "経営学",
             "desc": "Ngành quản trị kinh doanh"
           }
         ],
         "city": {
           "id": 0,
-          "name_vi": "Hà Nội",
-          "name_ja": "ハノイ",
+          "vi": "Hà Nội",
+          "ja": "ハノイ",
           "desc": "Thành Phố Hà Nội"
         },
         "district": {
           "id": 0,
-          "name_vi": "Hoàn Kiếm",
-          "name_ja": "ホアンキエム",
+          "vi": "Hoàn Kiếm",
+          "ja": "ホアンキエム",
           "desc": "Quận Hoàn Kiếm"
         },
         "address": "Số 55, Yết Kiêu",
@@ -193,34 +193,34 @@
       "name": "Lập trình viên XYZ",
       "contract": {
         "id": 0,
-        "name_vi": "Toàn thời gian",
-        "name_ja": "常勤職",
+        "vi": "Toàn thời gian",
+        "ja": "常勤職",
         "desc": "Công việc toàn thời gian"
       },
       "business": {
         "id": 0,
-        "name_vi": "Quản trị kinh doanh",
-        "name_ja": "経営学",
+        "vi": "Quản trị kinh doanh",
+        "ja": "経営学",
         "desc": "Ngành quản trị kinh doanh"
       },
       "level": {
         "id": 0,
-        "name_vi": "Quản lý",
-        "name_ja": "管理人",
+        "vi": "Quản lý",
+        "ja": "管理人",
         "desc": "Cấp bậc quản lý"
       },
       "japanese_level": 1,
       "description": "私の名前はDatです",
       "city": {
         "id": 0,
-        "name_vi": "Hà Nội",
-        "name_ja": "ハノイ",
+        "vi": "Hà Nội",
+        "ja": "ハノイ",
         "desc": "Thành Phố Hà Nội"
       },
       "district": {
         "id": 0,
-        "name_vi": "Hoàn Kiếm",
-        "name_ja": "ホアンキエム",
+        "vi": "Hoàn Kiếm",
+        "ja": "ホアンキエム",
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
@@ -244,21 +244,21 @@
         "businesses": [
           {
             "id": 0,
-            "name_vi": "Quản trị kinh doanh",
-            "name_ja": "経営学",
+            "vi": "Quản trị kinh doanh",
+            "ja": "経営学",
             "desc": "Ngành quản trị kinh doanh"
           }
         ],
         "city": {
           "id": 0,
-          "name_vi": "Hà Nội",
-          "name_ja": "ハノイ",
+          "vi": "Hà Nội",
+          "ja": "ハノイ",
           "desc": "Thành Phố Hà Nội"
         },
         "district": {
           "id": 0,
-          "name_vi": "Hoàn Kiếm",
-          "name_ja": "ホアンキエム",
+          "vi": "Hoàn Kiếm",
+          "ja": "ホアンキエム",
           "desc": "Quận Hoàn Kiếm"
         },
         "address": "Số 55, Yết Kiêu",
@@ -269,34 +269,34 @@
       "name": "Lập trình viên XYZ",
       "contract": {
         "id": 0,
-        "name_vi": "Toàn thời gian",
-        "name_ja": "常勤職",
+        "vi": "Toàn thời gian",
+        "ja": "常勤職",
         "desc": "Công việc toàn thời gian"
       },
       "business": {
         "id": 0,
-        "name_vi": "Quản trị kinh doanh",
-        "name_ja": "経営学",
+        "vi": "Quản trị kinh doanh",
+        "ja": "経営学",
         "desc": "Ngành quản trị kinh doanh"
       },
       "level": {
         "id": 0,
-        "name_vi": "Quản lý",
-        "name_ja": "管理人",
+        "vi": "Quản lý",
+        "ja": "管理人",
         "desc": "Cấp bậc quản lý"
       },
       "japanese_level": 1,
       "description": "私の名前はDatです",
       "city": {
         "id": 0,
-        "name_vi": "Hà Nội",
-        "name_ja": "ハノイ",
+        "vi": "Hà Nội",
+        "ja": "ハノイ",
         "desc": "Thành Phố Hà Nội"
       },
       "district": {
         "id": 0,
-        "name_vi": "Hoàn Kiếm",
-        "name_ja": "ホアンキエム",
+        "vi": "Hoàn Kiếm",
+        "ja": "ホアンキエム",
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
@@ -320,21 +320,21 @@
         "businesses": [
           {
             "id": 0,
-            "name_vi": "Quản trị kinh doanh",
-            "name_ja": "経営学",
+            "vi": "Quản trị kinh doanh",
+            "ja": "経営学",
             "desc": "Ngành quản trị kinh doanh"
           }
         ],
         "city": {
           "id": 0,
-          "name_vi": "Hà Nội",
-          "name_ja": "ハノイ",
+          "vi": "Hà Nội",
+          "ja": "ハノイ",
           "desc": "Thành Phố Hà Nội"
         },
         "district": {
           "id": 0,
-          "name_vi": "Hoàn Kiếm",
-          "name_ja": "ホアンキエム",
+          "vi": "Hoàn Kiếm",
+          "ja": "ホアンキエム",
           "desc": "Quận Hoàn Kiếm"
         },
         "address": "Số 55, Yết Kiêu",
@@ -345,34 +345,34 @@
       "name": "Lập trình viên XYZ",
       "contract": {
         "id": 0,
-        "name_vi": "Toàn thời gian",
-        "name_ja": "常勤職",
+        "vi": "Toàn thời gian",
+        "ja": "常勤職",
         "desc": "Công việc toàn thời gian"
       },
       "business": {
         "id": 0,
-        "name_vi": "Quản trị kinh doanh",
-        "name_ja": "経営学",
+        "vi": "Quản trị kinh doanh",
+        "ja": "経営学",
         "desc": "Ngành quản trị kinh doanh"
       },
       "level": {
         "id": 0,
-        "name_vi": "Quản lý",
-        "name_ja": "管理人",
+        "vi": "Quản lý",
+        "ja": "管理人",
         "desc": "Cấp bậc quản lý"
       },
       "japanese_level": 1,
       "description": "私の名前はDatです",
       "city": {
         "id": 0,
-        "name_vi": "Hà Nội",
-        "name_ja": "ハノイ",
+        "vi": "Hà Nội",
+        "ja": "ハノイ",
         "desc": "Thành Phố Hà Nội"
       },
       "district": {
         "id": 0,
-        "name_vi": "Hoàn Kiếm",
-        "name_ja": "ホアンキエム",
+        "vi": "Hoàn Kiếm",
+        "ja": "ホアンキエム",
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
@@ -396,21 +396,21 @@
         "businesses": [
           {
             "id": 0,
-            "name_vi": "Quản trị kinh doanh",
-            "name_ja": "経営学",
+            "vi": "Quản trị kinh doanh",
+            "ja": "経営学",
             "desc": "Ngành quản trị kinh doanh"
           }
         ],
         "city": {
           "id": 0,
-          "name_vi": "Hà Nội",
-          "name_ja": "ハノイ",
+          "vi": "Hà Nội",
+          "ja": "ハノイ",
           "desc": "Thành Phố Hà Nội"
         },
         "district": {
           "id": 0,
-          "name_vi": "Hoàn Kiếm",
-          "name_ja": "ホアンキエム",
+          "vi": "Hoàn Kiếm",
+          "ja": "ホアンキエム",
           "desc": "Quận Hoàn Kiếm"
         },
         "address": "Số 55, Yết Kiêu",
@@ -421,34 +421,34 @@
       "name": "Lập trình viên XYZ",
       "contract": {
         "id": 0,
-        "name_vi": "Toàn thời gian",
-        "name_ja": "常勤職",
+        "vi": "Toàn thời gian",
+        "ja": "常勤職",
         "desc": "Công việc toàn thời gian"
       },
       "business": {
         "id": 0,
-        "name_vi": "Quản trị kinh doanh",
-        "name_ja": "経営学",
+        "vi": "Quản trị kinh doanh",
+        "ja": "経営学",
         "desc": "Ngành quản trị kinh doanh"
       },
       "level": {
         "id": 0,
-        "name_vi": "Quản lý",
-        "name_ja": "管理人",
+        "vi": "Quản lý",
+        "ja": "管理人",
         "desc": "Cấp bậc quản lý"
       },
       "japanese_level": 1,
       "description": "私の名前はDatです",
       "city": {
         "id": 0,
-        "name_vi": "Hà Nội",
-        "name_ja": "ハノイ",
+        "vi": "Hà Nội",
+        "ja": "ハノイ",
         "desc": "Thành Phố Hà Nội"
       },
       "district": {
         "id": 0,
-        "name_vi": "Hoàn Kiếm",
-        "name_ja": "ホアンキエム",
+        "vi": "Hoàn Kiếm",
+        "ja": "ホアンキエム",
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",
@@ -472,21 +472,21 @@
         "businesses": [
           {
             "id": 0,
-            "name_vi": "Quản trị kinh doanh",
-            "name_ja": "経営学",
+            "vi": "Quản trị kinh doanh",
+            "ja": "経営学",
             "desc": "Ngành quản trị kinh doanh"
           }
         ],
         "city": {
           "id": 0,
-          "name_vi": "Hà Nội",
-          "name_ja": "ハノイ",
+          "vi": "Hà Nội",
+          "ja": "ハノイ",
           "desc": "Thành Phố Hà Nội"
         },
         "district": {
           "id": 0,
-          "name_vi": "Hoàn Kiếm",
-          "name_ja": "ホアンキエム",
+          "vi": "Hoàn Kiếm",
+          "ja": "ホアンキエム",
           "desc": "Quận Hoàn Kiếm"
         },
         "address": "Số 55, Yết Kiêu",
@@ -497,34 +497,34 @@
       "name": "Lập trình viên XYZ",
       "contract": {
         "id": 0,
-        "name_vi": "Toàn thời gian",
-        "name_ja": "常勤職",
+        "vi": "Toàn thời gian",
+        "ja": "常勤職",
         "desc": "Công việc toàn thời gian"
       },
       "business": {
         "id": 0,
-        "name_vi": "Quản trị kinh doanh",
-        "name_ja": "経営学",
+        "vi": "Quản trị kinh doanh",
+        "ja": "経営学",
         "desc": "Ngành quản trị kinh doanh"
       },
       "level": {
         "id": 0,
-        "name_vi": "Quản lý",
-        "name_ja": "管理人",
+        "vi": "Quản lý",
+        "ja": "管理人",
         "desc": "Cấp bậc quản lý"
       },
       "japanese_level": 1,
       "description": "私の名前はDatです",
       "city": {
         "id": 0,
-        "name_vi": "Hà Nội",
-        "name_ja": "ハノイ",
+        "vi": "Hà Nội",
+        "ja": "ハノイ",
         "desc": "Thành Phố Hà Nội"
       },
       "district": {
         "id": 0,
-        "name_vi": "Hoàn Kiếm",
-        "name_ja": "ホアンキエム",
+        "vi": "Hoàn Kiếm",
+        "ja": "ホアンキエム",
         "desc": "Quận Hoàn Kiếm"
       },
       "address": "Số 55, Yết Kiêu",

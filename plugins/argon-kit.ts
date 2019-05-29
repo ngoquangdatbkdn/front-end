@@ -1,7 +1,7 @@
 import Vue from 'vue'
-// import "@/assets/vendor/nucleo/css/nucleo.css";
-// import "@/assets/vendor/font-awesome/css/font-awesome.css";
-// import "@/assets/scss/argon.scss";
+// import "~/assets/vendor/nucleo/css/nucleo.css";
+// import "~/assets/vendor/font-awesome/css/font-awesome.css";
+// import "~/assets/scss/argon.scss";
 
 import Badge from '../argon-components/Badge.vue'
 import BaseAlert from '../argon-components/BaseAlert.vue'

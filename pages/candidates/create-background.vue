@@ -395,7 +395,7 @@ import EducationModal from '~/modals/education_modal'
 import CertificateModal from '~/modals/certificate_modal'
 import LanguageModal from '~/modals/language_modal'
 
-import CandidateService from '~/services/candidate_service'
+// import CandidateService from '~/services/candidate_service'
 
 const City = namespace('city')
 const District = namespace('district')

@@ -28,10 +28,10 @@ const config: NuxtConfiguration = {
   // loading: { color: '#3B8070' },
   // css: ['tachyons/css/tachyons.min.css', '~/assets/css/main.css'],
   css: [
-    '@/assets/vendor/nucleo/css/nucleo.css',
-    '@/assets/vendor/font-awesome/css/font-awesome.css',
-    '@/assets/scss/argon.scss',
-    '@/assets/scss/app.scss'
+    '~/assets/vendor/nucleo/css/nucleo.css',
+    '~/assets/vendor/font-awesome/css/font-awesome.css',
+    '~/assets/scss/argon.scss',
+    '~/assets/scss/app.scss'
   ],
   plugins: [
     '~/plugins/argon-kit',

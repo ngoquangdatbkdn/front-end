@@ -19,7 +19,7 @@
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import { ValidationProvider } from 'vee-validate'
 
-import BaseInput from '@/argon-components/BaseInput.vue'
+import BaseInput from '~/argon-components/BaseInput.vue'
 
 @Component({
   components: {

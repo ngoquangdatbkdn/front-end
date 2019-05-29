@@ -2,7 +2,7 @@ import { ActionTree, ActionContext } from 'vuex'
 import { RootState } from 'store'
 // import { User } from "firebase/app";
 import UserInfoModal from '~/modals/user_info_modal'
-import UserInfoService from '~/services/user_info_service'
+// import UserInfoService from '~/services/user_info_service'
 import types from './types'
 
 export interface Actions<S, R> extends ActionTree<S, R> {

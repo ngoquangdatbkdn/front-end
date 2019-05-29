@@ -77,7 +77,7 @@ import BaseButton from '~/argon-components/BaseButton.vue'
 import Card from '~/argon-components/Card.vue'
 
 // import { fbAuth } from "~/plugins/firebase";
-import AuthenticationService from '~/services/authentication_service'
+// import AuthenticationService from '~/services/authentication_service'
 
 const LoginModal = namespace('loginModal')
 const ConfirmationModal = namespace('confirmationModal')
@@ -115,7 +115,7 @@ export default class LoginForm extends Vue {
   async onSignIn() {
     const result = await (this.$refs.obs as any).validate()
     if (result) {
-      const authenticationService: AuthenticationService = AuthenticationService.getInstance()
+      // const authenticationService: AuthenticationService = AuthenticationService.getInstance()
 
       try {
         // const userCredential: auth.UserCredential = await authenticationService.signIn(

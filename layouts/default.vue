@@ -152,7 +152,7 @@ import LoginForm from "~/components/LoginForm.vue";
 import RegisterForm from "~/components/RegisterForm.vue";
 import ConfirmationForm from "~/components/ConfirmationForm.vue";
 
-import AuthenticationService from "~/services/authentication_service";
+// import AuthenticationService from "~/services/authentication_service";
 
 const LoginModal = namespace("loginModal");
 const RegisterModal = namespace("registerModal");
@@ -214,7 +214,7 @@ export default class DefaultLayout extends Vue {
     return true;
   }
   async onSignOut() {
-    const authenticationService: AuthenticationService = AuthenticationService.getInstance();
+    // const authenticationService: AuthenticationService = AuthenticationService.getInstance();
     // await authenticationService.signOut();
     this.$router.replace(
       (this as any).localePath({

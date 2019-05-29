@@ -1,11 +1,14 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <div v-html="companyModal[`introduction_${$i18n.locale}`]" />
+    <div>
+  <div v-if="company" v-html="company.introduction" />
+  <div v-if="job && job.company" v-html="job.company.introduction" />
+    </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-import CompanyModal from '../modals/company_modal'
+import { Job } from "~/modals";
 
 const Company = namespace('company')
 
@@ -13,7 +16,8 @@ const Company = namespace('company')
   components: {}
 })
 export default class CompanyDetailTabs extends Vue {
-    @Company.State companyModal;
+    @Company.State company;
+    @Prop({ type: Object, required: false }) job!: Job;
 }
 </script>
 
