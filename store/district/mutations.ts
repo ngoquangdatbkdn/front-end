@@ -1,11 +1,11 @@
 import { ActionTree, MutationTree, GetterTree, ActionContext } from 'vuex'
-import DistrictModal from '~/modals/district_modal'
+import {Common} from '~/modals'
 import { DistrictState } from './state'
 import types from './types'
 
 const mutations: MutationTree<DistrictState> = {
-  [types.CREATE](state, districtModalList: DistrictModal[]) {
-    state.districtModalList = districtModalList
+  [types.CREATE](state, districts: Common[]) {
+    state.districts = districts
   }
 }
 
