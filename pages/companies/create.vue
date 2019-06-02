@@ -26,7 +26,7 @@
           :placeholder="$t('company.enter_company_staff_amount')"
         />
         <hr>
-
+<!-- 
         <v-select-with-validation
           v-model="company.businessType.id"
           rules="required"
@@ -36,7 +36,7 @@
           :name="$t('company.business_type')"
           :reduce="businessTypeModal => businessTypeModal.id"
           :option-label="$i18n.locale"
-        />
+        /> -->
 
         <hr>
 
@@ -60,24 +60,14 @@
                 <v-select-with-validation
                   v-model="company.district.id"
                   rules="required"
-                  :options="collectedCommonList"
+                  :options="districts"
                   :label="$t('common.district')"
                   :name="$t('common.district')"
                   :isHalf="true"
                   :option-label="$i18n.locale"
                 />
               </div>
-              <div class="pt-3 position-relative">
-                <v-select-with-validation
-                  v-model="Company.ward"
-                  rules="required"
-                  :options="collectedWardModalList"
-                  :label="$t('common.ward')"
-                  :name="$t('common.ward')"
-                  :isHalf="true"
-                  :option-label="$i18n.locale"
-                />
-              </div>
+             
             </div>
           </div>
         </div>
@@ -154,7 +144,16 @@ const UserInfo = namespace("userInfo");
     VSelectWithValidation,
     VFileUploadWithValidation,
     VEditorWithValidation
-  }
+  },
+  async asyncData({ $axios }) {
+    const company = new Company();
+    company.city = new Common();
+    company.district = new Common();
+    company.businesses = [];
+    return {
+      company
+    }
+  },
 })
 export default class CreateCompany extends Vue {
   company: Company = new Company();
@@ -186,12 +185,13 @@ export default class CreateCompany extends Vue {
   }
 
   mounted() {
-    this.company = new Company();
+   
     // this.SET_COMPANY_ID(null)
   }
   async submit() {
     const result = await (this.$refs.obs as any).validate();
-    // console.log("result " + result.toString());
+     console.log("company " + JSON.stringify(this.company));
+    console.log("result " + result.toString());
     if (result) {
       // this.Company.shouldShow = false
       // this.Company.vi = this.Company.ja
