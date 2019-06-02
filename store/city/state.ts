@@ -1,11 +1,11 @@
-import CityModal from '~/modals/city_modal'
+import {Common} from '~/modals'
 
 export interface CityState {
-  cityModalList: CityModal[];
+  cities: Common[];
 }
 
 const state = (): CityState => ({
-  cityModalList: []
+  cities: []
 })
 
 export default state

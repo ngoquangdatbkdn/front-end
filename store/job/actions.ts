@@ -29,13 +29,13 @@ const actions: Actions<JobState, RootState> = {
     commit(types.SET_JOB, jobResponse.data);
   },
   async getJobs({ commit }, queryParams: any) {
-    const result: any = await this.$axios.$get("/api/jobs");
+    const result: any = await this.$axios.$get("/api/jobs?page=1&sort_by=created_time");
     let jobsResponse: JobsResponse = plainToClass(JobsResponse, result);
     commit(types.SET_JOBS, jobsResponse.data);
   },
   async getJobsByCompanyID({ commit }, companyID: string) {
       console.log('herre')
-      const result: any = await this.$axios.$get("/api/jobs");
+      const result: any = await this.$axios.$get("/api/jobs?page=1&sort_by=created_time");
       let jobsResponse: JobsResponse = plainToClass(JobsResponse, result);
       commit(types.SET_JOBS, jobsResponse.data);
   }

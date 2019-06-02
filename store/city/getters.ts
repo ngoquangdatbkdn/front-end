@@ -1,10 +1,10 @@
 import { ActionTree, MutationTree, GetterTree, ActionContext } from 'vuex'
 import { RootState } from 'store'
 import { CityState } from './state'
-// import CityModal from '~/modals/city_modal'
+// import {Common} from '~/modals'
 const getters: GetterTree<CityState, RootState> = {
-  getCityModalList: (state) => {
-    return state.cityModalList
+  getCityList: (state) => {
+    return state.cities
   }
 }
 export default getters

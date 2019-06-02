@@ -92,14 +92,16 @@
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
 import { State, Action, Getter, namespace } from "vuex-class";
+import { plainToClass } from "class-transformer";
 
 import JobListItem from "~/components/JobListItem.vue";
 import CompanyListItem from "~/components/CompanyListItem.vue";
+import { Job, JobsResponse, Company, CompaniesResponse } from "~/modals";
 
 const UserInfo = namespace("userInfo");
 const LoginModal = namespace("loginModal");
-const Company = namespace("company");
-const Job = namespace("job");
+// const Company = namespace("company");
+// const Job = namespace("job");
 
 @Component({
   components: {
@@ -107,24 +109,38 @@ const Job = namespace("job");
     CompanyListItem
   },
   async fetch({ store, params }) {
-    if (store.state.company.companies.length == 0)
-      await store.dispatch("company/getCompanies", {});
-    if (store.state.job.jobs.length == 0)
-      await store.dispatch("job/getJobs", {});
+    // if (store.state.company.companies.length == 0)
+    //   await store.dispatch("company/getCompanies", {});
+    // if (store.state.job.jobs.length == 0)
+    //   await store.dispatch("job/getJobs", {});
+  },
+  async asyncData({ $axios }) {
+    const result: any = await $axios.$get("/api/companies");
+    let companiesResponse: CompaniesResponse = plainToClass(
+      CompaniesResponse,
+      result
+    );
+    const result2: any = await  $axios.$get("/api/jobs");
+    let jobsResponse: JobsResponse = plainToClass(JobsResponse, result2);
+    console.log()
+    return {
+      companies: companiesResponse.data,
+      jobs: jobsResponse.data
+    };
   },
   head() {
     return {
-      title: this.$t('common.homepage'),
+      title: this.$t("common.homepage")
     };
   }
 })
 export default class Index extends Vue {
   @LoginModal.Action setShouldOpen;
-  @Company.State companies;
-  @Job.State jobs;
+  companies: Company[] = [];
+  jobs: Job[] = [];
   async mounted() {
     // console.log("companies " + JSON.stringify(this.companies));
-    console.log("jobs " + JSON.stringify(this.jobs));
+    // console.log("jobs " + JSON.stringify(this.jobs));
   }
 }
 </script>

@@ -8,7 +8,7 @@
     <div class="bg-white ">
       <div class="container  pt-5">
         <v-text-field-with-validation
-          v-model="companyModal.ja"
+          v-model="Company.ja"
           rules="required"
           type="text"
           :label="$t('company.company_name')"
@@ -19,7 +19,7 @@
         <hr>
 
         <v-text-field-with-validation
-          v-model="companyModal.staffNumber"
+          v-model="Company.staffNumber"
           rules="required|numeric"
           type="number"
           :label="$t('company.company_staff_amount')"
@@ -30,7 +30,7 @@
         <hr>
 
         <v-select-with-validation
-          v-model="companyModal.businessType"
+          v-model="Company.businessType"
           rules="required"
           :options="businessTypeModalList"
           :label="$t('company.business_type')"
@@ -54,7 +54,7 @@
           <div class="col-md-6 ">
             <div class="form-group mb-0">
               <v-select-with-validation
-                v-model="companyModal.city"
+                v-model="Company.city"
                 rules="required"
                 :options="cityModalList"
                 :label="$t('common.city')"
@@ -67,7 +67,7 @@
                 class="pt-3  position-relative"
               >
                 <v-select-with-validation
-                  v-model="companyModal.district"
+                  v-model="Company.district"
                   rules="required"
                   :options="collectedDistrictModalList"
                   :label="$t('common.district')"
@@ -81,7 +81,7 @@
                 class="pt-3 position-relative"
               >
                 <v-select-with-validation
-                  v-model="companyModal.ward"
+                  v-model="Company.ward"
                   rules="required"
                   :options="collectedWardModalList"
                   :label="$t('common.ward')"
@@ -97,7 +97,7 @@
 
         <v-file-upload-with-validation
           :key="'company_logo'"
-          v-model="companyModal.logo"
+          v-model="Company.logo"
           rules="required"
           :label="$t('company.company_logo')"
           :description="$t('company.company_logo_description')"
@@ -109,7 +109,7 @@
 
         <v-file-upload-with-validation
           :key="'company_cover_image'"
-          v-model="companyModal.coverImage"
+          v-model="Company.coverImage"
           rules="required"
           :label="$t('company.company_cover_image')"
           :description="$t('company.company_cover_image_description')"
@@ -120,7 +120,7 @@
         <hr>
 
         <v-editor-with-validation
-          v-model="companyModal.introduction_ja"
+          v-model="Company.introduction_ja"
           rules="required"
           :label="$t('company.company_introduction')"
           :description="$t('company.company_introduction_description')"
@@ -148,7 +148,7 @@ import VSelectWithValidation from '~/components/forms/VSelectWithValidation.vue'
 import VFileUploadWithValidation from '~/components/forms/VFileUploadWithValidation.vue'
 import VEditorWithValidation from '~/components/forms/VEditorWithValidation.vue'
 
-import CompanyModal from '~/modals/company_modal'
+import {Company} from '~/modals'
 import CityModal from '~/modals/city_modal'
 import DistrictModal from '~/modals/district_modal'
 import WardModal from '~/modals/ward_modal'
@@ -157,9 +157,9 @@ import WardModal from '~/modals/ward_modal'
 
 const City = namespace('city')
 const District = namespace('district')
-const Ward = namespace('ward')
+// const Ward = namespace('ward')
 const BusinessType = namespace('businessType')
-const Company = namespace('company')
+// const Company = namespace('company')
 const UserInfo = namespace('userInfo')
 
 @Component({
@@ -173,25 +173,25 @@ const UserInfo = namespace('userInfo')
   }
 })
 export default class CreateCompany extends Vue {
-  companyModal: CompanyModal = new CompanyModal();
+  Company: Company = new Company();
   collectedDistrictModalList: DistrictModal[] = [];
   collectedWardModalList: WardModal[] = [];
 
   @City.State cityModalList;
   @District.State districtModalList;
-  @Ward.State wardModalList;
+  // @Ward.State wardModalList;
   @BusinessType.State businessTypeModalList;
 
-  @Company.Action createCompany;
-  @UserInfo.Action updateUserInfoCompanyID;
-  @UserInfo.Action getUserInfoByID;
+  // @Company.Action createCompany;
+  // @UserInfo.Action updateUserInfoCompanyID;
+  // @UserInfo.Action getUserInfoByID;
 
-  @Company.State companyID;
-  @UserInfo.State userInfo;
+  // @Company.State companyID;
+  // @UserInfo.State userInfo;
 
-  @Company.Mutation SET_COMPANY_ID;
+  // @Company.Mutation SET_COMPANY_ID;
 
-  @Watch('companyModal.city')
+  @Watch('Company.city')
   onCompanyCityValueChanged(newVal: CityModal, oldVal: CityModal) {
     if (newVal !== oldVal) {
       this.collectedDistrictModalList = this.districtModalList.filter(
@@ -201,7 +201,7 @@ export default class CreateCompany extends Vue {
     }
   }
 
-  @Watch('companyModal.district')
+  @Watch('Company.district')
   onCompanyDistrictValueChanged(newVal: DistrictModal, oldVal: DistrictModal) {
     if (newVal !== oldVal) {
       this.collectedWardModalList = this.wardModalList.filter(
@@ -212,24 +212,24 @@ export default class CreateCompany extends Vue {
   }
 
   mounted() {
-    this.companyModal = new CompanyModal()
-    this.SET_COMPANY_ID(null)
+    this.Company = new Company()
+    // this.SET_COMPANY_ID(null)
   }
   async submit() {
     const result = await (this.$refs.obs as any).validate()
     // console.log("result " + result.toString());
     if (result) {
-      this.companyModal.shouldShow = false
-      this.companyModal.vi = this.companyModal.ja
-      this.companyModal.introduction_vi = this.companyModal.introduction_ja
-      await this.createCompany(this.companyModal)
+      // this.Company.shouldShow = false
+      // this.Company.vi = this.Company.ja
+      // this.Company.introduction_vi = this.Company.introduction_ja
+      // await this.createCompany(this.Company)
       // console.log("this.userInfo");
       // console.log(this.userInfo);
-      await this.updateUserInfoCompanyID({
-        userID: this.userInfo.id,
-        companyID: this.companyID
-      })
-      await this.getUserInfoByID(this.userInfo.id)
+      // await this.updateUserInfoCompanyID({
+      //   userID: this.userInfo.id,
+      //   companyID: this.companyID
+      // })
+      // await this.getUserInfoByID(this.userInfo.id)
       this.$router.push(
         (this as any).localePath({
           name: 'companies-id',
