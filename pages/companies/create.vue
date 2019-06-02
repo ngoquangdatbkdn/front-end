@@ -145,6 +145,18 @@ const UserInfo = namespace("userInfo");
     VFileUploadWithValidation,
     VEditorWithValidation
   },
+  async fetch({ store, params }) {
+    if (store.state.district.districts.length == 0){
+      await store.dispatch("district/fetchDistricts");
+    }
+    if (store.state.city.cities.length == 0){
+      await store.dispatch("city/fetchCities");
+    }
+    if (store.state.businessType.businessTypes.length == 0){
+      await store.dispatch("businessType/fetchBusinessTypes");
+    }
+
+  },
   async asyncData({ $axios }) {
     const company = new Company();
     company.city = new Common();

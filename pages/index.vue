@@ -5,33 +5,25 @@
         <div class="form-group col-12 col-sm-6">
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fa fa-search"/></span>
+              <span class="input-group-text">
+                <i class="fa fa-search"/>
+              </span>
             </div>
-            <input
-              :placeholder="$t('common.keyword')"
-              class="form-control"
-              type="text"
-            />
+            <input :placeholder="$t('common.keyword')" class="form-control" type="text">
           </div>
         </div>
-        <div class="form-group col-12 col-sm-4 d-flex ">
+        <div class="form-group col-12 col-sm-4 d-flex">
           <div class="input-group input-group-alternative">
             <div class="input-group-prepend">
-              <span class="input-group-text"
-                ><i class="fa fa-map-marker"
-              /></span>
+              <span class="input-group-text">
+                <i class="fa fa-map-marker"/>
+              </span>
             </div>
-            <input
-              :placeholder="$t('common.all_major')"
-              class="form-control"
-              type="text"
-            />
+            <input :placeholder="$t('common.all_major')" class="form-control" type="text">
           </div>
         </div>
         <div class="col-12 col-sm-2 text-center">
-          <button class="btn btn-primary" type="button">
-            {{ $t("common.search") }}
-          </button>
+          <button class="btn btn-primary" type="button">{{ $t("common.search") }}</button>
         </div>
       </div>
     </div>
@@ -39,21 +31,19 @@
     <section
       class="bg-white d-flex justify-content-center align-items-center pb-4 pt-5 flex-column"
     >
-      <div
-        class="container row px-4 justify-content-between align-items-center"
-      >
-        <h6 class="mb-3 list-label">
-          {{ $t("job.job_list") }}
-        </h6>
-        <nuxt-link :to="localePath('jobs')" class="text-dark see-more" exact>
-          {{ $t("common.see_more") }}
-        </nuxt-link>
+      <div class="container row px-4 justify-content-between align-items-center">
+        <h6 class="mb-3 list-label">{{ $t("job.job_list") }}</h6>
+        <nuxt-link
+          :to="localePath('jobs')"
+          class="text-dark see-more"
+          exact
+        >{{ $t("common.see_more") }}</nuxt-link>
       </div>
       <div class="container row">
-        <job-list-item v-for="(job, index) of jobs" :key="index" :job="job" />
+        <job-list-item v-for="(job, index) of jobs" :key="index" :job="job"/>
       </div>
     </section>
-    <div class=" bg-white pt-4 pb-3">
+    <div class="bg-white pt-4 pb-3">
       <div class="container bg-white">
         <div class="hr"></div>
       </div>
@@ -62,29 +52,19 @@
     <section
       class="bg-white d-flex justify-content-center align-items-center pb-4 pt-5 flex-column"
     >
-      <div
-        class="container row px-4 justify-content-between align-items-center"
-      >
-        <h6 class="mb-3 list-label">
-          {{ $t("common.company_list") }}
-        </h6>
+      <div class="container row px-4 justify-content-between align-items-center">
+        <h6 class="mb-3 list-label">{{ $t("common.company_list") }}</h6>
         <nuxt-link
           :to="localePath('companies')"
           class="text-dark see-more"
           exact
-        >
-          {{ $t("common.see_more") }}
-        </nuxt-link>
+        >{{ $t("common.see_more") }}</nuxt-link>
       </div>
       <div class="container row">
-        <company-list-item
-          v-for="(company, index) of companies"
-          :key="index"
-          :company="company"
-        />
+        <company-list-item v-for="(company, index) of companies" :key="index" :company="company"/>
       </div>
     </section>
-    <footer class="bg-white "></footer>
+    <footer class="bg-white"></footer>
   </div>
 </template>
 
@@ -96,7 +76,7 @@ import { plainToClass } from "class-transformer";
 
 import JobListItem from "~/components/JobListItem.vue";
 import CompanyListItem from "~/components/CompanyListItem.vue";
-import { Job, JobsResponse, Company, CompaniesResponse } from "~/modals";
+import { Job, Company } from "~/modals";
 
 const UserInfo = namespace("userInfo");
 const LoginModal = namespace("loginModal");
@@ -115,17 +95,14 @@ const LoginModal = namespace("loginModal");
     //   await store.dispatch("job/getJobs", {});
   },
   async asyncData({ $axios }) {
-    const result: any = await $axios.$get("/api/companies");
-    let companiesResponse: CompaniesResponse = plainToClass(
-      CompaniesResponse,
-      result
-    );
-    const result2: any = await  $axios.$get("/api/jobs");
-    let jobsResponse: JobsResponse = plainToClass(JobsResponse, result2);
-    console.log()
+    let results: Object[] = await $axios.$get("/api/companies");
+    const companies = plainToClass(Company, results["data"]);
+    results = await $axios.$get("/api/jobs");
+    const jobs = plainToClass(Job, results["data"]);
+
     return {
-      companies: companiesResponse.data,
-      jobs: jobsResponse.data
+      companies,
+      jobs
     };
   },
   head() {

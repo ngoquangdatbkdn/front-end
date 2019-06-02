@@ -3,7 +3,7 @@ import { plainToClass } from "class-transformer";
 import { RootState } from "store";
 // import JobService from "~/services/job_service";
 import { JobState } from "./state";
-import { Job, JobsResponse, JobResponse } from "~/modals";
+import { Job } from "~/modals";
 import types from "./types";
 
 export interface Actions<S, R> extends ActionTree<S, R> {
@@ -21,24 +21,24 @@ const actions: Actions<JobState, RootState> = {
   async addJobToList({ commit }, job: Job) {
     commit(types.ADD_JOB, job);
   },
-  async getJobByID({ commit }, id: string) {
-    const result: any = await this.$axios.$get("/api/jobs/1");
-    let jobResponse: JobResponse = plainToClass(JobResponse, result);
-    // console.log("jobResponse " + JSON.stringify(jobResponse));
+  // async getJobByID({ commit }, id: string) {
+  //   const result: any = await this.$axios.$get("/api/jobs/1");
+  //   let jobResponse: JobResponse = plainToClass(JobResponse, result);
+  //   // console.log("jobResponse " + JSON.stringify(jobResponse));
 
-    commit(types.SET_JOB, jobResponse.data);
-  },
-  async getJobs({ commit }, queryParams: any) {
-    const result: any = await this.$axios.$get("/api/jobs?page=1&sort_by=created_time");
-    let jobsResponse: JobsResponse = plainToClass(JobsResponse, result);
-    commit(types.SET_JOBS, jobsResponse.data);
-  },
-  async getJobsByCompanyID({ commit }, companyID: string) {
-      console.log('herre')
-      const result: any = await this.$axios.$get("/api/jobs?page=1&sort_by=created_time");
-      let jobsResponse: JobsResponse = plainToClass(JobsResponse, result);
-      commit(types.SET_JOBS, jobsResponse.data);
-  }
+  //   commit(types.SET_JOB, jobResponse.data);
+  // },
+  // async getJobs({ commit }, queryParams: any) {
+  //   const result: any = await this.$axios.$get("/api/jobs?page=1&sort_by=created_time");
+  //   let jobsResponse: JobsResponse = plainToClass(JobsResponse, result);
+  //   commit(types.SET_JOBS, jobsResponse.data);
+  // },
+  // async getJobsByCompanyID({ commit }, companyID: string) {
+  //     console.log('herre')
+  //     const result: any = await this.$axios.$get("/api/jobs?page=1&sort_by=created_time");
+  //     let jobsResponse: JobsResponse = plainToClass(JobsResponse, result);
+  //     commit(types.SET_JOBS, jobsResponse.data);
+  // }
 };
 
 export default actions;

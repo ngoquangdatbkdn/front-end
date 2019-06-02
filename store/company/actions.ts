@@ -3,7 +3,7 @@ import { plainToClass } from "class-transformer";
 import { RootState } from "store";
 import { CompanyState } from "./state";
 import { Account } from "~/modals";
-import { Company, Companies, CompaniesResponse } from "~/modals";
+import { Company,  } from "~/modals";
 
 import types from "./types";
 
@@ -26,12 +26,12 @@ const actions: Actions<CompanyState, RootState> = {
     console.log("company " + JSON.stringify(company));
     commit(types.SET_COMPANY, company);
   },
-  async getCompanies({ commit }, queryParams: any) {
-      const result: any = await this.$axios.$get("/api/companies");
-      let companiesResponse: CompaniesResponse = plainToClass(CompaniesResponse, result);
-      // console.log("companiesResponse " + JSON.stringify(companiesResponse));
-      commit(types.SET_COMPANIES, companiesResponse.data);
-  },
+  // async getCompanies({ commit }, queryParams: any) {
+  //     const result: any = await this.$axios.$get("/api/companies");
+  //     let companiesResponse: CompaniesResponse = plainToClass(CompaniesResponse, result);
+  //     // console.log("companiesResponse " + JSON.stringify(companiesResponse));
+  //     commit(types.SET_COMPANIES, companiesResponse.data);
+  // },
   async updateShouldShowCompany({ commit, state }, shouldShow: boolean) {
     console.log("here");
     // const companyService = CompanyService.getInstance();

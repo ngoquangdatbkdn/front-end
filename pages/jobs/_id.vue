@@ -94,21 +94,30 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-import JobDetailTabs from '~/components/JobDetailTabs.vue'
+import { plainToClass } from "class-transformer";
 
-const Job = namespace('job')
+import JobDetailTabs from '~/components/JobDetailTabs.vue'
+import {Job} from '../../modals'
 
 @Component({
   components: {
     JobDetailTabs
   },
-  async fetch({ store, params }) {
-    const id: string = params.id
-    await store.dispatch("job/getJobByID", id);
+  // async fetch({ store, params }) {
+  //   const id: string = params.id
+  //   await store.dispatch("job/getJobByID", id);
+    
+  // }
+  async asyncData({ $axios, params }) {
+    let result: Object = await $axios.$get("/api/jobs/1");
+    let job: Job = plainToClass(Job, result['data']);
+    return {
+      job
+    };
   }
 })
 export default class JobDetail extends Vue {
-  @Job.State job;
+  job: Job = new Job();
   async mounted() {
       console.log('this.job ' + JSON.stringify(this.job));
   }

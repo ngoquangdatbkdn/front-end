@@ -1,5 +1,5 @@
 const types = {
-  // SELECT: 'SELECT',
+  SET_CITIES: 'SET_CITIES',
   CREATE: 'CREATE'
 }
 
