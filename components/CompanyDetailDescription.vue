@@ -8,15 +8,14 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { namespace } from 'vuex-class'
-import { Job } from "~/modals";
+import { Job, Company } from "~/modals";
 
-const Company = namespace('company')
 
 @Component({
   components: {}
 })
 export default class CompanyDetailTabs extends Vue {
-    @Company.State company;
+    @Prop({ type: Object, required: false }) company!: Company;
     @Prop({ type: Object, required: false }) job!: Job;
 }
 </script>

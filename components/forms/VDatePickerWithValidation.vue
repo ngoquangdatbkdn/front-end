@@ -73,7 +73,7 @@ export default class VDatePickerWithValidation extends Vue {
 
   @Watch('innerValue')
   onInnerValueChanged(newVal: string, oldVal: string) {
-    console.log('newVal ' + newVal.toString())
+    // console.log('newVal ' + newVal.toString())
     this.$emit('input', newVal)
   }
 

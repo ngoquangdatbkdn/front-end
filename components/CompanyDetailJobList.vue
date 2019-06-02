@@ -19,28 +19,42 @@ import { namespace } from 'vuex-class'
 
 import BaseButton from '~/argon-components/BaseButton.vue'
 import JobListItem from '~/components/JobListItem.vue'
-
-const Company = namespace('company')
-const Job = namespace('job')
+import {Company, Job} from '~/modals'
 
 @Component({
   components: {
     BaseButton,
     JobListItem
-  }
+  },
+  async asyncData({ $axios, params }) {
+    console.log('fetch from back end');
+    // const companyID: string = params.id;
+    // console.log("companyID " + companyID.toString());
+
+    // let result: Object = await $axios.$get("/api/companies/1");
+    // let company: Company = plainToClass(Company, result["data"]);
+
+    // let results: Object[] = await $axios.$get("/api/jobs");
+    // const jobs = plainToClass(Job, results["data"]);
+
+    // return {
+    //   jobs,
+    //   company
+    // };
+  },
 })
 export default class CompanyDetailJobList extends Vue {
-  @Company.State companyModal;
-  @Job.State jobs;
+   @Prop(Object) readonly company!: Company;
+  jobs: Job[] = [];
   mount() {
-    console.log('jobs')
-    console.log(this.jobs)
+    // console.log('jobs')
+    // console.log(this.jobs)
   }
   createJob() {
     this.$router.push(
       (this as any).localePath({
         name: 'companies-id-jobs-create',
-        params: { id: this.companyModal.id }
+        params: { id: this.company.id }
       })
     )
   }

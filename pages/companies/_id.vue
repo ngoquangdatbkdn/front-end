@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-center align-items-center">
-      <company-detail-tabs/>
+      <company-detail-tabs v-if="company" :company="company"/>
     </div>
   </div>
 </template>
@@ -80,16 +80,22 @@ import { Company, Job } from "../../modals";
   async asyncData({ $axios, params }) {
     const companyID: string = params.id;
     console.log("companyID " + companyID.toString());
-
+let company = new Company();
+  console.log('company 1' + company.toString());
     let result: Object = await $axios.$get("/api/companies/1");
-    let company: Company = plainToClass(Company, result["data"]);
+   company = plainToClass(Company, result["data"]);
 
     let results: Object[] = await $axios.$get("/api/jobs");
     const jobs = plainToClass(Job, results["data"]);
-
+    console.log('company ' + company.toString());
     return {
       jobs,
       company
+    };
+  },
+   head() {
+    return {
+      title: this.company.name
     };
   }
 })
@@ -101,9 +107,9 @@ export default class CompanyDetail extends Vue {
   jobs: Job[] = [];
 
   async mounted() {
-    console.log("this.company.shouldShow");
-    console.log(this.company);
-    console.log(this.jobs);
+    // console.log("this.company.shouldShow");
+    // console.log(this.company);
+    // console.log(this.jobs);
   }
 }
 </script>

@@ -4,6 +4,7 @@
 
 import Vue, { ComponentOptions } from "vue";
 import { CookieAttributes } from "js-cookie";
+import { Company, Job } from "./modals";
 
 // todo: context?
 interface StorageCookieOptions extends CookieAttributes {
@@ -56,5 +57,7 @@ declare module "vue/types/vue" {
         $auth: Auth;
         $t: any;
         $i18n: any;
+        company: Company;
+        job: Job;
     }
 }

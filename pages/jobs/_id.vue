@@ -60,7 +60,7 @@
         </div>
       </div>
     </div>
-    <job-detail-tabs />
+    <job-detail-tabs :job="job"/>
   </div>
 </template>
 
@@ -114,12 +114,17 @@ import {Job} from '../../modals'
     return {
       job
     };
+  },
+  head() {
+    return {
+      title: this.job.name
+    };
   }
 })
 export default class JobDetail extends Vue {
   job: Job = new Job();
   async mounted() {
-      console.log('this.job ' + JSON.stringify(this.job));
+      // console.log('this.job ' + JSON.stringify(this.job));
   }
 }
 </script>
