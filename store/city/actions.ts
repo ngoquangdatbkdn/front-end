@@ -5,11 +5,11 @@ import {Common} from '~/modals'
 import types from './types'
 
 export interface Actions<S, R> extends ActionTree<S, R> {
-  create(context: ActionContext<S, R>, city: City): void;
+  create(context: ActionContext<S, R>, city: Common): void;
 }
 
 const actions: Actions<CityState, RootState> = {
-  create({ commit }, city: City) {
+  create({ commit }, city: Common) {
     commit(types.CREATE, city)
   }
 }

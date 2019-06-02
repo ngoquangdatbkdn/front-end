@@ -7,6 +7,7 @@ import {Jobs} from './jobs'
 import {JobsResponse} from './jobs_response'
 import {JobResponse} from './job_response'
 import {JobTranslation} from './job_translation'
+import {Common} from './common'
 
 export {
     Account,
@@ -17,5 +18,6 @@ export {
     Jobs,
     JobsResponse,
     JobResponse,
-    JobTranslation
+    JobTranslation,
+    Common
 }
