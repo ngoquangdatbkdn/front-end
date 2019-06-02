@@ -1,11 +1,11 @@
-import BusinessTypeModal from '~/modals/business_type_modal'
+import Common from '~/modals/business_type_modal'
 
 export interface BusinessTypeState {
-  businessTypeModalList: BusinessTypeModal[];
+  businessTypes: Common[];
 }
 
 const state = (): BusinessTypeState => ({
-  businessTypeModalList: []
+  businessTypes: []
 })
 
 export default state
