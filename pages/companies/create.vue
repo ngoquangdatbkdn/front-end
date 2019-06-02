@@ -1,14 +1,12 @@
 <template>
   <ValidationObserver ref="obs" tag="div">
     <div class="page-title py-4 text-center">
-      <h4 class="mb-0">
-        {{ $t("company.update_company_info") }}
-      </h4>
+      <h4 class="mb-0">{{ $t("company.update_company_info") }}</h4>
     </div>
-    <div class="bg-white ">
-      <div class="container  pt-5">
+    <div class="bg-white">
+      <div class="container pt-5">
         <v-text-field-with-validation
-          v-model="Company.ja"
+          v-model="company.ja"
           rules="required"
           type="text"
           :label="$t('company.company_name')"
@@ -19,7 +17,7 @@
         <hr>
 
         <v-text-field-with-validation
-          v-model="Company.staffNumber"
+          v-model="company.scale"
           rules="required|numeric"
           type="number"
           :label="$t('company.company_staff_amount')"
@@ -30,9 +28,9 @@
         <hr>
 
         <v-select-with-validation
-          v-model="Company.businessType"
+          v-model="company.businessType.id"
           rules="required"
-          :options="businessTypeModalList"
+          :options="businessTypes"
           :label="$t('company.business_type')"
           :description="$t('company.business_type_description')"
           :name="$t('company.business_type')"
@@ -42,44 +40,34 @@
 
         <hr>
 
-        <div class="row ">
-          <div class="col-md-6 ">
-            <p class="mb-0 font-weight-700 text-uppercase">
-              {{ $t("company.company_address") }}
-            </p>
-            <p class="mb-3">
-              {{ $t("company.company_address_description") }}
-            </p>
+        <div class="row">
+          <div class="col-md-6">
+            <p class="mb-0 font-weight-700 text-uppercase">{{ $t("company.company_address") }}</p>
+            <p class="mb-3">{{ $t("company.company_address_description") }}</p>
           </div>
-          <div class="col-md-6 ">
+          <div class="col-md-6">
             <div class="form-group mb-0">
               <v-select-with-validation
-                v-model="Company.city"
+                v-model="company.city.id"
                 rules="required"
-                :options="cityModalList"
+                :options="cities"
                 :label="$t('common.city')"
                 :name="$t('common.city')"
                 :isHalf="true"
                 :option-label="$i18n.locale"
               />
-              <div
-                v-if="collectedDistrictModalList.length > 0"
-                class="pt-3  position-relative"
-              >
+              <div class="pt-3 position-relative">
                 <v-select-with-validation
-                  v-model="Company.district"
+                  v-model="company.district.id"
                   rules="required"
-                  :options="collectedDistrictModalList"
+                  :options="collectedCommonList"
                   :label="$t('common.district')"
                   :name="$t('common.district')"
                   :isHalf="true"
                   :option-label="$i18n.locale"
                 />
               </div>
-              <div
-                v-if="collectedWardModalList.length > 0"
-                class="pt-3 position-relative"
-              >
+              <div class="pt-3 position-relative">
                 <v-select-with-validation
                   v-model="Company.ward"
                   rules="required"
@@ -97,7 +85,7 @@
 
         <v-file-upload-with-validation
           :key="'company_logo'"
-          v-model="Company.logo"
+          v-model="company.logo"
           rules="required"
           :label="$t('company.company_logo')"
           :description="$t('company.company_logo_description')"
@@ -109,7 +97,7 @@
 
         <v-file-upload-with-validation
           :key="'company_cover_image'"
-          v-model="Company.coverImage"
+          v-model="company.coverImage"
           rules="required"
           :label="$t('company.company_cover_image')"
           :description="$t('company.company_cover_image_description')"
@@ -120,7 +108,7 @@
         <hr>
 
         <v-editor-with-validation
-          v-model="Company.introduction_ja"
+          v-model="company.introduction"
           rules="required"
           :label="$t('company.company_introduction')"
           :description="$t('company.company_introduction_description')"
@@ -130,37 +118,33 @@
       </div>
 
       <div class="text-center pb-4">
-        <button type="button" class="btn btn-primary my-4" @click="submit">
-          {{ $t("company.update_company_info") }}
-        </button>
+        <button
+          type="button"
+          class="btn btn-primary my-4"
+          @click="submit"
+        >{{ $t("company.update_company_info") }}</button>
       </div>
     </div>
   </ValidationObserver>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Watch } from 'vue-property-decorator'
-import { namespace } from 'vuex-class'
-import { ValidationObserver, ValidationProvider } from 'vee-validate'
+import { Vue, Component, Watch } from "vue-property-decorator";
+import { namespace } from "vuex-class";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
-import VTextFieldWithValidation from '~/components/forms/VTextFieldWithValidation.vue'
-import VSelectWithValidation from '~/components/forms/VSelectWithValidation.vue'
-import VFileUploadWithValidation from '~/components/forms/VFileUploadWithValidation.vue'
-import VEditorWithValidation from '~/components/forms/VEditorWithValidation.vue'
+import VTextFieldWithValidation from "~/components/forms/VTextFieldWithValidation.vue";
+import VSelectWithValidation from "~/components/forms/VSelectWithValidation.vue";
+import VFileUploadWithValidation from "~/components/forms/VFileUploadWithValidation.vue";
+import VEditorWithValidation from "~/components/forms/VEditorWithValidation.vue";
 
-import {Company} from '~/modals'
-import CityModal from '~/modals/city_modal'
-import DistrictModal from '~/modals/district_modal'
-import WardModal from '~/modals/ward_modal'
+import { Company, Common } from "~/modals";
 
-// import CompanyService from '~/services/company_service'
 
-const City = namespace('city')
-const District = namespace('district')
-// const Ward = namespace('ward')
-const BusinessType = namespace('businessType')
-// const Company = namespace('company')
-const UserInfo = namespace('userInfo')
+const City = namespace("city");
+const District = namespace("district");
+const BusinessType = namespace("businessType");
+const UserInfo = namespace("userInfo");
 
 @Component({
   components: {
@@ -173,50 +157,40 @@ const UserInfo = namespace('userInfo')
   }
 })
 export default class CreateCompany extends Vue {
-  Company: Company = new Company();
-  collectedDistrictModalList: DistrictModal[] = [];
-  collectedWardModalList: WardModal[] = [];
+  company: Company = new Company();
+  // collectedCommonList: Common[] = [];
 
-  @City.State cityModalList;
-  @District.State districtModalList;
-  // @Ward.State wardModalList;
-  @BusinessType.State businessTypeModalList;
 
-  // @Company.Action createCompany;
-  // @UserInfo.Action updateUserInfoCompanyID;
-  // @UserInfo.Action getUserInfoByID;
+  @City.State cities;
+  @District.State districts;
+  @BusinessType.State businessTypes;
 
-  // @Company.State companyID;
-  // @UserInfo.State userInfo;
+  // @Watch("Company.city")
+  // onCompanyCityValueChanged(newVal: Common, oldVal: Common) {
+  //   if (newVal !== oldVal) {
+  //     this.collectedCommonList = this.districts.filter(
+  //       (district: Common) =>
+  //         district.cityID === (newVal as Common).id
+  //     );
+  //   }
+  // }
 
-  // @Company.Mutation SET_COMPANY_ID;
-
-  @Watch('Company.city')
-  onCompanyCityValueChanged(newVal: CityModal, oldVal: CityModal) {
+  @Watch("Company.district")
+  onCompanyDistrictValueChanged(newVal: Common, oldVal: Common) {
     if (newVal !== oldVal) {
-      this.collectedDistrictModalList = this.districtModalList.filter(
-        (districtModal: DistrictModal) =>
-          districtModal.cityID === (newVal as CityModal).id
-      )
-    }
-  }
-
-  @Watch('Company.district')
-  onCompanyDistrictValueChanged(newVal: DistrictModal, oldVal: DistrictModal) {
-    if (newVal !== oldVal) {
-      this.collectedWardModalList = this.wardModalList.filter(
-        (wardModal: WardModal) =>
-          wardModal.districtID === (newVal as DistrictModal).id
-      )
+      // this.collectedWardModalList = this.wardModalList.filter(
+      //   (wardModal: WardModal) =>
+      //     wardModal.districtID === (newVal as Common).id
+      // )
     }
   }
 
   mounted() {
-    this.Company = new Company()
+    this.company = new Company();
     // this.SET_COMPANY_ID(null)
   }
   async submit() {
-    const result = await (this.$refs.obs as any).validate()
+    const result = await (this.$refs.obs as any).validate();
     // console.log("result " + result.toString());
     if (result) {
       // this.Company.shouldShow = false
@@ -232,10 +206,10 @@ export default class CreateCompany extends Vue {
       // await this.getUserInfoByID(this.userInfo.id)
       this.$router.push(
         (this as any).localePath({
-          name: 'companies-id',
-          params: { id: this.companyID }
+          name: "companies-id",
+          params: { id: this.company.id }
         })
-      )
+      );
     }
   }
 }
