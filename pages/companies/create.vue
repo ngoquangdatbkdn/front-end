@@ -129,6 +129,7 @@ import VFileUploadWithValidation from "~/components/forms/VFileUploadWithValidat
 import VEditorWithValidation from "~/components/forms/VEditorWithValidation.vue";
 
 import { Company, Common } from "~/modals";
+import { fips } from "crypto";
 
 
 const City = namespace("city");
@@ -159,6 +160,7 @@ const UserInfo = namespace("userInfo");
   },
   async asyncData({ $axios }) {
     const company = new Company();
+    company.name ='fdafda'
     company.city = new Common();
     company.district = new Common();
     company.businesses = [];
@@ -197,7 +199,7 @@ export default class CreateCompany extends Vue {
   }
 
   mounted() {
-   
+    console.log("company " + JSON.stringify( this.company));
     // this.SET_COMPANY_ID(null)
   }
   async submit() {

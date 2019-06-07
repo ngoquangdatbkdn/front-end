@@ -20,7 +20,7 @@
         />
         <div class="d-flex flex-column flex-1">
           <span class="job-name ">{{ job.name }}</span>
-          <span class="company-name "
+          <span v-if="job.company" class="company-name "
             >{{ job.company.name }} -
 
             <span class="address">
@@ -68,6 +68,9 @@ import Card from "~/argon-components/Card.vue";
 })
 export default class JobListItem extends Vue {
   @Prop({ type: Object, required: true }) job!: Job;
+  mounted(){
+    console.log("job " + JSON.stringify(this.job));
+  }
 }
 </script>
 

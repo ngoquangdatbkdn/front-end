@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-center align-items-center">
-      <company-detail-tabs v-if="company" :company="company"/>
+      <company-detail-tabs :company="company"/>
     </div>
   </div>
 </template>

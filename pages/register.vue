@@ -24,6 +24,14 @@
       </div>
       <ValidationObserver ref="obs" tag="form">
         <v-text-field-type2-with-validation
+          v-model="name"
+          rules="required"
+          type="text"
+          :name="$t('authentication.name')"
+          :placeholder="$t('authentication.enter_name')"
+          :addon-left-icon="'fa fa-user'"
+        />
+        <v-text-field-type2-with-validation
           v-model="email"
           rules="required|email"
           type="email"
@@ -40,7 +48,7 @@
           :addon-left-icon="'ni ni-lock-circle-open'"
         />
 
-        <small v-if="error.length > 0" class="text-danger small">
+        <small v-if="error && error.length > 0" class="text-danger small">
           {{
           error
           }}
@@ -50,13 +58,20 @@
           <base-button
             type="primary"
             class="my-4"
-            @click="onLogin"
-          >{{ $t("authentication.sign_in") }}</base-button>
+            @click="onRegister"
+          >{{ $t("authentication.register") }}</base-button>
         </div>
       </ValidationObserver>
     </card>
-    <modal v-if="showModal" @close="showModal = false">
-      <h3 slot="header">fadfda header</h3>
+    <modal v-if="showModal">
+      <h4 slot="header">Register succeeded!</h4>
+      <h5 slot="body">Please check your email to confirm</h5>
+      <base-button
+        slot="button"
+        type="primary"
+        class="mt-4"
+        @click="onCloseModal"
+      >{{ $t("authentication.sign_in") }}</base-button>
     </modal>
   </div>
 </template>
@@ -103,7 +118,8 @@ const UserInfo = namespace("userInfo");
     // console.log("result " + JSON.stringify(result));
   }
 })
-export default class LoginForm extends Vue {
+export default class Register extends Vue {
+  name: string = "";
   email: string = "";
   password: string = "";
   error: string = "";
@@ -121,20 +137,26 @@ export default class LoginForm extends Vue {
     this.setShouldOpenConfirmation(true);
   }
 
-  async onLogin() {
+  onCloseModal() {
+    this.showModal = false;
+    this.$router.push("/login");
+  }
+  async onRegister() {
     const result = await (this.$refs.obs as any).validate();
     if (result) {
       try {
-        await this.$auth.loginWith("local", {
-          data: {
-            email: this.email,
-            password: this.password
-          }
+        const role: string = this.$route.hash
+          ? this.$route.hash.substr(1, this.$route.hash.length)
+          : "";
+        await this.$axios.$post("/api/register", {
+          email: this.email,
+          password: this.password,
+          name: this.name,
+          role
         });
-        this.$router.push("/");
+        this.showModal = true;
       } catch (error) {
-        // this.error = e.message;
-         if (error.response) {
+        if (error.response) {
           this.error = error.response.data.data.code;
         } else if (error.request) {
           this.error = error.request;

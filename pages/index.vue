@@ -97,8 +97,11 @@ const LoginModal = namespace("loginModal");
   async asyncData({ $axios }) {
     let results: Object[] = await $axios.$get("/api/companies");
     const companies = plainToClass(Company, results["data"]);
+    // console.log("companies " + JSON.stringify(companies[0]));
     results = await $axios.$get("/api/jobs");
+   
     const jobs = plainToClass(Job, results["data"]);
+//  console.log("jobs " + JSON.stringify(jobs[0]));
 
     return {
       companies,
@@ -116,7 +119,7 @@ export default class Index extends Vue {
   companies: Company[] = [];
   jobs: Job[] = [];
   async mounted() {
-    // console.log("companies " + JSON.stringify(this.companies));
+    console.log("companies " + JSON.stringify(this.companies));
     // console.log("jobs " + JSON.stringify(this.jobs));
   }
 }

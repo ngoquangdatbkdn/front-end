@@ -37,6 +37,9 @@ import { Company } from "~/modals";
 @Component({})
 export default class CompanyListItem extends Vue {
   @Prop({ type: Object, required: true }) company!: Company;
+  mounted(){
+console.log("company " + JSON.stringify(this.company));
+  }
 }
 </script>
 

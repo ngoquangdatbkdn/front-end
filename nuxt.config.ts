@@ -46,7 +46,8 @@ const config: NuxtConfiguration = {
     { src: '~/plugins/vue-select', ssr: false },
     { src: '~/plugins/vue-froala', ssr: false },
     { src: '~/plugins/vue-upload', ssr: false },
-    { src: '~/plugins/vue-slider', ssr: true }
+    { src: '~/plugins/vue-slider', ssr: true },
+    { src: '~/plugins/modal', ssr: false }
   ],
   modules: [
     '@nuxtjs/axios',
@@ -90,7 +91,7 @@ const config: NuxtConfiguration = {
     height: '2px'
   },
   axios: {
-    // baseURL: process.env.BASE_URL  || 'http://127.0.0.1:3000'
+    baseURL: 'http://103.81.84.160:8080'
   },
 
   auth: {
@@ -100,7 +101,8 @@ const config: NuxtConfiguration = {
     strategies: {
       local: {
         endpoints: {
-          login: { propertyName: 'data.token' }
+          login: { url: '/api/login', propertyName: 'data.access_token' },
+          user: { url: '/api/user', method: 'get', propertyName: 'data' }
         }
       }
     }

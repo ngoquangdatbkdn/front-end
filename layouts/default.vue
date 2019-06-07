@@ -80,40 +80,24 @@
           <li
             class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"
           >
-            <a class="nav-item text-button" @click="navigateLogin">
+            <div v-if="!$auth.loggedIn" >
+                <a class="nav-item text-button" @click="navigateLogin">
               {{ $t("authentication.sign_in") }}
             </a>
+                <a class="nav-item text-button" @click="navigateRegister">
+              {{ $t("authentication.register") }}
+            </a>
+              </div> 
+          
+            <span v-if="$auth.loggedIn"  >
+              Hello, {{$auth.user.name}}!
+            </span>
           </li>
         </ul>
       </base-nav>
     </div>
 
-    <modal
-      :show="shouldOpen"
-      body-classes="p-0"
-      modal-classes="modal-dialog-centered"
-      @update:show="setShouldOpen($event)"
-    >
-      <login-form />
-    </modal>
-    <modal
-      :show="shouldOpenRegister"
-      body-classes="p-0"
-      modal-classes="modal-dialog-centered"
-      @update:show="setShouldOpenRegister($event)"
-    >
-      <register-form />
-    </modal>
 
-    <modal
-      :show="shouldOpenConfirmation"
-      body-classes="p-0"
-      modal-classes="modal-dialog-centered"
-      @update:show="setShouldOpenConfirmation($event)"
-    >
-      <confirmation-form />
-    </modal>
-    <!--</header>-->
     <div class="body">
     <main>
       <Nuxt />
@@ -122,21 +106,6 @@
   </div>
 </template>
 
-<!--<li-->
-<!--class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"-->
-<!--&gt;-->
-<!--<base-button-->
-<!--v-if="!userInfo"-->
-<!--class="nav-item"-->
-<!--type="default"-->
-<!--@click="openRegisterModal"-->
-<!--&gt;-->
-<!--{{ $t("authentication.register") }}-->
-<!--</base-button>-->
-<!--<a v-else class="nav-item text-button" @click="onSignOut">-->
-<!--{{ $t("authentication.sign_out") }}-->
-<!--</a>-->
-<!--</li>-->
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
@@ -174,28 +143,10 @@ const UserInfo = namespace("userInfo");
 export default class DefaultLayout extends Vue {
   @UserInfo.State userInfo;
 
-  @LoginModal.State shouldOpen;
-  @LoginModal.Action setShouldOpen;
-
-  @RegisterModal.State shouldOpenRegister;
-  @RegisterModal.Action setShouldOpenRegister;
-
-  @ConfirmationModal.State shouldOpenConfirmation;
-  @ConfirmationModal.Action setShouldOpenConfirmation;
-
-  @Watch("$route.hash")
-  onCurrentRouteHasChange(newValue: string, oldValue: string) {
-    if (newValue !== oldValue && newValue === "#login") {
-      if (this.shouldOpen === false) {
-        this.setShouldOpen(true);
-      }
-    }
-  }
-
   @Watch("shouldOpen")
   onShouldOpenValueChange(newValue: boolean, oldValue: boolean) {
     if (newValue !== oldValue && newValue === false) {
-      this.cleanLoginHashInRouteFullPath();
+      // this.cleanLoginHashInRouteFullPath();
     }
     // this.$router.replace('/')
   }
@@ -222,25 +173,9 @@ export default class DefaultLayout extends Vue {
       })
     );
   }
-
-  openRegisterModal() {
-    this.setShouldOpenRegister(true);
-  }
-  cleanLoginHashInRouteFullPath(): string {
-    const cleanRoutePath: string = this.$router.currentRoute.fullPath.replace(
-      this.$router.currentRoute.hash,
-      ""
-    );
-    this.$router.replace(cleanRoutePath);
-    return cleanRoutePath;
-  }
-  openLoginModal() {
-    // if (this.$router.currentRoute.hash === "#login") {
-    const cleanRoutePath: string = this.cleanLoginHashInRouteFullPath();
-    // }
-    const loginRoutePath: string = cleanRoutePath + "#login";
-    this.$router.replace(loginRoutePath);
-  }
+  // mounted(){
+  //   console.log("storage " + this.$auth.user);
+  // }
   onNavigateToCompany() {
     if (this.userInfo && this.userInfo.companyID) {
       return this.$router.push(
@@ -261,6 +196,13 @@ export default class DefaultLayout extends Vue {
       })
     );
   }
+  navigateRegister() {
+    this.$router.push(
+      (this as any).localePath({
+        name: "register"
+      })
+    );
+  }
   onNavigateToCandidate() {
     // if (this.userInfo && this.userInfo.companyID) {
     //   return this.$router.push(
@@ -278,9 +220,9 @@ export default class DefaultLayout extends Vue {
 </script>
 
 <style>
-.body {
+/* .body {
   padding-top: 70px;
-}
+} */
 .navbar-nav .dropdown-menu.show {
   margin-top: 15px;
   left: -16px !important;
