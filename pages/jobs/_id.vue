@@ -1,7 +1,7 @@
 <template>
   <div class="bg-white pb-5 d-flex justify-content-center align-items-center flex-column">
-    <div v-if="job!=null" class="d-flex justify-content-center align-items-center">
-      <div class="container  row pt-4">
+    <div v-if="job!=null" class="d-flex justify-content-center align-items-center container ">
+      <div class=" row pt-4 container ">
         <div class="mr-auto pb-4 col-12 col-md-12 row ">
           <div class="col-12 row">
             <img
@@ -64,32 +64,6 @@
   </div>
 </template>
 
-<!--<div-->
-<!--class="col-12 col-md-5 d-flex align-items-start justify-content-center"-->
-<!--&gt;-->
-<!--<img :src="job.coverImage" class="job-image mw-100 " />-->
-<!--</div>-->
-
-<!--<div-->
-<!--class="col-12 col-md-2 justify-content-center justify-content-md-end d-flex"-->
-<!--&gt;-->
-<!--<div class="col-12  d-flex flex-column">-->
-<!--<button type="button" class="btn btn-primary mr-0">-->
-<!--<span class="white-space-normal"> Đổi qua tiếng Việt</span>-->
-<!--</button>-->
-<!--<button type="button" class="btn btn-primary mt-4 mr-0">-->
-<!--<span class="white-space-normal">-->
-<!--{{ $t("job.update_job_info") }}</span-->
-<!--&gt;-->
-<!--</button>-->
-
-<!--<button type="button" class="btn btn-primary mt-4 mb-4">-->
-<!--<span class="white-space-normal">-->
-<!--{{ $t("common.translation_management") }}</span-->
-<!--&gt;-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
@@ -109,7 +83,9 @@ import {Job} from '../../modals'
     
   // }
   async asyncData({ $axios, params }) {
-    let result: Object = await $axios.$get("/api/jobs/1");
+    // console.log("params " + JSON.stringify(params));
+    let result: Object = await $axios.$get(`/api/jobs/${params.id}`);
+    // console.log("result " + JSON.stringify(result));
     let job: Job = plainToClass(Job, result['data']);
     return {
       job
@@ -124,7 +100,7 @@ import {Job} from '../../modals'
 export default class JobDetail extends Vue {
   job: Job = new Job();
   async mounted() {
-      // console.log('this.job ' + JSON.stringify(this.job));
+      console.log('this.job ' + JSON.stringify(this.job));
   }
 }
 </script>

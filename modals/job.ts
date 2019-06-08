@@ -14,7 +14,6 @@ export class Job {
     @Expose() logo?: string;
 
     @Expose() benefits?: string;
-    @Expose() description?: string;
     @Expose({ name: "required_education" }) requiredEducation?: string;
     @Expose({ name: "required_experience" }) requiredExperience?: string;
     @Expose({ name: "required_language" }) requiredLanguage?: string;

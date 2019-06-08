@@ -48,12 +48,21 @@
           :addon-left-icon="'ni ni-lock-circle-open'"
         />
 
+        <v-select-with-validation
+          v-model="role"
+          rules="required"
+          :options="roles"
+          :reduce="_role => _role.alias"
+          :isHalf="true"
+          :option-label="'vi'"
+        />
+
         <small v-if="error && error.length > 0" class="text-danger small">
           {{
           error
           }}
         </small>
-        <base-checkbox>{{ $t("authentication.remember_me") }}</base-checkbox>
+
         <div class="text-center">
           <base-button
             type="primary"
@@ -65,7 +74,7 @@
     </card>
     <modal v-if="showModal">
       <h4 slot="header">Register succeeded!</h4>
-      <h5 slot="body">Please check your email to confirm</h5>
+      <h5 slot="body">{{$t('authentication.please_verify_email')}}</h5>
       <base-button
         slot="button"
         type="primary"
@@ -89,15 +98,16 @@ import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import { namespace } from "vuex-class";
 
+import VSelectWithValidation from '~/components/forms/VSelectWithValidation.vue'
 import VTextFieldType2WithValidation from "~/components/forms/VTextFieldType2WithValidation.vue";
 import BaseInput from "~/argon-components/BaseInput.vue";
 import BaseCheckbox from "~/argon-components/BaseCheckbox.vue";
 import BaseButton from "~/argon-components/BaseButton.vue";
 import Card from "~/argon-components/Card.vue";
 
-const LoginModal = namespace("loginModal");
-const ConfirmationModal = namespace("confirmationModal");
-const UserInfo = namespace("userInfo");
+// const LoginModal = namespace("loginModal");
+// const ConfirmationModal = namespace("confirmationModal");
+// const UserInfo = namespace("userInfo");
 
 @Component({
   components: {
@@ -107,7 +117,8 @@ const UserInfo = namespace("userInfo");
     Card,
     ValidationObserver,
     ValidationProvider,
-    VTextFieldType2WithValidation
+    VTextFieldType2WithValidation,
+    VSelectWithValidation
   },
   middleware: "guest-guard",
   async fetch({ store, params, $axios }) {
@@ -122,37 +133,47 @@ export default class Register extends Vue {
   name: string = "";
   email: string = "";
   password: string = "";
+  role: string = "";
+  roles: Object[] = [
+    {
+      alias: "COMPANY",
+      vi: "Tài khoản công ty",
+      ja: "Tài khoản công ty (nhật)"
+    },
+    {
+      alias: "CANDIDATE",
+      vi: "Tài khoản người tìm việc",
+      ja: "Tài khoản người tìm việc (nhật)"
+    }
+  ];
   error: string = "";
   showModal: boolean = false;
-  @LoginModal.Action setShouldOpen;
-  @ConfirmationModal.Action setShouldOpenConfirmation;
-  @ConfirmationModal.Action setConfirmation;
-  @UserInfo.Action getUserInfoFromUser;
 
-  private openConfirmationModal() {
-    this.setConfirmation({
-      title: (this as any).$t("authentication.email_has_not_been_verified"),
-      message: (this as any).$t("authentication.please_verify_email")
-    });
-    this.setShouldOpenConfirmation(true);
-  }
+  // private openConfirmationModal() {
+  //   this.setConfirmation({
+  //     title: (this as any).$t("authentication.email_has_not_been_verified"),
+  //     message: (this as any).$t("authentication.please_verify_email")
+  //   });
+  //   this.setShouldOpenConfirmation(true);
+  // }
 
   onCloseModal() {
     this.showModal = false;
     this.$router.push("/login");
   }
   async onRegister() {
+    console.log("role " + JSON.stringify(this.role) );
     const result = await (this.$refs.obs as any).validate();
     if (result) {
       try {
-        const role: string = this.$route.hash
-          ? this.$route.hash.substr(1, this.$route.hash.length)
-          : "";
+        // const role: string = this.$route.hash
+        //   ? this.$route.hash.substr(1, this.$route.hash.length)
+        //   : "";
         await this.$axios.$post("/api/register", {
           email: this.email,
           password: this.password,
           name: this.name,
-          role
+          role: (this.role as any).alias
         });
         this.showModal = true;
       } catch (error) {

@@ -108,18 +108,18 @@ export default class LoginForm extends Vue {
   password: string = "";
   error: string = "";
   showModal: boolean = false;
-  @LoginModal.Action setShouldOpen;
-  @ConfirmationModal.Action setShouldOpenConfirmation;
-  @ConfirmationModal.Action setConfirmation;
-  @UserInfo.Action getUserInfoFromUser;
+  // @LoginModal.Action setShouldOpen;
+  // @ConfirmationModal.Action setShouldOpenConfirmation;
+  // @ConfirmationModal.Action setConfirmation;
+  // @UserInfo.Action getUserInfoFromUser;
 
-  private openConfirmationModal() {
-    this.setConfirmation({
-      title: (this as any).$t("authentication.email_has_not_been_verified"),
-      message: (this as any).$t("authentication.please_verify_email")
-    });
-    this.setShouldOpenConfirmation(true);
-  }
+  // private openConfirmationModal() {
+  //   this.setConfirmation({
+  //     title: (this as any).$t("authentication.email_has_not_been_verified"),
+  //     message: (this as any).$t("authentication.please_verify_email")
+  //   });
+  //   this.setShouldOpenConfirmation(true);
+  // }
 
   async onLogin() {
     const result = await (this.$refs.obs as any).validate();

@@ -118,6 +118,7 @@ export default class Index extends Vue {
   @LoginModal.Action setShouldOpen;
   companies: Company[] = [];
   jobs: Job[] = [];
+  
   async mounted() {
     console.log("companies " + JSON.stringify(this.companies));
     // console.log("jobs " + JSON.stringify(this.jobs));
@@ -135,7 +136,7 @@ export default class Index extends Vue {
   font-size: 14px;
 }
 .search-area {
-  margin-top: 50px;
+  /* margin-top: 50px; */
   padding-top: 50px;
   padding-bottom: 10px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),

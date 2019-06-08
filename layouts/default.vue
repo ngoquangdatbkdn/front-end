@@ -25,29 +25,29 @@
         </div>
 
         <ul class="navbar-nav ml-lg-auto">
-          <li class="nav-item">
+          <li v-if="isInSession('COMPANY') || !$auth.loggedIn"  class="nav-item">
             <a class="nav-link nav-link-icon" @click="onNavigateToCompany()">
               {{ $t("common.company") }}
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link nav-link-icon">
               {{ $t("common.translator") }}
             </a>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <li v-if="isInSession('CANDIDATE') || !$auth.loggedIn" class="nav-item">
             <a class="nav-link nav-link-icon" @click="onNavigateToCandidate()">
               {{ $t("common.create_cv") }}
             </a>
           </li>
-          <li
+          <!-- <li
             v-if="userInfo"
             class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"
           >
             <p class="mb-0">
               {{ userInfo.email }}
             </p>
-          </li>
+          </li> -->
           <li class="nav-link">
             <base-dropdown>
               <a slot="title" type="default" class="dropdown-toggle">
@@ -78,21 +78,39 @@
             </base-dropdown>
           </li>
           <li
+            v-if="!$auth.loggedIn"
             class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"
           >
-            <div v-if="!$auth.loggedIn" >
                 <a class="nav-item text-button" @click="navigateLogin">
               {{ $t("authentication.sign_in") }}
             </a>
-                <a class="nav-item text-button" @click="navigateRegister">
+          </li>
+           <li
+            v-if="!$auth.loggedIn"
+            class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"
+          >
+               <a class="nav-item text-button" @click="navigateRegister">
               {{ $t("authentication.register") }}
             </a>
-              </div> 
-          
-            <span v-if="$auth.loggedIn"  >
-              Hello, {{$auth.user.name}}!
-            </span>
           </li>
+
+            <li
+            v-if="$auth.loggedIn"
+            class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"
+          >
+                Hello, {{$auth.user.name}}!  
+          </li>
+
+           <li
+            v-if="$auth.loggedIn"
+            class="pl-0 pl-lg-3 d-flex pt-3 pt-lg-0 justify-content-start align-items-center"
+          >
+                <a class="nav-item text-button" @click="onLogout">
+                {{ $t("authentication.sign_out") }}
+              </a>
+          </li>
+
+
         </ul>
       </base-nav>
     </div>
@@ -123,10 +141,10 @@ import ConfirmationForm from "~/components/ConfirmationForm.vue";
 
 // import AuthenticationService from "~/services/authentication_service";
 
-const LoginModal = namespace("loginModal");
-const RegisterModal = namespace("registerModal");
-const ConfirmationModal = namespace("confirmationModal");
-const UserInfo = namespace("userInfo");
+// const LoginModal = namespace("loginModal");
+// const RegisterModal = namespace("registerModal");
+// const ConfirmationModal = namespace("confirmationModal");
+// const UserInfo = namespace("userInfo");
 
 @Component({
   components: {
@@ -141,7 +159,7 @@ const UserInfo = namespace("userInfo");
   }
 })
 export default class DefaultLayout extends Vue {
-  @UserInfo.State userInfo;
+  // @UserInfo.State userInfo;
 
   @Watch("shouldOpen")
   onShouldOpenValueChange(newValue: boolean, oldValue: boolean) {
@@ -150,20 +168,25 @@ export default class DefaultLayout extends Vue {
     }
     // this.$router.replace('/')
   }
-  get isNotInSession(): boolean {
-    if (!this.userInfo) return true;
-    return false;
+  isInSession(role: string ): boolean{
+      if (!this.$store.state.auth.user) return false;
+      if (this.$store.state.auth.user.role != role) return false;
+      return true;
   }
-  get isCompanySession(): boolean {
-    if (!this.userInfo) return false;
-    if (this.userInfo.role !== "company") return false;
-    return true;
-  }
-  get isCandidateSession(): boolean {
-    if (!this.userInfo) return false;
-    if (this.userInfo.role !== "candidate") return false;
-    return true;
-  }
+  // get isNotInSession(): boolean {
+  //   if (!this.userInfo) return true;
+  //   return false;
+  // }
+  // get isCompanySession(): boolean {
+  //   if (!this.userInfo) return false;
+  //   if (this.userInfo.role !== "company") return false;
+  //   return true;
+  // }
+  // get isCandidateSession(): boolean {
+  //   if (!this.userInfo) return false;
+  //   if (this.userInfo.role !== "candidate") return false;
+  //   return true;
+  // }
   async onSignOut() {
     // const authenticationService: AuthenticationService = AuthenticationService.getInstance();
     // await authenticationService.signOut();
@@ -177,14 +200,14 @@ export default class DefaultLayout extends Vue {
   //   console.log("storage " + this.$auth.user);
   // }
   onNavigateToCompany() {
-    if (this.userInfo && this.userInfo.companyID) {
-      return this.$router.push(
-        (this as any).localePath({
-          name: "companies-id",
-          params: { id: this.userInfo.companyID }
-        })
-      );
-    }
+    // if (this.userInfo && this.userInfo.companyID) {
+    //   return this.$router.push(
+    //     (this as any).localePath({
+    //       name: "companies-id",
+    //       params: { id: this.userInfo.companyID }
+    //     })
+    //   );
+    // }
     return this.$router.push(
       (this as any).localePath({ name: "companies-create" })
     );
@@ -200,6 +223,14 @@ export default class DefaultLayout extends Vue {
     this.$router.push(
       (this as any).localePath({
         name: "register"
+      })
+    );
+  }
+  onLogout() {
+    this.$auth.logout();
+    this.$router.push(
+      (this as any).localePath({
+        name: ""
       })
     );
   }
@@ -220,9 +251,9 @@ export default class DefaultLayout extends Vue {
 </script>
 
 <style>
-/* .body {
+.body {
   padding-top: 70px;
-} */
+}
 .navbar-nav .dropdown-menu.show {
   margin-top: 15px;
   left: -16px !important;

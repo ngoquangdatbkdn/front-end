@@ -33,7 +33,7 @@
       </small>
       <div class="form-group mb-0">
         <no-ssr>
-          <v-select v-model="innerValue" :label="$attrs.optionLabel" :options="$attrs.options">
+          <v-select v-model="innerValue" :label="$attrs['option-label']" :options="$attrs.options">
             <div slot="no-options">
               {{ $t('common.no_options') }}
             </div>
@@ -72,8 +72,12 @@ export default class VSelectWithValidation extends Vue {
   onValueChanged(newVal: any, oldVal: any) {
     this.innerValue = newVal
   }
-
+  mounted(){
+    // console.log("$attrs.ions " +JSON.stringify(this.$attrs.options));
+    console.log("reduce " +this.$attrs.reduce  );
+  }
   created() {
+    
     if (this.value) {
       this.innerValue = this.value
     }
