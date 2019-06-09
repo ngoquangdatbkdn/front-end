@@ -16,7 +16,7 @@
             $t('candidate.candidate_wanted_contract_type_description')
           "
           :name="$t('candidate.candidate_wanted_contract_type')"
-          :reduce="businessTypeModal => businessTypeModal.id"
+          :reduce="businessModal => businessModal.id"
           :option-label="$i18n.locale"
         />
         <hr>
@@ -30,7 +30,7 @@
           :label="$t('candidate.candidate_wanted_job_title')"
           :description="$t('candidate.candidate_wanted_job_title_description')"
           :name="$t('candidate.candidate_wanted_job_title')"
-          :reduce="businessTypeModal => businessTypeModal.id"
+          :reduce="businessModal => businessModal.id"
           :option-label="$i18n.locale"
         />
         <hr>
@@ -44,7 +44,7 @@
           :label="$t('candidate.candidate_wanted_job_rank')"
           :description="$t('candidate.candidate_wanted_job_rank_description')"
           :name="$t('candidate.candidate_wanted_job_rank')"
-          :reduce="businessTypeModal => businessTypeModal.id"
+          :reduce="businessModal => businessModal.id"
           :option-label="$i18n.locale"
         />
         <hr>
@@ -99,7 +99,7 @@ import LanguageModal from '~/modals/language_modal'
 const City = namespace('city')
 const District = namespace('district')
 const Ward = namespace('ward')
-const BusinessType = namespace('businessType')
+const business = namespace('business')
 const Candidate = namespace('candidate')
 const UserInfo = namespace('userInfo')
 const ContractType = namespace('contractType')
@@ -124,7 +124,7 @@ export default class CreateCandidate extends Vue {
   @City.State cityModalList;
   @District.State districtModalList;
   @Ward.State wardModalList;
-  @BusinessType.State businessTypeModalList;
+  @business.State businessModalList;
   @ContractType.State contractTypeModalList;
 
   @Candidate.Action createCandidate;

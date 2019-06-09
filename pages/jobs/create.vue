@@ -61,7 +61,7 @@
           :label="$t('job.contract_type')"
           :description="$t('job.contract_type_description')"
           :name="$t('job.contract_type')"
-          :reduce="businessTypeModal => businessTypeModal.id"
+          :reduce="businessModal => businessModal.id"
           :option-label="$i18n.locale"
         /> -->
 

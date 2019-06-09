@@ -1,6 +1,5 @@
 const types = {
-  // SELECT: 'SELECT',
-  CREATE: 'CREATE'
+  FETCH_LIST: 'FETCH_LIST'
 }
 
 export default types

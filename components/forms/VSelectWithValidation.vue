@@ -17,7 +17,7 @@
       <div class="col-md-6 ">
         <div class="form-group mb-0">
           <no-ssr>
-            <v-select v-model="innerValue" :label="$attrs.optionLabel" :reduce="$attrs.reduce" :options="$attrs.options">
+            <v-select v-model="innerValue" :label="$attrs['option-label']" :reduce="$attrs.reduce" :options="$attrs.options">
               <div slot="no-options">
                 {{ $t('common.no_options') }}
               </div>
@@ -33,7 +33,7 @@
       </small>
       <div class="form-group mb-0">
         <no-ssr>
-          <v-select v-model="innerValue" :label="$attrs['option-label']" :options="$attrs.options">
+          <v-select v-model="innerValue" :label="$attrs['option-label']" :reduce="$attrs.reduce" :options="$attrs.options">
             <div slot="no-options">
               {{ $t('common.no_options') }}
             </div>
@@ -65,7 +65,9 @@ export default class VSelectWithValidation extends Vue {
 
   @Watch('innerValue')
   onInnerValueChanged(newVal: any, oldVal: any) {
+    console.log("newVal " + JSON.stringify(newVal));
     this.$emit('input', newVal)
+    this.$emit('onSelect', newVal)
   }
 
   @Watch('value')

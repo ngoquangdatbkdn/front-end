@@ -1,19 +1,18 @@
 import { ActionTree, MutationTree, GetterTree, ActionContext } from 'vuex'
-import { plainToClass } from "class-transformer";
 import { RootState } from 'store'
-
-import { CityState } from './state'
-import {Common} from '~/modals'
+import { plainToClass } from "class-transformer";
+import { BusinessState } from './state'
+import Common from '~/modals/business_type_modal'
 import types from './types'
 
 export interface Actions<S, R> extends ActionTree<S, R> {
-  // create(context: ActionContext<S, R>, city: Common): void;
+  // create(context: ActionContext<S, R>, business: Common): void;
 }
 
-const actions: Actions<CityState, RootState> = {
+const actions: Actions<BusinessState, RootState> = {
   async fetchList({commit}) { 
     try{
-      let results: Object[] = await this.$axios.$get("/api/cities");
+      let results: Object[] = await this.$axios.$get("/api/businesses");
       const list = plainToClass(Common, results["data"]);
       commit(types.FETCH_LIST, list)
     } catch(error){

@@ -1,5 +1,5 @@
 
-export default class BusinessTypeModal {
+export default class businessModal {
   constructor() {}
   // static async fromDocumentReference(documentReference: firestore.DocumentReference) {
   //     const options: firestore.GetOptions | undefined =  undefined;
@@ -7,9 +7,9 @@ export default class BusinessTypeModal {
   //     const documentData:
   //         | firestore.DocumentData
   //         | undefined = documentSnapshot.data();
-  //     const businessTypeModal: BusinessTypeModal =  { ...documentData };
-  //     businessTypeModal.id = documentSnapshot.id;
-  //     return businessTypeModal;
+  //     const businessModal: businessModal =  { ...documentData };
+  //     businessModal.id = documentSnapshot.id;
+  //     return businessModal;
   // }
 
   public id?: string;

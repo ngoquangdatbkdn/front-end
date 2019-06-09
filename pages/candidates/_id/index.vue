@@ -38,8 +38,8 @@
               <p class="info-label  mb-0">
                 {{ $t("company.business_type") }}
               </p>
-              <p v-if="companyModal.businessType" class="font-weight-600 mb-0">
-                {{ companyModal.businessType[$i18n.locale] }}
+              <p v-if="companyModal.business" class="font-weight-600 mb-0">
+                {{ companyModal.business[$i18n.locale] }}
               </p>
             </div>
             <div class="col-12 col-md-4 pt-2">

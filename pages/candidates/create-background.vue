@@ -400,7 +400,7 @@ import LanguageModal from '~/modals/language_modal'
 const City = namespace('city')
 const District = namespace('district')
 const Ward = namespace('ward')
-const BusinessType = namespace('businessType')
+const business = namespace('business')
 const Candidate = namespace('candidate')
 const UserInfo = namespace('userInfo')
 const ContractType = namespace('contractType')
@@ -425,7 +425,7 @@ export default class CreateCandidate extends Vue {
   @City.State cityModalList;
   @District.State districtModalList;
   @Ward.State wardModalList;
-  @BusinessType.State businessTypeModalList;
+  @business.State businessModalList;
   @ContractType.State contractTypeModalList;
 
   @Candidate.Action createCandidate;

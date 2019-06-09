@@ -4,7 +4,7 @@ import { DistrictState } from './state'
 import types from './types'
 
 const mutations: MutationTree<DistrictState> = {
-  [types.CREATE](state, districts: Common[]) {
+  [types.FETCH_LIST](state, districts: Common[]) {
     state.districts = districts
   }
 }

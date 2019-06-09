@@ -45,7 +45,7 @@
           error
           }}
         </small>
-        <base-checkbox>{{ $t("authentication.remember_me") }}</base-checkbox>
+        <!-- <base-checkbox>{{ $t("authentication.remember_me") }}</base-checkbox> -->
         <div class="text-center">
           <base-button
             type="primary"
@@ -80,9 +80,9 @@ import BaseCheckbox from "~/argon-components/BaseCheckbox.vue";
 import BaseButton from "~/argon-components/BaseButton.vue";
 import Card from "~/argon-components/Card.vue";
 
-const LoginModal = namespace("loginModal");
-const ConfirmationModal = namespace("confirmationModal");
-const UserInfo = namespace("userInfo");
+// const LoginModal = namespace("loginModal");
+// const ConfirmationModal = namespace("confirmationModal");
+// const UserInfo = namespace("userInfo");
 
 @Component({
   components: {
@@ -104,7 +104,7 @@ const UserInfo = namespace("userInfo");
   }
 })
 export default class LoginForm extends Vue {
-  email: string = "";
+  email: string = "";create
   password: string = "";
   error: string = "";
   showModal: boolean = false;

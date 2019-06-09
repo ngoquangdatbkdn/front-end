@@ -3,7 +3,7 @@
 import CityModal from '~/modals/city_modal'
 import DistrictModal from '~/modals/district_modal'
 import WardModal from '~/modals/ward_modal'
-import BusinessTypeModal from '~/modals/business_type_modal'
+import businessModal from '~/modals/business_type_modal'
 
 export default class CompanyModal {
   constructor() {}
@@ -16,7 +16,7 @@ export default class CompanyModal {
   public staffNumber?: number;
   public minSalary?: number;
   public maxSalary?: number;
-  public businessType?: BusinessTypeModal;
+  public business?: businessModal;
   public address?: string;
   public logo?: string;
   public coverImage?: string;
