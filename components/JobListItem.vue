@@ -84,9 +84,9 @@ export default class JobListItem extends Vue {
     )[0];
   }
   mounted(){
-    console.log("job " + JSON.stringify(this.job));
-    console.log("city " + JSON.stringify(this.city));
-    console.log("district " + JSON.stringify(this.district));
+    // console.log("job " + JSON.stringify(this.job));
+    // console.log("city " + JSON.stringify(this.city));
+    // console.log("district " + JSON.stringify(this.district));
   }
 }
 </script>

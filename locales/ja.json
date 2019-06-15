@@ -189,6 +189,7 @@
     "update_candidate_desire": "Cập nhật mục tiêu nghề nghiệp"
   },
   "error": {
-    "invalid_input": "Sai dữ liệu nhập vào"
+    "invalid_input": "Sai dữ liệu nhập vào",
+    "only_one_company_created": "Thiếu"
   }
 }

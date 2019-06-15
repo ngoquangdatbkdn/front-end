@@ -27,7 +27,8 @@
             </div>
             <div class="col-12 col-md-4 pt-2 border-right">
               <p class="info-label mb-0">{{ $t("company.business_type") }}</p>
-              <p v-for="business in company.businesses"
+              <p
+                v-for="business in bussinesses"
                 :key="business.id"
                 class="font-weight-600 mb-0"
               >* {{ business[$i18n.locale] }}</p>
@@ -38,9 +39,9 @@
                 {{
                 company.address +
                 ", " +
-                company.district[$i18n.locale] +
+                district[$i18n.locale] +
                 ", " +
-                company.city[$i18n.locale]
+                city[$i18n.locale]
                 }}
               </p>
             </div>
@@ -63,53 +64,68 @@ import { plainToClass } from "class-transformer";
 import CompanyDetailTabs from "~/components/CompanyDetailTabs.vue";
 import BaseSwitch from "~/argon-components/BaseSwitch.vue";
 
-import { Company, Job } from "../../modals";
+import { Company, Job } from "../../../modals";
+
+const City = namespace("city");
+const District = namespace("district");
+const Business = namespace("business");
+const UserInfo = namespace("userInfo");
 
 @Component({
   components: {
     CompanyDetailTabs,
     BaseSwitch
   },
-  // async fetch({ store, params }) {
-
-  //   if (companyID) {
-  //     await store.dispatch(`company/getCompanyByID`, companyID);
-  //     await store.dispatch(`job/getJobsByCompanyID`, companyID);
-  //   }
-  // },
+  async fetch({ store, params }) {
+    await Promise.all([
+      store.dispatch("district/fetchList"),
+      store.dispatch("city/fetchList"),
+       store.dispatch("business/fetchList")
+    ]);
+  },
   async asyncData({ $axios, params }) {
     const companyID: string = params.id;
-    console.log("companyID " + companyID.toString());
-let company = new Company();
-  console.log('company 1' + company.toString());
-    let result: Object = await $axios.$get("/api/companies/1");
-   company = plainToClass(Company, result["data"]);
+    let company = new Company();
+    let result: Object = await $axios.$get(`/api/companies/${params.id}`);
+    company = plainToClass(Company, result["data"]);
 
     let results: Object[] = await $axios.$get("/api/jobs");
     const jobs = plainToClass(Job, results["data"]);
-    console.log('company ' + company.toString());
     return {
       jobs,
       company
     };
   },
-   head() {
+  head() {
     return {
       title: this.company.name
     };
   }
 })
 export default class CompanyDetail extends Vue {
+  @City.State cities;
+  @District.State districts;
+  @Business.State businesses;
+
   shouldPublish = {
     status: false
   };
-  company: Company = new Company();
   jobs: Job[] = [];
 
+  get city() {
+    return this.cities.filter(city => city.id === this.company.cityID)[0];
+  }
+  get district() {
+    return this.districts.filter(
+      district => district.id === this.company.districtID
+    )[0];
+  }
+  get bussinesses(){
+    return this.businesses.filter(
+      business => (this.company as any).businessIDs.indexOf(business.id) > -1 
+    );
+  }
   async mounted() {
-    // console.log("this.company.shouldShow");
-    // console.log(this.company);
-    // console.log(this.jobs);
   }
 }
 </script>

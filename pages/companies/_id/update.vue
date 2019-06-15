@@ -2,7 +2,7 @@
   <div>
     <ValidationObserver ref="obs" tag="div">
       <div class="page-title py-4 text-center">
-        <h4 class="mb-0">{{ $t("company.create_company_info") }}</h4>
+        <h4 class="mb-0">{{ $t("company.update_company_info") }}</h4>
       </div>
       <div class="bg-white">
         <div class="container pt-5">
@@ -169,7 +169,7 @@
             type="button"
             class="btn btn-primary my-4"
             @click="submit"
-          >{{ $t("company.create_company_info") }}</button>
+          >{{ $t("company.update_company_info") }}</button>
         </div>
       </div>
     </ValidationObserver>
@@ -184,6 +184,7 @@
 <script lang="ts">
 import { Vue, Component, Watch } from "vue-property-decorator";
 import { namespace } from "vuex-class";
+import { plainToClass } from "class-transformer";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import { classToPlain } from "class-transformer";
 
@@ -217,17 +218,19 @@ const UserInfo = namespace("userInfo");
       store.dispatch("business/fetchList")
     ]);
   },
-  async asyncData({ $axios }) {
-    const company = new Company();
-    company.businessIDs = [];
-    company.businessIDs.push(null);
+  async asyncData({ $axios, params }) {
+    const companyID: string = params.id;
+    let company = new Company();
+    let result: Object = await $axios.$get(`/api/companies/${params.id}`);
+    company = plainToClass(Company, result["data"]);
+
     return {
       company
     };
   },
   head() {
     return {
-      title: this.$t("company.create_company_info")
+      title: this.$t("company.update_company_info")
     };
   }
 })
@@ -305,7 +308,8 @@ export default class CreateCompany extends Vue {
 
   @Watch("company.cityID", { immediate: true, deep: true })
   onSelectCity(current: string, old: string) {
-    if(current == old) return
+    if (current == old) return;
+    if (current == null && old == undefined) return;
     this.company.districtID = null;
     if (!(this.company as any).cityID) return;
     const locale: string = this.$i18n.locale;
@@ -327,6 +331,7 @@ export default class CreateCompany extends Vue {
       ...business,
       isShow: true
     }));
+    console.log("this.company " + JSON.stringify(this.company));
     // this.company.cityID = "1179d94d-78a1-4975-a7c6-464b58f5a6b6";
   }
   async submit() {
@@ -334,14 +339,18 @@ export default class CreateCompany extends Vue {
     console.log("this.company " + JSON.stringify(this.company));
     if (ok) {
       try {
+        // this.company.businesses = (this.company as any).businesses.map(
+        //   business => business.instance
+        // );
+        // (this.company as any).country = (this.company.city as any).country;
         (this.company as any).cover_image = this.company.coverImage;
         console.log("company " + JSON.stringify(classToPlain(this.company)));
-        const result = await this.$axios.post("api/companies", {
+        const result = await this.$axios.patch("api/companies", {
           ...this.company,
           city_id: this.company.cityID,
           business_ids: this.company.businessIDs,
-          district_id: this.company.districtID,
-          });
+          district_id: this.company.districtID
+        });
         console.log("result " + JSON.stringify(result));
       } catch (error) {
         this.showModal = true;
