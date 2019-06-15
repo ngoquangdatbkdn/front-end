@@ -20,14 +20,14 @@
         />
         <div class="d-flex flex-column flex-1">
           <span class="job-name ">{{ job.name }}</span>
-          <span v-if="job.company" class="company-name "
-            >{{ job.company.name }} -
+          <span  class="company-name "
+            >{{ job.company }} -
 
             <span class="address">
               {{
-                job.city["name_" + $i18n.locale] +
+                city[$i18n.locale] +
                   ", " +
-                  job.district["name_" + $i18n.locale] +
+                  district[$i18n.locale] +
                   ", " +
                   job.address
               }}
@@ -58,8 +58,12 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from "vue-property-decorator";
+import { namespace } from "vuex-class";
 import { Job } from "../modals";
 import Card from "~/argon-components/Card.vue";
+
+const City = namespace("city");
+const District = namespace("district");
 
 @Component({
   components: {
@@ -68,8 +72,21 @@ import Card from "~/argon-components/Card.vue";
 })
 export default class JobListItem extends Vue {
   @Prop({ type: Object, required: true }) job!: Job;
+  @City.State cities;
+  @District.State districts;
+
+  get city() {
+    return this.cities.filter(city => city.id === this.job.cityID)[0];
+  }
+  get district() {
+    return this.districts.filter(
+      district => district.id === this.job.districtID
+    )[0];
+  }
   mounted(){
     console.log("job " + JSON.stringify(this.job));
+    console.log("city " + JSON.stringify(this.city));
+    console.log("district " + JSON.stringify(this.district));
   }
 }
 </script>

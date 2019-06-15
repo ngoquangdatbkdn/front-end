@@ -89,20 +89,18 @@ const LoginModal = namespace("loginModal");
     CompanyListItem
   },
   async fetch({ store, params }) {
-    // if (store.state.company.companies.length == 0)
-    //   await store.dispatch("company/getCompanies", {});
-    // if (store.state.job.jobs.length == 0)
-    //   await store.dispatch("job/getJobs", {});
+    await Promise.all([
+      store.dispatch("district/fetchList"),
+      store.dispatch("city/fetchList")
+    ]);
   },
   async asyncData({ $axios }) {
-    let results: Object[] = await $axios.$get("/api/companies");
-    const companies = plainToClass(Company, results["data"]);
-    // console.log("companies " + JSON.stringify(companies[0]));
-    results = await $axios.$get("/api/jobs");
-   
-    const jobs = plainToClass(Job, results["data"]);
-//  console.log("jobs " + JSON.stringify(jobs[0]));
-
+    let results = await Promise.all([
+      $axios.$get("/api/companies"),
+      $axios.$get("/api/jobs")
+    ]);
+    const companies = plainToClass(Company, results[0]["data"]);
+    const jobs = plainToClass(Job, results[1]["data"]);
     return {
       companies,
       jobs
@@ -118,7 +116,7 @@ export default class Index extends Vue {
   @LoginModal.Action setShouldOpen;
   companies: Company[] = [];
   jobs: Job[] = [];
-  
+
   async mounted() {
     console.log("companies " + JSON.stringify(this.companies));
     // console.log("jobs " + JSON.stringify(this.jobs));

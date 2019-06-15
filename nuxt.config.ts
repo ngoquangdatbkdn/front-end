@@ -18,18 +18,22 @@ const config: NuxtConfiguration = {
       // { src: "https://npmcdn.com/flatpickr/dist/l10n/ja.js", type: "application/javascript"  }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-      // {
-      //   rel: "stylesheet",
-      //   href: "https://unpkg.com/vue-select@2.6.0/dist/vue-select.css"
-      // }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: "stylesheet",
+        href: "https://unpkg.com/vue-select@3.1.0/dist/vue-select.css"
+      },
+      {
+        rel: "stylesheet",
+        href: "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      }
     ]
   },
   // loading: { color: '#3B8070' },
   // css: ['tachyons/css/tachyons.min.css', '~/assets/css/main.css'],
   css: [
     '~/assets/vendor/nucleo/css/nucleo.css',
-    '~/assets/vendor/font-awesome/css/font-awesome.css',
+    // '~/assets/vendor/font-awesome/css/font-awesome.css',
     '~/assets/scss/argon.scss',
     '~/assets/scss/app.scss'
   ],

@@ -1,6 +1,38 @@
 <template>
   <div class="d-flex justify-content-center align-items-center login">
     <card
+      v-if="!role"
+      type="secondary"
+      shadow
+      header-classes="bg-white pb-5 card"
+      body-classes="px-lg-5 py-lg-5"
+      class="border-0"
+    >
+      <h5>{{$t('authentication.create_accountt_ask')}}</h5>
+      <div class="d-flex flex-column">
+        <a
+          :class="`select-box ${selectedRole === 'COMPANY' ? 'selected' : ''}`"
+          @click="selectRole('COMPANY')"
+        >{{$t('authentication.company_role')}}</a>
+        <a
+          :class="`select-box ${selectedRole === 'CANDIDATE' ? 'selected' : ''}`"
+          @click="selectRole('CANDIDATE')"
+        >{{$t('authentication.candidate_role')}}</a>
+        <a
+          :class="`select-box ${selectedRole === 'TRANSLATOR' ? 'selected' : ''}`"
+          @click="selectRole('TRANSLATOR')"
+        >{{$t('authentication.translator_role')}}</a>
+      </div>
+      <div class="text-center">
+        <base-button
+          type="primary"
+          class="mt-4"
+          @click="confirmSelectRole"
+        >{{ $t("authentication.register") }}</base-button>
+      </div>
+    </card>
+    <card
+      v-else
       type="secondary"
       shadow
       header-classes="bg-white pb-5 card"
@@ -47,34 +79,33 @@
           :placeholder="$t('authentication.enter_password')"
           :addon-left-icon="'ni ni-lock-circle-open'"
         />
-
-        <v-select-with-validation
-          v-model="role"
-          rules="required"
-          :options="roles"
-          :reduce="_role => _role.alias"
-          :isHalf="true"
-          :option-label="'vi'"
-        />
-
         <small v-if="error && error.length > 0" class="text-danger small">
           {{
           error
           }}
         </small>
 
-        <div class="text-center">
-          <base-button
-            type="primary"
-            class="my-4"
-            @click="onRegister"
-          >{{ $t("authentication.register") }}</base-button>
+        <div class="text-center d-flex flex-column">
+          <a class="mt-4 mb-3 button" @click="onRegister">
+            <span>{{ $t("authentication.register") }}</span>
+          </a>
+          <v-button :themeColor="'#2e2f30'" class="mt-4 mb-3 button" @click="onRegister">
+            <span>{{ $t("authentication.register") }}</span>
+          </v-button>
+
+          <v-button :themeColor="'#999'" class="mt-4 mb-3 button" @click="onRegister">
+            <span>{{ $t("authentication.register") }}</span>
+          </v-button>
+
+          <a class="mb-4 button-ghost" @click="backSelectRole">
+            <span>{{ $t("common.back") }}</span>
+          </a>
         </div>
       </ValidationObserver>
     </card>
     <modal v-if="showModal">
-      <h4 slot="header">Register succeeded!</h4>
-      <h5 slot="body">{{$t('authentication.please_verify_email')}}</h5>
+      <span slot="title">Register succeeded!</span>
+      <span slot="content">{{$t('authentication.please_verify_email')}}</span>
       <base-button
         slot="button"
         type="primary"
@@ -98,8 +129,9 @@ import { Vue, Component, Prop, Watch } from "vue-property-decorator";
 import { ValidationObserver, ValidationProvider } from "vee-validate";
 import { namespace } from "vuex-class";
 
-import VSelectWithValidation from '~/components/forms/VSelectWithValidation.vue'
+import VSelectWithValidation from "~/components/forms/VSelectWithValidation.vue";
 import VTextFieldType2WithValidation from "~/components/forms/VTextFieldType2WithValidation.vue";
+import VButton from "~/components/VButton.vue";
 import BaseInput from "~/argon-components/BaseInput.vue";
 import BaseCheckbox from "~/argon-components/BaseCheckbox.vue";
 import BaseButton from "~/argon-components/BaseButton.vue";
@@ -118,7 +150,8 @@ import Card from "~/argon-components/Card.vue";
     ValidationObserver,
     ValidationProvider,
     VTextFieldType2WithValidation,
-    VSelectWithValidation
+    VSelectWithValidation,
+    VButton
   },
   middleware: "guest-guard",
   async fetch({ store, params, $axios }) {
@@ -134,6 +167,7 @@ export default class Register extends Vue {
   email: string = "";
   password: string = "";
   role: string = "";
+  selectedRole: string = "";
   roles: Object[] = [
     {
       alias: "COMPANY",
@@ -156,13 +190,25 @@ export default class Register extends Vue {
   //   });
   //   this.setShouldOpenConfirmation(true);
   // }
-
+  backSelectRole() {
+    this.selectedRole = "";
+    this.role = "";
+  }
+  selectRole(role: string) {
+    this.selectedRole = role;
+  }
+  confirmSelectRole() {
+    this.role = this.selectedRole;
+  }
+  // classSelectRole(role: string): boolean {
+  //   return this.selectedRole === role;
+  // }
   onCloseModal() {
     this.showModal = false;
     this.$router.push("/login");
   }
   async onRegister() {
-    console.log("role " + JSON.stringify(this.role) );
+    console.log("role " + JSON.stringify(this.role));
     const result = await (this.$refs.obs as any).validate();
     if (result) {
       try {
@@ -209,4 +255,41 @@ export default class Register extends Vue {
     border-radius: 5px;
   }
 }
+.select-box {
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+.select-box:hover {
+  background-color: #82c1ed;
+}
+.select-box.selected {
+  background-color: #82c1ed;
+}
+/* .button {
+  padding: 15px;
+  background-color: #82c1ed;
+  border-radius: 10px;
+}
+.button > * {
+  color: white;
+}
+.button:hover,
+.button-ghost:hover {
+  cursor: pointer;
+  background-color: #82c1ed;
+}
+.button:hover > *,
+.button-ghost:hover > * {
+  color: white;
+}
+.button-ghost {
+  padding: 15px;
+  border: 1px solid #82c1ed;
+  border-radius: 10px;
+}
+.button-ghost > * {
+  color: #82c1ed;
+} */
 </style>

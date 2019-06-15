@@ -95,6 +95,7 @@
     "staff_number": "Số lượng nhân viên",
     "business_type": "Loại hình kinh doanh",
     "company_address": "Địa chỉ công ty",
+    "enter_company_address": "Nhập địa chỉ công ty",
     "update_company_info": "Cập nhật thông tin công ty",
     "company_image": "Hình ảnh công ty",
     "company_info": "Thông tin công ty",
@@ -116,7 +117,9 @@
     "enter_company_staff_amount": "Nhập số lượng nhân viên công ty",
     "upload_company_cover_image": "Tải ảnh nền công ty",
     "upload_company_logo": "Tải logo của công ty",
-    "publish_company_info": "Xuất bản thông tin công ty"
+    "publish_company_info": "Xuất bản thông tin công ty",
+    "create_company_info": "Tạo thông tin công ty",
+    "add_an_business": "Thêm loại hình kinh doanh"
   },
   "translator": {
     "translator_list": "Danh sách người dịch"
@@ -184,5 +187,8 @@
     "candidate_wanted_contract_type": "Loại hợp đồng mong muốn",
     "candidate_wanted_contract_type_description": "Loại hợp đồng mong muốn của bạn",
     "update_candidate_desire": "Cập nhật mục tiêu nghề nghiệp"
+  },
+  "error": {
+    "invalid_input": "Sai dữ liệu nhập vào"
   }
 }

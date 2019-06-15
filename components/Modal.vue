@@ -6,21 +6,22 @@
           <card
             type="secondary"
             shadow
-            header-classes="bg-white pb-5 card"
-            body-classes="px-lg-5 py-lg-5"
+            header-classes="bg-white pb-4 card"
+            body-classes="px-lg-4 py-lg-4"
             class="border-0"
           >
-            <div class="modal-header">
-              <slot name="header">default header</slot>
+            <div class="title">
+              <slot name="title">default header</slot>
             </div>
 
-            <div class="modal-body">
-              <slot name="body">default body</slot>
+            <div class="content">
+              <slot name="content">default body</slot>
             </div>
 
-            <div class="modal-footer">
+            <div class="buttons">
               <slot name="footer">
-                <slot name="button">default body</slot>
+                <slot name="button1"></slot>
+                <slot name="button2"></slot>
                 <!-- <button class="modal-default-button" @click="$emit('close')">OK</button> -->
               </slot>
             </div>
@@ -56,7 +57,7 @@ export default class LoginForm extends Vue {}
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.01s ease;
 }
 
 .modal-wrapper {
@@ -70,10 +71,34 @@ export default class LoginForm extends Vue {}
   transition: all 0.3s ease;
 }
 
-.modal-header h3 {
-  margin-top: 0;
-
+.title{
+  text-align: center;
 }
+.title span {
+  font-size: 24px;
+  font-weight: 600
+}
+.content{
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.content span {
+  font-size: 16px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.buttons a{
+  background-color: rgb(214, 214, 214);
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 0px 10px;
+}
+
 
 .modal-body {
   /* margin: 10px 0; */

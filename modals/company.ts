@@ -16,9 +16,11 @@ export class Company {
   @Type(() => Common) businesses?: Common[];
   @Expose() logo?: string;
   @Expose({ name: "cover_image" }) coverImage?: string;
-  @Type(() => Common) city?: Common;
-  @Type(() => Common) district?: Common;
+  @Expose({ name: "business_ids" }) businessIDs?: Array<String | null>;
+  @Expose({name: "city_id"}) cityID?: String | null;
+  @Expose({name: "district_id"})  districtID?: String | null;
   @Expose() address?: string;
+  
 
   @Expose() status?: string;
 }

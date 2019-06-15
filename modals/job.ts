@@ -8,8 +8,13 @@ export class Job {
     @Expose() id?: string;
     @Expose() @Type(() => Company) company?: Company;
     @Expose() name?: string;
+    @Expose({ name: "business_ids" }) businessIDs?: Array<String>;
+    @Expose({name: "city_id"}) cityID?: String;
+    @Expose({name: "district_id"})  districtID?: String;
+    @Expose() address?: string;
+    
     @Expose() @Type(() => Common) contract?: Common;
-    @Expose() @Type(() => Common) business?: Common;
+    
     @Expose() @Type(() => Common) level?: Common;
     @Expose() logo?: string;
 
@@ -21,9 +26,7 @@ export class Job {
     @Expose({name: "cover_image"}) coverImage?: string;
     @Expose({name: "japanese_level"}) japaneseLevel?: string;
     @Expose() desc?: string;
-    @Expose() @Type(() => Common) city?: Common;
-    @Expose() @Type(() => Common) district?: Common;
-    @Expose() address?: string;
+
     @Expose({name: "min_salary"}) minSalary?: number;
     @Expose({name: "max_salary"}) maxSalary?: number;
     @Type(() => JobTranslation) translations?: JobTranslation[];

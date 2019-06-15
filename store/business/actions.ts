@@ -10,8 +10,9 @@ export interface Actions<S, R> extends ActionTree<S, R> {
 }
 
 const actions: Actions<BusinessState, RootState> = {
-  async fetchList({commit}) { 
+  async fetchList({commit, state}) { 
     try{
+      if(state.businesses.length != 0) return;
       let results: Object[] = await this.$axios.$get("/api/businesses");
       const list = plainToClass(Common, results["data"]);
       commit(types.FETCH_LIST, list)

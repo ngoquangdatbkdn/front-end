@@ -95,6 +95,7 @@
     "staff_number": "従業員数",
     "business_type": "業種",
     "company_address": "所在地",
+    "enter_company_address": "Nhập địa chỉ công ty",
     "update_company_info": "更新日",
     "company_image": "写真",
     "company_info": "会社情報",
@@ -116,7 +117,9 @@
     "enter_company_staff_amount": "従業員数入力",
     "upload_company_cover_image": "カバー写真をアップロード",
     "upload_company_logo": "ロゴをアップロード",
-    "publish_company_info": "公開する"
+    "publish_company_info": "公開する",
+    "create_company_info": "Tạo thông tin công ty",
+    "add_an_business": "Thêm loại hình kinh doanh"
   },
   "translator": {
     "translator_list": "翻訳者一覧"
@@ -184,5 +187,8 @@
     "candidate_wanted_contract_type": "Loại hợp đồng mong muốn",
     "candidate_wanted_contract_type_description": "Loại hợp đồng mong muốn của bạn",
     "update_candidate_desire": "Cập nhật mục tiêu nghề nghiệp"
+  },
+  "error": {
+    "invalid_input": "Sai dữ liệu nhập vào"
   }
 }
