@@ -333,7 +333,7 @@ export default class CreateCompany extends Vue {
   async submit() {
     const ok = await (this.$refs.obs as any).validate();
     console.log("this.company " + JSON.stringify(this.company));
-    if (false) {
+    if (ok) {
       try {
         // this.company.businesses = (this.company as any).businesses.map(
         //   business => business.instance
@@ -341,7 +341,12 @@ export default class CreateCompany extends Vue {
         // (this.company as any).country = (this.company.city as any).country;
         (this.company as any).cover_image = this.company.coverImage;
         console.log("company " + JSON.stringify(classToPlain(this.company)));
-        const result = await this.$axios.post("api/companies", this.company);
+        const result = await this.$axios.post("api/companies", {
+          ...this.company,
+          city_id: this.company.cityID,
+          business_ids: this.company.businessIDs,
+          district_id: this.company.districtID,
+          });
         console.log("result " + JSON.stringify(result));
       } catch (error) {
         this.showModal = true;
