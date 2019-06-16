@@ -305,7 +305,7 @@ export default class CreateCompany extends Vue {
 
   @Watch("company.cityID", { immediate: true, deep: true })
   onSelectCity(current: string, old: string) {
-    if(current == old) return
+    if (current == old) return;
     this.company.districtID = null;
     if (!(this.company as any).cityID) return;
     const locale: string = this.$i18n.locale;
@@ -330,19 +330,22 @@ export default class CreateCompany extends Vue {
     // this.company.cityID = "1179d94d-78a1-4975-a7c6-464b58f5a6b6";
   }
   async submit() {
-    const ok = await (this.$refs.obs as any).validate();
-    console.log("this.company " + JSON.stringify(this.company));
-    if (ok) {
+    const validated = await (this.$refs.obs as any).validate();
+    if (validated) {
       try {
-        (this.company as any).cover_image = this.company.coverImage;
-        console.log("company " + JSON.stringify(classToPlain(this.company)));
         const result = await this.$axios.post("api/companies", {
           ...this.company,
           city_id: this.company.cityID,
           business_ids: this.company.businessIDs,
           district_id: this.company.districtID,
-          });
-        console.log("result " + JSON.stringify(result));
+          cover_image: this.company.coverImage
+        });
+        this.$router.push(
+          (this as any).localePath({
+            name: "companies-id",
+            params: { id: result["data"]["id"] }
+          })
+        );
       } catch (error) {
         this.showModal = true;
         this.modalLabel = "Error";

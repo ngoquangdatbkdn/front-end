@@ -308,10 +308,7 @@ export default class CreateCompany extends Vue {
 
   @Watch("company.cityID", { immediate: true, deep: true })
   onSelectCity(current: string, old: string) {
-    console.log("current " + current);
-    console.log("old " + old);
     if (current == old) return;
-    // if (old == undefined) return;
    if (old != undefined) this.company.districtID = null;
     if (!(this.company as any).cityID) return;
     const locale: string = this.$i18n.locale;
@@ -324,8 +321,6 @@ export default class CreateCompany extends Vue {
   }
   @Watch("company.districtID", { immediate: true, deep: true })
   onSelectDistrict(current: string, old: string) {
-    // console.log("current " + current);
-    // console.log("old " + old);
   }
 
   mounted() {
@@ -349,7 +344,7 @@ export default class CreateCompany extends Vue {
           district_id: this.company.districtID,
           cover_image: this.company.coverImage,
         });
-        console.log("result " + JSON.stringify(result));
+        // console.log("result " + JSON.stringify(result));
         this.$router.push(
           (this as any).localePath({
             name: "companies-id",

@@ -1,8 +1,13 @@
 <template xmlns="http://www.w3.org/1999/html">
   <div>
-    <base-button class="nav-item" type="primary" @click="createJob">
+     <a v-if="isMyCompany" class="edit-button" @click="onNavigateToCreateJob()">
+              <span aria-hidden="true">
+                <i class="fa fa-edit" aria-hidden="true"/>
+              </span>
+            </a>
+    <!-- <base-button class="nav-item" type="primary" @click="createJob">
       {{ $t("job.add_job") }}
-    </base-button>
+    </base-button> -->
     <div class="container row">
       <job-list-item
         v-for="(job, index) of jobs"
@@ -45,15 +50,16 @@ import {Company, Job} from '~/modals'
 })
 export default class CompanyDetailJobList extends Vue {
    @Prop(Object) readonly company!: Company;
+   @Prop(Boolean) readonly isMyCompany!: boolean;
   jobs: Job[] = [];
   mount() {
     // console.log('jobs')
     // console.log(this.jobs)
   }
-  createJob() {
+  onNavigateToCreateJob() {
     this.$router.push(
       (this as any).localePath({
-        name: 'companies-id-jobs-create',
+        name: 'companies-id-create-job',
         params: { id: this.company.id }
       })
     )
@@ -61,4 +67,5 @@ export default class CompanyDetailJobList extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

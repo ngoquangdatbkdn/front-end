@@ -136,6 +136,25 @@
             :name="$t('job.job_benefit')"
           />
           <hr>
+
+          <v-select-with-validation
+            v-model="job.japaneseLevel"
+            rules="required"
+            :options="[1 ,2 ,3 , 4, 5]"
+            :label="$t('job.japanese_level')"
+            :description="$t('job.japanese_level_description')"
+            :name="$t('job.japanese_level')"
+          />
+          <hr>
+          <!-- <v-text-field-with-validation
+                  v-model="job.japaneseLevel"
+                  rules="required|numeric"
+                  type="number"
+                  :label="$t('job.japanese_level')"
+                  :name="$t('job.japanese_level')"
+                  :placeholder="$t('job.enter_japanese_level')"
+                  :isHalf="true"
+          />-->
           <v-editor-with-validation
             v-model="job.requiredEducation"
             rules="required"
@@ -162,7 +181,7 @@
             :name="$t('job.required_language')"
           />
           <hr>
-
+<!-- 
           <v-file-upload-with-validation
             :key="'job_cover_image'"
             v-model="job.coverImage"
@@ -173,7 +192,7 @@
             :placeholder="$t('job.upload_job_cover_image')"
             :unique="'job_cover_image'"
           />
-          <hr>
+          <hr> -->
         </div>
 
         <div class="text-center pb-4">
@@ -232,6 +251,9 @@ const UserInfo = namespace("userInfo");
   },
   async asyncData({ $axios, params }) {
     let job = new Job();
+    let result: Object = await $axios.$get(`/api/jobs/${params.id}`);
+    job = plainToClass(Job, result["data"]);
+
     return {
       job
     };
@@ -281,7 +303,7 @@ export default class JobCreateJob extends Vue {
   @Watch("job.cityID", { immediate: true, deep: true })
   onSelectCity(current: string, old: string) {
     if (current == old) return;
-    this.job.districtID = null;
+   if (old != undefined) this.job.districtID = null;
     if (!(this.job as any).cityID) return;
     const locale: string = this.$i18n.locale;
     const filtedList = this.districts.filter(
@@ -300,13 +322,14 @@ export default class JobCreateJob extends Vue {
     console.log("this.job " + JSON.stringify(this.job));
     if (validated) {
       try {
-        const result = await this.$axios.post("api/jobs", {
+        const id = this.$route.params.id;
+        const result = await this.$axios.patch(`api/jobs/${id}`, {
           ...this.job,
           company_id: this.$route.params.id,
           level_id: this.job.levelID,
           city_id: this.job.cityID,
           district_id: this.job.districtID,
-          cover_image: this.job.coverImage,
+          japanese_level: this.job.japaneseLevel,
           contract_id: this.job.contractID,
           business_ids: this.job.businessIDs,
           min_salary: this.job.maxSalary,

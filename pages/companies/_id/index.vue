@@ -17,9 +17,13 @@
             <p
               class="d-flex h3 justify-content-center align-items-center pl-3 pt-4 mt-2"
             >{{ company.name }}</p>
-            <a class="page-link" aria-label="Next" @click="onNavigateToUpdate()">
+            <a
+              v-if="$auth.user.property_id === company.id"
+              class="edit-button"
+              @click="onNavigateToUpdate()"
+            >
               <span aria-hidden="true">
-                <i class="fa fa-angle-right" aria-hidden="true"/>
+                <i class="fa fa-edit" aria-hidden="true"/>
               </span>
             </a>
           </div>
@@ -55,7 +59,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-center align-items-center">
-      <company-detail-tabs :company="company"/>
+      <company-detail-tabs :company="company" />
     </div>
   </div>
 </template>
@@ -138,7 +142,9 @@ export default class CompanyDetail extends Vue {
       })
     );
   }
-  async mounted() {}
+  async mounted() {
+    console.log("$auth.user " + JSON.stringify(this.$auth.user));
+  }
 }
 </script>
 
@@ -161,5 +167,13 @@ export default class CompanyDetail extends Vue {
 }
 .scale {
   font-size: 24px;
+}
+.edit-button i {
+  font-size: 31px !important;
+  color: #000 !important;
+  margin: 36px 20px;
+}
+.edit-button i:hover {
+  cursor: pointer;
 }
 </style>
