@@ -308,9 +308,11 @@ export default class CreateCompany extends Vue {
 
   @Watch("company.cityID", { immediate: true, deep: true })
   onSelectCity(current: string, old: string) {
+    console.log("current " + current);
+    console.log("old " + old);
     if (current == old) return;
-    if (current == null && old == undefined) return;
-    this.company.districtID = null;
+    // if (old == undefined) return;
+   if (old != undefined) this.company.districtID = null;
     if (!(this.company as any).cityID) return;
     const locale: string = this.$i18n.locale;
     const filtedList = this.districts.filter(
@@ -322,8 +324,8 @@ export default class CreateCompany extends Vue {
   }
   @Watch("company.districtID", { immediate: true, deep: true })
   onSelectDistrict(current: string, old: string) {
-    console.log("current " + current);
-    console.log("old " + old);
+    // console.log("current " + current);
+    // console.log("old " + old);
   }
 
   mounted() {
@@ -332,26 +334,28 @@ export default class CreateCompany extends Vue {
       isShow: true
     }));
     console.log("this.company " + JSON.stringify(this.company));
-    // this.company.cityID = "1179d94d-78a1-4975-a7c6-464b58f5a6b6";
   }
   async submit() {
     const ok = await (this.$refs.obs as any).validate();
     console.log("this.company " + JSON.stringify(this.company));
+    console.log("params " + this.$route.params.id.toString());
     if (ok) {
       try {
-        // this.company.businesses = (this.company as any).businesses.map(
-        //   business => business.instance
-        // );
-        // (this.company as any).country = (this.company.city as any).country;
-        (this.company as any).cover_image = this.company.coverImage;
-        console.log("company " + JSON.stringify(classToPlain(this.company)));
-        const result = await this.$axios.patch("api/companies", {
+        const id = this.$route.params.id;
+        const result = await this.$axios.patch(`api/companies/${id}`, {
           ...this.company,
           city_id: this.company.cityID,
           business_ids: this.company.businessIDs,
-          district_id: this.company.districtID
+          district_id: this.company.districtID,
+          cover_image: this.company.coverImage,
         });
         console.log("result " + JSON.stringify(result));
+        this.$router.push(
+          (this as any).localePath({
+            name: "companies-id",
+            params: { id }
+          })
+        );
       } catch (error) {
         this.showModal = true;
         this.modalLabel = "Error";

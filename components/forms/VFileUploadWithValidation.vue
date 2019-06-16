@@ -13,7 +13,7 @@
               class="upload-area justify-content-center align-items-center d-flex"
             >
               <p v-if="uploading === true">{{ progressUpload + "%" }}</p>
-              <img v-if="uploadEnd === true" :alt="$attrs.label" :src="downloadURL" class="mw-100">
+              <img v-if="uploadEnd === true" :alt="$attrs.label" :src="innerValue" class="mw-100">
               <div v-if="uploadEnd === false && uploading === false" class="text-center">
                 <i class="ni ni-image mb-2"/>
                 <p class="mb-0 font-weight-bold h6">{{ $t("common.upload_file_guild") }}</p>
@@ -23,7 +23,7 @@
             <file-upload
               v-if="uploadEnd === false && uploading === false"
               ref="upload"
-              v-model="innerValue"
+              v-model="files"
               extensions="gif,jpg,jpeg,png,webp"
               accept="image/png, image/gif, image/jpeg, image/webp"
               :name="$attrs.unique"
@@ -57,14 +57,14 @@ import { ValidationProvider } from "vee-validate";
     ValidationProvider
   }
   // data: () => ({
-  //   innerValue: []
+  //   files: []
   // })
 })
 export default class VFileUploadWithValidation extends Vue {
-  innerValue: any = [];
+  files: any = [];
   // uploadTask: storage.UploadTask = {} as storage.UploadTask;
   progressUpload: number = 0;
-  downloadURL: string = "";
+  innerValue: string = "";
   fileName: string = "";
   uploading: boolean = false;
   uploadEnd: boolean = false;
@@ -73,19 +73,24 @@ export default class VFileUploadWithValidation extends Vue {
   @Prop({ type: String }) value;
 
   @Watch("innerValue")
-  onInnerValueChanged(newVal: Array<File>, oldVal: Array<File>) {
+  onInnerValueChanged(newVal: string, oldVal:string) {
+      console.log("newVal innerValue " + newVal);
     this.$emit("input", newVal);
   }
 
   @Watch("value")
-  onValueChanged(newVal: Array<File>, oldVal: Array<File>) {
-    // this.innerValue = newVal;
+  onValueChanged(newVal: string, oldVal: string) {
+    console.log("newVal value " + newVal);
+    this.innerValue = newVal;
   }
 
-  created() {
+  created() { 
+    // console.log("this.value " + this.value);
     if (this.value) {
-      this.downloadURL = this.value;
-      // this.innerValue = this.value;
+      this.innerValue = this.value.toString();
+      this.uploadEnd = true;
+      // this.$emit("input", this.innerValue);
+      // this.files = this.value;
     }
   }
 
@@ -122,7 +127,8 @@ export default class VFileUploadWithValidation extends Vue {
             data,
             config
           );
-          this.downloadURL = result.data.data;
+          this.innerValue = result.data.data;
+          // this.$emit("input", this.innerValue);
         } catch (error) {
           // this.error = e.message;
           if (error.response) {
@@ -133,10 +139,10 @@ export default class VFileUploadWithValidation extends Vue {
             // error = error.message;
           }
         }
-        // console.log("this.downloadURL " + this.downloadURL);
+        // console.log("this.innerValue " + this.innerValue);
         this.uploadEnd = true;
         this.uploading = false;
-        this.$emit("input", this.downloadURL);
+     
       }
     }
   }
@@ -144,8 +150,8 @@ export default class VFileUploadWithValidation extends Vue {
   async deleteImage() {
     this.uploading = false;
     this.uploadEnd = false;
-    this.innerValue = [];
-    this.downloadURL = "";
+    this.files = [];
+    this.innerValue = "";
   }
   // }
 }

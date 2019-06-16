@@ -60,14 +60,15 @@ export default class VSelectWithValidation extends Vue {
 
   @Watch("innerValue")
   onInnerValueChanged(newVal: any, oldVal: any) {
-    // console.log("newVal " + JSON.stringify(newVal));
+    console.log("newVal zz" + JSON.stringify(newVal));
     this.$emit("input", newVal);
     this.$emit("onSelect", newVal);
   }
 
   @Watch("value")
   onValueChanged(newVal: any, oldVal: any) {
-    console.log("newVal " + JSON.stringify(newVal));
+     console.log("newVal xx" + JSON.stringify(newVal));
+    // console.log("newVal value" + JSON.stringify(newVal));
     this.innerValue = newVal;
   }
   mounted() {
@@ -76,6 +77,7 @@ export default class VSelectWithValidation extends Vue {
   }
   created() {
     if (this.value) {
+      // console.log("this.value " + JSON.stringify(this.value));
       this.innerValue = this.value;
     }
   }

@@ -17,6 +17,11 @@
             <p
               class="d-flex h3 justify-content-center align-items-center pl-3 pt-4 mt-2"
             >{{ company.name }}</p>
+            <a class="page-link" aria-label="Next" @click="onNavigateToUpdate()">
+              <span aria-hidden="true">
+                <i class="fa fa-angle-right" aria-hidden="true"/>
+              </span>
+            </a>
           </div>
           <div
             class="col-12 col-md-12 mt-2 mt-md-3 pt-2 row px-0 mx-0 rounded border-secondary border border-3 p-3"
@@ -80,7 +85,7 @@ const UserInfo = namespace("userInfo");
     await Promise.all([
       store.dispatch("district/fetchList"),
       store.dispatch("city/fetchList"),
-       store.dispatch("business/fetchList")
+      store.dispatch("business/fetchList")
     ]);
   },
   async asyncData({ $axios, params }) {
@@ -120,13 +125,20 @@ export default class CompanyDetail extends Vue {
       district => district.id === this.company.districtID
     )[0];
   }
-  get bussinesses(){
+  get bussinesses() {
     return this.businesses.filter(
-      business => (this.company as any).businessIDs.indexOf(business.id) > -1 
+      business => (this.company as any).businessIDs.indexOf(business.id) > -1
     );
   }
-  async mounted() {
+  onNavigateToUpdate() {
+    return this.$router.push(
+      (this as any).localePath({
+        name: "companies-id-update",
+        params: { id: this.$route.params.id }
+      })
+    );
   }
+  async mounted() {}
 }
 </script>
 
