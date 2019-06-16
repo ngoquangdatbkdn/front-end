@@ -1,5 +1,5 @@
 <template>
-  <ValidationProvider v-slot="{ errors }" :name="$attrs.name" :rules="rules" tag="div" class="row">
+  <ValidationProvider v-slot="{ errors, validate }" :name="$attrs.name" :rules="rules" tag="div" class="row">
     <div class="col-md-6">
       <p class="mb-0 font-weight-700 text-uppercase">{{ $attrs.label }}</p>
       <p class="mb-3">{{ $attrs.description }}</p>
@@ -20,15 +20,17 @@
                 <p class="mb-0">{{ $t("common.upload_file_limitation") }}</p>
               </div>
             </label>
+            <!-- <input v-model="innerValue" type="text"> -->
             <file-upload
               v-if="uploadEnd === false && uploading === false"
               ref="upload"
-              v-model="files"
+              :value="files"
               extensions="gif,jpg,jpeg,png,webp"
               accept="image/png, image/gif, image/jpeg, image/webp"
               :name="$attrs.unique"
               post-action="/upload/post"
               class="d-none"
+              @input="onChange($event) || validate($event)"
               @input-filter="inputFilter"
             />
             <p class="text-danger small">{{ errors[0] }}</p>
@@ -73,8 +75,8 @@ export default class VFileUploadWithValidation extends Vue {
   @Prop({ type: String }) value;
 
   @Watch("innerValue")
-  onInnerValueChanged(newVal: string, oldVal:string) {
-      console.log("newVal innerValue " + newVal);
+  onInnerValueChanged(newVal: string, oldVal: string) {
+    console.log("newVal innerValue " + newVal);
     this.$emit("input", newVal);
   }
 
@@ -83,12 +85,29 @@ export default class VFileUploadWithValidation extends Vue {
     console.log("newVal value " + newVal);
     this.innerValue = newVal;
   }
-
-  created() { 
+    onChange(value){
+    this.files = value;
+      console.log("this.files " + this.files.toString());
+  }
+  async openFile() {
+    let response = await fetch(this.innerValue);
+    let data = await response.blob();
+    let metadata = {
+      type: "image/jpeg"
+    };
+    
+    const file = new File([data], "test.jpg", metadata);
+    this.files = [file];
+    console.log("this.files " + this.files.toString());
+  }
+  created() {
     // console.log("this.value " + this.value);
     if (this.value) {
       this.innerValue = this.value.toString();
       this.uploadEnd = true;
+      // this.files = new FileList()
+      // files.file.push(new File);
+     this.openFile();
       // this.$emit("input", this.innerValue);
       // this.files = this.value;
     }
@@ -142,7 +161,6 @@ export default class VFileUploadWithValidation extends Vue {
         // console.log("this.innerValue " + this.innerValue);
         this.uploadEnd = true;
         this.uploading = false;
-     
       }
     }
   }

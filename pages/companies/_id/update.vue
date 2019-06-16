@@ -133,7 +133,7 @@
           <v-file-upload-with-validation
             :key="'company_logo'"
             v-model="company.logo"
-            rules="required"
+            rules="size:2000"
             :label="$t('company.company_logo')"
             :description="$t('company.company_logo_description')"
             :name="$t('company.company_logo')"
@@ -145,7 +145,7 @@
           <v-file-upload-with-validation
             :key="'company_cover_image'"
             v-model="company.coverImage"
-            rules="required"
+            rules="size:2000"
             :label="$t('company.company_cover_image')"
             :description="$t('company.company_cover_image_description')"
             :name="$t('company.company_cover_image')"
